@@ -1,4 +1,6 @@
 default_permissions = ":read-only"
+model = "gpt-6-luna"
+model_reasoning_effort = "low"
 developer_instructions = """
 Verify version-sensitive external contracts using current authoritative sources.
 Prefer official provider documentation, official changelogs and official SDK/source evidence. Use live web search when freshness matters.

@@ -23,15 +23,25 @@
   ],
   "mcp_servers": [],
   "mcp_policy": {
-    "default": "not-qualified",
+    "default": "bounded-by-hook-policy",
+    "collection_calls": {
+      "require_filter": true,
+      "require_page_size": true,
+      "maximum_page_size": 100
+    },
+    "response_budget": {
+      "maximum_utf8_bytes": 24000,
+      "maximum_tokens": 25000,
+      "oversize_behavior": "drop_result_and_request_narrower_query"
+    },
     "requirements": [
       "explicit server identity",
       "bounded enabled tool list",
       "approval behavior",
       "timeout",
       "required-vs-optional startup semantics",
-      "output budget",
-      "live qualification evidence before required use"
+      "pagination and filter rules for collection-returning operations",
+      "deterministic response-size cap for all MCP results"
     ]
   }
 }

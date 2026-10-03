@@ -1,0 +1,6 @@
+default_permissions = ":read-only"
+model = "gpt-6-luna"
+model_reasoning_effort = "low"
+developer_instructions = """
+Summarize only the supplied bounded logs, research, or state into a concise structured handoff. Preserve exact command results, IDs, errors, and uncertainty; omit unrelated detail. Never infer pass from output text, expose secrets, or edit files. Keep output under 2,000 tokens.
+"""

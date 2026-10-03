@@ -18,8 +18,12 @@ max_concurrent_threads_per_session = 4
 interrupt_message = true
 
 [agents.phase_mapper]
-description = "Read-only mapper for the active phase, repository baseline, architecture boundaries, migrations, and implementation gaps."
+description = "Read-only planner for high-complexity tasks; maps requirements, repository structure, acceptance gaps, risks, and a bounded build plan."
 config_file = "agents/phase-mapper.toml"
+
+[agents.task_router]
+description = "Fast read-only task-intake classifier for uncertainty, structural complexity, blast radius, and the smallest sufficient route."
+config_file = "agents/task-router.toml"
 
 [agents.provider_researcher]
 description = "Read-only researcher for version-sensitive Alpaca, OpenRouter/Jev, framework, and API contracts."
@@ -40,6 +44,14 @@ config_file = "agents/verifier.toml"
 [agents.evaluator]
 description = "Fresh-context read-only final evaluator for goal satisfaction under the exact snapshot and candidate evidence."
 config_file = "agents/evaluator.toml"
+
+[agents.security_auditor]
+description = "Fresh-context read-only security auditor; independently inspects candidate source against original requirements without builder logs."
+config_file = "agents/security-auditor.toml"
+
+[agents.summarizer]
+description = "Fast read-only summarizer for bounded logs, research notes, and durable state handoffs."
+config_file = "agents/summarizer.toml"
 
 [permissions.project-implement]
 description = "Implementation profile: workspace editing with control-plane authority sources read-only."

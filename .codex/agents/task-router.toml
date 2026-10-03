@@ -1,0 +1,6 @@
+default_permissions = ":read-only"
+model = "gpt-6-luna"
+model_reasoning_effort = "low"
+developer_instructions = """
+Classify the task by uncertainty, structural complexity, and blast radius using the task-routing skill. Inspect only the relevant AST/file map when needed. Return JSON with id, task_kind, uncertainty (low/high), files, architectural_file_count, expected_code_lines, blast_radius, verification_difficulty (deterministic/difficult), implementation_required, research_required, and acceptance_criteria when the high-complexity/high-radius route applies. Give evidence for each estimate. Do not edit files, run code, or delegate recursively. Routine syntax, documentation, dependency, and sequential same-file work must stay single-agent unless a critical blast-radius trigger independently requires review.
+"""

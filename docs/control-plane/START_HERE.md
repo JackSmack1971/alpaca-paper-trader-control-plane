@@ -11,15 +11,13 @@ node scripts/control-plane/preflight.mjs
 
 `validate.mjs` is a source linker, not runtime proof. `preflight.mjs` requires a coherent active phase and clean non-evidence worktree.
 
-## 2. Start Codex and qualify the live project layer
+Delegated and background tasks use isolated Git worktrees beneath `.codex/worktrees/`. Run `node scripts/control-plane/create-worktree.mjs --name <slug> --owner <role> --unit <task> --scope <paths>` and launch the task from that returned path. When using Codex app-managed background chats, set the app's Worktree Root to this project's `.codex/worktrees` directory in Worktree settings; project config cannot set that user-level location.
+
+## 2. Record runtime observations (optional)
 
 Review/trust the project hooks with `/hooks`. SessionStart records a sanitized runtime observation in `verification/control-plane/runtime/current.json`. Then run:
 
-```text
-node scripts/control-plane/qualify-control-plane.mjs
-```
-
-The result must be `QUALIFIED`. Qualification also runs Codex `--strict-config`, resolves the `project-implement` permission profile through `codex sandbox`, and parses the project rules through `codex execpolicy check`. The SessionStart observation must report the default project permission mode. If Codex is unavailable, the hook did not run, project config is stale, a runtime/profile/rules probe fails, the permission posture is overridden, or the engineering baseline is dirty, the result is `UNVERIFIED` and phase execution stops.
+SessionStart records a sanitized runtime observation when Codex runs. `qualify-control-plane.mjs` remains available for optional diagnostics, but neither Codex availability nor a `QUALIFIED` result gates implementation or closeout. Static source validation and the clean-baseline preflight remain required.
 
 ## 3. Compile the execution snapshot
 
@@ -27,7 +25,7 @@ The result must be `QUALIFIED`. Qualification also runs Codex `--strict-config`,
 node scripts/control-plane/snapshot-control-plane.mjs
 ```
 
-Record the emitted `snapshot_id` and artifact path. Authority-source changes require a new qualification and snapshot.
+Record the emitted `snapshot_id` and artifact path. Authority-source changes require a new snapshot.
 
 ## 4. Plan and execute the active phase
 
@@ -38,12 +36,12 @@ Record the emitted `snapshot_id` and artifact path. Authority-source changes req
 After the plan is sound:
 
 ```text
-/goal Execute only the active phase using $execute-phase. Preserve the qualified snapshot, use one implementation owner, freeze a candidate identity before independent evidence, and do not advance until $phase-closeout validates schema-v2 closeout evidence.
+/goal Execute only the active phase using $execute-phase. Preserve the execution snapshot, use one implementation owner, freeze a candidate identity before independent evidence, and do not advance until $phase-closeout validates the evidence-bound closeout.
 ```
 
 ## 5. Resume safely
 
-On resume, SessionStart emits a new runtime observation. Requalify if runtime/config changed. Re-read the active goal, Git status/diff, current snapshot and executed evidence rather than relying on memory.
+On resume, SessionStart may emit a new runtime observation. Re-read the active goal, Git status/diff, current snapshot and executed evidence rather than relying on memory.
 
 ## 6. Advance
 

@@ -3,7 +3,6 @@
 - Phase status: COMPLETE | BLOCKED | UNVERIFIED | NEEDS_DECISION | FAILED
 - Charter SHA-256: <digest>
 - Goal SHA-256: <digest>
-- Qualification ID: <identity>
 - Snapshot ID: <identity>
 - Candidate ID: <identity>
 - Baseline ref/SHA: <observed baseline>
@@ -36,16 +35,14 @@ Only work belonging to later phases should appear here; do not pre-implement it.
 
 ## Machine closeout manifest
 
-Before phase advancement, create `phase-XX.closeout.json` beside this report using schema version 2. The manifest references durable control-plane evidence artifacts and must bind the current candidate exactly.
+Before phase advancement, create `phase-XX.closeout.json` beside this report using schema version 3. The manifest references the immutable snapshot and durable evidence artifacts and must bind the current candidate exactly.
 
 ```json
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "phase": 1,
   "charter_digest": "<canonical SHA-256>",
   "goal_digest": "<canonical SHA-256>",
-  "qualification_id": "<qualification identity>",
-  "qualification_artifact": "verification/control-plane/qualification.json",
   "snapshot_id": "<execution snapshot identity>",
   "snapshot_artifact": "verification/control-plane/snapshots/<snapshot-id>.json",
   "candidate_id": "<candidate identity>",

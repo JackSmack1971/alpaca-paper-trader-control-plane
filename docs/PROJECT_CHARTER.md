@@ -90,6 +90,16 @@ Timeouts, schema failures, malformed responses, provider failures and unavailabl
 
 AI components never receive order-submission authority.
 
+### Jev's system role
+
+TypeSafe Jev is the fast typed-probabilistic second-opinion layer between the first generative analyst (LLM1) and the second generative critic (LLM2). Use it to classify/rank an LLM1 candidate, expose ambiguity and support abstention. Jev is not the market analyst, a general reasoning engine, a price forecaster, the deterministic risk governor or an execution authority. LLM1 synthesizes the candidate thesis; Jev makes bounded structured judgments; LLM2 reviews the evidence and may reject or narrow; deterministic application code owns facts, arithmetic, risk decisions and all broker orders.
+
+Jev's output is evidence, never authority. Neither a selected Choice nor a concentrated distribution can by itself authorize or size an order, waive a deterministic control, or resolve a material disagreement. A Jev failure, invalid result, ambiguous result or policy abstention resolves to no-action/review. Treat the supplied `state` as untrusted data and retain independent input-safety controls.
+
+Respect primitive-specific semantics. Noul returns a yes-probability and has no provider confidence field; approximately 0.5 is uncertain, not a confidence score. Choice returns a selected option and named option probabilities; its `confidence` is distribution-derived separation, not probability of correctness. Score returns a weighted level position and distribution; do not treat interpolation as a measured magnitude. Validate answer IDs/types, option membership, finite/range constraints, named probability coverage and sum, and documented confidence consistency locally. Index distributions by option name, never order. Questions in one Jev request are independent; one answer is not context for another. Do arithmetic, dates, counting and broker/risk calculations in deterministic code.
+
+Pin the Jev model version used for qualification, log the resolved model/provider route and version the state, question definitions and threshold policy. Keep Jev thresholds task- and horizon-specific, initially uncalibrated, and use them as operational abstention rules rather than claims of outcome accuracy. Do not transplant vendor example thresholds. Measure the impact of task/domain shift, repeated-call variation and Choice option-order sensitivity. Keep Jev state bounded and relevant; failures, provider outages and rate limits must fail closed with bounded backoff and no-action behavior.
+
 ## Verification ladder
 
 Use the highest rung currently available and report the actual rung reached.
@@ -369,7 +379,7 @@ Complete only when persisted decision contexts can be submitted through the vers
 
 # PHASE 5 — JEV STRUCTURED DECISION LAYER
 
-/goal Integrate TypeSafe Jev through OpenRouter as the fast structured decision layer between LLM1 and LLM2.
+/goal Integrate TypeSafe Jev through OpenRouter as the fast, typed, probabilistic second-opinion layer between LLM1 and LLM2. Jev classifies/ranks an analyst candidate, exposes ambiguity and supports abstention; it does not synthesize market analysis, forecast prices, decide risk or execute trades.
 
 Treat current official OpenRouter Decisions/Jev documentation as authoritative. Start with the pinned model `typesafe/jev-1.13` unless current authoritative documentation requires another identifier. Persist the resolved model version returned by the provider rather than assuming the requested identifier is the exact implementation version.
 
@@ -382,10 +392,12 @@ Jev receives:
 
 Ensure LLM1's thesis is included in Jev-visible `state`, not merely in application-side question IDs.
 
-Define exactly two initial versioned questions per cycle:
+Define exactly two initial versioned questions per cycle, evaluated independently against the same state:
 
-1. a Choice question over the application's fixed outcome vocabulary, which must include `no_action`;
-2. a Noul question evaluating whether the application-defined preconditions for the LLM1 hypothesis hold.
+1. a Choice question over a small fixed, versioned candidate-outcome vocabulary with plain-language descriptions and `no_action`/`other` coverage;
+2. a single Noul question evaluating one directly stated set of necessary preconditions for the LLM1 hypothesis, phrased so high means the preconditions hold.
+
+Include the LLM1 candidate thesis and relevant supporting/contradicting evidence in Jev's actual state. Do not expect sibling answers to inform each other. Keep irrelevant history out of state. Skip Jev inference and persist the deterministic no-action reason when LLM1 has no actionable candidate. Do not multiply a batch of independent Noul hazard scores into a joint probability.
 
 Respect each Jev primitive's actual response contract:
 - Choice: choice + probabilities + distribution-derived confidence when returned;
@@ -393,6 +405,8 @@ Respect each Jev primitive's actual response contract:
 - Noul: Noul result only; do not invent a confidence field for primitives that do not expose one.
 
 Do not describe Jev's returned confidence as probability of correctness. Treat it as a property of answer-distribution separation.
+
+Validate complete answer IDs/types, finite in-range Noul probability, exact Choice option membership, complete named distributions, probability sums and finite confidence. For high-impact classifications, measure option-order sensitivity with controlled permutation/shadow comparisons. Unstable results must be treated as ambiguity, not silently accepted.
 
 For Choice/Score responses with probabilities and documented confidence calculation, recompute confidence deterministically from the probabilities and verify provider output within a documented numerical tolerance. A mismatch produces a failure/no-action record.
 
@@ -435,7 +449,7 @@ Distinguish terminal results such as:
 - provider overload/rate limit;
 - failed consistency check.
 
-Any confidence threshold is an operational PAPER-mode guard, not a claim of calibrated outcome accuracy. Keep it configurable, versioned and explicitly marked uncalibrated until Phase 10 measures it.
+Any threshold is an operational PAPER-mode abstention guard, not a claim of calibrated outcome accuracy. Keep it configurable, versioned and explicitly marked uncalibrated until Phase 10 evaluates labeled outcomes. Do not use Jev confidence as P(correct); evaluate per question family and relevant trading horizon, including top and runner-up probabilities, abstention coverage and domain limitations. Ambiguous/unstable results abstain to no-action/review.
 
 Jev must never produce quantity, price, order type, time-in-force or other broker order parameters.
 
@@ -452,6 +466,7 @@ LLM2 receives only:
 - LLM1 structured analysis;
 - Jev selected outcome;
 - Jev probabilities/distribution information where available;
+- Jev abstention/consistency status and its versioned interpretation policy;
 - current portfolio/open-order state;
 - versioned critic instructions.
 
@@ -480,6 +495,8 @@ The response must explain:
 - uncertainty;
 - relevant portfolio/risk concerns;
 - rationale for confirmation/rejection/constraining.
+
+Treat Jev output as evidence, not a correctness guarantee or command. LLM2 must address material LLM1/Jev disagreement and must not defer automatically to Jev confidence. Missing/invalid Jev data or unresolved disagreement resolves to reject/no-action.
 
 Use the same structured-output, local-validation, timeout/retry, persistence, cost and secret-handling discipline as Phase 4.
 
@@ -513,12 +530,15 @@ Implement configurable deterministic controls covering at minimum:
 - stale-account-state rejection;
 - AI-stage completeness;
 - Jev/critic acceptance;
+- explicit Jev agreement/abstention policy; Jev alone can never satisfy policy or waive deterministic rules;
 - outstanding-order conflicts;
 - duplicate cycle/order protection;
 - configurable spread/liquidity restrictions where data exists;
 - operator kill switch.
 
 Sizing is deterministic application code, not AI arithmetic. Define and document the sizing formula, its rounding rules, and its interaction with LLM2 constraints. Default to a conservative percentage-of-equity/buying-power formulation and whole shares unless fractional execution is explicitly enabled and the asset/account supports it.
+
+Never derive price, quantity, notional, stop levels or sizing arithmetic from Jev probabilities or Score interpolation. Jev may support only an explicitly versioned abstention or candidate-ranking policy after Phase-10 evidence, always subordinate to deterministic controls.
 
 Start with an explicit versioned order policy such as PAPER market/day orders unless configuration and verified Alpaca capability permit another supported policy.
 
@@ -657,6 +677,7 @@ Display at minimum:
 - LLM1 thesis/action hypothesis;
 - Jev selected answer;
 - Jev probabilities/distribution confidence where supplied;
+- clear labeling that Jev confidence describes answer-distribution concentration/separation, not probability of correctness; show abstentions and validation/consistency failures;
 - Jev latency;
 - LLM2 verdict/constraints;
 - deterministic governor rule results;
@@ -735,6 +756,8 @@ For every completed decision cycle suitable for evaluation, record a realized fo
 
 Do not claim a Jev confidence threshold is universally valid.
 
+Evaluate Jev with task-specific limits rather than as a generic accuracy oracle. Where data permits, report pooled and per-slice results by question family, action class, horizon and materially different asset/market regimes. Separate threshold-fitting data from held-out evaluation; prevent outcome/future-data leakage; record requested/resolved model version and question/state/threshold-policy versions. Re-evaluate after changes to model, provider route, wording, vocabulary or policy. Measure repeat-call variation and option-order sensitivity for deployed Choice questions; do not average repeated probabilities blindly.
+
 Before publishing/calibrating an operational threshold for a relevant horizon, require at least 100 labeled PAPER cycles for that horizon or clearly state that the sample requirement has not been met.
 
 Any calibrated threshold report must include:
@@ -746,6 +769,8 @@ Any calibrated threshold report must include:
 - uncertainty/confidence interval;
 - limitations.
 
+Report ranking/discrimination separately from calibration. For Choice, retain per-option probabilities and report multiclass and per-option reliability measures. For Noul, report reliability and threshold precision/recall for that specific binary question. Include abstention coverage and abstained-cycle outcomes. Thresholds fit on qualification data remain exploratory until confirmed on held-out or later forward data.
+
 Measure Jev's marginal contribution using replay/ablation:
 
 Condition A:
@@ -753,6 +778,8 @@ LLM1 → Jev → LLM2
 
 Condition B:
 a documented Jev-disabled comparison using equivalent historical context and otherwise controlled downstream inputs.
+
+Also retain an LLM1-only/no-Jev baseline when feasible. Separate Jev's standalone classification quality from its incremental effect on the pipeline. Freeze historical upstream inputs and downstream policy in paired comparisons; disclose whether LLM2 was rerun or held fixed, and do not imply causal benefit from uncontrolled replay.
 
 Report differences in:
 - decision/outcome quality;

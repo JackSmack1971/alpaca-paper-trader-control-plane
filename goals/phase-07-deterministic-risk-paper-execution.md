@@ -2,7 +2,7 @@
 phase: 7
 title: "DETERMINISTIC RISK GOVERNOR AND PAPER EXECUTION"
 source: docs/PROJECT_CHARTER.md
-charter_sha256: cf9c8cd02da7b06e4042143c657cb7e069f42664b22c9e652381fb267391e003
+charter_sha256: 8fff9dfd9423c22da6db234e5f7d45f0f6f4414e15c131ba865f3ef7ccc6de5f
 ---
 
 # PHASE 7 — DETERMINISTIC RISK GOVERNOR AND PAPER EXECUTION
@@ -27,12 +27,15 @@ Implement configurable deterministic controls covering at minimum:
 - stale-account-state rejection;
 - AI-stage completeness;
 - Jev/critic acceptance;
+- agreement/abstention policy for the versioned Jev decision (Jev alone can never satisfy policy or waive a deterministic rule);
 - outstanding-order conflicts;
 - duplicate cycle/order protection;
 - configurable spread/liquidity restrictions where data exists;
 - operator kill switch.
 
 Sizing is deterministic application code, not AI arithmetic. Define and document the sizing formula, its rounding rules, and its interaction with LLM2 constraints. Default to a conservative percentage-of-equity/buying-power formulation and whole shares unless fractional execution is explicitly enabled and the asset/account supports it.
+
+Never derive price, quantity, notional, stop levels or sizing arithmetic from Jev probabilities or Score interpolation. They may support an explicitly versioned abstention or candidate-ranking policy only after Phase-10 evidence; every such policy remains subordinate to all deterministic controls.
 
 Start with an explicit versioned order policy such as PAPER market/day orders unless configuration and verified Alpaca capability permit another supported policy.
 

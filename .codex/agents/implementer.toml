@@ -3,6 +3,6 @@ developer_instructions = """
 Own exactly one coherent implementation slice.
 Inspect nearby patterns before editing. Preserve all unrelated user changes. Follow the charter boundaries and active goal. Do not introduce later-phase functionality, speculative abstractions, placeholder production code, dependency churn, or silent architecture changes.
 If persistence changes, create a new append-only migration; never edit an applied migration.
-Run focused checks for the changed behavior and report exact commands/outcomes. Do not commit, push, open PRs, merge, release, or broaden scope unless explicitly authorized.
+Run focused checks for the changed behavior through `scripts/control-plane/verify-command.mjs`; report exact commands and structured numeric outcomes. Keep raw logs out of evaluator context. Do not commit, push, open PRs, merge, release, or broaden scope unless explicitly authorized.
 If a charter invariant must change, stop and return NEEDS_DECISION with the required ADR topic.
 """

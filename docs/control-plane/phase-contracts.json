@@ -4,7 +4,7 @@
     {
       "phase": 1,
       "goal_file": "goals/phase-01-foundation.md",
-      "goal_digest": "333924d492ce4179ef4b6381c2d24a8e984263e7a35c740e490d324ebb7dafb1",
+      "goal_digest": "22c88ea1b0723cd0b7673431186a94df1fc2f5f5f05a3b8c9c7fee0a7eb53e81",
       "criteria": [
         {
           "id": "P01-C01",
@@ -19,7 +19,7 @@
     {
       "phase": 2,
       "goal_file": "goals/phase-02-alpaca-data-account-state.md",
-      "goal_digest": "0475fa83c50d8d9870fbf8a71aaadde17fd3446ea2be21070b0e130c88b90963",
+      "goal_digest": "5d0734fc88aa5a04ed67cb19a69e6140dd40620cc9b0a99feb8ec11399cc3533",
       "criteria": [
         {
           "id": "P02-C01",
@@ -34,7 +34,7 @@
     {
       "phase": 3,
       "goal_file": "goals/phase-03-deterministic-decision-context.md",
-      "goal_digest": "98a53a3749d53c744bc94cfb7a07d763f4c481d92b9bd8bbfd3a58417581ddce",
+      "goal_digest": "6994c477d06bb54944d4079803cb59b335e68da698fc164cd864609f6424ccbb",
       "criteria": [
         {
           "id": "P03-C01",
@@ -45,7 +45,7 @@
     {
       "phase": 4,
       "goal_file": "goals/phase-04-openrouter-llm1-market-analyst.md",
-      "goal_digest": "c0561f94bd41faab79860c59883d856df5a1f7e85d88d9e1e943fe2ff7919f7f",
+      "goal_digest": "77fd04ca7707e324502dc955fce0cfc0fab9a3abdd0c21f735d3961cc171b6e9",
       "criteria": [
         {
           "id": "P04-C01",
@@ -60,11 +60,11 @@
     {
       "phase": 5,
       "goal_file": "goals/phase-05-jev-structured-decision-layer.md",
-      "goal_digest": "55e0acca74b877b5ef3ef2afa0394175a8e6ec5f4cc4fd8c2c803bc3ea2e2ce6",
+      "goal_digest": "3a6f3a436ef4e2e7f85600d22de5ce7f581202810f601ad16ab53bae639f3c34",
       "criteria": [
         {
           "id": "P05-C01",
-          "description": "Jev uses versioned bounded questions and primitive-correct semantics, locally validates/recomputes results, persists provenance, and fails closed on provider/schema/consistency errors."
+          "description": "Jev serves as a versioned structured second opinion, locally validates primitive-correct outputs, exposes ambiguity for abstention, persists provenance, and fails closed without receiving risk or order authority."
         },
         {
           "id": "P05-C02",
@@ -75,22 +75,22 @@
     {
       "phase": 6,
       "goal_file": "goals/phase-06-openrouter-llm2-trading-critic.md",
-      "goal_digest": "926c4a9b70bd5a726f42374ffbd4067aeded0ea45d241644ec479812c756b1f0",
+      "goal_digest": "1152ca1cf688754a62f777d1771cff951e35e72b6435972a42d36baf7c89bcf1",
       "criteria": [
         {
           "id": "P06-C01",
-          "description": "LLM2 receives the bounded upstream evidence, emits a validated confirm/reject/constrain verdict, cannot enlarge risk or directly submit orders, and persists stage evidence."
+          "description": "LLM2 reviews LLM1 and Jev evidence including material disagreement, emits a validated confirm/reject/constrain verdict, cannot enlarge risk or submit orders, and persists stage evidence."
         }
       ]
     },
     {
       "phase": 7,
       "goal_file": "goals/phase-07-deterministic-risk-paper-execution.md",
-      "goal_digest": "51fe468cf13d26dc42367504bb71de4cb381aaafe908495fcfc776ab17be5fa4",
+      "goal_digest": "6040c3d59c7536a5c8c298204a8b8e46d395d6c8596e6f9ac2fb4074efe5e6f3",
       "criteria": [
         {
           "id": "P07-C01",
-          "description": "Deterministic risk policy is the final authority for exposure and routes only to Alpaca PAPER execution with idempotent order identity and restart reconciliation."
+          "description": "Deterministic risk policy is the final authority for exposure, never derives sizing from Jev probabilities, and routes only to Alpaca PAPER with idempotent order identity and restart reconciliation."
         },
         {
           "id": "P07-C02",
@@ -101,7 +101,7 @@
     {
       "phase": 8,
       "goal_file": "goals/phase-08-autonomous-orchestrator.md",
-      "goal_digest": "89267a1469614fe94695a46601bfb1f8d752d0de246dccfb8bad4f54e4976413",
+      "goal_digest": "68fd983344023c6272b7cfae62613506fe9481e9734947b4fe75199775e506f4",
       "criteria": [
         {
           "id": "P08-C01",
@@ -116,11 +116,11 @@
     {
       "phase": 9,
       "goal_file": "goals/phase-09-operator-dashboard.md",
-      "goal_digest": "18854257933514b8f0b7daf998456b59349b1af9e5ed208942f401f980dc271d",
+      "goal_digest": "4f8260634ae6aa3d23e14114d8eab33e008f857e5bfaf5f41894d0b8fd59f1c5",
       "criteria": [
         {
           "id": "P09-C01",
-          "description": "The dashboard truthfully reflects a running PAPER session, disconnect/stale/inactive/restart conditions, and traces PAPER execution through every AI and deterministic stage."
+          "description": "The dashboard truthfully reflects PAPER session state, labels Jev confidence as distribution separation rather than correctness probability, exposes abstentions, and traces decisions through every stage."
         },
         {
           "id": "P09-C02",
@@ -131,7 +131,7 @@
     {
       "phase": 10,
       "goal_file": "goals/phase-10-hardening-replay-calibration-qualification.md",
-      "goal_digest": "0eb853a6b204128369f5fd94f67b394bb64a07e5b26b77e42d29da2279889c88",
+      "goal_digest": "f74845e3c928239bac5de447cf6b2c7ec8a5609f930419f4e46202918cbe22d4",
       "criteria": [
         {
           "id": "P10-C01",
@@ -151,7 +151,7 @@
         },
         {
           "id": "P10-C05",
-          "description": "Calibration/ablation reports preserve historical evidence and state sample-size, horizon, base rate, outcome definition, uncertainty, latency, usage, cost, and limitations."
+          "description": "Calibration/ablation reports preserve historical evidence, evaluate Jev by task/horizon and relevant slices with held-out data, and report sample size, outcome definition, uncertainty, abstentions, latency, usage, cost, and limitations."
         },
         {
           "id": "P10-C06",

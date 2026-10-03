@@ -19,7 +19,7 @@ assert.equal(classifyPlatform('linux', {}, 'Linux version'), 'linux');
 const staticCheck = run(['scripts/control-plane/validate.mjs']);
 assert.equal(staticCheck.status, 0, staticCheck.stderr || staticCheck.stdout);
 const rootConfig = fs.readFileSync(path.join(repo,'.codex/config.toml'),'utf8');
-for (const role of ['phase_mapper','provider_researcher','implementer','reviewer','verifier','evaluator']) assert.match(rootConfig, new RegExp(`\\[agents\\.${role}\\]`));
+for (const role of ['phase_mapper','task_router','provider_researcher','implementer','reviewer','verifier','evaluator','security_auditor','summarizer']) assert.match(rootConfig, new RegExp(`\\[agents\\.${role}\\]`));
 
 const hookAllow = run(['.codex/hooks/pre-tool-use.mjs'], repo, JSON.stringify({hook_event_name:'PreToolUse',tool_name:'Bash',tool_input:{command:'git status'}}));
 assert.equal(hookAllow.status, 0);
@@ -27,9 +27,12 @@ assert.equal(hookAllow.stdout, '');
 const hookDeny = run(['.codex/hooks/pre-tool-use.mjs'], repo, JSON.stringify({hook_event_name:'PreToolUse',tool_name:'Bash',tool_input:{command:'git reset --hard HEAD'}}));
 assert.equal(hookDeny.status, 0);
 assert.equal(JSON.parse(hookDeny.stdout).hookSpecificOutput.permissionDecision, 'deny');
+const mcpUnbounded = run(['.codex/hooks/pre-tool-use.mjs'], repo, JSON.stringify({hook_event_name:'PreToolUse',tool_name:'mcp__db__query_rows',tool_input:{table:'orders'}}));
+assert.equal(JSON.parse(mcpUnbounded.stdout).hookSpecificOutput.permissionDecision, 'deny');
+const mcpBounded = run(['.codex/hooks/pre-tool-use.mjs'], repo, JSON.stringify({hook_event_name:'PreToolUse',tool_name:'mcp__db__query_rows',tool_input:{table:'orders',filter:{status:'open'},limit:50}}));
+assert.equal(mcpBounded.stdout, '');
 
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'alpaca-cp-'));
-const fakeBin = fs.mkdtempSync(path.join(os.tmpdir(), 'alpaca-codex-bin-'));
 const sibling = `${temp}-worktree`;
 try {
   fs.cpSync(repo, temp, { recursive:true, filter: src => !src.includes(`${path.sep}.git${path.sep}`) });
@@ -63,39 +66,19 @@ try {
 
   const phase = JSON.parse(fs.readFileSync(path.join(temp,'docs/control-plane/phase-state.json'),'utf8')).phases[0];
 
-  // Live qualification is separate from static validation and fails closed without Codex/runtime evidence.
-  const unqualified = run(['scripts/control-plane/qualify-control-plane.mjs'], temp);
-  assert.notEqual(unqualified.status, 0, 'qualification must not pass without live Codex/runtime evidence');
-  const unqualifiedRecord = JSON.parse(unqualified.stdout);
-  assert.equal(unqualifiedRecord.status, 'UNVERIFIED');
+  // Immutable source snapshots do not require a live Codex runtime.
+  const snapshotRun = run(['scripts/control-plane/snapshot-control-plane.mjs'], temp);
+  assert.equal(snapshotRun.status,0,snapshotRun.stderr || snapshotRun.stdout);
+  const snapshot = JSON.parse(snapshotRun.stdout);
+  assert.equal(snapshot.schema_version,2);
+  assert.equal(Object.hasOwn(snapshot,'qualification_id'),false);
+  const snapshotRel = `verification/control-plane/snapshots/${snapshot.snapshot_id}.json`;
   fs.writeFileSync(path.join(temp, phase.report_file), 'Phase status: COMPLETE\n');
   let advanced = run(['scripts/control-plane/advance-phase.mjs','--phase','1'], temp);
   assert.notEqual(advanced.status, 0, 'prose-only COMPLETE must not advance');
   assert.match(advanced.stderr, /missing machine closeout manifest/);
 
-  // A trusted SessionStart observation plus current Codex runtime probes can produce QUALIFIED.
-  const fakeCodex = path.join(fakeBin, 'fake-codex.mjs');
-  fs.writeFileSync(fakeCodex, `#!/usr/bin/env node\nconst a=process.argv.slice(2);\nif(a[0]==='--version'){console.log('codex-cli 0.test');process.exit(0)}\nif(a[0]==='--strict-config'&&a[1]==='features'&&a[2]==='list'){console.log('features-ok');process.exit(0)}\nif(a[0]==='sandbox'){console.log('PROFILE_OK');process.exit(0)}\nif(a[0]==='execpolicy'){console.log(JSON.stringify({decision:'forbidden'}));process.exit(0)}\nif(a[0]==='mcp'&&a[1]==='list'){console.log('[]');process.exit(0)}\nconsole.error('unsupported fake codex args',a);process.exit(2)\n`);
-  fs.chmodSync(fakeCodex,0o755);
-  fs.writeFileSync(path.join(fakeBin,'codex'), `#!/bin/sh\nexec "${process.execPath}" "${fakeCodex}" "$@"\n`);
-  fs.chmodSync(path.join(fakeBin,'codex'),0o755);
-  fs.writeFileSync(path.join(fakeBin,'codex.cmd'), `@"${process.execPath}" "${fakeCodex}" %*\r\n`);
-  const qualifiedEnv = {...process.env, PATH: `${fakeBin}${path.delimiter}${process.env.PATH ?? ''}`};
-  const sessionStart = run(['.codex/hooks/session-start.mjs'], temp, JSON.stringify({hook_event_name:'SessionStart',source:'startup',cwd:temp,session_id:'test-session',model:'test-model',permission_mode:'default'}), qualifiedEnv);
-  assert.equal(sessionStart.status,0,sessionStart.stderr);
-  const qualifiedRun = run(['scripts/control-plane/qualify-control-plane.mjs'], temp, undefined, qualifiedEnv);
-  assert.equal(qualifiedRun.status,0,qualifiedRun.stderr || qualifiedRun.stdout);
-  const qualification = JSON.parse(qualifiedRun.stdout);
-  assert.equal(qualification.status,'QUALIFIED');
-  assert.equal(qualification.runtime_checks.strict_config.ok,true);
-  assert.equal(qualification.runtime_checks.permission_profile.ok,true);
-  assert.equal(qualification.runtime_checks.rules.ok,true);
-
   // Candidate identity changes for engineering files but ignores control-plane evidence files.
-  const snapshotRun = run(['scripts/control-plane/snapshot-control-plane.mjs','--qualification','verification/control-plane/qualification.json'], temp);
-  assert.equal(snapshotRun.status,0,snapshotRun.stderr);
-  const snapshot = JSON.parse(snapshotRun.stdout);
-  const snapshotRel = `verification/control-plane/snapshots/${snapshot.snapshot_id}.json`;
   let candidateA = run(['scripts/control-plane/candidate-id.mjs','--snapshot',snapshotRel],temp);
   assert.equal(candidateA.status,0,candidateA.stderr);
   const idA = JSON.parse(candidateA.stdout).candidate_id;
@@ -114,8 +97,7 @@ try {
   const goalDigest = contracts.phases[0].goal_digest;
   const charterDigest = JSON.parse(fs.readFileSync(path.join(temp,'docs/control-plane/phase-state.json'),'utf8')).charter_sha256;
   const manifest = {
-    schema_version:2, phase:1, charter_digest:charterDigest, goal_digest:goalDigest,
-    qualification_id:qualification.qualification_id, qualification_artifact:'verification/control-plane/qualification.json',
+    schema_version:3, phase:1, charter_digest:charterDigest, goal_digest:goalDigest,
     snapshot_id:snapshot.snapshot_id, snapshot_artifact:snapshotRel, candidate_id:idA,
     acceptance:contracts.phases[0].criteria.map(c=>({criterion_id:c.id,disposition:'PASS',evidence:'test'})),
     verification:[{command:'node test',exit_code:0,evidence:'pass'}],
@@ -156,7 +138,6 @@ try {
   assert.equal(crlf.status,0,crlf.stderr);
 } finally {
   fs.rmSync(sibling,{recursive:true,force:true});
-  fs.rmSync(fakeBin,{recursive:true,force:true});
   fs.rmSync(temp,{recursive:true,force:true});
 }
 console.log('PASS: control-plane regression suite');

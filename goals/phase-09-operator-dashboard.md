@@ -2,7 +2,7 @@
 phase: 9
 title: "OPERATOR DASHBOARD"
 source: docs/PROJECT_CHARTER.md
-charter_sha256: cf9c8cd02da7b06e4042143c657cb7e069f42664b22c9e652381fb267391e003
+charter_sha256: 8fff9dfd9423c22da6db234e5f7d45f0f6f4414e15c131ba865f3ef7ccc6de5f
 ---
 
 # PHASE 9 — OPERATOR DASHBOARD
@@ -33,6 +33,7 @@ Display at minimum:
 - LLM1 thesis/action hypothesis;
 - Jev selected answer;
 - Jev probabilities/distribution confidence where supplied;
+- clear labeling that Jev confidence describes answer-distribution concentration/separation, not probability of correctness; show abstentions and validation/consistency failures;
 - Jev latency;
 - LLM2 verdict/constraints;
 - deterministic governor rule results;

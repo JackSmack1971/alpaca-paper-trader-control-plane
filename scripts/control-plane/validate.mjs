@@ -77,11 +77,16 @@ if (failures.length === 0) {
   const hooks = loadJson('.codex/hooks.json');
   if (!hooks.hooks?.SessionStart?.length) failures.push('SessionStart hook missing');
   if (!hooks.hooks?.PreToolUse?.length) failures.push('PreToolUse hook missing');
-  for (const event of ['SessionStart','PreToolUse']) for (const group of hooks.hooks?.[event] ?? []) for (const handler of group.hooks ?? []) {
+  if (!hooks.hooks?.PostToolUse?.length) failures.push('PostToolUse hook missing');
+  for (const event of ['SessionStart','PreToolUse','PostToolUse']) for (const group of hooks.hooks?.[event] ?? []) for (const handler of group.hooks ?? []) {
     if (handler.type === 'command' && (!handler.command || !handler.commandWindows)) failures.push(`${event} command hook must define command and commandWindows`);
   }
+  if (!(hooks.hooks?.PreToolUse ?? []).some(group => /^\^mcp__/.test(group.matcher ?? ''))) failures.push('MCP PreToolUse bounds hook missing');
+  if (!(hooks.hooks?.PostToolUse ?? []).some(group => /^\^mcp__/.test(group.matcher ?? ''))) failures.push('MCP PostToolUse size-limit hook missing');
+  if (!(hooks.hooks?.PostToolUse ?? []).some(group => /^\^Bash\$/.test(group.matcher ?? ''))) failures.push('Bash PostToolUse exit-status hook missing');
   const capability = loadJson('docs/control-plane/capabilities.json');
   if (capability.schema_version !== 1 || !Array.isArray(capability.mcp_servers)) failures.push('capability registry is malformed');
+  if (capability.mcp_policy?.collection_calls?.require_filter !== true || capability.mcp_policy?.collection_calls?.require_page_size !== true || capability.mcp_policy?.collection_calls?.maximum_page_size !== 100 || capability.mcp_policy?.response_budget?.maximum_utf8_bytes !== 24000 || capability.mcp_policy?.response_budget?.maximum_tokens !== 25000) failures.push('MCP pagination/filter or output budget policy is missing or exceeds the enforced limits');
 
   if (fs.statSync('AGENTS.md').size > 32768) failures.push('AGENTS.md exceeds project_doc_max_bytes');
   const nestedArchives = [];

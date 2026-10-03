@@ -14,7 +14,7 @@ Read the active instruction chain, `docs/PROJECT_CHARTER.md`, phase state, the a
 
 Run `node scripts/control-plane/preflight.mjs`. Stop on a charter-digest mismatch, malformed phase state, multiple/no active phases, missing active goal, or non-evidence dirty state whose ownership is unsafe. The Node preflight uses the same canonical utility layer as every lifecycle command.
 
-Then run `node scripts/control-plane/qualify-control-plane.mjs`. `UNVERIFIED` is a stop condition for governed implementation; never substitute checked-in configuration for proof that the current Codex runtime loaded the trusted project layer. After a `QUALIFIED` result, run `node scripts/control-plane/snapshot-control-plane.mjs` and retain the emitted snapshot artifact path for candidate freezing and closeout. The snapshot is immutable for that execution attempt; changing a control-plane authority source requires a new qualification/snapshot cycle.
+Run `node scripts/control-plane/snapshot-control-plane.mjs` and retain the emitted snapshot artifact path for candidate freezing and closeout. This snapshot is project-source provenance and does not depend on live Codex qualification. Runtime qualification is optional diagnostics. The snapshot is immutable for that execution attempt; changing a control-plane authority source requires a new snapshot.
 
 Record the baseline ref and dirty paths. Preserve unrelated user work. If prospective edits overlap pre-existing changes and ownership cannot be established safely, return `BLOCKED` rather than absorbing or reverting them.
 
@@ -26,7 +26,7 @@ Reconcile what is already complete, partial, blocked, or stale. Finish an author
 
 Choose the smallest delta that advances an active-phase completion criterion, has observable verification, preserves charter invariants, and does not pre-implement a later phase.
 
-If the user explicitly requested subagents/parallel work, use `phase_mapper` for repository mapping and `provider_researcher` only when version-sensitive external behavior can change correctness. Parallelize independent read-heavy work only; stay within repository concurrency limits and wait for discovery before writing. Otherwise do discovery in the primary agent—this skill never creates subagents merely because it names them.
+Use `$task-routing` to choose single-agent or delegated work. Parallelize independent read-heavy work only; stay within repository concurrency limits and wait for discovery before writing. Every delegated/background task runs from a separate `.codex/worktrees/` checkout; otherwise do discovery in the primary agent.
 
 **Done:** one intended delta and its acceptance evidence are explicit, with no unresolved discovery conflict changing the boundary.
 
@@ -63,7 +63,7 @@ Freeze the candidate first with `node scripts/control-plane/candidate-id.mjs --s
 
 Require reviewer and verifier outputs to name the exact `candidate_id`. Adjudicate findings against source, diff, and executed evidence. Route fixes through the one writer. A material post-review change invalidates affected review/verification evidence; rerun the smallest stale lane, broadening only if the risk surface changed.
 
-If a required configured agent is unavailable, follow the fallback contract and do not label a primary-agent self-check as independent review/verification.
+If an isolated reviewer, verifier, or evaluator is required but unavailable, follow the fallback contract and do not label a primary-agent self-check as independent review/verification. Evaluators receive the requirements, candidate/source, and structured verification records only; do not pass builder transcripts, reasoning, or raw logs.
 
 **Done:** no unresolved finding or stale evidence contradicts the slice completion claim.
 

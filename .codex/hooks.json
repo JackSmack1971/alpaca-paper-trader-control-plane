@@ -28,6 +28,46 @@
             "statusMessage": "Checking repository command policy"
           }
         ]
+      },
+      {
+        "matcher": "^mcp__.*$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$(git rev-parse --show-toplevel)/.codex/hooks/pre-tool-use.mjs\"",
+            "commandWindows": "powershell -NoProfile -Command \"$root=(git rev-parse --show-toplevel); node (Join-Path $root '.codex/hooks/pre-tool-use.mjs')\"",
+            "timeout": 5,
+            "statusMessage": "Checking MCP query bounds"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "^Bash$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$(git rev-parse --show-toplevel)/.codex/hooks/post-tool-use.mjs\"",
+            "commandWindows": "powershell -NoProfile -Command \"$root=(git rev-parse --show-toplevel); node (Join-Path $root '.codex/hooks/post-tool-use.mjs')\"",
+            "timeout": 5,
+            "additionalContextLimit": 100,
+            "statusMessage": "Checking command result"
+          }
+        ]
+      },
+      {
+        "matcher": "^mcp__.*$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$(git rev-parse --show-toplevel)/.codex/hooks/post-tool-use.mjs\"",
+            "commandWindows": "powershell -NoProfile -Command \"$root=(git rev-parse --show-toplevel); node (Join-Path $root '.codex/hooks/post-tool-use.mjs')\"",
+            "timeout": 5,
+            "additionalContextLimit": 120,
+            "statusMessage": "Bounding MCP result"
+          }
+        ]
       }
     ]
   }

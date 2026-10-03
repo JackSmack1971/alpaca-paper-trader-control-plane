@@ -4,7 +4,7 @@
 
 ```text
 intent
-  -> live qualification
+  -> static validation + clean preflight
   -> immutable execution snapshot
   -> map/research
   -> synthesis barrier
@@ -26,15 +26,14 @@ Run, in order:
 ```text
 node scripts/control-plane/validate.mjs
 node scripts/control-plane/preflight.mjs
-node scripts/control-plane/qualify-control-plane.mjs
 node scripts/control-plane/snapshot-control-plane.mjs
 ```
 
-Static validation proves repository source coherence. Qualification is a different gate: it requires a trusted SessionStart runtime observation in the default project permission mode, the actual Codex executable/version, a clean non-evidence Git baseline, current config/hook/rule identities, strict-config acceptance, a resolvable `project-implement` permission profile, and executable rules parsing. Missing or contradictory runtime evidence is `UNVERIFIED`, never success.
+Static validation proves repository source coherence. Preflight requires a coherent active phase and clean non-evidence Git baseline. The execution snapshot is generated from checked-in project authority and does not require a running Codex executable or live runtime probes. Runtime qualification remains an optional diagnostic.
 
 ## Execution
 
-Use 2–4 read-only mapping/research workers only when useful, synthesize before writing, and assign exactly one writer for overlapping code. Parallel writers require distinct worktrees and non-overlapping declared scopes. `worktree-assignment.mjs` writes a local evidence mirror and checks a registry stored in Git's shared common directory, so sibling worktrees can actually see one another. Release finished ownership with `--release <assignment-id>`.
+Apply `$task-routing` before work. For non-routine tasks, save the fast router's intake JSON and run `route-task.mjs`; its decision records the selected roles and creates a default-fail `test-results.json` for high-complexity/high-radius work. Keep ordinary edits single-agent. When delegation or background execution is selected, create a separate worktree beneath `.codex/worktrees/` using `create-worktree.mjs`, launch the task there, and give each writer a non-overlapping scope. `worktree-assignment.mjs` checks the shared registry; release finished ownership with `--release <assignment-id>`. Read-only research returns a structured `RESEARCH.md` handoff before a builder starts.
 
 ## Candidate freeze
 
@@ -52,7 +51,13 @@ Reviewer and verifier run against the frozen candidate. A fresh evaluator then a
 
 ## Closeout
 
-`phase-closeout` produces the human report and schema-v2 machine manifest. `validate-closeout-cli.mjs` recomputes candidate identity, reconciles qualification/snapshot/goal/charter provenance, requires the exact machine criteria in `phase-contracts.json`, and requires PASS evidence from reviewer, verifier and evaluator. Only then can `advance-phase.mjs` move one phase.
+`phase-closeout` produces the human report and schema-v3 machine manifest. `validate-closeout-cli.mjs` recomputes candidate identity, reconciles snapshot/goal/charter provenance, requires the exact machine criteria in `phase-contracts.json`, and requires PASS evidence from reviewer, verifier and evaluator. Only then can `advance-phase.mjs` move one phase.
+
+## Bounded tool results
+
+For MCP calls, use a selective filter and an explicit page size/cursor for list, search, database, and log operations. The synchronous hooks reject unbounded list/search requests where pagination/filter arguments are absent and replace oversized MCP results with a deterministic bounded notice. The output cap is 25,000 UTF-8 bytes, a conservative hard ceiling below 25,000 tokens. Never use MCP to dump an entire database or log stream.
+
+Run builds and other verification commands through `verify-command.mjs`; it stores raw logs outside evaluator context and emits only a bounded tail with a structured numeric result. The PostToolUse Bash hook accepts only the wrapper's structured result or an explicit numeric exit-code field; absent status is `UNKNOWN`, never a model-inferred pass. Use `set-test-result.mjs` to mark a criterion only from a completed check record, then run `validate-test-results.mjs` before evaluation.
 
 ## Decision boundary
 

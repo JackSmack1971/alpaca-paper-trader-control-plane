@@ -2,7 +2,7 @@
 phase: 10
 title: "HARDENING, REPLAY, CALIBRATION AND QUALIFICATION"
 source: docs/PROJECT_CHARTER.md
-charter_sha256: cf9c8cd02da7b06e4042143c657cb7e069f42664b22c9e652381fb267391e003
+charter_sha256: 8fff9dfd9423c22da6db234e5f7d45f0f6f4414e15c131ba865f3ef7ccc6de5f
 ---
 
 # PHASE 10 — HARDENING, REPLAY, CALIBRATION AND QUALIFICATION
@@ -40,6 +40,8 @@ For every completed decision cycle suitable for evaluation, record a realized fo
 
 Do not claim a Jev confidence threshold is universally valid.
 
+Evaluate Jev as a component with task-specific limits, not as a generic accuracy oracle. Keep outcomes split by question family, action class, decision horizon and materially different market/regime or asset groups where sample size permits. Report pooled and per-slice results so a good pooled score cannot hide weak domains. Separate threshold-fitting data from held-out evaluation data, prevent future/outcome leakage into inference state, and record Jev requested/resolved model version, question/state version and threshold-policy version for every result. Re-run shadow evaluation and review drift after any Jev model, provider route, question wording, outcome vocabulary or threshold change. Identical-input repeatability and option-order sensitivity should be measured for the deployed questions; disagreement across repeats is evidence for abstention analysis, not a reason to average probabilities blindly.
+
 Before publishing/calibrating an operational threshold for a relevant horizon, require at least 100 labeled PAPER cycles for that horizon or clearly state that the sample requirement has not been met.
 
 Any calibrated threshold report must include:
@@ -51,6 +53,8 @@ Any calibrated threshold report must include:
 - uncertainty/confidence interval;
 - limitations.
 
+Report discrimination/ranking and calibration separately. For Choice, retain per-option probabilities and measure per-option reliability plus multiclass metrics; for Noul, assess reliability and threshold precision/recall on that specific binary question. Include abstention coverage and the outcomes of abstained cycles. Do not use returned Choice/Score `confidence` as empirical probability of correctness without separate evidence. Thresholds tuned on the qualification sample remain exploratory unless confirmed on held-out or later forward data.
+
 Measure Jev's marginal contribution using replay/ablation:
 
 Condition A:
@@ -58,6 +62,8 @@ LLM1 → Jev → LLM2
 
 Condition B:
 a documented Jev-disabled comparison using equivalent historical context and otherwise controlled downstream inputs.
+
+Also retain a clearly specified LLM1-only/no-Jev baseline when feasible, and distinguish Jev's standalone classification quality from its incremental effect on the full pipeline. Avoid replay leakage: freeze historical upstream inputs and downstream policy for paired comparisons, disclose where LLM2 was rerun versus held fixed, and do not imply causal benefit from uncontrolled comparisons.
 
 Report differences in:
 - decision/outcome quality;

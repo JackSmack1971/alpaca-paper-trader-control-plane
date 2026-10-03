@@ -13,7 +13,7 @@ This repository is governed by `docs/PROJECT_CHARTER.md`. The charter is the arc
 
 For every implementation task:
 
-0. Run the control-plane start gate from `docs/control-plane/START_HERE.md`; implementation requires a `QUALIFIED` runtime record and immutable execution snapshot.
+0. Run the control-plane start gate from `docs/control-plane/START_HERE.md`; implementation requires passing static validation, a clean preflight, and an immutable execution snapshot. Live Codex runtime qualification is optional diagnostics, not an implementation or closeout gate.
 1. Read `docs/PROJECT_CHARTER.md`.
 2. Read `docs/control-plane/phase-state.json` and only work on the active phase unless the user explicitly changes scope.
 3. Read the active `goals/phase-XX-*.md` file and the previous phase report when one exists.
@@ -34,13 +34,15 @@ For every implementation task:
 
 ## Unit of work
 
-Treat one active phase as the outer unit of work and implement it through small coherent slices. Do not start later-phase features early merely because they are easy. A slice must have a qualified execution snapshot, known clean Git baseline, intended delta, frozen candidate identity, executed verification evidence, and an explicit completion/blocker state.
+Treat one active phase as the outer unit of work and implement it through small coherent slices. Do not start later-phase features early merely because they are easy. A slice must have an immutable execution snapshot, known clean Git baseline, intended delta, frozen candidate identity, executed verification evidence, and an explicit completion/blocker state.
 
-When subagents are explicitly requested, use the project roles and the `execute-phase` Skill:
+Before task execution, apply `$task-routing` to select the smallest sufficient workflow. Routine syntax corrections, documentation additions, dependency updates, and sequential same-file edits stay single-agent. Do not use a fixed multi-agent count. Use `$mcp-bounds` for MCP calls; list/search/database/log calls require a filter and page size of at most 100, and MCP results are capped at 25,000 tokens. For delegated/background work, create a dedicated Git worktree under `.codex/worktrees/` with `node scripts/control-plane/create-worktree.mjs`; do not run those tasks in the user's active checkout. Preserve existing local changes and do not silently copy them into a new worktree.
+
+When routing selects subagents, use the project roles and the `execute-phase` Skill:
 
 read-only mapping/research -> synthesis barrier -> one implementation owner -> candidate freeze -> deterministic validation -> fresh reviewer + verifier -> fresh evaluator -> primary adjudication.
 
-Parallelize independent reasoning, not overlapping writes. Child agents should not recursively create a worker tree unless the task explicitly requires it.
+Parallelize independent reasoning, not overlapping writes. Child agents should not recursively create a worker tree. Evaluators receive only the original requirements, frozen candidate/source, and structured verification records; never provide builder transcripts, reasoning, or raw builder logs. Reviewer, verifier, and security-auditor roles are read-only. Security-sensitive, architectural, or functional-correctness reviews must use isolated contexts and read-only permission profiles.
 
 ## External contracts and research
 
@@ -66,7 +68,7 @@ Git diff is authoritative for engineering change scope. Stage deliberately. Do n
 
 ## Phase closeout
 
-Before declaring a phase complete, use the `phase-closeout` Skill. Closeout must bind the current qualification, snapshot, goal and candidate identities and pass machine reconciliation before advancement. The report must record functionality, materially changed files, migrations, commands actually executed and outcomes, the highest verification rung actually reached, ADRs/assumptions, and blockers/limitations. Only then may `docs/control-plane/phase-state.json` advance to the next phase.
+Before declaring a phase complete, use the `phase-closeout` Skill. Closeout must bind the current snapshot, goal and candidate identities and pass machine reconciliation before advancement. Live Codex qualification is optional evidence, not a gate. The report must record functionality, materially changed files, migrations, commands actually executed and outcomes, the highest verification rung actually reached, ADRs/assumptions, and blockers/limitations. Only then may `docs/control-plane/phase-state.json` advance to the next phase.
 
 ## Completion language
 

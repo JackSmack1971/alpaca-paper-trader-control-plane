@@ -1,16 +1,19 @@
 {
   "schema_version": 2,
-  "control_plane_version": "1.1.0",
+  "control_plane_version": "1.2.0",
   "runtime": {
     "node_major": 22
   },
   "agents": [
     "phase-mapper",
+    "task-router",
     "provider-researcher",
     "implementer",
     "reviewer",
     "verifier",
-    "evaluator"
+    "evaluator",
+    "security-auditor",
+    "summarizer"
   ],
   "skills": [
     "adr-escalation",
@@ -20,11 +23,14 @@
     "phase-closeout",
     "research-external-contract",
     "schema-migration",
+    "task-routing",
+    "mcp-bounds",
     "verification-ladder"
   ],
   "hook_scripts": [
     ".codex/hooks/session-start.mjs",
-    ".codex/hooks/pre-tool-use.mjs"
+    ".codex/hooks/pre-tool-use.mjs",
+    ".codex/hooks/post-tool-use.mjs"
   ],
   "rule_files": [
     ".codex/rules/default.rules"
@@ -42,6 +48,12 @@
     "scripts/control-plane/validate-closeout-cli.mjs",
     "scripts/control-plane/advance-phase.mjs",
     "scripts/control-plane/worktree-assignment.mjs",
+    "scripts/control-plane/create-worktree.mjs",
+    "scripts/control-plane/route-task.mjs",
+    "scripts/control-plane/init-test-results.mjs",
+    "scripts/control-plane/set-test-result.mjs",
+    "scripts/control-plane/validate-test-results.mjs",
+    "scripts/control-plane/verify-command.mjs",
     "scripts/control-plane/check-paper-only.mjs",
     "scripts/control-plane/test-control-plane.mjs"
   ],
@@ -50,6 +62,12 @@
       "id": "phase_mapper",
       "file": ".codex/agents/phase-mapper.toml",
       "config_file": "agents/phase-mapper.toml",
+      "default_permissions": ":read-only"
+    },
+    {
+      "id": "task_router",
+      "file": ".codex/agents/task-router.toml",
+      "config_file": "agents/task-router.toml",
       "default_permissions": ":read-only"
     },
     {
@@ -80,6 +98,18 @@
       "id": "evaluator",
       "file": ".codex/agents/evaluator.toml",
       "config_file": "agents/evaluator.toml",
+      "default_permissions": ":read-only"
+    },
+    {
+      "id": "security_auditor",
+      "file": ".codex/agents/security-auditor.toml",
+      "config_file": "agents/security-auditor.toml",
+      "default_permissions": ":read-only"
+    },
+    {
+      "id": "summarizer",
+      "file": ".codex/agents/summarizer.toml",
+      "config_file": "agents/summarizer.toml",
       "default_permissions": ":read-only"
     }
   ]

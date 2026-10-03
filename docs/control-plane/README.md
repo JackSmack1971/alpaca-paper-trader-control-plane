@@ -1,23 +1,28 @@
 # Codex Project Control Plane
 
-Version: **1.1.0**
-Charter SHA-256: `cf9c8cd02da7b06e4042143c657cb7e069f42664b22c9e652381fb267391e003`
+Version: **1.2.0**
+Charter SHA-256: `8fff9dfd9423c22da6db234e5f7d45f0f6f4414e15c131ba865f3ef7ccc6de5f`
 
 This repository-local control plane governs the ten-phase Alpaca/OpenRouter/Jev PAPER-trading charter. It does not implement the trading application.
 
 ## Mechanical guarantees
 
 - one canonical Node 22 utility layer for identity, JSON, Git and line-ending normalization;
-- source validation is separate from live Codex qualification;
-- SessionStart runtime observation + fail-closed qualification;
+- static source validation and clean preflight gate implementation; live Codex qualification is optional diagnostics;
+- SessionStart runtime observation without a live-runtime implementation gate;
 - immutable execution snapshot before implementation;
 - one writer by default, explicit worktree assignments for concurrent writers;
 - deterministic candidate identity over Git delta and untracked engineering files;
 - independent reviewer, verifier and fresh evaluator bound to the same candidate;
-- schema-v2 closeout with exact machine acceptance criteria and stale-evidence rejection;
+- schema-v3 closeout with exact machine acceptance criteria and stale-evidence rejection;
 - project permission profiles plus `.rules` and synchronous PreToolUse repository guardrails;
+- risk-scaled single-agent/delegation routing, worktree-local background tasks, and bounded MCP results;
+- deterministic command-result records and PostToolUse status reporting;
 - capability registry that treats registration, enablement, visibility and authorization as separate;
 - executable PAPER-only static guard that later application tests must complement.
+- isolated worktree creation defaults to `.codex/worktrees/`; lightweight intake keeps routine work single-agent;
+- MCP collection calls require filters and page sizes, with oversized responses dropped before model context;
+- verification uses numeric exit-code records, and evaluator context excludes builder logs.
 
 Project-local policy remains a governance/default boundary, not a non-bypassable organization security boundary. Managed requirements or external controls are required for truly immutable restrictions.
 

@@ -9,9 +9,10 @@ A drop-in, repository-local Codex control plane derived from the attached ten-ph
 - current project `.codex/config.toml` using native Goal mode, multi-agent support, live web search and permission profiles;
 - SessionStart hook that surfaces active phase/provenance;
 - conservative project Git execpolicy rules;
-- six declared custom agent roles: mapper, provider researcher, implementer, reviewer, verifier, evaluator;
-- eight reusable Skills: phase execution, external-contract research, schema migration, PAPER safety, verification ladder, closeout, ADR escalation, and focused diff review;
-- deterministic phase-state, source linking, live qualification, execution snapshots, candidate identity, PAPER endpoint scanning, worktree ownership, evidence reconciliation, and phase advancement scripts;
+- nine declared custom agent roles, including task router, security auditor, and low-cost summarizer;
+- ten reusable Skills, including risk-scaled task routing and bounded MCP calls;
+- deterministic phase-state, source linking, optional runtime diagnostics, execution snapshots, candidate identity, PAPER endpoint scanning, worktree creation/ownership, result contracts, evidence reconciliation, and phase advancement scripts;
+- isolated delegated/background worktrees under `.codex/worktrees/`, with deterministic command-status hooks and bounded MCP results;
 - ADR, research and phase-report templates;
 - compatibility notes for current Codex behavior as of 2026-10-03.
 

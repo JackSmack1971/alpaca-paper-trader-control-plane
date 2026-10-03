@@ -1,15 +1,9 @@
-import fs from 'node:fs';
 import path from 'node:path';
 import { activePhase, canonicalFileDigest, currentBranch, currentHead, fileDigestMap, findRepoRoot, loadJson, loadPhaseState, objectDigest, parseArg, platformKind, statusEntries, writeJsonAtomic } from './lib.mjs';
 
 try {
   const args = process.argv.slice(2);
   const root = findRepoRoot(parseArg(args, '--repo-root') ?? process.cwd());
-  const qualificationPath = parseArg(args, '--qualification') ?? path.join(root, 'verification/control-plane/qualification.json');
-  if (!fs.existsSync(qualificationPath)) throw new Error('qualification artifact missing; run qualify-control-plane first');
-  const qualification = loadJson(qualificationPath);
-  if (qualification.status !== 'QUALIFIED') throw new Error(`qualification status is ${qualification.status}; snapshot requires QUALIFIED`);
-
   const dirty = statusEntries(root);
   if (dirty.length) throw new Error('non-evidence working-tree changes exist; establish a clean worktree before compiling a snapshot');
 
@@ -29,12 +23,10 @@ try {
   for (const script of components.lifecycle_scripts) files.push(script);
 
   const snapshot = {
-    schema_version: 1,
+    schema_version: 2,
     control_plane_schema: components.schema_version,
     created_at: new Date().toISOString(),
     platform: platformKind(),
-    qualification_id: qualification.qualification_id,
-    codex_version: qualification.codex_version,
     git_baseline: currentHead(root),
     git_branch: currentBranch(root),
     active_phase: phase.id,

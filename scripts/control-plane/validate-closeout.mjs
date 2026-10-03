@@ -12,36 +12,26 @@ export function validateCloseout(root, phaseNumber, manifestPath) {
   if (state.active_phase !== phaseNumber) throw new Error(`phase ${phaseNumber} is not active`);
   const phase = activePhase(state);
   const manifest = loadJson(resolvedManifest);
-  if (manifest.schema_version !== 2 || manifest.phase !== phaseNumber || manifest.phase_status !== 'COMPLETE') fail('schema_version=2, active phase, and COMPLETE are required');
+  if (manifest.schema_version !== 3 || manifest.phase !== phaseNumber || manifest.phase_status !== 'COMPLETE') fail('schema_version=3, active phase, and COMPLETE are required');
 
   const charter = canonicalFileDigest(path.join(root, 'docs/PROJECT_CHARTER.md'));
   const goal = canonicalFileDigest(path.join(root, phase.goal_file));
   if (manifest.charter_digest !== charter) fail('charter_digest does not match current charter');
   if (manifest.goal_digest !== goal) fail('goal_digest does not match current active goal');
 
-  if (typeof manifest.qualification_artifact !== 'string' || !manifest.qualification_artifact.startsWith('verification/control-plane/')) fail('qualification_artifact must be repository control-plane evidence');
   if (typeof manifest.snapshot_artifact !== 'string' || !manifest.snapshot_artifact.startsWith('verification/control-plane/snapshots/')) fail('snapshot_artifact must be a repository snapshot evidence path');
-  let qualificationPath, snapshotPath;
+  let snapshotPath;
   try {
-    qualificationPath = repoPath(root, manifest.qualification_artifact);
     snapshotPath = repoPath(root, manifest.snapshot_artifact);
   } catch (error) {
     fail(error.message);
   }
-  if (!fs.existsSync(qualificationPath) || !fs.existsSync(snapshotPath)) fail('qualification_artifact and snapshot_artifact must exist');
-  const qualification = loadJson(qualificationPath);
+  if (!fs.existsSync(snapshotPath)) fail('snapshot_artifact must exist');
   const snapshot = loadJson(snapshotPath);
-  const { qualification_id: qualificationId, ...qualificationPayload } = qualification;
-  if (!qualificationId || objectDigest(qualificationPayload) !== qualificationId) fail('qualification artifact integrity check failed');
-  if (qualification.status !== 'QUALIFIED' || qualificationId !== manifest.qualification_id) fail('qualification is missing, stale, or not QUALIFIED');
-  if (qualification.issues?.length) fail('QUALIFIED artifact contains unresolved issues');
-  if (qualification.project_runtime?.project_layer_loaded !== true || qualification.project_runtime?.permission_mode !== 'default') fail('qualification does not bind the default trusted project runtime posture');
-  for (const check of ['strict_config','permission_profile','rules']) if (qualification.runtime_checks?.[check]?.ok !== true) fail(`qualification runtime check ${check} is not proven`);
 
   const { snapshot_id: snapshotId, ...snapshotPayload } = snapshot;
-  if (!snapshotId || objectDigest(snapshotPayload) !== snapshotId) fail('snapshot artifact integrity check failed');
-  if (snapshotId !== manifest.snapshot_id || snapshot.qualification_id !== manifest.qualification_id) fail('snapshot identity does not reconcile with qualification');
-  if (snapshot.git_baseline !== qualification.git_head) fail('snapshot baseline differs from qualified Git HEAD');
+  if (snapshot.schema_version !== 2 || !snapshotId || objectDigest(snapshotPayload) !== snapshotId) fail('execution snapshot integrity check failed');
+  if (snapshotId !== manifest.snapshot_id) fail('snapshot identity does not match manifest');
   if (snapshot.active_phase !== phaseNumber || snapshot.goal_digest !== goal || snapshot.charter_digest !== charter) fail('snapshot does not bind current phase/goal/charter');
   for (const [rel, digest] of Object.entries(snapshot.source_digests ?? {})) {
     let current;
@@ -75,5 +65,5 @@ export function validateCloseout(root, phaseNumber, manifestPath) {
     if (!record || record.verdict !== 'PASS' || record.candidate_id !== manifest.candidate_id || typeof record.evidence !== 'string' || !record.evidence.trim()) fail(`${role} must PASS the same candidate_id with evidence`);
   }
   if (!Array.isArray(manifest.unresolved_blockers) || manifest.unresolved_blockers.length !== 0) fail('unresolved_blockers must be empty');
-  return { manifest, phase, qualification, snapshot, candidate: expectedCandidate, contract };
+  return { manifest, phase, snapshot, candidate: expectedCandidate, contract };
 }

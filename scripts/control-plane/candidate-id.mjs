@@ -11,7 +11,7 @@ function listUntracked(root) {
 
 export function buildCandidate(root, snapshotPath) {
   const snapshot = loadJson(snapshotPath);
-  if (!snapshot.snapshot_id || !snapshot.git_baseline || !snapshot.goal_digest) throw new Error('invalid execution snapshot');
+  if (snapshot.schema_version !== 2 || !snapshot.snapshot_id || !snapshot.git_baseline || !snapshot.goal_digest) throw new Error('invalid execution snapshot');
   const exclusions = EVIDENCE_PREFIXES.map(prefix => `:(exclude)${prefix}**`);
   const diff = git(root, 'diff', '--binary', '--full-index', '--no-ext-diff', snapshot.git_baseline, '--', '.', ...exclusions);
   if (diff.status !== 0) throw new Error(diff.stderr.trim() || 'cannot compute candidate diff');

@@ -2,7 +2,7 @@
 phase: 6
 title: "OPENROUTER LLM2 TRADING CRITIC"
 source: docs/PROJECT_CHARTER.md
-charter_sha256: cf9c8cd02da7b06e4042143c657cb7e069f42664b22c9e652381fb267391e003
+charter_sha256: 8fff9dfd9423c22da6db234e5f7d45f0f6f4414e15c131ba865f3ef7ccc6de5f
 ---
 
 # PHASE 6 — OPENROUTER LLM2 TRADING CRITIC
@@ -14,6 +14,7 @@ LLM2 receives only:
 - LLM1 structured analysis;
 - Jev selected outcome;
 - Jev probabilities/distribution information where available;
+- Jev's explicit abstention/consistency status and the versioned interpretation policy (so absent or invalid Jev output cannot be mistaken for approval);
 - current portfolio/open-order state;
 - versioned critic instructions.
 
@@ -42,6 +43,8 @@ The response must explain:
 - uncertainty;
 - relevant portfolio/risk concerns;
 - rationale for confirmation/rejection/constraining.
+
+Treat Jev output as evidence to inspect, not as a correctness guarantee or a command. LLM2 must explicitly address material LLM1/Jev disagreement and may not resolve it by deferring automatically to Jev confidence. Missing/invalid Jev data, unresolved disagreement or ambiguous interpretation means `reject`/no-action under the existing fail-closed rule.
 
 Use the same structured-output, local-validation, timeout/retry, persistence, cost and secret-handling discipline as Phase 4.
 

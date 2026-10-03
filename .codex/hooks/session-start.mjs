@@ -30,7 +30,7 @@ try {
     `CONTROL PLANE: active phase = ${phase?.id ?? 'unknown'} ${phase?.title ?? ''}`,
     phase ? `Active goal file: ${phase.goal_file}` : '',
     'Runtime observation recorded at verification/control-plane/runtime/current.json.',
-    'Run node scripts/control-plane/qualify-control-plane.mjs before compiling an execution snapshot.',
+    'Live Codex qualification is optional; static validation, clean preflight, and a source execution snapshot are the start gates.',
     mismatch ? 'BLOCKER: charter digest differs from phase-state.json. Do not implement until provenance is reconciled.' : '',
     'Never claim a verification rung or test passed unless it actually ran successfully.'
   ].filter(Boolean).join('\n');
