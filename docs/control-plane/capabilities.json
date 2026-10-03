@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "principle": "registered != enabled != visible != authorized",
+  "builtins": [
+    {
+      "id": "shell",
+      "required": true,
+      "purpose": "repository inspection, build, test, and bounded engineering commands",
+      "authorization": "active permission profile + approval policy + rules/hooks"
+    },
+    {
+      "id": "web_search",
+      "required": false,
+      "purpose": "current official provider/framework contract research",
+      "authorization": "active task and repository research policy"
+    },
+    {
+      "id": "multi_agent",
+      "required": false,
+      "purpose": "read-only mapping/research plus bounded review/verification",
+      "authorization": "execute-phase orchestration protocol"
+    }
+  ],
+  "mcp_servers": [],
+  "mcp_policy": {
+    "default": "not-qualified",
+    "requirements": [
+      "explicit server identity",
+      "bounded enabled tool list",
+      "approval behavior",
+      "timeout",
+      "required-vs-optional startup semantics",
+      "output budget",
+      "live qualification evidence before required use"
+    ]
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "phases": [
+    {
+      "phase": 1,
+      "goal_file": "goals/phase-01-foundation.md",
+      "goal_digest": "333924d492ce4179ef4b6381c2d24a8e984263e7a35c740e490d324ebb7dafb1",
+      "criteria": [
+        {
+          "id": "P01-C01",
+          "description": "A fresh documented installation can configure and start the service, validate its environment, identify PAPER mode, initialize the real schema, expose truthful health/status, and enforce absence of live-trading routes."
+        },
+        {
+          "id": "P01-C02",
+          "description": "Offline verification succeeds without credentials and unavailable credential-backed checks are reported rather than bypassed."
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "goal_file": "goals/phase-02-alpaca-data-account-state.md",
+      "goal_digest": "0475fa83c50d8d9870fbf8a71aaadde17fd3446ea2be21070b0e130c88b90963",
+      "criteria": [
+        {
+          "id": "P02-C01",
+          "description": "Downstream modules consume normalized timestamped market/account snapshots; freshness and connection health are observable; restart reconciliation restores broker truth; PAPER protections remain intact."
+        },
+        {
+          "id": "P02-C02",
+          "description": "Offline normalization/recovery fixtures and the highest authorized Alpaca verification rung are executed and documented."
+        }
+      ]
+    },
+    {
+      "phase": 3,
+      "goal_file": "goals/phase-03-deterministic-decision-context.md",
+      "goal_digest": "98a53a3749d53c744bc94cfb7a07d763f4c481d92b9bd8bbfd3a58417581ddce",
+      "criteria": [
+        {
+          "id": "P03-C01",
+          "description": "Persisted inputs replay to the same versioned decision context; numerical/freshness rules are tested; unavailable data is explicit; provenance reconstructs later AI inputs."
+        }
+      ]
+    },
+    {
+      "phase": 4,
+      "goal_file": "goals/phase-04-openrouter-llm1-market-analyst.md",
+      "goal_digest": "c0561f94bd41faab79860c59883d856df5a1f7e85d88d9e1e943fe2ff7919f7f",
+      "criteria": [
+        {
+          "id": "P04-C01",
+          "description": "LLM1 consumes only bounded validated decision context, produces locally validated versioned structured analysis, persists provider provenance/usage, and has no order authority."
+        },
+        {
+          "id": "P04-C02",
+          "description": "Retry/error behavior and unsupported structured-output behavior are covered by deterministic tests or authorized observed evidence."
+        }
+      ]
+    },
+    {
+      "phase": 5,
+      "goal_file": "goals/phase-05-jev-structured-decision-layer.md",
+      "goal_digest": "55e0acca74b877b5ef3ef2afa0394175a8e6ec5f4cc4fd8c2c803bc3ea2e2ce6",
+      "criteria": [
+        {
+          "id": "P05-C01",
+          "description": "Jev uses versioned bounded questions and primitive-correct semantics, locally validates/recomputes results, persists provenance, and fails closed on provider/schema/consistency errors."
+        },
+        {
+          "id": "P05-C02",
+          "description": "Any endpoint ambiguity material to correctness is resolved by authoritative or authorized observed evidence rather than guessing."
+        }
+      ]
+    },
+    {
+      "phase": 6,
+      "goal_file": "goals/phase-06-openrouter-llm2-trading-critic.md",
+      "goal_digest": "926c4a9b70bd5a726f42374ffbd4067aeded0ea45d241644ec479812c756b1f0",
+      "criteria": [
+        {
+          "id": "P06-C01",
+          "description": "LLM2 receives the bounded upstream evidence, emits a validated confirm/reject/constrain verdict, cannot enlarge risk or directly submit orders, and persists stage evidence."
+        }
+      ]
+    },
+    {
+      "phase": 7,
+      "goal_file": "goals/phase-07-deterministic-risk-paper-execution.md",
+      "goal_digest": "51fe468cf13d26dc42367504bb71de4cb381aaafe908495fcfc776ab17be5fa4",
+      "criteria": [
+        {
+          "id": "P07-C01",
+          "description": "Deterministic risk policy is the final authority for exposure and routes only to Alpaca PAPER execution with idempotent order identity and restart reconciliation."
+        },
+        {
+          "id": "P07-C02",
+          "description": "PAPER-only guards, stale-state rejection, kill-switch behavior, ambiguous submission handling, and order lifecycle reconciliation are deterministically tested."
+        }
+      ]
+    },
+    {
+      "phase": 8,
+      "goal_file": "goals/phase-08-autonomous-orchestrator.md",
+      "goal_digest": "89267a1469614fe94695a46601bfb1f8d752d0de246dccfb8bad4f54e4976413",
+      "criteria": [
+        {
+          "id": "P08-C01",
+          "description": "Unattended PAPER orchestration drives every opportunity through a bounded persisted lifecycle to executed/no_action/blocked without overlapping duplicate decisions."
+        },
+        {
+          "id": "P08-C02",
+          "description": "Restart recovery, in-flight limits, cadence/rate bounds, failure blocking, and stage/cycle latency observability are verified."
+        }
+      ]
+    },
+    {
+      "phase": 9,
+      "goal_file": "goals/phase-09-operator-dashboard.md",
+      "goal_digest": "18854257933514b8f0b7daf998456b59349b1af9e5ed208942f401f980dc271d",
+      "criteria": [
+        {
+          "id": "P09-C01",
+          "description": "The dashboard truthfully reflects a running PAPER session, disconnect/stale/inactive/restart conditions, and traces PAPER execution through every AI and deterministic stage."
+        },
+        {
+          "id": "P09-C02",
+          "description": "Browser code has no provider credentials or direct broker/model clients and kill-switch changes are server-side authorized deterministic transitions."
+        }
+      ]
+    },
+    {
+      "phase": 10,
+      "goal_file": "goals/phase-10-hardening-replay-calibration-qualification.md",
+      "goal_digest": "0eb853a6b204128369f5fd94f67b394bb64a07e5b26b77e42d29da2279889c88",
+      "criteria": [
+        {
+          "id": "P10-C01",
+          "description": "Relevant offline automated checks and deterministic replay/failure qualification pass."
+        },
+        {
+          "id": "P10-C02",
+          "description": "Secrets remain protected, PAPER-only guards pass, and no live-order route exists."
+        },
+        {
+          "id": "P10-C03",
+          "description": "Every executed verification rung and every outstanding external/runtime blocker is explicitly recorded."
+        },
+        {
+          "id": "P10-C04",
+          "description": "Operator/developer/runbook documentation matches the resulting implementation."
+        },
+        {
+          "id": "P10-C05",
+          "description": "Calibration/ablation reports preserve historical evidence and state sample-size, horizon, base rate, outcome definition, uncertainty, latency, usage, cost, and limitations."
+        },
+        {
+          "id": "P10-C06",
+          "description": "The project is not described as live-qualified unless the corresponding credential-backed verification rung actually ran successfully."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "description": "Project control-plane lifecycle and repository guard hooks. Review and trust this project hook configuration before use.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$(git rev-parse --show-toplevel)/.codex/hooks/session-start.mjs\"",
+            "commandWindows": "powershell -NoProfile -Command \"$root=(git rev-parse --show-toplevel); node (Join-Path $root '.codex/hooks/session-start.mjs')\"",
+            "timeout": 10,
+            "additionalContextLimit": 1800,
+            "statusMessage": "Loading active project phase"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "^Bash$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$(git rev-parse --show-toplevel)/.codex/hooks/pre-tool-use.mjs\"",
+            "commandWindows": "powershell -NoProfile -Command \"$root=(git rev-parse --show-toplevel); node (Join-Path $root '.codex/hooks/pre-tool-use.mjs')\"",
+            "timeout": 5,
+            "statusMessage": "Checking repository command policy"
+          }
+        ]
+      }
+    ]
+  }
+}

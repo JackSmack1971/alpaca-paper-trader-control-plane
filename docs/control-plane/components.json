@@ -1,0 +1,86 @@
+{
+  "schema_version": 2,
+  "control_plane_version": "1.1.0",
+  "runtime": {
+    "node_major": 22
+  },
+  "agents": [
+    "phase-mapper",
+    "provider-researcher",
+    "implementer",
+    "reviewer",
+    "verifier",
+    "evaluator"
+  ],
+  "skills": [
+    "adr-escalation",
+    "diff-review",
+    "execute-phase",
+    "paper-safety-audit",
+    "phase-closeout",
+    "research-external-contract",
+    "schema-migration",
+    "verification-ladder"
+  ],
+  "hook_scripts": [
+    ".codex/hooks/session-start.mjs",
+    ".codex/hooks/pre-tool-use.mjs"
+  ],
+  "rule_files": [
+    ".codex/rules/default.rules"
+  ],
+  "lifecycle_scripts": [
+    "scripts/control-plane/lib.mjs",
+    "scripts/control-plane/canonical-digest.mjs",
+    "scripts/control-plane/show-phase.mjs",
+    "scripts/control-plane/preflight.mjs",
+    "scripts/control-plane/validate.mjs",
+    "scripts/control-plane/qualify-control-plane.mjs",
+    "scripts/control-plane/snapshot-control-plane.mjs",
+    "scripts/control-plane/candidate-id.mjs",
+    "scripts/control-plane/validate-closeout.mjs",
+    "scripts/control-plane/validate-closeout-cli.mjs",
+    "scripts/control-plane/advance-phase.mjs",
+    "scripts/control-plane/worktree-assignment.mjs",
+    "scripts/control-plane/check-paper-only.mjs",
+    "scripts/control-plane/test-control-plane.mjs"
+  ],
+  "agent_roles": [
+    {
+      "id": "phase_mapper",
+      "file": ".codex/agents/phase-mapper.toml",
+      "config_file": "agents/phase-mapper.toml",
+      "default_permissions": ":read-only"
+    },
+    {
+      "id": "provider_researcher",
+      "file": ".codex/agents/provider-researcher.toml",
+      "config_file": "agents/provider-researcher.toml",
+      "default_permissions": ":read-only"
+    },
+    {
+      "id": "implementer",
+      "file": ".codex/agents/implementer.toml",
+      "config_file": "agents/implementer.toml",
+      "default_permissions": "project-implement"
+    },
+    {
+      "id": "reviewer",
+      "file": ".codex/agents/reviewer.toml",
+      "config_file": "agents/reviewer.toml",
+      "default_permissions": ":read-only"
+    },
+    {
+      "id": "verifier",
+      "file": ".codex/agents/verifier.toml",
+      "config_file": "agents/verifier.toml",
+      "default_permissions": "project-verify"
+    },
+    {
+      "id": "evaluator",
+      "file": ".codex/agents/evaluator.toml",
+      "config_file": "agents/evaluator.toml",
+      "default_permissions": ":read-only"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+#:schema https://developers.openai.com/codex/config-schema.json
+# Project-scoped Codex configuration. Loads only when the repository is trusted.
+
+approval_policy = "on-request"
+default_permissions = "project-implement"
+web_search = "live"
+project_doc_max_bytes = 32768
+
+[features]
+goals = true
+hooks = true
+multi_agent = true
+shell_tool = true
+
+[agents]
+enabled = true
+max_concurrent_threads_per_session = 4
+interrupt_message = true
+
+[agents.phase_mapper]
+description = "Read-only mapper for the active phase, repository baseline, architecture boundaries, migrations, and implementation gaps."
+config_file = "agents/phase-mapper.toml"
+
+[agents.provider_researcher]
+description = "Read-only researcher for version-sensitive Alpaca, OpenRouter/Jev, framework, and API contracts."
+config_file = "agents/provider-researcher.toml"
+
+[agents.implementer]
+description = "Single implementation owner for one bounded active-phase slice after synthesis."
+config_file = "agents/implementer.toml"
+
+[agents.reviewer]
+description = "Fresh-context read-only reviewer of the exact candidate against the active phase and charter invariants."
+config_file = "agents/reviewer.toml"
+
+[agents.verifier]
+description = "Independent verifier that executes applicable acceptance checks for the exact candidate."
+config_file = "agents/verifier.toml"
+
+[agents.evaluator]
+description = "Fresh-context read-only final evaluator for goal satisfaction under the exact snapshot and candidate evidence."
+config_file = "agents/evaluator.toml"
+
+[permissions.project-implement]
+description = "Implementation profile: workspace editing with control-plane authority sources read-only."
+extends = ":workspace"
+
+[permissions.project-implement.filesystem.":workspace_roots"]
+"AGENTS.md" = "read"
+".codex" = "read"
+".agents/skills" = "read"
+"docs/PROJECT_CHARTER.md" = "read"
+"docs/control-plane" = "read"
+"goals" = "read"
+"scripts/control-plane" = "read"
+
+[permissions.project-verify]
+description = "Verification profile: permits build/test artifacts while keeping source, migrations, configuration, documentation, goals, and control-plane authority read-only."
+extends = ":workspace"
+
+[permissions.project-verify.filesystem.":workspace_roots"]
+"AGENTS.md" = "read"
+".codex" = "read"
+".agents/skills" = "read"
+"docs" = "read"
+"goals" = "read"
+"scripts/control-plane" = "read"
+"src" = "read"
+"tests" = "read"
+"test" = "read"
+"drizzle" = "read"
+"migrations" = "read"
+"package.json" = "read"
+"pnpm-lock.yaml" = "read"
+"tsconfig.json" = "read"

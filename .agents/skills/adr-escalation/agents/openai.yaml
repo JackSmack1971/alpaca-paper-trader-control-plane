@@ -1,0 +1,6 @@
+interface:
+  display_name: "ADR Escalation"
+  short_description: "Escalate authority gaps into decision-ready ADRs"
+  default_prompt: "Use $adr-escalation to structure this blocked implementation decision into an operator-ready ADR escalation."
+policy:
+  allow_implicit_invocation: true
