@@ -154,7 +154,7 @@ export function activePhase(state) {
 }
 
 export function readStdinJson() {
-  const text = fs.readFileSync(0, 'utf8');
+  const text = fs.readFileSync(0, 'utf8').replace(/^\uFEFF/, '');
   if (!text.trim()) return {};
   return JSON.parse(text);
 }

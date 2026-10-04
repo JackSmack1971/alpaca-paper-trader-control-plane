@@ -16,6 +16,9 @@ assert.equal(canonicalText(Buffer.from('one\r\ntwo\r')), 'one\ntwo\n');
 assert.equal(sha256(canonicalText(Buffer.from('same\r\ntext'))), sha256(canonicalText(Buffer.from('same\ntext'))));
 assert.equal(objectDigest({b:1,a:2}), objectDigest({a:2,b:1}));
 assert.equal(classifyPlatform('win32', {}, ''), 'native-windows');
+const bomJsonInput = run(['--input-type=module', '-e', `import { readStdinJson } from './scripts/control-plane/lib.mjs'; process.stdout.write(JSON.stringify(readStdinJson()));`], repo, '\uFEFF{"probe":true}');
+assert.equal(bomJsonInput.status, 0, bomJsonInput.stderr || bomJsonInput.stdout, 'JSON stdin parser must accept a UTF-8 BOM');
+assert.equal(bomJsonInput.stdout, '{"probe":true}');
 assert.equal(classifyPlatform('linux', {WSL_DISTRO_NAME:'Ubuntu'}, 'Linux'), 'wsl');
 assert.equal(classifyPlatform('linux', {}, 'Linux version'), 'linux');
 
