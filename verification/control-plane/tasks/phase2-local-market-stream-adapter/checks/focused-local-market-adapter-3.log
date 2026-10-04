@@ -1,0 +1,18 @@
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0/.codex/worktrees/phase2-local-market-stream-adapter
+
+ ✓ tests/alpaca-market-stream.test.ts (9 tests) 47ms
+{"level":30,"time":1791132518609,"pid":24192,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/__local/state","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791132518610,"pid":24192,"hostname":"bretlaptop","reqId":"req-1","msg":"Route GET:/__local/state not found"}
+{"level":30,"time":1791132518610,"pid":24192,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":404},"responseTime":0.2238999999999578,"msg":"request completed"}
+{"level":30,"time":1791132518610,"pid":24192,"hostname":"bretlaptop","reqId":"req-2","req":{"method":"GET","url":"/__local/trade-updates","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791132518611,"pid":24192,"hostname":"bretlaptop","reqId":"req-2","msg":"Route GET:/__local/trade-updates not found"}
+{"level":30,"time":1791132518611,"pid":24192,"hostname":"bretlaptop","reqId":"req-2","res":{"statusCode":404},"responseTime":0.11059999999997672,"msg":"request completed"}
+ ✓ tests/local-test-harness.test.ts (13 tests) 926ms
+   ✓ loopback local runtime controls > routes local account reconciliation through the PAPER adapter with bounded simulated failures and recovery  666ms
+
+ Test Files  2 passed (2)
+      Tests  22 passed (22)
+   Start at  12:48:36
+   Duration  2.43s (transform 369ms, setup 0ms, collect 1.28s, tests 973ms, environment 0ms, prepare 397ms)
+

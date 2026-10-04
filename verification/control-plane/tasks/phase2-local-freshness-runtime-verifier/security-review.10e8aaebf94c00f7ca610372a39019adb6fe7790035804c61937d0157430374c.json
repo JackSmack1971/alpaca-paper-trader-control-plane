@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "candidate_id": "10e8aaebf94c00f7ca610372a39019adb6fe7790035804c61937d0157430374c",
+  "task_id": "phase2-local-freshness-runtime-verifier",
+  "task_bundle_id": "1f40c6b6bc08efca9954997dd0184b8c341243e08f4bcea2f54d7caf0cba7d8b",
+  "verdict": "PASS",
+  "evidence": "Reviewed frozen candidate manifest and candidate freeze recheck; confirmed the verifier's virtual-time market/account freshness thresholds and simulated reconciliation assertion; confirmed local control routes are registered only in local test mode, configuration requires loopback application/database hosts and absent Alpaca/OpenRouter credentials, simulated reconciliation invokes only the harness provider, and verifier HTTP calls reject redirects. Live-local-freshness-controls passed. No security findings."
+}

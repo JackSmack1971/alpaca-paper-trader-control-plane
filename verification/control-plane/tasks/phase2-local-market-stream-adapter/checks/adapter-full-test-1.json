@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "adapter-full-test-1",
+  "task_id": "phase2-local-market-stream-adapter",
+  "bundle_id": "459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "C:\\Program Files\\nodejs\\node.exe",
+  "args": [
+    "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\node_modules\\.pnpm\\vitest@3.2.7_@types+node@22.20.5_tsx@4.23.15\\node_modules\\vitest\\vitest.mjs",
+    "run"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-full-test-1.log",
+  "started_at": "2026-10-04T16:55:26.325Z",
+  "completed_at": "2026-10-04T16:55:29.455Z",
+  "signal": null,
+  "error": null
+}

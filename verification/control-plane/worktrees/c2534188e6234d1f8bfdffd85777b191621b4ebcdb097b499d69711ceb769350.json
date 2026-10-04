@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "unit_of_work": "phase2-market-replay-foundation",
+  "base_sha": "ea9a83e069f1be79c307fd8a9c4b9fca85977409",
+  "worktree": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\phase2-market-replay-foundation",
+  "branch": "codex/phase2-market-replay-foundation",
+  "owner": "implementer",
+  "scope": [
+    "src/domain/market-state.ts",
+    "tests/market-state.test.ts",
+    "fixtures/market/replay-sample.json",
+    "docs/runbook.md"
+  ],
+  "integration_target": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0",
+  "assignment_id": "c2534188e6234d1f8bfdffd85777b191621b4ebcdb097b499d69711ceb769350",
+  "active": false,
+  "created_at": "2026-10-04T05:37:34.747Z",
+  "released_at": "2026-10-04T06:05:05.252Z"
+}

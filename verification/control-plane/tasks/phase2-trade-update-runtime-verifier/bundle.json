@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-trade-update-runtime-verifier",
+  "bundle_id": "49ed08744e4a244211a60d19758f97124498cf90a5a768898917df9449fc4e63",
+  "intake_digest": "0867c0e8fee8626350d320406fab9ed511244e85e2b00e4f9677b5876f5de268",
+  "artifacts": {
+    "intake": "intake.json",
+    "route": "route.json",
+    "candidates": "candidates/",
+    "acceptance": "test-results.json",
+    "checks": "checks/",
+    "review": "review.<candidate_id>.json",
+    "security_review": "security-review.<candidate_id>.json",
+    "verifier": "verifier.<candidate_id>.json",
+    "verification": "verification.<candidate_id>.json",
+    "evaluation": "evaluation.<candidate_id>.json"
+  }
+}

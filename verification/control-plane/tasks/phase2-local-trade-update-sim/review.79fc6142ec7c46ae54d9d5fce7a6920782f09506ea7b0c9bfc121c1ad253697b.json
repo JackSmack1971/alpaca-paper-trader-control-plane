@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-trade-update-sim",
+  "task_bundle_id": "e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9a",
+  "candidate_id": "79fc6142ec7c46ae54d9d5fce7a6920782f09506ea7b0c9bfc121c1ad253697b",
+  "reviewer": "independent-reviewer",
+  "verdict": "PASS",
+  "findings": [],
+  "coverage": [
+    "LTU-01: confirmed local-test-mode route gating and default route absence.",
+    "LTU-02: confirmed atomic schema validation, virtual receive timestamps, normalized application-owned observations, bounded batch and retention; nonnegative filled_qty accepts zero and preserves it in normalized output.",
+    "LTU-03: reviewed malformed and over-limit rejection, reset clearing, state comparison, and retention assertions.",
+    "LTU-04: confirmed simulated PAPER markers and that hints do not mutate canonical positions or open orders; inspected state equality and unchanged open-order assertions.",
+    "Reviewed latest candidate against the preceding reviewed source; latest optional-chaining adjustment does not alter behavior."
+  ],
+  "limitations": [
+    "Did not execute product tests: candidate-bound verifier attempts were blocked by EPERM reading TypeScript/Vitest through the external node_modules junction; verifier lane owns executable evidence.",
+    "No live Alpaca connection or credentials used."
+  ]
+}

@@ -1,0 +1,100 @@
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0/.codex/worktrees/phase2-local-market-stream-adapter
+
+ ✓ tests/alpaca-market-stream.test.ts (9 tests) 41ms
+{"level":30,"time":1791132141749,"pid":22844,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/__local/state","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791132141749,"pid":22844,"hostname":"bretlaptop","reqId":"req-1","msg":"Route GET:/__local/state not found"}
+{"level":30,"time":1791132141749,"pid":22844,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":404},"responseTime":0.22699999999986176,"msg":"request completed"}
+{"level":30,"time":1791132141750,"pid":22844,"hostname":"bretlaptop","reqId":"req-2","req":{"method":"GET","url":"/__local/trade-updates","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791132141750,"pid":22844,"hostname":"bretlaptop","reqId":"req-2","msg":"Route GET:/__local/trade-updates not found"}
+{"level":30,"time":1791132141750,"pid":22844,"hostname":"bretlaptop","reqId":"req-2","res":{"statusCode":404},"responseTime":0.10960000000000036,"msg":"request completed"}
+ ❯ tests/local-test-harness.test.ts (13 tests | 1 failed) 722ms
+   ✓ loopback local runtime controls > routes local account reconciliation through the PAPER adapter with bounded simulated failures and recovery  514ms
+   ✓ loopback local runtime controls > allows the local Alpaca transport only the fixed PAPER GET resources and never falls through to network 2ms
+   ✓ loopback local runtime controls > compares bounded expected state projections and reports only mismatch paths 14ms
+   ✓ loopback local runtime controls > resets, controls virtual time, replays bounded fixtures, and exposes normalized account state 41ms
+   × loopback local runtime controls > injects deterministic market-stream failures and recovers through the in-memory adapter 26ms
+     → expected [ { sequence: 1, …(4) }, …(5) ] to deep equally contain ObjectContaining{…}
+   ✓ loopback local runtime controls > does not register controls by default 35ms
+   ✓ loopback local runtime controls > accepts zero cumulative fill quantity on unfilled provider-shaped orders 7ms
+   ✓ loopback local runtime controls > accepts bounded simulated trade update hints without changing account truth and resets them 44ms
+   ✓ loopback local runtime controls > bounds queued simulated failures and rejects overflow without mutation 12ms
+   ✓ loopback local runtime controls > returns only normalized market data from simulated provider responses 6ms
+   ✓ loopback local runtime controls > replaces simulated account responses with a validated resettable PAPER scenario 11ms
+   ✓ loopback local runtime controls > redacts rejected fixture contents from startup errors 3ms
+   ✓ loopback local runtime controls > persists and restores a normalized crossed quote without changing its state 5ms
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 21 passed (22)
+   Start at  12:42:20
+   Duration  1.65s (transform 245ms, setup 0ms, collect 772ms, tests 762ms, environment 0ms, prepare 248ms)
+
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/local-test-harness.test.ts > loopback local runtime controls > injects deterministic market-stream failures and recovers through the in-memory adapter
+AssertionError: expected [ { sequence: 1, …(4) }, …(5) ] to deep equally contain ObjectContaining{…}
+
+- Expected: 
+ObjectContaining {
+  "route": "/__local/market/replay",
+  "status": 503,
+}
+
++ Received: 
+[
+  {
+    "at": "2025-01-02T14:30:00.000Z",
+    "method": "POST",
+    "route": "/__local/reset",
+    "sequence": 1,
+    "status": 200,
+  },
+  {
+    "at": "2025-01-02T14:30:00.000Z",
+    "method": "POST",
+    "route": "/__local/failures",
+    "sequence": 2,
+    "status": 200,
+  },
+  {
+    "at": "2025-01-02T14:30:00.000Z",
+    "method": "POST",
+    "route": "/__local/market/replay",
+    "sequence": 3,
+    "status": 403,
+  },
+  {
+    "at": "2025-01-02T14:30:00.000Z",
+    "method": "POST",
+    "route": "/__local/market/replay",
+    "sequence": 4,
+    "status": 200,
+  },
+  {
+    "at": "2025-01-02T14:30:00.000Z",
+    "method": "GET",
+    "route": "/__local/provider/health",
+    "sequence": 5,
+    "status": 200,
+  },
+  {
+    "at": "2025-01-02T14:30:00.000Z",
+    "method": "GET",
+    "route": "/__local/logs",
+    "sequence": 6,
+    "status": 200,
+  },
+]
+
+ ❯ tests/local-test-harness.test.ts:226:20
+    224|     expect(JSON.stringify(logs)).not.toContain('local-simulated-market…
+    225|     const traces = (await app.inject('/__local/traces')).json();
+    226|     expect(traces).toContainEqual(expect.objectContaining({ route: '/_…
+       |                    ^
+    227|     expect(traces).toContainEqual(expect.objectContaining({ route: '/_…
+    228|     expect(traces).toContainEqual(expect.objectContaining({ route: '/_…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

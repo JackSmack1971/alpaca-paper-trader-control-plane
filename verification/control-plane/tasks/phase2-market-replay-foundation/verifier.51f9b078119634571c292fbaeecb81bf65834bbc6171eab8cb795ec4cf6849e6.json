@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-market-replay-foundation",
+  "task_bundle_id": "4d585aecdcf00381dbc9fc498253aceb79a54a4011489f8476785a900064c295",
+  "candidate_id": "51f9b078119634571c292fbaeecb81bf65834bbc6171eab8cb795ec4cf6849e6",
+  "verdict": "PASS",
+  "evidence": "Independently recalculated candidate identity from snapshot ffca91a92ac9c009e968ef90739217fa78c3a04ad3be675010be7f64e3d23cbd; candidate_id exactly matched frozen candidate 51f9b078119634571c292fbaeecb81bf65834bbc6171eab8cb795ec4cf6849e6. Recalculation reproduced tracked_diff_sha256 c2f868327fa72f3c352ced8c6b3109fbcfbe2131b038639552d63b0eac48a476 and source hashes for revised market-state.ts and tests/market-state.test.ts. Independently ran corepack pnpm typecheck (exit 0) and corepack pnpm test (exit 0; 3 files, 10 tests). Focused inspection confirms batch normalization rejects duplicate identities and earlier timestamps within a batch, replay rejects duplicate trade and quote events, and replay cursor does not advance after malformed, duplicate, or out-of-order events. Existing structured candidate-typecheck-2 and candidate-tests-2 records are PASS. No credentials or network used. This verdict covers MKT-01 through MKT-03 only, not the broader Phase 2 completion contract or the full requested application surface."
+}

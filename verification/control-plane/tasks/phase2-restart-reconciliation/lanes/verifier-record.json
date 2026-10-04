@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-restart-reconciliation",
+  "candidate_id": "dbb16daa7d062c31009a1148d4509deb2fefc5f53359f176a54ed799395654d4",
+  "status": "PASS",
+  "checks": [
+    {
+      "id": "candidate-identity",
+      "command": "node --input-type=module -e <buildCandidate against snapshot 84568fda882ccad81375680e1f1781fe9c85f245e8e93896a40123b329323f66.json>",
+      "exit_code": 0,
+      "outcome": "PASS: generated exact candidate ID; tracked diff SHA-256 matches manifest; all 43 untracked source file hashes match"
+    },
+    {
+      "id": "frozen-install",
+      "command": "CI=true corepack pnpm install --frozen-lockfile --offline",
+      "exit_code": 0,
+      "outcome": "PASS: installed 119 lockfile-pinned packages from local cache"
+    },
+    {
+      "id": "typecheck",
+      "command": "corepack pnpm run typecheck",
+      "exit_code": 0,
+      "outcome": "PASS"
+    },
+    {
+      "id": "unit-tests",
+      "command": "corepack pnpm test",
+      "exit_code": 0,
+      "outcome": "PASS: 5 test files, 25 tests"
+    },
+    {
+      "id": "docker-compose-up-db",
+      "command": "docker compose up -d db",
+      "exit_code": 1,
+      "outcome": "INCONCLUSIVE: candidate Compose container could not bind 127.0.0.1:55432 because an existing healthy Docker PostgreSQL container already owns that port"
+    },
+    {
+      "id": "docker-database-owner",
+      "command": "docker ps --filter publish=55432 --format \"{{.Names}} {{.Status}} {{.Ports}}\"",
+      "exit_code": 0,
+      "outcome": "PASS: alpaca-paper-trader-control-plane-v110-db-1 is healthy and publishes 127.0.0.1:55432 to PostgreSQL"
+    },
+    {
+      "id": "docker-backed-restart-verifier",
+      "command": "DATABASE_URL=postgres://postgres@127.0.0.1:55432/alpaca_paper_dev; ALPACA_KEY_ID/ALPACA_SECRET_KEY/OPENROUTER_API_KEY unset; corepack pnpm run verify:local-restart",
+      "exit_code": 0,
+      "outcome": "PASS: paper mode, credentialFree true, virtualTimeRewind true, restored virtual_time/replay_cursor/normalized_market/normalized_account, revision 55"
+    }
+  ],
+  "findings": [],
+  "notes": [
+    "Verification ran from the fully synced isolated worktree and candidate identity was independently recomputed as dbb16daa7d062c31009a1148d4509deb2fefc5f53359f176a54ed799395654d4.",
+    "Alpaca and OpenRouter credential environment variables were absent for typecheck/tests and explicitly unset for restart verification.",
+    "Restart verification used the existing healthy Docker PostgreSQL instance at the requested loopback port after candidate Compose startup encountered the occupied-port condition.",
+    "No source code was edited; raw logs are not included."
+  ],
+  "task_bundle_id": "02912e17d9b90524f7db46970dd8e1c5d6012c1feb64ac0e261a109013215cf4",
+  "verdict": "PASS",
+  "evidence": "node --input-type=module -e <buildCandidate against snapshot 84568fda882ccad81375680e1f1781fe9c85f245e8e93896a40123b329323f66.json> exit 0: PASS: generated exact candidate ID; tracked diff SHA-256 matches manifest; all 43 untracked source file hashes match CI=true corepack pnpm install --frozen-lockfile --offline exit 0: PASS: installed 119 lockfile-pinned packages from local cache corepack pnpm run typecheck exit 0: PASS corepack pnpm test exit 0: PASS: 5 test files, 25 tests docker compose up -d db exit 1: INCONCLUSIVE: candidate Compose container could not bind 127.0.0.1:55432 because an existing healthy Docker PostgreSQL container already owns that port docker ps --filter publish=55432 --format \"{{.Names}} {{.Status}} {{.Ports}}\" exit 0: PASS: alpaca-paper-trader-control-plane-v110-db-1 is healthy and publishes 127.0.0.1:55432 to PostgreSQL DATABASE_URL=postgres://postgres@127.0.0.1:55432/alpaca_paper_dev; ALPACA_KEY_ID/ALPACA_SECRET_KEY/OPENROUTER_API_KEY unset; corepack pnpm run verify:local-restart exit 0: PASS: paper mode, credentialFree true, virtualTimeRewind true, restored virtual_time/replay_cursor/normalized_market/normalized_account, revision 55"
+}

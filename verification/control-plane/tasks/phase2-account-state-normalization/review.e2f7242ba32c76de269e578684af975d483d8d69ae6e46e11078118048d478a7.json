@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-account-state-normalization",
+  "task_bundle_id": "c1fa6af641c6c5d6c8a53c89a7eb383c749dc1090f3e184bd6a524730416cdb1",
+  "candidate_id": "e2f7242ba32c76de269e578684af975d483d8d69ae6e46e11078118048d478a7",
+  "verdict": "FAIL",
+  "findings": [
+    {
+      "severity": "MAJOR",
+      "location": "src/domain/account-state.ts:164-174 (normalizeAccountState exposure loop)",
+      "obligation": "ACCT-03 requires inconsistent account snapshots to be rejected without silently coercing data.",
+      "evidence": "The normalizer accepts side='long' with market_value='-480.50' (and side='short' with positive market_value), then takes the absolute value and attributes exposure according only to side. Thus a contradictory broker snapshot is silently converted into plausible exposure instead of rejected. The checked-in fixture itself demonstrates the intended sign convention: long AAPL has positive market_value and short TSLA has negative market_value.",
+      "consequence": "Incorrectly sided or corrupted position data can produce a valid-looking long/short/gross exposure snapshot, undermining reconciliation inspection and downstream risk decisions.",
+      "direction": "Validate the signed market_value against position.side before computing exposure; reject contradictory snapshots and add both-direction fixture mutation cases."
+    }
+  ],
+  "coverage": {
+    "authority": ["AGENTS.md", "docs/PROJECT_CHARTER.md", "goals/phase-02-alpaca-data-account-state.md", "docs/control-plane/phase-contracts.json"],
+    "candidate_scope": "Frozen candidate e2f7242ba32c76de269e578684af975d483d8d69ae6e46e11078118048d478a7; task-specific implementation, checked-in account fixture, tests, and relevant market-state foundation inspected.",
+    "acceptance_criteria": {
+      "ACCT-01": "PASS: application-owned state includes account, positions, open orders, market clock, reconciliation timestamp and source/group provenance.",
+      "ACCT-02": "PASS: BigInt scaled-decimal arithmetic is used for exposure; ordering is normalized; unpriced exposure is explicitly incomplete.",
+      "ACCT-03": "FAIL: sign-inconsistent position market value is silently absolutized and accepted.",
+      "ACCT-04": "PASS: checked-in synthetic fixture is read offline by the test and normalized without credentials or sockets."
+    },
+    "observed_check_evidence": "Inspected candidate-bound test result and logs: account-offline-tests reports all 20 tests passed; account typecheck reports pass. This review did not execute commands."
+  },
+  "review_status": "FAILED",
+  "independence": "independent read-only reviewer"
+}

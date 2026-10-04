@@ -1,0 +1,5 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 verify:local-controls C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\phase2-local-alpaca-account-adapter
+> tsx scripts/verify-local-controls.ts
+
+{"status":"PASS","replayCursor":2,"accountState":{"fixtureCompared":true,"scenarioChanged":true,"resetRestored":true},"freshness":{"marketBecameStale":true,"accountBecameStale":true,"accountReconciled":true,"expectedStateMatched":true},"simulatedPaper":"paper","syntheticTradeUpdate":1,"tradeUpdateStateMatched":true,"injectedFailures":["network","rate_limit","broker"],"traceRecords":25,"logRecords":30,"resetCursor":0,"resetTradeUpdates":0}

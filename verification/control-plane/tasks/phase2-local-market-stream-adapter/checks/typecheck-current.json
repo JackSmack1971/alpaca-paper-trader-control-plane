@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "typecheck-current",
+  "task_id": "phase2-local-market-stream-adapter",
+  "bundle_id": "459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803",
+  "status": "FAIL",
+  "exit_code": 1,
+  "executable": "corepack",
+  "args": [
+    "pnpm",
+    "typecheck"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/typecheck-current.log",
+  "started_at": "2026-10-04T16:38:18.369Z",
+  "completed_at": "2026-10-04T16:38:18.378Z",
+  "signal": null,
+  "error": "spawnSync corepack ENOENT"
+}

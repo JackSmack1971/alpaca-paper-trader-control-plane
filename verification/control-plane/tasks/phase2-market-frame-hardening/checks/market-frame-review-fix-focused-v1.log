@@ -1,0 +1,58 @@
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0
+
+ ❯ tests/market-state.test.ts (12 tests | 1 failed) 58ms
+   ✓ normalized market replay > normalizes batched Alpaca trade and quote frames without retaining wire fields 9ms
+   × normalized market replay > preserves structurally valid crossed quotes and suppresses unsupported provider discriminators 11ms
+     → expected [ { type: 'quote', …(6) } ] to deeply equal [ { type: 'quote', …(6) } ]
+   ✓ normalized market replay > replays with an injected clock, merges snapshots, and marks stale data deterministically 6ms
+   ✓ normalized market replay > fails malformed, duplicate, and out-of-order data without advancing replay position 5ms
+   ✓ Alpaca JSON market frames > decodes UTF-8 JSON bytes and batched data through the normalized batch parser 1ms
+   ✓ Alpaca JSON market frames > keeps success and subscription controls separate from market data 1ms
+   ✓ Alpaca JSON market frames > preserves documented error codes as application-owned names and suppresses provider text 2ms
+   ✓ Alpaca JSON market frames > rejects error codes outside the safe integer 400–599 range 1ms
+   ✓ Alpaca JSON market frames > accepts frames at the byte and message limits and rejects limit plus one 14ms
+   ✓ Alpaca JSON market frames > accepts documented subscription channels and bounds validated symbol lists 2ms
+   ✓ Alpaca JSON market frames > rejects unsafe IDs, non-integer or unsafe sizes, and extreme prices 3ms
+   ✓ Alpaca JSON market frames > rejects malformed JSON, unsupported codecs, mixed controls, and malformed control shapes explicitly 1ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 11 passed (12)
+   Start at  04:52:15
+   Duration  775ms (transform 80ms, setup 0ms, collect 216ms, tests 58ms, environment 0ms, prepare 165ms)
+
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/market-state.test.ts > normalized market replay > preserves structurally valid crossed quotes and suppresses unsupported provider discriminators
+AssertionError: expected [ { type: 'quote', …(6) } ] to deeply equal [ { type: 'quote', …(6) } ]
+
+- Expected
++ Received
+
+  [
+    {
+      "ask": 190.3,
+-     "askSize": 6,
++     "askSize": 12,
+      "bid": 190.4,
+-     "bidSize": 4,
+-     "sourceTime": "2025-01-02T14:30:00.500Z",
++     "bidSize": 10,
++     "sourceTime": "2025-01-02T14:30:01.000Z",
+      "symbol": "AAPL",
+      "type": "quote",
+    },
+  ]
+
+ ❯ tests/market-state.test.ts:23:68
+     21|   it('preserves structurally valid crossed quotes and suppresses unsup…
+     22|     const quote = fixture.events[1] as Record<string, unknown>;
+     23|     expect(parseMarketBatch([{ ...quote, bp: 190.4, ap: 190.3 }])).toE…
+       |                                                                    ^
+     24|       type: 'quote', symbol: 'AAPL', bid: 190.4, bidSize: 4, ask: 190.…
+     25|       sourceTime: '2025-01-02T14:30:00.500Z',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

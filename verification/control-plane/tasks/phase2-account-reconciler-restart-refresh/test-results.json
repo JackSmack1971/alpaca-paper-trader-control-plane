@@ -1,0 +1,49 @@
+{
+  "schema_version": 2,
+  "task_id": "phase2-account-reconciler-restart-refresh",
+  "bundle_id": "5a392ee137b19bb6e9b996f4e1dc4271818f247e9845acf9a81dc973450920b2",
+  "status": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "RESTART-FETCHES-COMPLETE-SNAPSHOT",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "focused-reconciler-restart",
+        "check_path": "verification/control-plane/tasks/phase2-account-reconciler-restart-refresh/checks/focused-reconciler-restart.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "RESTART-TEST-IS-CREDENTIAL-FREE",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "focused-reconciler-restart",
+        "check_path": "verification/control-plane/tasks/phase2-account-reconciler-restart-refresh/checks/focused-reconciler-restart.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-CLASSIFICATION",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-classification-162066",
+        "check_path": "verification/control-plane/tasks/phase2-account-reconciler-restart-refresh/checks/candidate-classification-162066.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-REQUIRED-LANES",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-required-lanes",
+        "check_path": "verification/control-plane/tasks/phase2-account-reconciler-restart-refresh/checks/candidate-required-lanes.json",
+        "exit_code": 0
+      }
+    }
+  ],
+  "generated_at": "2026-10-04T15:06:40.128Z"
+}

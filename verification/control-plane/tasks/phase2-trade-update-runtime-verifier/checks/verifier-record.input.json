@@ -1,0 +1,25 @@
+{
+  "verdict": "PASS",
+  "schema_version": 1,
+  "criteria": [
+    {
+      "evidence": "live-local-controls-redirect-guard: provider-shaped synthetic update accepted and simulated PAPER markers asserted.",
+      "status": "PASS",
+      "id": "TUV-01"
+    },
+    {
+      "evidence": "live-local-controls-redirect-guard: receive timestamp equals controlled virtual time; canonical positions and open orders deep-equal pre-observation state; expected-state comparison matched.",
+      "status": "PASS",
+      "id": "TUV-02"
+    },
+    {
+      "evidence": "live-local-controls-redirect-guard: reset returned cursor zero and empty tradeUpdates.",
+      "status": "PASS",
+      "id": "TUV-03"
+    }
+  ],
+  "evidence": "Independent review of frozen candidate 9ddc7a48. Candidate identity and tracked diff recomputed; all 43 untracked manifest hashes matched; candidate freeze, offline suite, and post-redirect-guard live local-controls checks are bundle-bound PASS (exit 0). Script assertions directly cover TUV-01..03. No credentials or live Alpaca session were used.",
+  "task_id": "phase2-trade-update-runtime-verifier",
+  "candidate_id": "9ddc7a48a8a1f1c9dfebb19a95d45389b6105d1bc6f21f3664c136aa928d5da0",
+  "task_bundle_id": "49ed08744e4a244211a60d19758f97124498cf90a5a768898917df9449fc4e63"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "phase2-local-trade-update-sim",
+  "task_kind": "feature",
+  "uncertainty": "low",
+  "files": [
+    "src/api/app.ts",
+    "src/domain/local-test-harness.ts",
+    "tests/local-test-harness.test.ts",
+    "docs/runbook.md"
+  ],
+  "architectural_file_count": 3,
+  "expected_code_lines": 65,
+  "blast_radius": [
+    "functional-correctness"
+  ],
+  "verification_difficulty": "deterministic",
+  "implementation_required": true,
+  "research_required": false,
+  "acceptance_criteria": [
+    {
+      "id": "LTU-01",
+      "text": "Only opt-in loopback local-test mode exposes simulated trade-update injection and inspection."
+    },
+    {
+      "id": "LTU-02",
+      "text": "Valid synthetic provider-shaped trade updates normalize to bounded application-owned event observations stamped with controllable local receive time."
+    },
+    {
+      "id": "LTU-03",
+      "text": "Malformed or over-limit updates are rejected atomically; reset clears update observations; expected-state comparison can inspect them."
+    },
+    {
+      "id": "LTU-04",
+      "text": "Trade-update event hints do not mutate canonical account positions or open orders, and every response identifies simulated PAPER mode."
+    }
+  ]
+}

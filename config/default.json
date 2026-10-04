@@ -1,0 +1,17 @@
+{
+  "universe": ["SPY"],
+  "models": { "analysis": "", "review": "" },
+  "decision": { "cadenceSeconds": 60 },
+  "risk": { "maxPositionPct": "0.10", "maxDailyLossPct": "0.02" },
+  "providers": {
+    "alpacaDataFeed": "iex",
+    "alpacaMarketDataPlan": "basic",
+    "accountStateStaleAfterSeconds": 60,
+    "accountReconciliationSeconds": 60,
+    "accountRequestTimeoutMs": 10000,
+    "accountRetryBaseSeconds": 5,
+    "accountRetryMaxSeconds": 60,
+    "alpacaStreamRetry": { "maxReconnects": 3, "baseDelayMs": 250, "maxDelayMs": 2000 },
+    "openrouterBaseUrl": "https://openrouter.ai/api/v1"
+  }
+}

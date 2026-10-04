@@ -1,0 +1,38 @@
+{
+  "scope": "TUV-01 through TUV-03 plus frozen candidate and manifest integrity",
+  "candidate_id": "9ddc7a48a8a1f1c9dfebb19a95d45389b6105d1bc6f21f3664c136aa928d5da0",
+  "schema_version": 1,
+  "status": "PASS",
+  "task_bundle_id": "49ed08744e4a244211a60d19758f97124498cf90a5a768898917df9449fc4e63",
+  "commands": [
+    {
+      "path": "verification/control-plane/tasks/phase2-trade-update-runtime-verifier/checks/independent-candidate-audit.json",
+      "check_id": "independent-candidate-audit",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "path": "verification/control-plane/tasks/phase2-trade-update-runtime-verifier/checks/candidate-freeze-redirect-guard.json",
+      "check_id": "candidate-freeze-redirect-guard",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "path": "verification/control-plane/tasks/phase2-trade-update-runtime-verifier/checks/candidate-offline-final.json",
+      "check_id": "candidate-offline-final",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "path": "verification/control-plane/tasks/phase2-trade-update-runtime-verifier/checks/live-local-controls-redirect-guard.json",
+      "check_id": "live-local-controls-redirect-guard",
+      "exit_code": 0,
+      "status": "PASS"
+    }
+  ],
+  "task_id": "phase2-trade-update-runtime-verifier",
+  "limitations": [
+    "No real Alpaca credentials or live market session were used.",
+    "Local simulated PAPER surface only."
+  ]
+}

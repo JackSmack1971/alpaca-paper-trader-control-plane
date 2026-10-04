@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "cycleId": "00000000-0000-7000-8000-000000000001",
+  "contextId": "00000000-0000-7000-8000-000000000002",
+  "marketRecordId": "00000000-0000-7000-8000-000000000003",
+  "symbol": "SPY",
+  "observedAt": "2025-01-02T14:30:00.000Z",
+  "context": {
+    "fixture": "synthetic-dev-seed-v1",
+    "mode": "paper",
+    "market": { "lastPrice": "100.00", "currency": "USD" },
+    "account": { "equity": "100000.00", "currency": "USD" }
+  },
+  "marketRecord": {
+    "open": "99.50",
+    "high": "100.25",
+    "low": "99.25",
+    "close": "100.00",
+    "volume": 1000,
+    "synthetic": true
+  }
+}

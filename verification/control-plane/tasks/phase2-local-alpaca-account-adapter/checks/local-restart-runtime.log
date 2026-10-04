@@ -1,0 +1,5 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 verify:local-restart C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\phase2-local-alpaca-account-adapter
+> tsx scripts/verify-local-restart.ts
+
+{"status":"PASS","mode":"paper","credentialFree":true,"virtualTimeRewind":true,"restartRestored":["virtual_time","replay_cursor","normalized_market","normalized_account"],"revision":264}

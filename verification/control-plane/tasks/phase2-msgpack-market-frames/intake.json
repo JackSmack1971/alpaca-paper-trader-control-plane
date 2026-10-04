@@ -1,0 +1,36 @@
+{
+  "id": "phase2-msgpack-market-frames",
+  "task_kind": "feature",
+  "uncertainty": "high",
+  "files": [
+    "src/domain/market-state.ts",
+    "src/infra/alpaca-market-stream.ts",
+    "tests/market-state.test.ts",
+    "tests/alpaca-market-stream.test.ts",
+    "package.json",
+    "pnpm-lock.yaml"
+  ],
+  "architectural_file_count": 3,
+  "expected_code_lines": 150,
+  "blast_radius": [
+    "security-boundary",
+    "functional-correctness"
+  ],
+  "verification_difficulty": "deterministic",
+  "implementation_required": true,
+  "research_required": true,
+  "acceptance_criteria": [
+    {
+      "id": "MPF-01",
+      "text": "Decode credential-free JSON and MessagePack Alpaca market-data frames through one bounded application-owned schema boundary."
+    },
+    {
+      "id": "MPF-02",
+      "text": "Exercise deterministic binary fixtures for batched data and singleton control messages, rejecting malformed, oversized, and mixed frames without coercion."
+    },
+    {
+      "id": "MPF-03",
+      "text": "The real WebSocket adapter selects and decodes its configured Alpaca content type consistently while keeping credentials out of logs, state, and fixtures."
+    }
+  ]
+}

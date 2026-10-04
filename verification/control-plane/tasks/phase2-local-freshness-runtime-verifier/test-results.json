@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "task_id": "phase2-local-freshness-runtime-verifier",
+  "bundle_id": "1f40c6b6bc08efca9954997dd0184b8c341243e08f4bcea2f54d7caf0cba7d8b",
+  "status": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "LFR-01",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "live-local-freshness-controls",
+        "check_path": "verification/control-plane/tasks/phase2-local-freshness-runtime-verifier/checks/live-local-freshness-controls.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "LFR-02",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "live-local-freshness-controls",
+        "check_path": "verification/control-plane/tasks/phase2-local-freshness-runtime-verifier/checks/live-local-freshness-controls.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "LFR-03",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "live-local-freshness-controls",
+        "check_path": "verification/control-plane/tasks/phase2-local-freshness-runtime-verifier/checks/live-local-freshness-controls.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-CLASSIFICATION",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-freeze-recheck",
+        "check_path": "verification/control-plane/tasks/phase2-local-freshness-runtime-verifier/checks/candidate-freeze-recheck.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-REQUIRED-LANES",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-required-lanes-rerun",
+        "check_path": "verification/control-plane/tasks/phase2-local-freshness-runtime-verifier/checks/candidate-required-lanes-rerun.json",
+        "exit_code": 0
+      }
+    }
+  ],
+  "generated_at": "2026-10-04T13:09:15.353Z"
+}

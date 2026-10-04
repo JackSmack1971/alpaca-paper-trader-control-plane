@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "phase2-stream-frame-full-tests",
+  "task_id": "phase2-market-stream-frames",
+  "bundle_id": "5c894db28593aa85421d1dde7f8e5e3a912cffdb4483bea5d0bb5ce4c3450b09",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "C:\\Program Files\\nodejs\\node.exe",
+  "args": [
+    "node_modules/vitest/vitest.mjs",
+    "run"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-market-stream-frames/checks/phase2-stream-frame-full-tests.log",
+  "started_at": "2026-10-04T08:17:36.476Z",
+  "completed_at": "2026-10-04T08:17:39.458Z",
+  "signal": null,
+  "error": null
+}

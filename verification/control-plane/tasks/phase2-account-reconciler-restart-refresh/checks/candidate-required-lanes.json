@@ -1,0 +1,17 @@
+{
+  "schema_version": 2,
+  "id": "candidate-required-lanes",
+  "task_id": "phase2-account-reconciler-restart-refresh",
+  "bundle_id": "5a392ee137b19bb6e9b996f4e1dc4271818f247e9845acf9a81dc973450920b2",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "verification/control-plane/tasks/phase2-account-reconciler-restart-refresh/checks/required-lanes.mjs"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-account-reconciler-restart-refresh/checks/candidate-required-lanes.log",
+  "started_at": "2026-10-04T15:31:06.636Z",
+  "completed_at": "2026-10-04T15:31:06.706Z",
+  "signal": null,
+  "error": null
+}

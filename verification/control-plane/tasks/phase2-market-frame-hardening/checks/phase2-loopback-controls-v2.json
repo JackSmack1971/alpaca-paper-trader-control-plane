@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "id": "phase2-loopback-controls-v2",
+  "task_id": "phase2-market-frame-hardening",
+  "bundle_id": "a6675919900adf742882e9bd9e2e6dc1c893f1317ccb014f49a31ecd5fd56c5f",
+  "status": "FAIL",
+  "exit_code": 1,
+  "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+  "args": [
+    "-NoProfile",
+    "-Command",
+    "='http://127.0.0.1:3001'; & 'C:\\Program Files\\nodejs\\corepack.cmd' pnpm verify:local-controls"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/phase2-loopback-controls-v2.log",
+  "started_at": "2026-10-04T08:46:12.602Z",
+  "completed_at": "2026-10-04T08:46:14.213Z",
+  "signal": null,
+  "error": null
+}

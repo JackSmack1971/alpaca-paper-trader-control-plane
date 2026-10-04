@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "restart-offline-bounds",
+  "task_id": "phase2-restart-reconciliation",
+  "bundle_id": "02912e17d9b90524f7db46970dd8e1c5d6012c1feb64ac0e261a109013215cf4",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "corepack.cmd",
+  "args": [
+    "pnpm",
+    "verify:offline"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-restart-reconciliation/checks/restart-offline-bounds.log",
+  "started_at": "2026-10-04T07:31:50.820Z",
+  "completed_at": "2026-10-04T07:32:06.330Z",
+  "signal": null,
+  "error": null
+}

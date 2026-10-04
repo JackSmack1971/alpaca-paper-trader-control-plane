@@ -1,0 +1,19 @@
+{
+  "id": "phase2-market-frame-hardening",
+  "task_kind": "feature",
+  "uncertainty": "low",
+  "files": ["src/domain/market-state.ts", "tests/market-state.test.ts", "docs/research/phase-02/market-stream-frames.md"],
+  "architectural_file_count": 2,
+  "expected_code_lines": 65,
+  "blast_radius": ["functional-correctness", "secrets"],
+  "verification_difficulty": "deterministic",
+  "implementation_required": true,
+  "research_required": true,
+  "acceptance_criteria": [
+    {"id":"MFH-01","text":"Reject oversized JSON frames above 256 KiB and data arrays above 100 messages before expensive normalization."},
+    {"id":"MFH-02","text":"Bound subscription controls to at most 32 channel lists, 100 symbols per list, and 32 characters per channel or symbol."},
+    {"id":"MFH-03","text":"Accept only safe integer stream error codes in the documented HTTP error range 400-599, preserve codes, and map unknown valid codes to a generic application-owned name."},
+    {"id":"MFH-04","text":"Never return provider-controlled error text; known codes map to stable application-owned names and credential-shaped text cannot escape through decoded controls."},
+    {"id":"MFH-05","text":"Focused deterministic tests cover limits, error-code validation, message suppression, existing frame parsing, and credential-free operation."}
+  ]
+}

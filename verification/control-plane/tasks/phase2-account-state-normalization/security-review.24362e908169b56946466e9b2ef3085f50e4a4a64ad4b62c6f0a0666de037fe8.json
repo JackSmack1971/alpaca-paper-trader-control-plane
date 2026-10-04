@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-account-state-normalization",
+  "task_bundle_id": "c1fa6af641c6c5d6c8a53c89a7eb383c749dc1090f3e184bd6a524730416cdb1",
+  "candidate_id": "24362e908169b56946466e9b2ef3085f50e4a4a64ad4b62c6f0a0666de037fe8",
+  "verdict": "PASS",
+  "evidence": "Fresh independent read-only security review of revised frozen candidate 24362e908169b56946466e9b2ef3085f50e4a4a64ad4b62c6f0a0666de037fe8. Recomputed candidate identity and tracked diff digest; all 36 candidate-listed untracked file hashes match. The only source change from the preceding reviewed candidate is an account-normalization consistency check rejecting long positions with negative market value and short positions with positive market value; it neither widens stored fields nor adds new authority. Re-inspected the account normalizer, synthetic account fixture, API/config/database boundaries, package dependencies, and network/order call sites. The account fixture remains synthetic (reserved UUID, REDACTED account_number); output omits account.id and unmodeled wire fields. No provider network client or order-submission route/authority was added; PAPER mode and secret-redaction behavior remain intact. No concrete security blocker found; no credential-backed provider behavior is claimed."
+}

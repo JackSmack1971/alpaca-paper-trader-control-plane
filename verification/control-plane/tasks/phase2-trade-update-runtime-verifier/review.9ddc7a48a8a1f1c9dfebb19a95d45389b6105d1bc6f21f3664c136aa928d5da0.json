@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-trade-update-runtime-verifier",
+  "task_bundle_id": "49ed08744e4a244211a60d19758f97124498cf90a5a768898917df9449fc4e63",
+  "candidate_id": "9ddc7a48a8a1f1c9dfebb19a95d45389b6105d1bc6f21f3664c136aa928d5da0",
+  "verdict": "PASS",
+  "summary": "Independent review confirms the frozen local-controls verifier satisfies TUV-01 through TUV-03 and constrains both request helpers to reject redirects.",
+  "findings": [],
+  "checks": {
+    "candidate_binding": "PASS: scripts/verify-local-controls.ts SHA-256 matches the frozen candidate manifest (e765579609c8981f9ff22c1f750fac11fffaea4148dabcd6e34c888dc54cd9ea).",
+    "criteria_TUV_01": "PASS: posts one provider-shaped synthetic trade update and asserts accepted count plus simulated/PAPER response markers; the candidate-bound live-local-controls check is PASS.",
+    "criteria_TUV_02": "PASS: asserts virtual receivedAt, expected-state match, and deep equality of canonical positions/openOrders before and after injection.",
+    "criteria_TUV_03": "PASS: asserts reset returns replayCursor 0 and an empty tradeUpdates array.",
+    "redirect_hardening": "PASS: both request() and rawRequest() set redirect:error after spreading caller init, so caller options cannot weaken redirect rejection; base URL validation restricts HTTP requests to loopback without credentials/query/fragment.",
+    "evidence_scope": "PASS: intake, frozen manifest, structured test/check records, verifier, and security-review records bind the task and candidate; no credentials or live market session were used."
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-msgpack-market-frames",
+  "task_bundle_id": "c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2",
+  "candidate_id": "d6ac30057f74c4fdc43a1bb1a4f6564a595698e7ac1d0accf3b3fd7f3dd6e201",
+  "reviewer": "independent-read-only-reviewer",
+  "verdict": "FAIL",
+  "criteria": [
+    {
+      "criterion_id": "MPF-01",
+      "verdict": "PASS",
+      "evidence": "src/domain/market-state.ts decodeMarketFrame routes JSON and bounded MessagePack inputs through the same parseMarketBatch schema boundary. tests/market-state.test.ts exercises equivalent JSON/MessagePack normalization and explicit malformed, codec, depth, size, count, control and mixed-frame rejection."
+    },
+    {
+      "criterion_id": "MPF-02",
+      "verdict": "PASS",
+      "evidence": "tests/market-state.test.ts loads fixtures/market/msgpack/{batch,connected,subscription,error}.bin directly and asserts normalized output. Static batch/control fixture cases execute; malformed, oversized, nested and mixed cases are separately falsifiable assertions. Structured focused-msgpack-tests.json records exit 0; focused log reports 37 tests passing."
+    },
+    {
+      "criterion_id": "MPF-03",
+      "verdict": "FAIL",
+      "finding_id": "MPF-03-CODEC-WIRING",
+      "evidence": "src/infra/config.ts parses ALPACA_MARKET_DATA_CODEC into alpacaMarketDataCodec, but src/main.ts constructs AlpacaMarketStream without a codec option. AlpacaMarketStream defaults omitted codec to JSON (src/infra/alpaca-market-stream.ts:194) and selects the Content-Type plus binary/text expectations from that option (lines 140-141, 158-160). Thus setting ALPACA_MARKET_DATA_CODEC=msgpack is accepted and reported by config tests, but the application startup adapter still selects JSON. Existing adapter test supplies codec:'msgpack' directly, so it does not cover configuration-to-runtime wiring."
+    }
+  ],
+  "findings": [
+    {
+      "id": "MPF-03-CODEC-WIRING",
+      "severity": "HIGH",
+      "confidence": "high",
+      "location": ["src/main.ts:49-61", "src/infra/config.ts:51", "src/infra/alpaca-market-stream.ts:140-160,194", "tests/alpaca-market-stream.test.ts:81-101", "tests/config.test.ts:27-32"],
+      "summary": "Configured MessagePack codec is not wired into the production stream adapter.",
+      "impact": "An operator selecting MessagePack through ALPACA_MARKET_DATA_CODEC receives a successful configuration load, but the actual Alpaca connection requests JSON and rejects binary frames. The application cannot fulfill the configured codec behavior in MPF-03.",
+      "remediation": "Pass config.alpacaMarketDataCodec to AlpacaMarketStream in src/main.ts and add a wiring-level test proving the configured value controls the real startup adapter's request content type and frame decoding mode."
+    }
+  ],
+  "verification": {
+    "candidate_recomputed": true,
+    "candidate_id_match": true,
+    "tracked_diff_match": true,
+    "untracked_hashes_match": true,
+    "checks_inspected": [
+      "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/focused-msgpack-tests.json",
+      "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/focused-msgpack-tests.log",
+      "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/offline-msgpack-suite.json",
+      "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/offline-msgpack-suite.log"
+    ],
+    "source_only_review": true
+  },
+  "limitations": [
+    "Static MessagePack fixtures execute against the declared @msgpack/msgpack decoder and equivalent JSON normalization; they do not establish compatibility with a live Alpaca session or a specific upstream codec negotiation. No live credentialed connection was performed."
+  ]
+}

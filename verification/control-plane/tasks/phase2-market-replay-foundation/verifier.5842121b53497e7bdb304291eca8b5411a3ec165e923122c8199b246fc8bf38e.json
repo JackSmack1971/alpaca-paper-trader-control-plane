@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-market-replay-foundation",
+  "task_bundle_id": "4d585aecdcf00381dbc9fc498253aceb79a54a4011489f8476785a900064c295",
+  "candidate_id": "5842121b53497e7bdb304291eca8b5411a3ec165e923122c8199b246fc8bf38e",
+  "verdict": "PASS",
+  "evidence": "Independently recalculated candidate identity from snapshot ffca91a92ac9c009e968ef90739217fa78c3a04ad3be675010be7f64e3d23cbd; output candidate_id exactly matched frozen candidate 5842121b53497e7bdb304291eca8b5411a3ec165e923122c8199b246fc8bf38e. Recalculation reproduced tracked_diff_sha256 c2f868327fa72f3c352ced8c6b3109fbcfbe2131b038639552d63b0eac48a476 and listed untracked hashes, including src/domain/market-state.ts and tests/market-state.test.ts. Independently ran corepack pnpm typecheck (exit 0) and corepack pnpm test (exit 0; 3 files, 10 tests). Focused review confirms MKT-01 normalizes Alpaca-shaped trade/quote batches into application-owned objects without retaining wire keys; MKT-02 replays fixture events in fixture order under injected clock and deterministically merges snapshots / marks stale; MKT-03 rejects malformed, duplicate trade-ID, and earlier-timestamp events before advancing cursor. Existing structured candidate-typecheck and candidate-tests records also show PASS. No credentials or network used. Initial sandbox-only typecheck attempt returned EPERM reading linked TypeScript; elevated local retry succeeded. This verdict covers task MKT-01 through MKT-03 only, not the broader Phase 2 completion contract or full requested application surface."
+}

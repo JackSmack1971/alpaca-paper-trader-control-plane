@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-msgpack-market-frames",
+  "bundle_id": "c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2",
+  "intake_digest": "1b120c5bb7a7e36250de8ad537a083f433606bb2b151e98b5dcb458e1d97f915",
+  "artifacts": {
+    "intake": "intake.json",
+    "route": "route.json",
+    "candidates": "candidates/",
+    "acceptance": "test-results.json",
+    "checks": "checks/",
+    "review": "review.<candidate_id>.json",
+    "security_review": "security-review.<candidate_id>.json",
+    "verifier": "verifier.<candidate_id>.json",
+    "verification": "verification.<candidate_id>.json",
+    "evaluation": "evaluation.<candidate_id>.json"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "id": "focused-reconciler-restart",
+  "task_id": "phase2-account-reconciler-restart-refresh",
+  "bundle_id": "5a392ee137b19bb6e9b996f4e1dc4271818f247e9845acf9a81dc973450920b2",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "..\\..\\..\\node_modules\\vitest\\vitest.mjs",
+    "run",
+    "tests/alpaca-account.test.ts"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-account-reconciler-restart-refresh/checks/focused-reconciler-restart.log",
+  "started_at": "2026-10-04T15:15:56.275Z",
+  "completed_at": "2026-10-04T15:15:58.002Z",
+  "signal": null,
+  "error": null
+}

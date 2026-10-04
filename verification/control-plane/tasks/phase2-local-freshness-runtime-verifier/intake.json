@@ -1,0 +1,30 @@
+{
+  "id": "phase2-local-freshness-runtime-verifier",
+  "task_kind": "feature",
+  "uncertainty": "low",
+  "files": [
+    "scripts/verify-local-controls.ts"
+  ],
+  "architectural_file_count": 0,
+  "expected_code_lines": 18,
+  "blast_radius": [
+    "functional-correctness"
+  ],
+  "verification_difficulty": "deterministic",
+  "implementation_required": true,
+  "research_required": false,
+  "acceptance_criteria": [
+    {
+      "id": "LFR-01",
+      "text": "Verifier demonstrates replayed market state transitions from fresh to stale under virtual time with a stale reason."
+    },
+    {
+      "id": "LFR-02",
+      "text": "Verifier demonstrates account reconciliation age transitions to stale and simulated reconciliation restores fresh state."
+    },
+    {
+      "id": "LFR-03",
+      "text": "Verifier uses expected-versus-observed comparison to confirm account freshness recovery and resets the scenario."
+    }
+  ]
+}

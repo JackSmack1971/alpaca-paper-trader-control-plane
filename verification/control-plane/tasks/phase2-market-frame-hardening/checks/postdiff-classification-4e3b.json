@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "id": "postdiff-classification-4e3b",
+  "task_id": "phase2-market-frame-hardening",
+  "bundle_id": "a6675919900adf742882e9bd9e2e6dc1c893f1317ccb014f49a31ecd5fd56c5f",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "C:\\Program Files\\nodejs\\node.exe",
+  "args": [
+    "scripts/control-plane/candidate-id.mjs",
+    "--snapshot",
+    "verification/control-plane/snapshots/0ef1045f976a0bd4b465602dc16b616042729560c3e0de342eb894dc40bd9212.json",
+    "--task-id",
+    "phase2-market-frame-hardening"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/postdiff-classification-4e3b.log",
+  "started_at": "2026-10-04T09:53:41.341Z",
+  "completed_at": "2026-10-04T09:53:42.009Z",
+  "signal": null,
+  "error": null
+}

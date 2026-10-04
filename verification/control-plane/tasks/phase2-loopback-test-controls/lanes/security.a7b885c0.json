@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "lane": "security",
+  "candidate_id": "a7b885c0d48d5c7264d7e9f3abe8eb549bd0332643ae73557aef606c0fa01de1",
+  "status": "PASS",
+  "findings": [],
+  "evidence": [
+    {
+      "area": "local mode gating and route exposure",
+      "severity": "informational",
+      "details": "src/domain/config.ts only permits localTestMode with host 127.0.0.1, ::1, or localhost and absent Alpaca key ID/secret and OpenRouter key. src/main.ts obtains this through loadConfig before app creation. src/api/app.ts registers /__local/* routes only when localTestMode is true and requires an initialized harness. tests/config.test.ts covers default-off behavior, non-loopback rejection, and configured-provider-key rejection; tests/local-test-harness.test.ts confirms /__local/state is 404 by default."
+    },
+    {
+      "area": "local application log collector",
+      "severity": "informational",
+      "details": "src/domain/local-test-harness.ts builds logs only through private writeLog with a fixed message and a typed allowlist of fields (method, route, status, target, error). HTTP logging records the method and request.routeOptions.url route template, never the raw URL/query, headers, body, or response. Provider failure logging records fixed target, fixed error code, and numeric status; it does not include caught exception text or request payload. Both trace and log arrays cap storage at 200 entries; reads validate after/limit and cap each page at 100. Reset clears both collectors and resets their deterministic sequence counters."
+    },
+    {
+      "area": "provider failure injection and response safety",
+      "severity": "informational",
+      "details": "src/api/app.ts Zod-validates failure target (market/account), kind (network/rate_limit/broker), and count (1..10). src/domain/local-test-harness.ts consumes queued failures deterministically and maps them to fixed error codes/statuses; the failure log uses those fixed values. Provider resource is restricted to account/positions/orders/clock/market and responses are fixture-backed with simulated=true and mode=paper. No order-submission endpoint exists in src/api/app.ts. tests/local-test-harness.test.ts checks rate-limit, network, and broker cases plus sanitized provider-failure log fields."
+    },
+    {
+      "area": "fixture/config/PAPER boundaries",
+      "severity": "informational",
+      "details": "src/infra/local-fixtures.ts loads only fixed checked-in fixture paths. The account fixture's account_number is REDACTED. publicConfig in src/infra/config.ts omits database URL and provider credential values. Every app response receives X-Paper-Mode: true and the app reports mode paper; src/main.ts calls assertPaperOnly with the constant Alpaca PAPER base URL."
+    }
+  ],
+  "limitations": [
+    "This is a source-and-test-evidence security review; tests were not rerun by this reviewer.",
+    "The controls still do not establish an end-to-end orchestrator/order lifecycle or credential-backed Alpaca qualification."
+  ]
+}

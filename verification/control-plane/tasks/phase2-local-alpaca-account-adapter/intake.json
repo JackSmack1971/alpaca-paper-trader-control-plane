@@ -1,0 +1,35 @@
+{
+  "id": "phase2-local-alpaca-account-adapter",
+  "task_kind": "feature",
+  "uncertainty": "high",
+  "files": [
+    "src/api/app.ts",
+    "src/domain/local-test-harness.ts",
+    "src/infra/local-fixtures.ts",
+    "tests/local-test-harness.test.ts",
+    "docs/runbook.md"
+  ],
+  "architectural_file_count": 2,
+  "expected_code_lines": 100,
+  "blast_radius": [
+    "functional-correctness",
+    "security-boundary"
+  ],
+  "verification_difficulty": "deterministic",
+  "implementation_required": true,
+  "research_required": false,
+  "acceptance_criteria": [
+    {
+      "id": "LOCAL-RECONCILE-USES-ALPACA-ADAPTER",
+      "text": "The loopback local account reconciliation endpoint obtains account, positions, open orders, and clock through AlpacaPaperAccountClient using simulated PAPER-shaped responses, then exposes the production adapter's normalized AccountState."
+    },
+    {
+      "id": "LOCAL-ADAPTER-IS-NETWORK-AND-CREDENTIAL-FREE",
+      "text": "The simulated transport is in-memory, rejects unexpected hosts/routes, uses no real credential lookup or external network, and proves adapter failure injection and recovery without changing the production PAPER endpoint."
+    },
+    {
+      "id": "LOCAL-RECONCILIATION-IS-OBSERVABLE",
+      "text": "Local provider health and logs/traces reflect simulated adapter reconciliation success and injected failures with sanitized observations."
+    }
+  ]
+}

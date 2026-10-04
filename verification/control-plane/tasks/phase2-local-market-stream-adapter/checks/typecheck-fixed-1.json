@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "id": "typecheck-fixed-1",
+  "task_id": "phase2-local-market-stream-adapter",
+  "bundle_id": "459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "C:\\Program Files\\nodejs\\node.exe",
+  "args": [
+    "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\node_modules\\.pnpm\\typescript@5.9.3\\node_modules\\typescript\\bin\\tsc",
+    "--noEmit",
+    "--project",
+    "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\phase2-local-market-stream-adapter\\tsconfig.json"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/typecheck-fixed-1.log",
+  "started_at": "2026-10-04T16:39:47.549Z",
+  "completed_at": "2026-10-04T16:39:50.998Z",
+  "signal": null,
+  "error": null
+}

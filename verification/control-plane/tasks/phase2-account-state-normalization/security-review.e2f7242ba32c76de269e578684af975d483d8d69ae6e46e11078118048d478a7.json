@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-account-state-normalization",
+  "task_bundle_id": "c1fa6af641c6c5d6c8a53c89a7eb383c749dc1090f3e184bd6a524730416cdb1",
+  "candidate_id": "e2f7242ba32c76de269e578684af975d483d8d69ae6e46e11078118048d478a7",
+  "verdict": "PASS",
+  "evidence": "Independent read-only security review of frozen candidate e2f7242ba32c76de269e578684af975d483d8d69ae6e46e11078118048d478a7. Recomputed candidate identity and tracked diff digest; all 36 candidate-listed untracked file hashes match. Inspected the account normalizer, synthetic account fixture, seed/market fixtures, API, config, database boundary, and candidate code for network/order authority. The account fixture uses a reserved synthetic UUID and the account_number field is the literal REDACTED; normalized output deliberately omits account.id and all unmodeled wire properties. The account normalizer maps only explicit fields into its result, so .passthrough() on input Zod schemas does not retain extra fields in returned state or persistence. Account payload values are synthetic. No broker/provider network client, order submission route, or order authority was added; app exposes only health/status and the observed seed path is restricted to loopback PostgreSQL. Existing PAPER-only guard and secret-redacting public config boundary remain in effect. No concrete security blocker found. This review covers the frozen candidate and does not claim credential-backed provider behavior."
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "id": "current-phase2-local-controls",
+  "task_id": "phase2-local-trade-update-sim",
+  "bundle_id": "e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9a",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "cmd.exe",
+  "args": [
+    "/c",
+    "corepack",
+    "pnpm",
+    "verify:local-controls"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-trade-update-sim/checks/current-phase2-local-controls.log",
+  "started_at": "2026-10-04T14:40:44.878Z",
+  "completed_at": "2026-10-04T14:40:45.675Z",
+  "signal": null,
+  "error": null
+}

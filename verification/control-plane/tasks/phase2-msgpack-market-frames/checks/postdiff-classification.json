@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "postdiff-classification",
+  "task_id": "phase2-msgpack-market-frames",
+  "bundle_id": "c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "-e",
+    "const fs=require(\"node:fs\");const assert=require(\"node:assert/strict\");const p=\"verification/control-plane/tasks/phase2-msgpack-market-frames/candidates/d6ac30057f74c4fdc43a1bb1a4f6564a595698e7ac1d0accf3b3fd7f3dd6e201.json\";const c=JSON.parse(fs.readFileSync(p,\"utf8\"));assert.equal(c.candidate_id,\"d6ac30057f74c4fdc43a1bb1a4f6564a595698e7ac1d0accf3b3fd7f3dd6e201\");assert.equal(c.task_bundle_id,\"c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2\");assert.equal(c.post_diff_risk.effective_level,\"critical\");assert.deepEqual(c.post_diff_risk.required_lanes,[\"evaluation\",\"review\",\"security-review\",\"verifier\"]);assert.deepEqual(c.post_diff_risk.removed_safeguards,[]);"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/postdiff-classification.log",
+  "started_at": "2026-10-04T14:10:38.743Z",
+  "completed_at": "2026-10-04T14:10:38.808Z",
+  "signal": null,
+  "error": null
+}

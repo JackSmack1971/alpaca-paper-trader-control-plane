@@ -1,0 +1,4 @@
+src/api/app.ts(207,52): error TS2345: Argument of type '402' is not assignable to parameter of type '401 | 407 | 500'.
+src/domain/local-test-harness.ts(265,19): error TS18046: 'observed' is of type 'unknown'.
+src/infra/local-alpaca-market-transport.ts(24,38): error TS2341: Property 'onClientFrame' is private and only accessible within class 'LocalAlpacaMarketTransport'.
+src/infra/local-alpaca-market-transport.ts(72,43): error TS2345: Argument of type 'string' is not assignable to parameter of type '"iex" | "sip" | "delayed_sip"'.

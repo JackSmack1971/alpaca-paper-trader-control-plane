@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "baseline_commit": "ea9a83e069f1be79c307fd8a9c4b9fca85977409",
+  "current_head": "ea9a83e069f1be79c307fd8a9c4b9fca85977409",
+  "goal_digest": "22c88ea1b0723cd0b7673431186a94df1fc2f5f5f05a3b8c9c7fee0a7eb53e81",
+  "snapshot_id": "a61d39dd789971b32b8bb644fd003702c0e7ceb39fd125d45d03a3eb3dd70a8b",
+  "task_id": "phase1-runtime-foundation",
+  "task_bundle_id": "88e26fe33f47b4b0cdf5ab5f9a3a90efa4503841f4b111979d3be8981aa2cf75",
+  "tracked_diff_sha256": "0f32915fee416a33e0dd02c7883ffeb8e7566895c213cc2fe77df7d5006f14d0",
+  "untracked": [
+    {
+      "path": "config/default.json",
+      "sha256": "5fac041421ae3be2c236685a258dc75d874108e72c9ab5c4d14593c8bdd990b8"
+    },
+    {
+      "path": "docs/runbook.md",
+      "sha256": "5c903468111cb8a5e5fbb0b3e2bbbc55ed37bc3a927da185e74a8f3ee3d3d343"
+    },
+    {
+      "path": "migrations/0001_initial.sql",
+      "sha256": "14cd2587a809f84a45e30f6f146abf2025bb6ff8a85bb63c740851c117952383"
+    },
+    {
+      "path": "package.json",
+      "sha256": "7735b34fbf5dad490451ee894404ae6647bc13da0367af0badd2afab8fc33bbe"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "6e7850eec84491b570e3b8ca6a88b447c2e0f6ffd26912cc41190b41c2ecb698"
+    },
+    {
+      "path": "scripts/config-check.ts",
+      "sha256": "d8b605e8c0eb1c1d0aad55f0bcad17a08f6b67f1111518fb2f02e6f95aa4b92a"
+    },
+    {
+      "path": "scripts/migrate.ts",
+      "sha256": "c6899f7ac56c4c06d89c44bb790a37d2662b436cc31b4b26db973e3e4271f984"
+    },
+    {
+      "path": "scripts/verify-no-live-routes.mjs",
+      "sha256": "c62ca2d80091e862db2e2971c1674cfed0db762efb22cb4337a45000c195f259"
+    },
+    {
+      "path": "src/api/app.ts",
+      "sha256": "11a4254a680749d005cb3ce796ad5d69e72dfa8414b6949c6410844a0ad13e8d"
+    },
+    {
+      "path": "src/domain/config.ts",
+      "sha256": "63ea85afeafeb30de3f837666305fce1435e8944f00a48e55a1b19e158fe39c8"
+    },
+    {
+      "path": "src/domain/paper-only.ts",
+      "sha256": "28f4961bf4b889f2e359daca1cec399ff65c1ae5d4f56061bec424057a24afe9"
+    },
+    {
+      "path": "src/domain/schema.ts",
+      "sha256": "99e355ce66e44e7cdc01ad9cf77c799262ece8372431ddfd8d3ea6fa87bd6dfe"
+    },
+    {
+      "path": "src/infra/db.ts",
+      "sha256": "9981f92fdb4e91e70e6cfcae0e2a5c96ffe190a85dbec509049b41b5f5e8653f"
+    },
+    {
+      "path": "src/infra/migrate.ts",
+      "sha256": "7f4727e2dee5c7feeec7fe3af7b214fabfeea398cd4e324b83bb58cef29d4f56"
+    },
+    {
+      "path": "src/main.ts",
+      "sha256": "584704b6185b6e0c01f43699954a17574e159de1702dcecca5451fefef586772"
+    },
+    {
+      "path": "tests/app.test.ts",
+      "sha256": "9bcdaa73c5c3f1c7a4b66617c9cba50414097f5bee93e590f81685bf51a5e39b"
+    },
+    {
+      "path": "tests/foundation.test.ts",
+      "sha256": "3546e8e6a3c4e466460291aa9f054f47ad0989d39e53db0d6bbbb74e7a2b29f8"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "64107884b58d19519ac7e004b82d8f069c2e8e5a34547d9c56fed970575dfdbb"
+    }
+  ],
+  "post_diff_risk": {
+    "schema_version": 1,
+    "level": "high",
+    "paths": [
+      ".gitignore",
+      "README.md",
+      "config/default.json",
+      "docs/runbook.md",
+      "migrations/0001_initial.sql",
+      "package.json",
+      "pnpm-lock.yaml",
+      "scripts/config-check.ts",
+      "scripts/control-plane/post-diff-risk.mjs",
+      "scripts/migrate.ts",
+      "scripts/verify-no-live-routes.mjs",
+      "src/api/app.ts",
+      "src/domain/config.ts",
+      "src/domain/paper-only.ts",
+      "src/domain/schema.ts",
+      "src/infra/db.ts",
+      "src/infra/migrate.ts",
+      "src/main.ts",
+      "tests/app.test.ts",
+      "tests/foundation.test.ts",
+      "tsconfig.json"
+    ],
+    "changed_file_count": 21,
+    "added_lines": 2153,
+    "deleted_lines": 1,
+    "categories": [
+      "change-magnitude",
+      "dependency",
+      "high-impact-surface",
+      "migration",
+      "permission-or-configuration",
+      "public-api",
+      "security-sensitive",
+      "test"
+    ],
+    "removed_safeguards": [],
+    "deleted_guard_line_count": 0,
+    "required_roles": [
+      "reviewer",
+      "security_auditor",
+      "verifier",
+      "evaluator"
+    ],
+    "required_lanes": [
+      "evaluation",
+      "review",
+      "security-review",
+      "verifier"
+    ],
+    "patch_sha256": "956bc00e58cd388c1b4f75ab4f16b12c036c801a06d69fc33292169fe380c691",
+    "classification_id": "c576926c40a061e5c9d2a303fa362212e517e513e0ee259870b597ff6ad1f0d6",
+    "initial_level": "high",
+    "effective_level": "high",
+    "escalated": false
+  },
+  "candidate_id": "f218b3b0acd2f0d8f70319fbfd66ddc743fa606bbd3124a84b8b4e885b51c436"
+}

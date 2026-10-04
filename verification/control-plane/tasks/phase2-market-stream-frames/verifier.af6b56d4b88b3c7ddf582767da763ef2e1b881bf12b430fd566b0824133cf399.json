@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-market-stream-frames",
+  "task_bundle_id": "5c894db28593aa85421d1dde7f8e5e3a912cffdb4483bea5d0bb5ce4c3450b09",
+  "candidate_id": "af6b56d4b88b3c7ddf582767da763ef2e1b881bf12b430fd566b0824133cf399",
+  "verdict": "PASS",
+  "evidence": "Independent verifier recomputed candidate identity before/after checks and matched source hashes. Focused stream frame tests passed; verify:offline passed with typecheck, 41 tests, config/PAPER/no-live guards. Live Alpaca and MessagePack remain unqualified and are outside this offline frame contract."
+}

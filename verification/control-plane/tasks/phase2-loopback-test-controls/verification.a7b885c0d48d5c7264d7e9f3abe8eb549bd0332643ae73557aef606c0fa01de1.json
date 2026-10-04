@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-loopback-test-controls",
+  "task_bundle_id": "1505d0ad8c3af5b4b27f9f372667f528918c85210611b859ca1e9a13259bad64",
+  "candidate_id": "a7b885c0d48d5c7264d7e9f3abe8eb549bd0332643ae73557aef606c0fa01de1",
+  "status": "PASS",
+  "commands": [
+    {
+      "exit_code": 0,
+      "evidence": "checks/logs-typecheck.json",
+      "command": "node node_modules/typescript/bin/tsc --noEmit"
+    },
+    {
+      "exit_code": 0,
+      "evidence": "checks/logs-tests.json",
+      "command": "node node_modules/vitest/vitest.mjs run"
+    },
+    {
+      "exit_code": 0,
+      "evidence": "checks/logs-runtime.json",
+      "command": "node node_modules/tsx/dist/cli.mjs scripts/verify-local-controls.ts against loopback app and Docker PostgreSQL"
+    }
+  ],
+  "evidence": "Final candidate typecheck, full 25-test suite, and live local runtime verifier all passed."
+}

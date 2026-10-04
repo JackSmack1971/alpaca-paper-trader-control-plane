@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-account-state-observation",
+  "task_bundle_id": "408998a3b9720f7b9eb7f67dad6ff56c2fecd0156bb707d74c7a3000f8c16760",
+  "candidate_id": "3e0ef9d10fda42cfc5e147dec5906ed5ec4ff409c7bd0107d378c1d3ada7c7e7",
+  "verdict": "PASS",
+  "evaluator": "independent-evaluation",
+  "evaluated_at": "2026-10-04T14:00:00.000Z",
+  "criteria": [
+    {
+      "evidence": "Frozen verifier explicitly asserts fixture-derived normalized AAPL/TSLA positions, MSFT open order, equity, and decimal-safe long/short/gross exposure.",
+      "criterion_id": "LAS-01",
+      "disposition": "PASS"
+    },
+    {
+      "evidence": "Verifier confirms simulated PAPER provider markers and position/order response values correspond to normalized fixture-backed account state.",
+      "criterion_id": "LAS-02",
+      "disposition": "PASS"
+    },
+    {
+      "evidence": "Verifier replaces provider scenario, asserts updated equity/TSLA quantity/short and gross exposure, compares expected state, then resets and verifies exact fixture baseline restoration.",
+      "criterion_id": "LAS-03",
+      "disposition": "PASS"
+    }
+  ],
+  "scope": [
+    "task acceptance criteria LAS-01 through LAS-03",
+    "exact frozen candidate identity",
+    "evidence provenance and independent lanes",
+    "Phase 2 / PAPER-only scope"
+  ],
+  "findings": [],
+  "rationale": "Independently recomputed candidate identity from the frozen snapshot and worktree state; it matches the supplied candidate ID. Task bundle identity matches. The PASS live checks and offline checks are bound to this bundle; reviewer, security-review, and verifier records bind the same candidate and bundle with PASS verdicts. Source inspection confirms implementation behavior directly satisfies each criterion. The change is a verification-surface extension in Phase 2; this evaluation does not assert full Phase 2 or end-to-end orchestrator-cycle completion."
+}

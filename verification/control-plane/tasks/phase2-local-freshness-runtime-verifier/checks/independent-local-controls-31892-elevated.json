@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "id": "independent-local-controls-31892-elevated",
+  "task_id": "phase2-local-freshness-runtime-verifier",
+  "bundle_id": "1f40c6b6bc08efca9954997dd0184b8c341243e08f4bcea2f54d7caf0cba7d8b",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "cmd.exe",
+  "args": [
+    "/c",
+    "corepack",
+    "pnpm",
+    "verify:local-controls"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-freshness-runtime-verifier/checks/independent-local-controls-31892-elevated.log",
+  "started_at": "2026-10-04T13:22:12.020Z",
+  "completed_at": "2026-10-04T13:22:12.844Z",
+  "signal": null,
+  "error": null
+}

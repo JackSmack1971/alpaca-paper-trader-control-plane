@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "candidate-required-lanes-wired",
+  "task_id": "phase2-msgpack-market-frames",
+  "bundle_id": "c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "-e",
+    "const fs=require(\"node:fs\");const assert=require(\"node:assert/strict\");const dir=\"verification/control-plane/tasks/phase2-msgpack-market-frames\";const id=\"06efcde7ce028375f053157d613dd04c431a9f5f0ec718cfc903cd14a04d8ea7\";const bundle=\"c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2\";for(const kind of [\"review\",\"security-review\",\"verifier\",\"evaluation\"]){const r=JSON.parse(fs.readFileSync(`${dir}/${kind}.${id}.json`,\"utf8\"));assert.equal(r.candidate_id,id);assert.equal(r.task_id,\"phase2-msgpack-market-frames\");assert.equal(r.task_bundle_id??r.bundle_id,bundle);assert.equal(r.verdict,\"PASS\");}"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/candidate-required-lanes-wired.log",
+  "started_at": "2026-10-04T14:28:02.264Z",
+  "completed_at": "2026-10-04T14:28:02.326Z",
+  "signal": null,
+  "error": null
+}

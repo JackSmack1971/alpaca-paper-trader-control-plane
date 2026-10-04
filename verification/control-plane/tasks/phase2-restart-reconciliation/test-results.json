@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "task_id": "phase2-restart-reconciliation",
+  "bundle_id": "02912e17d9b90524f7db46970dd8e1c5d6012c1feb64ac0e261a109013215cf4",
+  "status": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "RRC-01",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "restart-docker-rewind-final",
+        "check_path": "verification/control-plane/tasks/phase2-restart-reconciliation/checks/restart-docker-rewind-final.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "RRC-02",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "restart-docker-rewind-final",
+        "check_path": "verification/control-plane/tasks/phase2-restart-reconciliation/checks/restart-docker-rewind-final.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "RRC-03",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "restart-docker-rewind-final",
+        "check_path": "verification/control-plane/tasks/phase2-restart-reconciliation/checks/restart-docker-rewind-final.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "RRC-04",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "restart-docker-rewind-final",
+        "check_path": "verification/control-plane/tasks/phase2-restart-reconciliation/checks/restart-docker-rewind-final.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-CLASSIFICATION",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "postdiff-classification-dbb",
+        "check_path": "verification/control-plane/tasks/phase2-restart-reconciliation/checks/postdiff-classification-dbb.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-REQUIRED-LANES",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "postdiff-required-lanes-dbb",
+        "check_path": "verification/control-plane/tasks/phase2-restart-reconciliation/checks/postdiff-required-lanes-dbb.json",
+        "exit_code": 0
+      }
+    }
+  ],
+  "generated_at": "2026-10-04T07:11:26.110Z"
+}

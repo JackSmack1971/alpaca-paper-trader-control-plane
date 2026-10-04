@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-account-reconciler-restart-refresh",
+  "task_bundle_id": "5a392ee137b19bb6e9b996f4e1dc4271818f247e9845acf9a81dc973450920b2",
+  "candidate_id": "1620669848f244323b8ad3e974e9610e756d1e792b5188c9c772c5c766d5f0ec",
+  "verdict": "PASS",
+  "findings": [],
+  "checks": {
+    "candidate_identity": "PASS: rebuilt candidate ID matches the frozen candidate; all 55 candidate-listed untracked file hashes match the isolated worktree",
+    "change_scope": "PASS: task intake scopes implementation to tests/alpaca-account.test.ts; the restart regression test adds no production behavior",
+    "injected_transport": "PASS: test constructs AlpacaPaperAccountClient with vi.fn fetchImpl and asserts exactly four invocations; no test path falls through to global fetch",
+    "credential_hygiene": "PASS: test uses only literal test-key/test-secret values; the fixture contains synthetic account/order identifiers and financial values, with no credentials or provider response secrets",
+    "network_and_order_authority": "PASS: the focused change performs no outbound requests, environment credential lookups, or order submissions; production adapter remains read-only GET-only and fixed to PAPER host"
+  },
+  "evidence": "Independent read-only audit of the exact frozen candidate. Recomputed the candidate ID from the authoritative snapshot and verified all 55 frozen untracked file hashes against the task worktree. Inspected the scoped restart regression test, sanitized reconciliation fixture, and AlpacaPaperAccountClient transport injection. The test supplies an in-memory fake fetch for both simulated process instances, uses test-only credentials, and asserts four expected PAPER-shaped paths after restart. No concrete credential or network leakage risk was found; this does not claim credential-backed provider qualification."
+}

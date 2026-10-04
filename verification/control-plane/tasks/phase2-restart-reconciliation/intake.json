@@ -1,0 +1,41 @@
+{
+  "id": "phase2-restart-reconciliation",
+  "task_kind": "feature",
+  "uncertainty": "low",
+  "files": [
+    "migrations/0004_local_runtime_snapshots.sql",
+    "src/infra/db/schema.ts",
+    "src/domain/local-test-harness.ts",
+    "src/api/app.ts",
+    "src/main.ts",
+    "scripts/verify-local-controls.ts",
+    "docs/runbook.md"
+  ],
+  "architectural_file_count": 5,
+  "expected_code_lines": 180,
+  "blast_radius": [
+    "database-schema",
+    "functional-correctness"
+  ],
+  "verification_difficulty": "difficult",
+  "implementation_required": true,
+  "research_required": false,
+  "acceptance_criteria": [
+    {
+      "id": "RRC-01",
+      "text": "Local mode persists virtual time and bounded market replay progress as a versioned scenario snapshot in PostgreSQL; production behavior remains unchanged."
+    },
+    {
+      "id": "RRC-02",
+      "text": "On process restart, local mode restores the scenario snapshot deterministically and records startup reconciliation status with source and snapshot revision."
+    },
+    {
+      "id": "RRC-03",
+      "text": "Reset returns fixture state and persists it; advancing replay or setting virtual time persists the updated state."
+    },
+    {
+      "id": "RRC-04",
+      "text": "A Docker-backed runtime verification can restart the application process and compare expected/observed time, replay cursor, and normalized account/market state without credentials or external network access."
+    }
+  ]
+}

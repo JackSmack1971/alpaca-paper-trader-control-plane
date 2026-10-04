@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-freshness-runtime-verifier",
+  "bundle_id": "1f40c6b6bc08efca9954997dd0184b8c341243e08f4bcea2f54d7caf0cba7d8b",
+  "intake_digest": "bc75dbe2a407c77c5ac0b8bd0c5cecc9ad07755271926c6f1e07f236929cd242",
+  "artifacts": {
+    "intake": "intake.json",
+    "route": "route.json",
+    "candidates": "candidates/",
+    "acceptance": "test-results.json",
+    "checks": "checks/",
+    "review": "review.<candidate_id>.json",
+    "security_review": "security-review.<candidate_id>.json",
+    "verifier": "verifier.<candidate_id>.json",
+    "verification": "verification.<candidate_id>.json",
+    "evaluation": "evaluation.<candidate_id>.json"
+  }
+}

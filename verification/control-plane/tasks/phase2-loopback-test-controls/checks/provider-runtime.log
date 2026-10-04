@@ -1,0 +1,1 @@
+{"status":"PASS","replayCursor":2,"simulatedPaper":"paper","injectedFailures":["network","rate_limit","broker"],"traceRecords":14,"logRecords":15,"resetCursor":0}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "docker-live-trade-update-smoke",
+  "task_id": "phase2-local-trade-update-sim",
+  "bundle_id": "e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9a",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "-e",
+    "const {strict:assert}=require(\"node:assert\");(async()=>{const base=\"http://127.0.0.1:31889\";const req=async(path,init)=>{const r=await fetch(base+path,init);const body=await r.json();assert.equal(r.status,200,path+\" status\");return body};const before=await req(\"/__local/state\");const update={stream:\"trade_updates\",data:{event:\"partial_fill\",execution_id:\"execution-smoke\",timestamp:\"2025-01-02T14:30:01Z\",price:\"190.25\",qty:\"2\",position_qty:\"2\",order:{id:\"order-smoke\",client_order_id:\"local-order-smoke\",asset_id:\"asset-smoke\",symbol:\"AAPL\",side:\"buy\",type:\"limit\",status:\"partially_filled\",order_class:\"simple\",time_in_force:\"day\",qty:\"4\",filled_qty:\"2\",filled_avg_price:\"190.25\"}}};const accepted=await req(\"/__local/trade-updates\",{method:\"POST\",headers:{\"content-type\":\"application/json\"},body:JSON.stringify({updates:[update]})});assert.equal(accepted.simulated,true);assert.equal(accepted.mode,\"paper\");assert.equal(accepted.accepted,1);const observed=await req(\"/__local/state\");assert.equal(observed.tradeUpdates.length,1);assert.equal(observed.tradeUpdates[0].receivedAt,before.now);assert.deepEqual(observed.account.positions,before.account.positions);assert.deepEqual(observed.account.openOrders,before.account.openOrders);const compared=await req(\"/__local/assert-state\",{method:\"POST\",headers:{\"content-type\":\"application/json\"},body:JSON.stringify({expected:{tradeUpdates:observed.tradeUpdates}})});assert.equal(compared.matched,true);const reset=await req(\"/__local/reset\",{method:\"POST\",headers:{\"content-type\":\"application/json\"},body:\"{}\"});assert.equal(reset.tradeUpdates.length,0);console.log(JSON.stringify({status:\"PASS\",simulated:true,mode:\"paper\",accepted:1,virtualReceiveTime:true,canonicalAccountUnchanged:true,expectedStateMatched:true,resetCleared:true}));})().catch(error=>{console.error(error);process.exit(1)});"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-trade-update-sim/checks/docker-live-trade-update-smoke.log",
+  "started_at": "2026-10-04T12:11:40.715Z",
+  "completed_at": "2026-10-04T12:11:40.887Z",
+  "signal": null,
+  "error": null
+}

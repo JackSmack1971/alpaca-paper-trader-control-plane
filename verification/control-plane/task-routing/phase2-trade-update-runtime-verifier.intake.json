@@ -1,0 +1,17 @@
+{
+  "id": "phase2-trade-update-runtime-verifier",
+  "task_kind": "feature",
+  "uncertainty": "low",
+  "files": ["scripts/verify-local-controls.ts"],
+  "architectural_file_count": 0,
+  "expected_code_lines": 24,
+  "blast_radius": ["functional-correctness"],
+  "verification_difficulty": "deterministic",
+  "implementation_required": true,
+  "research_required": false,
+  "acceptance_criteria": [
+    { "id": "TUV-01", "text": "The reusable local-controls verifier posts and inspects a provider-shaped synthetic trade update and asserts simulated PAPER response markers." },
+    { "id": "TUV-02", "text": "The verifier confirms virtual receive time, expected-state comparison, and no mutation of canonical account positions or open orders." },
+    { "id": "TUV-03", "text": "The verifier confirms reset clears trade-update observations." }
+  ]
+}

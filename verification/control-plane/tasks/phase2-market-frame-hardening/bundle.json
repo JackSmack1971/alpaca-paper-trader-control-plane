@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-market-frame-hardening",
+  "bundle_id": "a6675919900adf742882e9bd9e2e6dc1c893f1317ccb014f49a31ecd5fd56c5f",
+  "intake_digest": "35e4ea17a239fabd91377833e103ea2b83197e67b603f19223eeaad4ac95fafc",
+  "artifacts": {
+    "intake": "intake.json",
+    "route": "route.json",
+    "candidates": "candidates/",
+    "acceptance": "test-results.json",
+    "checks": "checks/",
+    "review": "review.<candidate_id>.json",
+    "security_review": "security-review.<candidate_id>.json",
+    "verifier": "verifier.<candidate_id>.json",
+    "verification": "verification.<candidate_id>.json",
+    "evaluation": "evaluation.<candidate_id>.json"
+  }
+}

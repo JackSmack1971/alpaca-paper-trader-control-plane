@@ -1,0 +1,8 @@
+{
+  "evidence": "Independent verifier confirmed all 44 candidate file hashes, ran focused crossed-quote/provider-text checks, typecheck, 34-test suite, configuration check, PAPER-only guard, and no-live-route guard; all exited 0. Credentials absent; no live provider check run. Highest rung 1. Check IDs: verifier-focus-b56-v1, verifier-typecheck-b56-v1, verifier-full-tests-b56-v1, verifier-config-b56-v1, verifier-paper-guard-b56-v1, verifier-live-route-guard-b56-v1.",
+  "candidate_id": "b56ed71e5f028a5f2a5c84bb910cdd7e106224d4117bc32ce8297d53d76f8b00",
+  "verdict": "PASS",
+  "task_id": "phase2-market-frame-hardening",
+  "task_bundle_id": "a6675919900adf742882e9bd9e2e6dc1c893f1317ccb014f49a31ecd5fd56c5f",
+  "schema_version": 1
+}

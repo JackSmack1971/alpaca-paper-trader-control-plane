@@ -1,0 +1,16 @@
+{
+  "id": "phase2-account-reconciler-restart-refresh",
+  "task_kind": "bugfix",
+  "uncertainty": "low",
+  "files": ["tests/alpaca-account.test.ts"],
+  "architectural_file_count": 0,
+  "expected_code_lines": 25,
+  "blast_radius": ["functional-correctness"],
+  "verification_difficulty": "deterministic",
+  "implementation_required": true,
+  "research_required": false,
+  "acceptance_criteria": [
+    { "id": "RESTART-FETCHES-COMPLETE-SNAPSHOT", "text": "A fresh AlpacaPaperAccountReconciler performs a new provider-shaped PAPER reconciliation after restart and exposes the newly returned complete account, positions, orders, and clock-derived state." },
+    { "id": "RESTART-TEST-IS-CREDENTIAL-FREE", "text": "The focused test uses only injected in-memory fetchImpl responses and performs no network access or credential lookup." }
+  ]
+}

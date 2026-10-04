@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "unit_of_work": "phase2-market-stream-frames",
+  "base_sha": "ea9a83e069f1be79c307fd8a9c4b9fca85977409",
+  "worktree": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\phase2-market-stream-frames",
+  "branch": "codex/phase2-market-stream-frames",
+  "owner": "implementer",
+  "scope": [
+    "src/domain/market-state.ts",
+    "tests/market-state.test.ts"
+  ],
+  "integration_target": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0",
+  "assignment_id": "78833830f909e84256b669a667968530ad5e3f566a6e378f05a5095e8f7ed8f6",
+  "active": false,
+  "created_at": "2026-10-04T08:11:23.173Z",
+  "released_at": "2026-10-04T08:18:41.807Z"
+}

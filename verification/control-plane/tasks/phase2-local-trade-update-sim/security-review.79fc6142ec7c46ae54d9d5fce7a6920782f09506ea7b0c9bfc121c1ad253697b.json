@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-trade-update-sim",
+  "task_bundle_id": "e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9a",
+  "candidate_id": "79fc6142ec7c46ae54d9d5fce7a6920782f09506ea7b0c9bfc121c1ad253697b",
+  "verdict": "PASS",
+  "scope": [
+    "src/api/app.ts",
+    "src/domain/local-test-harness.ts",
+    "src/domain/config.ts",
+    "src/main.ts",
+    "tests/local-test-harness.test.ts"
+  ],
+  "findings": [],
+  "assessment": [
+    "Verified SHA-256 digests for src/api/app.ts (47a5c0c804588875a8f58834f9d495bc4ba876ca78c2cb5eb07d68ca1a884004), src/domain/local-test-harness.ts (273722dd6ab2ef5e10f22f6b4a4a4d3f619ad9203250a2c64a5185bcb9cda637), tests/local-test-harness.test.ts (0f5acec3922097601813aaf029beba39ac9be0919b8603831e95d64e07f346bc), and docs/runbook.md (ccd3de3bd7ff6ebc512b603d8855b7893db0b53575e4b78c06f0b8fe07273a2) against the frozen candidate manifest.",
+    "Trade-update routes are registered only when localTestMode is enabled and a local harness exists. The localTestMode config requires loopback app and database hosts and rejects Alpaca/OpenRouter credentials; startup skips live Alpaca adapters in local mode.",
+    "Injection validates a strict envelope and event enum, validates the full 1-to-20 batch before mutation, applies a 64 KiB local HTTP body limit, caps retained observations at 100, and returns fixed errors without reflecting rejected payloads. It logs only fixed metadata and accepted count.",
+    "The top-level envelope is strict; modeled data and order fields are validated, while unknown nested provider extension fields are stripped by Zod object parsing and are not included in normalized observations. Observations are separate from account state, omitted from persisted runtime snapshots, and cleared by reset. The response includes simulated/PAPER markers.",
+    "No security-boundary defect was found in the inspected trade-update path. Broader pre-existing application, database, market stream, and order-execution surfaces were not re-audited for this focused lane."
+  ]
+}

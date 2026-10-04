@@ -1,0 +1,17 @@
+{
+  "id": "phase2-market-replay-foundation",
+  "task_kind": "feature",
+  "uncertainty": "low",
+  "files": ["src/domain/market-state.ts", "tests/market-state.test.ts", "fixtures/market/replay-sample.json", "docs/runbook.md"],
+  "architectural_file_count": 2,
+  "expected_code_lines": 120,
+  "blast_radius": ["functional-correctness"],
+  "verification_difficulty": "deterministic",
+  "implementation_required": true,
+  "research_required": false,
+  "acceptance_criteria": [
+    {"id":"MKT-01","text":"Parse Alpaca-shaped batched trade and quote events into validated application-owned snapshots without leaking wire types."},
+    {"id":"MKT-02","text":"Replay a deterministic local fixture using an injected clock and stable event ordering, without credentials or network access."},
+    {"id":"MKT-03","text":"Reject malformed, duplicate, and out-of-order events without silently coercing them into valid market state."}
+  ]
+}

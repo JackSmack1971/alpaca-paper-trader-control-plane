@@ -1,0 +1,11 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 verify:offline C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0
+> corepack pnpm typecheck && corepack pnpm test && corepack pnpm config:check && node scripts/control-plane/check-paper-only.mjs && node scripts/verify-no-live-routes.mjs
+
+
+> alpaca-paper-trader-control-plane@1.1.0 typecheck C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0
+> tsc --noEmit
+
+tests/local-test-harness.test.ts(120,12): error TS2532: Object is possibly 'undefined'.
+ ELIFECYCLE  Command failed with exit code 2.
+ ELIFECYCLE  Command failed with exit code 2.

@@ -1,0 +1,11 @@
+
+C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\phase2-local-market-stream-adapter\scripts\verify-local-restart.ts:38
+    if (child?.exitCode !== null) throw new Error('application exited during startup');
+                                        ^
+
+
+Error: application exited during startup
+    at waitReady (C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\phase2-local-market-stream-adapter\scripts\verify-local-restart.ts:38:41)
+    at async <anonymous> (C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\phase2-local-market-stream-adapter\scripts\verify-local-restart.ts:55:20)
+
+Node.js v22.20.0

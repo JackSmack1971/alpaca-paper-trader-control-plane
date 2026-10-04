@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "task_id": "phase2-loopback-test-controls",
+  "bundle_id": "1505d0ad8c3af5b4b27f9f372667f528918c85210611b859ca1e9a13259bad64",
+  "status": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "LRT-01",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "logs-tests",
+        "check_path": "verification/control-plane/tasks/phase2-loopback-test-controls/checks/logs-tests.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "LRT-02",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "logs-runtime",
+        "check_path": "verification/control-plane/tasks/phase2-loopback-test-controls/checks/logs-runtime.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "LRT-03",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "logs-runtime",
+        "check_path": "verification/control-plane/tasks/phase2-loopback-test-controls/checks/logs-runtime.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "LRT-04",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "logs-runtime",
+        "check_path": "verification/control-plane/tasks/phase2-loopback-test-controls/checks/logs-runtime.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-CLASSIFICATION",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "postdiff-classification",
+        "check_path": "verification/control-plane/tasks/phase2-loopback-test-controls/checks/postdiff-classification.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-REQUIRED-LANES",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "postdiff-required-lanes",
+        "check_path": "verification/control-plane/tasks/phase2-loopback-test-controls/checks/postdiff-required-lanes.json",
+        "exit_code": 0
+      }
+    }
+  ],
+  "generated_at": "2026-10-04T06:24:55.019Z"
+}

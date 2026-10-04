@@ -1,0 +1,55 @@
+{
+  "schema_version": 2,
+  "task_id": "phase2-market-stream-frames",
+  "bundle_id": "5c894db28593aa85421d1dde7f8e5e3a912cffdb4483bea5d0bb5ce4c3450b09",
+  "status": "FAIL",
+  "criteria": [
+    {
+      "criterion_id": "MSF-01",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "stream-frames-current-offline-v1",
+        "check_path": "verification/control-plane/tasks/phase2-market-stream-frames/checks/stream-frames-current-offline-v1.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "MSF-02",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "stream-frames-current-offline-v1",
+        "check_path": "verification/control-plane/tasks/phase2-market-stream-frames/checks/stream-frames-current-offline-v1.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "MSF-03",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "stream-frames-current-offline-v1",
+        "check_path": "verification/control-plane/tasks/phase2-market-stream-frames/checks/stream-frames-current-offline-v1.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-CLASSIFICATION",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "stream-frames-classification-af6b",
+        "check_path": "verification/control-plane/tasks/phase2-market-stream-frames/checks/stream-frames-classification-af6b.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-REQUIRED-LANES",
+      "status": "FAIL",
+      "disposition": "PENDING",
+      "evidence": null
+    }
+  ],
+  "generated_at": "2026-10-04T08:11:23.201Z"
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "id": "stream-frames-classification-af6b",
+  "task_id": "phase2-market-stream-frames",
+  "bundle_id": "5c894db28593aa85421d1dde7f8e5e3a912cffdb4483bea5d0bb5ce4c3450b09",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "C:\\Program Files\\nodejs\\node.exe",
+  "args": [
+    "scripts/control-plane/candidate-id.mjs",
+    "--snapshot",
+    "verification/control-plane/snapshots/147d35e6113eda0adeea5c715049b337b5741b63fad25f5418b741182bd8ba83.json",
+    "--task-id",
+    "phase2-market-stream-frames"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-market-stream-frames/checks/stream-frames-classification-af6b.log",
+  "started_at": "2026-10-04T10:01:23.509Z",
+  "completed_at": "2026-10-04T10:01:24.163Z",
+  "signal": null,
+  "error": null
+}

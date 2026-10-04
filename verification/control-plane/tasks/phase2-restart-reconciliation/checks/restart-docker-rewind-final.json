@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "restart-docker-rewind-final",
+  "task_id": "phase2-restart-reconciliation",
+  "bundle_id": "02912e17d9b90524f7db46970dd8e1c5d6012c1feb64ac0e261a109013215cf4",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "corepack.cmd",
+  "args": [
+    "pnpm",
+    "verify:local-restart"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-restart-reconciliation/checks/restart-docker-rewind-final.log",
+  "started_at": "2026-10-04T07:46:59.713Z",
+  "completed_at": "2026-10-04T07:47:14.553Z",
+  "signal": null,
+  "error": null
+}

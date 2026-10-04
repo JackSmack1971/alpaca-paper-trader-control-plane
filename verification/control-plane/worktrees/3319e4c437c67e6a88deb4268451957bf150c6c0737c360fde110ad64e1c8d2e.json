@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "unit_of_work": "phase2-loopback-test-controls",
+  "base_sha": "ea9a83e069f1be79c307fd8a9c4b9fca85977409",
+  "worktree": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\phase2-loopback-test-controls",
+  "branch": "codex/phase2-loopback-test-controls",
+  "owner": "implementer",
+  "scope": [
+    "src/api/app.ts",
+    "src/domain/config.ts",
+    "src/domain/local-test-harness.ts",
+    "src/infra/config.ts",
+    "src/infra/local-fixtures.ts",
+    "tests/local-test-harness.test.ts",
+    "docs/runbook.md"
+  ],
+  "integration_target": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0",
+  "assignment_id": "3319e4c437c67e6a88deb4268451957bf150c6c0737c360fde110ad64e1c8d2e",
+  "active": false,
+  "created_at": "2026-10-04T06:24:54.991Z",
+  "released_at": "2026-10-04T07:07:44.135Z"
+}

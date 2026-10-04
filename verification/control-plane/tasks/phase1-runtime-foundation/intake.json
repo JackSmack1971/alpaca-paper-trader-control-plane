@@ -1,0 +1,43 @@
+{
+  "id": "phase1-runtime-foundation",
+  "task_kind": "feature",
+  "uncertainty": "high",
+  "files": [
+    "goals/phase-01-foundation.md",
+    "docs/PROJECT_CHARTER.md",
+    "src/",
+    "migrations/",
+    "scripts/",
+    "verification/"
+  ],
+  "architectural_file_count": 6,
+  "expected_code_lines": 500,
+  "blast_radius": [
+    "database-schema",
+    "migration",
+    "security-boundary",
+    "secrets",
+    "application-architecture",
+    "functional-correctness"
+  ],
+  "verification_difficulty": "difficult",
+  "implementation_required": true,
+  "research_required": false,
+  "acceptance_criteria": [
+    {
+      "id": "P01-RUNTIME-FOUNDATION-01",
+      "criterion": "A fresh documented local setup can validate configuration, initialize the real correlated persistence schema, start the service without provider credentials, and expose truthful PAPER-mode health/status.",
+      "evidence": "Execute the documented offline setup and startup procedure against a disposable local database, then inspect its health/status response and initialized schema."
+    },
+    {
+      "id": "P01-RUNTIME-FOUNDATION-02",
+      "criterion": "PAPER-only enforcement is mechanical, provider credentials remain server-side, and no live-trading route or endpoint is available.",
+      "evidence": "Run the offline guard checks and inspect route registration and credential access boundaries."
+    },
+    {
+      "id": "P01-RUNTIME-FOUNDATION-03",
+      "criterion": "Offline verification runs without credentials and reports credential-backed capabilities as unavailable or not configured rather than simulating success.",
+      "evidence": "Execute the documented credential-free verification command with provider credentials absent and inspect its structured result."
+    }
+  ]
+}

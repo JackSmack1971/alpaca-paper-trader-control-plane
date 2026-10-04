@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0
+
+ ✓ tests/market-state.test.ts (13 tests) 75ms
+
+ Test Files  1 passed (1)
+      Tests  13 passed (13)
+   Start at  05:03:07
+   Duration  832ms (transform 97ms, setup 0ms, collect 222ms, tests 75ms, environment 0ms, prepare 150ms)
+

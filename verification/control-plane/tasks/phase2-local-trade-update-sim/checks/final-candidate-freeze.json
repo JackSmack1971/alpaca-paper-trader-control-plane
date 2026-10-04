@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "id": "final-candidate-freeze",
+  "task_id": "phase2-local-trade-update-sim",
+  "bundle_id": "e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9a",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "scripts/control-plane/candidate-id.mjs",
+    "--snapshot",
+    "verification/control-plane/snapshots/195c14c0a18060604921afd9aefd0ebe62f9e07cc7bad2696ada6333db4ad46e.json",
+    "--task-id",
+    "phase2-local-trade-update-sim"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-trade-update-sim/checks/final-candidate-freeze.log",
+  "started_at": "2026-10-04T11:50:01.985Z",
+  "completed_at": "2026-10-04T11:50:02.733Z",
+  "signal": null,
+  "error": null
+}

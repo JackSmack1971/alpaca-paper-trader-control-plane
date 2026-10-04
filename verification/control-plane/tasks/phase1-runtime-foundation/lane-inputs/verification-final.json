@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "task_id": "phase1-runtime-foundation",
+  "task_bundle_id": "88e26fe33f47b4b0cdf5ab5f9a3a90efa4503841f4b111979d3be8981aa2cf75",
+  "candidate_id": "fe02735524ddb090e021f58eb38360054dc6b6e7f7a4991c73a87963c1542999",
+  "status": "PASS",
+  "commands": [
+    {
+      "command": "corepack pnpm verify:offline",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase1-runtime-foundation/checks/foundation-offline-cycle-mode-final.json"
+    },
+    {
+      "command": "DATABASE_URL=postgres://postgres@127.0.0.1:55432/alpaca_paper_dev corepack pnpm verify:runtime",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase1-runtime-foundation/checks/foundation-runtime-cycle-mode-final.json"
+    },
+    {
+      "command": "corepack pnpm dev:db:reset; corepack pnpm start; corepack pnpm db:seed",
+      "exit_code": 0,
+      "evidence": "Fresh disposable database startup applied migrations 0001–0003; deterministic seed inserted and runtime observer passed."
+    },
+    {
+      "command": "corepack pnpm db:migrate after simulating the disposable database at migration 0002",
+      "exit_code": 0,
+      "evidence": "Migration runner reapplied 0003 and restored cycle_outcomes.mode; migration ledger returned to three entries."
+    }
+  ]
+}

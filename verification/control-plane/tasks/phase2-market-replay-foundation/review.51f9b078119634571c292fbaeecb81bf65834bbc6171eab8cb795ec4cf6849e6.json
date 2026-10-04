@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-market-replay-foundation",
+  "task_bundle_id": "4d585aecdcf00381dbc9fc498253aceb79a54a4011489f8476785a900064c295",
+  "candidate_id": "51f9b078119634571c292fbaeecb81bf65834bbc6171eab8cb795ec4cf6849e6",
+  "verdict": "PASS",
+  "findings": [],
+  "coverage": {
+    "status": "COMPLETE",
+    "scope_note": "Compared the revised candidate manifest to the prior frozen candidate: the revised implementation delta is limited to market-state handling and its focused tests; the remaining aggregate files are unchanged from the prior candidate containing the reconciled Phase 1 source.",
+    "baseline": "Frozen candidate records baseline commit ea9a83e069f1be79c307fd8a9c4b9fca85977409; candidate 51f9b078119634571c292fbaeecb81bf65834bbc6171eab8cb795ec4cf6849e6.",
+    "criteria": {
+      "MKT-03": "PASS: parseMarketBatch rejects duplicate trade IDs and identical quote events within a batch and rejects decreasing per-symbol timestamps; MarketReplay applies duplicate identity checks across fixture steps for trades and quotes and rejects events older than the current symbol watermark. Failed steps do not advance cursor/state.",
+      "MKT-01": "PASS: batched Alpaca-shaped trade and quote messages are validated and mapped to application-owned events without wire properties.",
+      "MKT-02": "PASS: replay remains local and deterministic with injected time and ordered cursor advancement."
+    },
+    "paths_reviewed": [
+      "src/domain/market-state.ts",
+      "tests/market-state.test.ts",
+      "fixtures/market/replay-sample.json",
+      "docs/runbook.md"
+    ],
+    "execution_evidence": "Source review only; candidate check artifacts were not rerun for this review. The candidate contains test cases for duplicate/out-of-order batch inputs and replayed duplicate quotes.",
+    "reason": "The prior MKT-03 gap is addressed in the revised source for batched normalization and replayed trade/quote events."
+  },
+  "evidence": "Read-only review of frozen candidate source in .codex/worktrees/phase2-market-replay-foundation. Verified src/domain/market-state.ts SHA-256 against frozen candidate manifest."
+}

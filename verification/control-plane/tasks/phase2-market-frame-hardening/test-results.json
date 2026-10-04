@@ -1,0 +1,79 @@
+{
+  "schema_version": 2,
+  "task_id": "phase2-market-frame-hardening",
+  "bundle_id": "a6675919900adf742882e9bd9e2e6dc1c893f1317ccb014f49a31ecd5fd56c5f",
+  "status": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "MFH-01",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "fixture-error-redaction-offline-v1",
+        "check_path": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/fixture-error-redaction-offline-v1.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "MFH-02",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "fixture-error-redaction-offline-v1",
+        "check_path": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/fixture-error-redaction-offline-v1.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "MFH-03",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "fixture-error-redaction-offline-v1",
+        "check_path": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/fixture-error-redaction-offline-v1.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "MFH-04",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "fixture-error-redaction-offline-v1",
+        "check_path": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/fixture-error-redaction-offline-v1.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "MFH-05",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "fixture-error-redaction-offline-v1",
+        "check_path": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/fixture-error-redaction-offline-v1.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-CLASSIFICATION",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "postdiff-classification-4e3b",
+        "check_path": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/postdiff-classification-4e3b.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-REQUIRED-LANES",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "required-lanes-4e3b",
+        "check_path": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/required-lanes-4e3b.json",
+        "exit_code": 0
+      }
+    }
+  ],
+  "generated_at": "2026-10-04T08:24:41.311Z"
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-account-state-normalization",
+  "bundle_id": "c1fa6af641c6c5d6c8a53c89a7eb383c749dc1090f3e184bd6a524730416cdb1",
+  "intake_digest": "9eda95f2999c4812ef6129224ac4bf97347bc7d1fd068e970cfa000048d2cb70",
+  "artifacts": {
+    "intake": "intake.json",
+    "route": "route.json",
+    "candidates": "candidates/",
+    "acceptance": "test-results.json",
+    "checks": "checks/",
+    "review": "review.<candidate_id>.json",
+    "security_review": "security-review.<candidate_id>.json",
+    "verifier": "verifier.<candidate_id>.json",
+    "verification": "verification.<candidate_id>.json",
+    "evaluation": "evaluation.<candidate_id>.json"
+  }
+}

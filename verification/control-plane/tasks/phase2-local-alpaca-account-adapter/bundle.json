@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-alpaca-account-adapter",
+  "bundle_id": "8af198f9a5cca633d4203ff316ecbc2eb4df8001247043fbe54364aaaede8162",
+  "intake_digest": "0763791a205358b9e8b73a06e0b76d51900cfc55efb8fdc9054fdfd90a647d7d",
+  "artifacts": {
+    "intake": "intake.json",
+    "route": "route.json",
+    "candidates": "candidates/",
+    "acceptance": "test-results.json",
+    "checks": "checks/",
+    "review": "review.<candidate_id>.json",
+    "security_review": "security-review.<candidate_id>.json",
+    "verifier": "verifier.<candidate_id>.json",
+    "verification": "verification.<candidate_id>.json",
+    "evaluation": "evaluation.<candidate_id>.json"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "phase2-local-account-state-observation",
+  "task_kind": "feature",
+  "uncertainty": "low",
+  "files": ["scripts/verify-local-controls.ts"],
+  "architectural_file_count": 0,
+  "expected_code_lines": 30,
+  "blast_radius": ["functional-correctness"],
+  "verification_difficulty": "deterministic",
+  "implementation_required": true,
+  "research_required": false,
+  "acceptance_criteria": [
+    { "id": "LAS-01", "text": "Verifier compares normalized positions, open orders, and decimal-safe exposure from the checked-in account fixture against expected state." },
+    { "id": "LAS-02", "text": "Simulated PAPER positions and orders provider responses match the normalized account view and carry simulated PAPER markers." },
+    { "id": "LAS-03", "text": "Replacing the simulated account scenario changes equity, a position, and exposure as expected; reset restores fixture values and assertions pass." }
+  ]
+}

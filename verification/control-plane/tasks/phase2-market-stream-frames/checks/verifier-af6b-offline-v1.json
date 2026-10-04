@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "verifier-af6b-offline-v1",
+  "task_id": "phase2-market-stream-frames",
+  "bundle_id": "5c894db28593aa85421d1dde7f8e5e3a912cffdb4483bea5d0bb5ce4c3450b09",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "C:\\Users\\click\\AppData\\Local\\node\\corepack\\v1\\pnpm\\10.18.1\\bin\\pnpm.cjs",
+    "verify:offline"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-market-stream-frames/checks/verifier-af6b-offline-v1.log",
+  "started_at": "2026-10-04T10:04:07.928Z",
+  "completed_at": "2026-10-04T10:04:17.492Z",
+  "signal": null,
+  "error": null
+}

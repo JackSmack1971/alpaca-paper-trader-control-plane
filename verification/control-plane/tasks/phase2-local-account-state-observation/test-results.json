@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "task_id": "phase2-local-account-state-observation",
+  "bundle_id": "408998a3b9720f7b9eb7f67dad6ff56c2fecd0156bb707d74c7a3000f8c16760",
+  "status": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "LAS-01",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "live-account-observation",
+        "check_path": "verification/control-plane/tasks/phase2-local-account-state-observation/checks/live-account-observation.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "LAS-02",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "live-account-observation",
+        "check_path": "verification/control-plane/tasks/phase2-local-account-state-observation/checks/live-account-observation.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "LAS-03",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "live-account-observation",
+        "check_path": "verification/control-plane/tasks/phase2-local-account-state-observation/checks/live-account-observation.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-CLASSIFICATION",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-classification-recheck",
+        "check_path": "verification/control-plane/tasks/phase2-local-account-state-observation/checks/candidate-classification-recheck.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-REQUIRED-LANES",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-required-lanes",
+        "check_path": "verification/control-plane/tasks/phase2-local-account-state-observation/checks/candidate-required-lanes.json",
+        "exit_code": 0
+      }
+    }
+  ],
+  "generated_at": "2026-10-04T13:36:26.959Z"
+}

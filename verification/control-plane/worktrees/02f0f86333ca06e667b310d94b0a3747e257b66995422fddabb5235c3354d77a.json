@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "unit_of_work": "phase2-market-frame-hardening-verifier",
+  "base_sha": "ea9a83e069f1be79c307fd8a9c4b9fca85977409",
+  "worktree": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\phase2-market-frame-hardening-verifier",
+  "branch": "codex/phase2-market-frame-hardening-verifier",
+  "owner": "verifier",
+  "scope": [
+    "verification/control-plane/tasks/phase2-market-frame-hardening/lanes/verifier.json"
+  ],
+  "integration_target": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0",
+  "assignment_id": "02f0f86333ca06e667b310d94b0a3747e257b66995422fddabb5235c3354d77a",
+  "active": false,
+  "created_at": "2026-10-04T08:32:41.893Z",
+  "released_at": "2026-10-04T08:36:45.650Z"
+}

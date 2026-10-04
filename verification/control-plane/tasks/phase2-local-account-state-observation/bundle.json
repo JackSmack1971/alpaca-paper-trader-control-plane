@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-account-state-observation",
+  "bundle_id": "408998a3b9720f7b9eb7f67dad6ff56c2fecd0156bb707d74c7a3000f8c16760",
+  "intake_digest": "924bca1acf382b72b0e30b43db2a1cbd929e41861843d15600059c3bd3af7714",
+  "artifacts": {
+    "intake": "intake.json",
+    "route": "route.json",
+    "candidates": "candidates/",
+    "acceptance": "test-results.json",
+    "checks": "checks/",
+    "review": "review.<candidate_id>.json",
+    "security_review": "security-review.<candidate_id>.json",
+    "verifier": "verifier.<candidate_id>.json",
+    "verification": "verification.<candidate_id>.json",
+    "evaluation": "evaluation.<candidate_id>.json"
+  }
+}

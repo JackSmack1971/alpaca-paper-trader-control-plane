@@ -1,0 +1,79 @@
+{
+  "schema_version": 2,
+  "task_id": "phase2-local-market-stream-adapter",
+  "bundle_id": "459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803",
+  "status": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "LOCAL-REPLAY-USES-PRODUCTION-STREAM",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "adapter-final-focused-1",
+        "check_path": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-final-focused-1.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "LOCAL-MARKET-TRANSPORT-IS-NETWORK-FREE",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "adapter-final-focused-1",
+        "check_path": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-final-focused-1.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "LOCAL-MARKET-REPLAY-IS-DETERMINISTIC",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "adapter-docker-restart-3",
+        "check_path": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-docker-restart-3.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "LOCAL-MARKET-FAILURES-ARE-OBSERVABLE",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "adapter-final-focused-1",
+        "check_path": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-final-focused-1.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "LOCAL-MARKET-FRAMES-ARE-ASSERTABLE",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "adapter-final-focused-1",
+        "check_path": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-final-focused-1.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-CLASSIFICATION",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "adapter-postdiff-classification-1",
+        "check_path": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-postdiff-classification-1.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-REQUIRED-LANES",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "adapter-postdiff-required-lanes-1",
+        "check_path": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-postdiff-required-lanes-1.json",
+        "exit_code": 0
+      }
+    }
+  ],
+  "generated_at": "2026-10-04T16:13:35.134Z"
+}

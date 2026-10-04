@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "independent-offline-final",
+  "task_id": "phase2-local-account-state-observation",
+  "bundle_id": "408998a3b9720f7b9eb7f67dad6ff56c2fecd0156bb707d74c7a3000f8c16760",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "corepack.cmd",
+  "args": [
+    "pnpm",
+    "verify:offline"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-account-state-observation/checks/independent-offline-final.log",
+  "started_at": "2026-10-04T13:44:42.656Z",
+  "completed_at": "2026-10-04T13:44:50.664Z",
+  "signal": null,
+  "error": null
+}

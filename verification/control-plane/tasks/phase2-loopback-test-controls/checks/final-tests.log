@@ -1,0 +1,24 @@
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0
+
+ ✓ tests/market-state.test.ts (3 tests) 27ms
+ ✓ tests/account-state.test.ts (12 tests) 37ms
+ ✓ tests/config.test.ts (6 tests) 30ms
+{"level":30,"time":1791095735142,"pid":23092,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791095735146,"pid":22516,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/__local/state","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791095735147,"pid":22516,"hostname":"bretlaptop","reqId":"req-1","msg":"Route GET:/__local/state not found"}
+{"level":30,"time":1791095735147,"pid":22516,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":404},"responseTime":0.5461999999999989,"msg":"request completed"}
+ ✓ tests/local-test-harness.test.ts (2 tests) 213ms
+{"level":30,"time":1791095735152,"pid":23092,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791095735146,"pid":23092,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":200},"responseTime":3.7836999999999534,"msg":"request completed"}
+{"level":30,"time":1791095735152,"pid":23092,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":503},"responseTime":0.4147000000000389,"msg":"request completed"}
+{"level":30,"time":1791095735153,"pid":23092,"hostname":"bretlaptop","reqId":"req-2","req":{"method":"POST","url":"/orders","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791095735153,"pid":23092,"hostname":"bretlaptop","reqId":"req-2","msg":"Route POST:/orders not found"}
+{"level":30,"time":1791095735153,"pid":23092,"hostname":"bretlaptop","reqId":"req-2","res":{"statusCode":404},"responseTime":0.3835999999998876,"msg":"request completed"}
+ ✓ tests/app.test.ts (2 tests) 166ms
+
+ Test Files  5 passed (5)
+      Tests  25 passed (25)
+   Start at  02:35:34
+   Duration  1.11s (transform 228ms, setup 0ms, collect 1.53s, tests 473ms, environment 1ms, prepare 906ms)
+

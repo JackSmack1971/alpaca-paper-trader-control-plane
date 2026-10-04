@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "controlplane-validation-2",
+  "task_id": "phase2-local-market-stream-adapter",
+  "bundle_id": "459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803",
+  "status": "FAIL",
+  "exit_code": 1,
+  "executable": "C:\\\\Program Files\\\\nodejs\\\\node.exe",
+  "args": [
+    "node",
+    "scripts/control-plane/validate.mjs"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/controlplane-validation-2.log",
+  "started_at": "2026-10-04T17:11:01.741Z",
+  "completed_at": "2026-10-04T17:11:01.819Z",
+  "signal": null,
+  "error": null
+}

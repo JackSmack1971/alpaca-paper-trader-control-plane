@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-market-frame-hardening",
+  "task_bundle_id": "a6675919900adf742882e9bd9e2e6dc1c893f1317ccb014f49a31ecd5fd56c5f",
+  "candidate_id": "e1038d72baa0f017aac6bf76e679b7893e775fe8cc701b973f825574259c2a33",
+  "verdict": "PASS",
+  "evidence": "Independent evaluator assessed the task intake criteria MFH-01..05 and found all five supported by frozen-candidate source/tests and passing focused/offline checks. Review and security-review PASS; verifier PASS with matching candidate identity. Scope is this Phase 2 market-frame-hardening slice only; the broader orchestrator/order-intent/simulated execution lifecycle remains incomplete."
+}

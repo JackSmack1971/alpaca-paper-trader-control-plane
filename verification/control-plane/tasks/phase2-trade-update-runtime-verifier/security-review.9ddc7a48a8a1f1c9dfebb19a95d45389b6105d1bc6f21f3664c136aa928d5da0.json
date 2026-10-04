@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-trade-update-runtime-verifier",
+  "task_bundle_id": "49ed08744e4a244211a60d19758f97124498cf90a5a768898917df9449fc4e63",
+  "candidate_id": "9ddc7a48a8a1f1c9dfebb19a95d45389b6105d1bc6f21f3664c136aa928d5da0",
+  "verdict": "PASS",
+  "summary": "Both HTTP helpers set redirect:error, closing the prior non-loopback redirect path. Requests remain restricted to validated loopback URLs; synthetic fixtures and sentinel are benign; account-state invariants and reset behavior are asserted; no broker adapter or live market endpoint is called.",
+  "findings": [],
+  "checks": {
+    "loopback_target_validation": "PASS",
+    "redirect_handling": "PASS: request and rawRequest reject redirects",
+    "secret_hygiene": "PASS: no real credentials; sentinel is synthetic and checked for redaction",
+    "fixture_ids_values": "PASS: local IDs and fixed AAPL values are synthetic",
+    "reset_failure_cleanup": "PASS: normal completion resets; catch path attempts reset and retains original diagnostic",
+    "account_state": "PASS: compares positions and openOrders before/after observation",
+    "live_broker_traffic": "PASS: only validated loopback URLs and local control routes are requested"
+  }
+}

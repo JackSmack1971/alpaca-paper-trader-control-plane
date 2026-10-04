@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-loopback-test-controls",
+  "candidate_id": "a7b885c0d48d5c7264d7e9f3abe8eb549bd0332643ae73557aef606c0fa01de1",
+  "role": "verifier",
+  "status": "PASS",
+  "commands": [
+    {
+      "command": "corepack pnpm typecheck",
+      "exit_code": 0,
+      "result": "TypeScript completed with no diagnostics."
+    },
+    {
+      "command": "corepack pnpm test",
+      "exit_code": 0,
+      "result": "Vitest: 5 files passed, 25 tests passed."
+    }
+  ],
+  "criteria": [
+    {
+      "criterion_id": "LRT-01",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": [
+        "src/domain/config.ts defaults localTestMode to false and rejects enabled mode unless host is localhost, 127.0.0.1, or ::1 and Alpaca/OpenRouter credential fields are absent.",
+        "tests/config.test.ts checks default-off, non-loopback rejection, provider credential rejection, and Alpaca credential-pair validation.",
+        "tests/local-test-harness.test.ts confirms /__local/state returns 404 when local mode is disabled."
+      ]
+    },
+    {
+      "criterion_id": "LRT-02",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": [
+        "src/infra/local-fixtures.ts reads checked-in fixtures from fixed module-relative paths; no caller-supplied path or network client is involved.",
+        "src/domain/local-test-harness.ts resets replay/time to fixture start, sets virtual time, and caps replay at 100 events per request.",
+        "tests/local-test-harness.test.ts exercises reset, two-event replay, over-limit rejection, virtual clock propagation, and deterministic network/rate-limit/broker failure and recovery."
+      ]
+    },
+    {
+      "criterion_id": "LRT-03",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": [
+        "src/domain/local-test-harness.ts state() returns normalized market and account snapshots plus replay cursor and total.",
+        "src/domain/account-state.ts provides normalized positions, open orders, and exposure.",
+        "tests/local-test-harness.test.ts asserts positions, openOrders, exposure, and replay cursor are returned."
+      ]
+    },
+    {
+      "criterion_id": "LRT-04",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": [
+        "src/api/app.ts captures method, Fastify route template, status, and virtual timestamp for local requests; the trace ring caps at 200 entries and reads cap at 100.",
+        "src/domain/local-test-harness.ts keeps application logs in a separate bounded ring, timestamps each log using virtual time, and emits only fixed message codes and allowlisted fields (no URL query or request body). Failure injection emits a warning log.",
+        "tests/local-test-harness.test.ts checks query-sentinel exclusion and query-free routes in traces, fixed virtual timestamps in logs, distinct log versus trace output, and a simulated provider failure warning."
+      ]
+    }
+  ],
+  "findings": [],
+  "independence_note": "Inspected candidate source and ran both commands directly in the routed worktree. Prior builder evidence was not treated as proof.",
+  "generated_at": "2026-10-04T06:57:52Z"
+}

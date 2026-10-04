@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "id": "candidate-offline-final-rerun",
+  "task_id": "phase2-local-freshness-runtime-verifier",
+  "bundle_id": "1f40c6b6bc08efca9954997dd0184b8c341243e08f4bcea2f54d7caf0cba7d8b",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "cmd.exe",
+  "args": [
+    "/c",
+    "corepack",
+    "pnpm",
+    "verify:offline"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-freshness-runtime-verifier/checks/candidate-offline-final-rerun.log",
+  "started_at": "2026-10-04T13:16:40.634Z",
+  "completed_at": "2026-10-04T13:16:48.516Z",
+  "signal": null,
+  "error": null
+}

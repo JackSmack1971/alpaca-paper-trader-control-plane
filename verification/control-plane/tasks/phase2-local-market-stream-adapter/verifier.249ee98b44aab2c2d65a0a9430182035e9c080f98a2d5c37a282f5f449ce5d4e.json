@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "verdict": "PASS",
+  "candidate_id": "249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e",
+  "task_id": "phase2-local-market-stream-adapter",
+  "task_bundle_id": "459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803",
+  "evidence": "Candidate identity was recomputed from the frozen task snapshot and matched. Full offline Vitest suite passed (7 files, 74 tests) in verifier-full-offline-2; TypeScript noEmit passed in verifier-typecheck-1. Existing candidate-bound adapter-docker-restart-3 record passed and reported credentialFree=true, mode=paper, virtualTimeRewind=true, and restoration of virtual_time, replay_cursor, normalized_market, normalized_account. The initial verifier-full-offline-1 attempt was sandbox-blocked (EPERM) on node_modules junction access; rerun with approved access passed."
+}

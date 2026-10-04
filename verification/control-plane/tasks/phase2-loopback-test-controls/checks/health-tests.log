@@ -1,0 +1,25 @@
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0
+
+ ✓ tests/market-state.test.ts (3 tests) 25ms
+ ✓ tests/config.test.ts (6 tests) 26ms
+ ✓ tests/account-state.test.ts (12 tests) 56ms
+{"level":30,"time":1791096545357,"pid":20944,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791096545436,"pid":20472,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/__local/state","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791096545436,"pid":20472,"hostname":"bretlaptop","reqId":"req-1","msg":"Route GET:/__local/state not found"}
+{"level":30,"time":1791096545436,"pid":20472,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":404},"responseTime":0.28670000000010987,"msg":"request completed"}
+ ✓ tests/local-test-harness.test.ts (2 tests) 302ms
+{"level":30,"time":1791096545624,"pid":20944,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791096545617,"pid":20944,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":200},"responseTime":260.0561,"msg":"request completed"}
+{"level":30,"time":1791096545625,"pid":20944,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":503},"responseTime":0.5733000000000175,"msg":"request completed"}
+{"level":30,"time":1791096545625,"pid":20944,"hostname":"bretlaptop","reqId":"req-2","req":{"method":"POST","url":"/orders","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791096545626,"pid":20944,"hostname":"bretlaptop","reqId":"req-2","msg":"Route POST:/orders not found"}
+{"level":30,"time":1791096545626,"pid":20944,"hostname":"bretlaptop","reqId":"req-2","res":{"statusCode":404},"responseTime":0.4657999999999447,"msg":"request completed"}
+ ✓ tests/app.test.ts (2 tests) 450ms
+   ✓ HTTP health and status observation > shows PAPER mode and an available local database  442ms
+
+ Test Files  5 passed (5)
+      Tests  25 passed (25)
+   Start at  02:49:04
+   Duration  1.64s (transform 349ms, setup 0ms, collect 2.02s, tests 859ms, environment 1ms, prepare 1.31s)
+

@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "task_id": "phase2-local-alpaca-account-adapter",
+  "bundle_id": "8af198f9a5cca633d4203ff316ecbc2eb4df8001247043fbe54364aaaede8162",
+  "status": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "LOCAL-RECONCILE-USES-ALPACA-ADAPTER",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "offline-full-final",
+        "check_path": "verification/control-plane/tasks/phase2-local-alpaca-account-adapter/checks/offline-full-final.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "LOCAL-ADAPTER-IS-NETWORK-AND-CREDENTIAL-FREE",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "offline-full-final",
+        "check_path": "verification/control-plane/tasks/phase2-local-alpaca-account-adapter/checks/offline-full-final.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "LOCAL-RECONCILIATION-IS-OBSERVABLE",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "local-controls-final-runtime",
+        "check_path": "verification/control-plane/tasks/phase2-local-alpaca-account-adapter/checks/local-controls-final-runtime.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-CLASSIFICATION",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-classification-confirmed",
+        "check_path": "verification/control-plane/tasks/phase2-local-alpaca-account-adapter/checks/candidate-classification-confirmed.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-REQUIRED-LANES",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-required-lanes",
+        "check_path": "verification/control-plane/tasks/phase2-local-alpaca-account-adapter/checks/candidate-required-lanes.json",
+        "exit_code": 0
+      }
+    }
+  ],
+  "generated_at": "2026-10-04T15:34:37.039Z"
+}

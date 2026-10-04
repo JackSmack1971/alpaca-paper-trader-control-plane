@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "candidate-79fc-offline",
+  "task_id": "phase2-local-trade-update-sim",
+  "bundle_id": "e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9a",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "C:\\Progra~1\\nodejs\\corepack.cmd",
+  "args": [
+    "pnpm",
+    "verify:offline"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-trade-update-sim/checks/candidate-79fc-offline.log",
+  "started_at": "2026-10-04T11:57:45.545Z",
+  "completed_at": "2026-10-04T11:57:53.458Z",
+  "signal": null,
+  "error": null
+}

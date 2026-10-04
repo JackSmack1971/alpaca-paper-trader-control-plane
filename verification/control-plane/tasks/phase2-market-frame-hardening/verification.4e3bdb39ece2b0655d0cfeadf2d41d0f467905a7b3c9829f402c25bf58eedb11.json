@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-market-frame-hardening",
+  "task_bundle_id": "a6675919900adf742882e9bd9e2e6dc1c893f1317ccb014f49a31ecd5fd56c5f",
+  "candidate_id": "4e3bdb39ece2b0655d0cfeadf2d41d0f467905a7b3c9829f402c25bf58eedb11",
+  "status": "PASS",
+  "commands": [
+    {
+      "evidence": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/verifier-4e3b-focused-v1.json (21 tests)",
+      "command": "focused market and local harness tests",
+      "exit_code": 0
+    },
+    {
+      "evidence": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/verifier-4e3b-offline-v1.json (typecheck, 41 tests, config, PAPER-only, no-live-route)",
+      "command": "pnpm verify:offline",
+      "exit_code": 0
+    },
+    {
+      "evidence": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/verifier-4e3b-local-controls-v1.json",
+      "command": "candidate local-controls verifier",
+      "exit_code": 0
+    },
+    {
+      "evidence": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/verifier-4e3b-restart-v1.json (clock, cursor, market/account restore)",
+      "command": "pnpm verify:local-restart",
+      "exit_code": 0
+    }
+  ]
+}

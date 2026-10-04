@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-msgpack-market-frames",
+  "task_bundle_id": "c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2",
+  "candidate_id": "f71683920bf93325bf7b8bddaf526f6e5ed09442a8c1ef8f7cd9c5199e48ac85",
+  "evaluator": "independent-phase-closeout-evaluator",
+  "verdict": "INCONCLUSIVE",
+  "criteria": [
+    {
+      "criterion_id": "P02-C01",
+      "verdict": "INCONCLUSIVE",
+      "evidence": "Candidate identity is independently supported by candidate-bound verifier/security records: tracked diff and 55 untracked hashes match, and I independently recomputed all 55 untracked SHA-256 values in the assigned worktree (0 mismatches). Candidate-bound offline suite passed (typecheck, 7 files/69 tests, config, PAPER-only and no-live-routes guards). Source/review evidence supports normalized application-owned MarketState/AccountState and downstream snapshots; separate structured local-controls check records PASS for deterministic replay, independent market/account stale transitions and health, reconciliation, expected-state matching, injected failures, logs/traces, and reset. Separate Docker restart check records PASS and restoration of virtual time, replay cursor, normalized market/account snapshots and revision. However those runtime checks belong to separate task bundles and exercise the synthetic local simulator. They do not establish that restart reconciliation restores authoritative live broker truth; the candidate-bound verifier explicitly limits these runtime records, and review notes phase-wide broker-truth qualification remains unproven. No live Alpaca session or credentials were used. PAPER protections are supported by exact-candidate offline guards and candidate-bound security review (fixed PAPER host, read-only account adapter, no live order route).",
+      "limitations": [
+        "Local simulator restoration is not observed broker truth.",
+        "Runtime controls/restart checks were not newly executed against this exact frozen candidate.",
+        "No credential-backed Alpaca account/stream verification was performed; the trade-update authentication/codec conflict remains documented as BLOCKED."
+      ]
+    },
+    {
+      "criterion_id": "P02-C02",
+      "verdict": "PASS",
+      "evidence": "Exact-candidate independent verifier records `corepack pnpm verify:offline` PASS: typecheck, all 7 test files/69 tests, credential-free configuration check, PAPER-only guard, and no-live-routes guard. Candidate-bound review and task acceptance evidence cover JSON/MessagePack normalization equivalence, checked-in normalization/control fixtures, malformed/oversize/deep/mixed-frame rejection and recovery behavior. The verifier reports no Alpaca/OpenRouter credentials and no live session. Under the charter ladder, credential-backed Rung 3 (Alpaca 24/7 account/FAKEPACA stream), Rung 4 (configured live market session), and Rung 5 (PAPER lifecycle) were unavailable and remain unverified/skipped; documentation explicitly says no credentialed requests were run and keeps the trade-update endpoint conflict BLOCKED. The highest credential-free authorized verification rung (Rungs 0/1) was executed and passed. No mock/simulator result is represented as live Alpaca evidence.",
+      "limitations": [
+        "Credential-backed Alpaca rungs remain unverified due to absent credentials.",
+        "No evidence supports a live-qualification claim."
+      ]
+    }
+  ],
+  "verification": {
+    "candidate_hashes": "PASS",
+    "tracked_diff_and_candidate_id": "PASS per candidate-bound verifier, reviewer, and security-review records",
+    "independent_untracked_hash_check": {
+      "listed": 55,
+      "mismatches": 0,
+      "worktree": ".codex/worktrees/phase2-msgpack-market-frames"
+    },
+    "offline_suite": "PASS, exact candidate",
+    "local_runtime": "PASS in separate bundles; synthetic simulator only",
+    "live_broker_truth": "UNVERIFIED",
+    "credentialed_rungs": {
+      "rung4": "SKIPPED/UNVERIFIED",
+      "rung5": "SKIPPED/UNVERIFIED",
+      "rung3": "SKIPPED/UNVERIFIED"
+    }
+  },
+  "evaluated_at": "2026-10-04T14:56:00Z"
+}

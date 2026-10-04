@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "task_id": "phase2-trade-update-runtime-verifier",
+  "bundle_id": "49ed08744e4a244211a60d19758f97124498cf90a5a768898917df9449fc4e63",
+  "status": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "TUV-01",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "live-local-controls-redirect-guard",
+        "check_path": "verification/control-plane/tasks/phase2-trade-update-runtime-verifier/checks/live-local-controls-redirect-guard.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "TUV-02",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "live-local-controls-redirect-guard",
+        "check_path": "verification/control-plane/tasks/phase2-trade-update-runtime-verifier/checks/live-local-controls-redirect-guard.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "TUV-03",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "live-local-controls-redirect-guard",
+        "check_path": "verification/control-plane/tasks/phase2-trade-update-runtime-verifier/checks/live-local-controls-redirect-guard.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-CLASSIFICATION",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-freeze-redirect-guard",
+        "check_path": "verification/control-plane/tasks/phase2-trade-update-runtime-verifier/checks/candidate-freeze-redirect-guard.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-REQUIRED-LANES",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-required-lanes",
+        "check_path": "verification/control-plane/tasks/phase2-trade-update-runtime-verifier/checks/candidate-required-lanes.json",
+        "exit_code": 0
+      }
+    }
+  ],
+  "generated_at": "2026-10-04T12:18:30.295Z"
+}

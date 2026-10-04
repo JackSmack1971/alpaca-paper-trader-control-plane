@@ -1,0 +1,17 @@
+{
+  "id": "phase2-market-stream-frames",
+  "task_kind": "feature",
+  "uncertainty": "low",
+  "files": ["src/domain/market-state.ts", "tests/market-state.test.ts"],
+  "architectural_file_count": 2,
+  "expected_code_lines": 45,
+  "blast_radius": ["functional-correctness"],
+  "verification_difficulty": "deterministic",
+  "implementation_required": true,
+  "research_required": true,
+  "acceptance_criteria": [
+    {"id":"MSF-01","text":"Decode documented Alpaca JSON array frames with batched market data and singleton control messages into separate application-owned results."},
+    {"id":"MSF-02","text":"Preserve distinct documented stream error codes and reject malformed or mixed control/data frames without coercing them into market events."},
+    {"id":"MSF-03","text":"Keep the frame decoder credential-free and deterministic, with malformed JSON and unsupported binary codecs rejected explicitly."}
+  ]
+}

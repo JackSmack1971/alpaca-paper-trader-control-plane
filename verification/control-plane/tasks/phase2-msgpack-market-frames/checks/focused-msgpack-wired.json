@@ -1,0 +1,23 @@
+{
+  "schema_version": 2,
+  "id": "focused-msgpack-wired",
+  "task_id": "phase2-msgpack-market-frames",
+  "bundle_id": "c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "corepack.cmd",
+  "args": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/market-state.test.ts",
+    "tests/alpaca-market-stream.test.ts",
+    "tests/config.test.ts"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/focused-msgpack-wired.log",
+  "started_at": "2026-10-04T14:18:37.653Z",
+  "completed_at": "2026-10-04T14:18:41.936Z",
+  "signal": null,
+  "error": null
+}

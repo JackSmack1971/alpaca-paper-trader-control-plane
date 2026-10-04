@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "id": "adapter-postdiff-classification-1",
+  "task_id": "phase2-local-market-stream-adapter",
+  "bundle_id": "459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "C:\\Program Files\\nodejs\\node.exe",
+  "args": [
+    "scripts/control-plane/candidate-id.mjs",
+    "--snapshot",
+    "verification/control-plane/snapshots/6011238f4f62f44b7c74527b6f53980246ac1b049a716b4098b2d5a6a4892e24.json",
+    "--task-id",
+    "phase2-local-market-stream-adapter"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-postdiff-classification-1.log",
+  "started_at": "2026-10-04T17:02:31.877Z",
+  "completed_at": "2026-10-04T17:02:32.501Z",
+  "signal": null,
+  "error": null
+}

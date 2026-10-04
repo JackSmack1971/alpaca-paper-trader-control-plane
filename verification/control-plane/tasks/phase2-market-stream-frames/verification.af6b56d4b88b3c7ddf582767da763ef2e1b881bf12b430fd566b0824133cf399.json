@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-market-stream-frames",
+  "task_bundle_id": "5c894db28593aa85421d1dde7f8e5e3a912cffdb4483bea5d0bb5ce4c3450b09",
+  "candidate_id": "af6b56d4b88b3c7ddf582767da763ef2e1b881bf12b430fd566b0824133cf399",
+  "status": "PASS",
+  "commands": [
+    {
+      "command": "focused stream frame tests",
+      "evidence": "verification/control-plane/tasks/phase2-market-stream-frames/checks/verifier-af6b-focused-v1.json (focused market frame tests)",
+      "exit_code": 0
+    },
+    {
+      "command": "pnpm verify:offline",
+      "evidence": "verification/control-plane/tasks/phase2-market-stream-frames/checks/verifier-af6b-offline-v1.json (typecheck, 41 tests, config, PAPER-only, no-live-route)",
+      "exit_code": 0
+    }
+  ]
+}

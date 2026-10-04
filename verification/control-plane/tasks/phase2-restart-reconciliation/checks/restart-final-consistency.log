@@ -1,0 +1,77 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 verify:local-restart C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0
+> tsx scripts/verify-local-restart.ts
+
+ ELIFECYCLE  Command failed with exit code 1.
+
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+... Skipped lines
+
+  [
+    {
+      feed: 'test',
++     freshness: 'stale',
+-     freshness: 'fresh',
+      lastTrade: {
+        price: 190.4,
+        size: 1,
+        sourceTime: '2025-01-02T14:30:02.000Z'
+      },
+...
+      sourceEventTime: '2025-01-02T14:30:02.000Z',
++     staleReason: 'receive_age_exceeded',
+-     staleReason: null,
+      symbol: 'AAPL'
+    }
+  ]
+
+    at <anonymous> (C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\scripts\verify-local-restart.ts:58:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    {
+      symbol: 'AAPL',
+      feed: 'test',
+      sourceEventTime: '2025-01-02T14:30:02.000Z',
+      receivedAt: '2025-01-02T14:30:00.000Z',
+      freshness: 'stale',
+      staleReason: 'receive_age_exceeded',
+      lastTrade: { price: 190.4, size: 1, sourceTime: '2025-01-02T14:30:02.000Z' },
+      quote: {
+        bid: 190.2,
+        bidSize: 10,
+        ask: 190.3,
+        askSize: 12,
+        sourceTime: '2025-01-02T14:30:01.000Z'
+      }
+    }
+  ],
+  expected: [
+    {
+      symbol: 'AAPL',
+      feed: 'test',
+      lastTrade: { price: 190.4, size: 1, sourceTime: '2025-01-02T14:30:02.000Z' },
+      quote: {
+        bid: 190.2,
+        bidSize: 10,
+        ask: 190.3,
+        askSize: 12,
+        sourceTime: '2025-01-02T14:30:01.000Z'
+      },
+      sourceEventTime: '2025-01-02T14:30:02.000Z',
+      receivedAt: '2025-01-02T14:30:00.000Z',
+      freshness: 'fresh',
+      staleReason: null
+    }
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.20.0

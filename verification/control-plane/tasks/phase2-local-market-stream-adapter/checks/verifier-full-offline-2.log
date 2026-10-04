@@ -1,0 +1,33 @@
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0
+
+ ✓ tests/alpaca-market-stream.test.ts (9 tests) 93ms
+ ✓ tests/account-state.test.ts (14 tests) 68ms
+ ✓ tests/config.test.ts (9 tests) 186ms
+ ✓ tests/alpaca-account.test.ts (6 tests) 247ms
+ ✓ tests/market-state.test.ts (21 tests) 361ms
+{"level":30,"time":1791133384741,"pid":18816,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791133384759,"pid":18816,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791133384748,"pid":18816,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":200},"responseTime":6.2070999999996275,"msg":"request completed"}
+{"level":30,"time":1791133384751,"pid":18816,"hostname":"bretlaptop","reqId":"req-2","req":{"method":"GET","url":"/account","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791133384751,"pid":18816,"hostname":"bretlaptop","reqId":"req-2","res":{"statusCode":200},"responseTime":0.3773000000001048,"msg":"request completed"}
+{"level":30,"time":1791133384760,"pid":18816,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":503},"responseTime":0.8432999999999993,"msg":"request completed"}
+{"level":30,"time":1791133384761,"pid":18816,"hostname":"bretlaptop","reqId":"req-2","req":{"method":"POST","url":"/orders","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791133384761,"pid":18816,"hostname":"bretlaptop","reqId":"req-2","msg":"Route POST:/orders not found"}
+{"level":30,"time":1791133384762,"pid":18816,"hostname":"bretlaptop","reqId":"req-2","res":{"statusCode":404},"responseTime":0.6287999999999556,"msg":"request completed"}
+ ✓ tests/app.test.ts (2 tests) 549ms
+   ✓ HTTP health and status observation > shows PAPER mode and an available local database  537ms
+{"level":30,"time":1791133385265,"pid":20768,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/__local/state","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791133385266,"pid":20768,"hostname":"bretlaptop","reqId":"req-1","msg":"Route GET:/__local/state not found"}
+{"level":30,"time":1791133385266,"pid":20768,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":404},"responseTime":0.2537999999999556,"msg":"request completed"}
+{"level":30,"time":1791133385266,"pid":20768,"hostname":"bretlaptop","reqId":"req-2","req":{"method":"GET","url":"/__local/trade-updates","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791133385266,"pid":20768,"hostname":"bretlaptop","reqId":"req-2","msg":"Route GET:/__local/trade-updates not found"}
+{"level":30,"time":1791133385266,"pid":20768,"hostname":"bretlaptop","reqId":"req-2","res":{"statusCode":404},"responseTime":0.10490000000027067,"msg":"request completed"}
+ ✓ tests/local-test-harness.test.ts (13 tests) 1256ms
+   ✓ loopback local runtime controls > routes local account reconciliation through the PAPER adapter with bounded simulated failures and recovery  1038ms
+
+ Test Files  7 passed (7)
+      Tests  74 passed (74)
+   Start at  13:03:02
+   Duration  3.21s (transform 1.34s, setup 0ms, collect 5.45s, tests 2.76s, environment 2ms, prepare 1.99s)
+

@@ -1,0 +1,17 @@
+{
+  "schema_version": 2,
+  "id": "candidate-required-lanes",
+  "task_id": "phase2-local-alpaca-account-adapter",
+  "bundle_id": "8af198f9a5cca633d4203ff316ecbc2eb4df8001247043fbe54364aaaede8162",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "verification/control-plane/tasks/phase2-local-alpaca-account-adapter/checks/required-lanes.mjs"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-alpaca-account-adapter/checks/candidate-required-lanes.log",
+  "started_at": "2026-10-04T16:05:18.700Z",
+  "completed_at": "2026-10-04T16:05:18.782Z",
+  "signal": null,
+  "error": null
+}

@@ -1,0 +1,18 @@
+{
+  "id": "phase2-account-state-normalization",
+  "task_kind": "feature",
+  "uncertainty": "low",
+  "files": ["src/domain/account-state.ts", "tests/account-state.test.ts", "fixtures/account/reconciliation-sample.json", "docs/runbook.md"],
+  "architectural_file_count": 2,
+  "expected_code_lines": 130,
+  "blast_radius": ["functional-correctness"],
+  "verification_difficulty": "deterministic",
+  "implementation_required": true,
+  "research_required": false,
+  "acceptance_criteria": [
+    {"id":"ACCT-01","text":"Normalize account, position, open-order and market-clock payloads into an application-owned AccountState with reconciliation timestamp and provenance."},
+    {"id":"ACCT-02","text":"Compute deterministic exact decimal long, short and gross exposure from the normalized open positions."},
+    {"id":"ACCT-03","text":"Reject malformed financial values, duplicate symbols/orders and inconsistent account snapshots without silently coercing data."},
+    {"id":"ACCT-04","text":"Replay the checked-in synthetic account reconciliation fixture offline without credentials, sockets or live market access."}
+  ]
+}

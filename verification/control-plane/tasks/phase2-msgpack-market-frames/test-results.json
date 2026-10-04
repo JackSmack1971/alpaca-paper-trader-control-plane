@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "task_id": "phase2-msgpack-market-frames",
+  "bundle_id": "c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2",
+  "status": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "MPF-01",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "focused-msgpack-wired",
+        "check_path": "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/focused-msgpack-wired.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "MPF-02",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "focused-msgpack-wired",
+        "check_path": "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/focused-msgpack-wired.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "MPF-03",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "focused-msgpack-wired",
+        "check_path": "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/focused-msgpack-wired.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-CLASSIFICATION",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "postdiff-classification-wired",
+        "check_path": "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/postdiff-classification-wired.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-REQUIRED-LANES",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "closeout-required-lanes-f716",
+        "check_path": "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/closeout-required-lanes-f716.json",
+        "exit_code": 0
+      }
+    }
+  ],
+  "generated_at": "2026-10-04T13:54:46.984Z"
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "id": "candidate-freeze-2",
+  "task_id": "phase2-market-replay-foundation",
+  "bundle_id": "4d585aecdcf00381dbc9fc498253aceb79a54a4011489f8476785a900064c295",
+  "status": "FAIL",
+  "exit_code": 2,
+  "executable": "C:\\Progra~1\\nodejs\\node.exe",
+  "args": [
+    "scripts/control-plane/candidate-id.mjs",
+    "--snapshot",
+    "verification/control-plane/snapshots/ffca91a92ac9c009e968ef90739217fa78c3a04ad3be675010be7f64e3d23cbd.json",
+    "--task-id",
+    "phase2-market-replay-foundation"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-market-replay-foundation/checks/candidate-freeze-2.log",
+  "started_at": "2026-10-04T05:55:27.320Z",
+  "completed_at": "2026-10-04T05:55:27.470Z",
+  "signal": null,
+  "error": null
+}

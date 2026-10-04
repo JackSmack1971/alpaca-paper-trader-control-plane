@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "task_id": "phase2-local-trade-update-sim",
+  "bundle_id": "e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9a",
+  "status": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "LTU-01",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-79fc-offline",
+        "check_path": "verification/control-plane/tasks/phase2-local-trade-update-sim/checks/candidate-79fc-offline.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "LTU-02",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-79fc-offline",
+        "check_path": "verification/control-plane/tasks/phase2-local-trade-update-sim/checks/candidate-79fc-offline.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "LTU-03",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-79fc-offline",
+        "check_path": "verification/control-plane/tasks/phase2-local-trade-update-sim/checks/candidate-79fc-offline.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "LTU-04",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-79fc-offline",
+        "check_path": "verification/control-plane/tasks/phase2-local-trade-update-sim/checks/candidate-79fc-offline.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-CLASSIFICATION",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-79fc-freeze",
+        "check_path": "verification/control-plane/tasks/phase2-local-trade-update-sim/checks/candidate-79fc-freeze.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-REQUIRED-LANES",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-79fc-required-lanes-pass",
+        "check_path": "verification/control-plane/tasks/phase2-local-trade-update-sim/checks/candidate-79fc-required-lanes-pass.json",
+        "exit_code": 0
+      }
+    }
+  ],
+  "generated_at": "2026-10-04T11:29:51.740Z"
+}

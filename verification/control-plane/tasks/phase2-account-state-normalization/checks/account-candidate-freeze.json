@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "id": "account-candidate-freeze",
+  "task_id": "phase2-account-state-normalization",
+  "bundle_id": "c1fa6af641c6c5d6c8a53c89a7eb383c749dc1090f3e184bd6a524730416cdb1",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "scripts/control-plane/candidate-id.mjs",
+    "--snapshot",
+    "verification/control-plane/snapshots/99aad22e4fe85fc46bd5e8bec8db8f02cd2fc31bca42f6893c43f7bf2ca83aa8.json",
+    "--task-id",
+    "phase2-account-state-normalization"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-account-state-normalization/checks/account-candidate-freeze.log",
+  "started_at": "2026-10-04T06:11:18.769Z",
+  "completed_at": "2026-10-04T06:11:19.381Z",
+  "signal": null,
+  "error": null
+}

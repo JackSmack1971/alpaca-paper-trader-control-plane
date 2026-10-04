@@ -1,0 +1,20 @@
+{
+  "verdict": "PASS",
+  "schema_version": 1,
+  "task_id": "phase2-local-trade-update-sim",
+  "assessment": [
+    "Synthetic trade-update routes are only registered when localTestMode and an initialized harness are present. Config validation binds local-test application and database endpoints to loopback and rejects Alpaca/OpenRouter credentials.",
+    "The input schema is strict, the request batch is bounded to 20, the whole batch is parsed before any append, retained observations are capped at 100, and reset clears them.",
+    "Submitted event hints are stored separately in memory and do not mutate canonical account positions or open orders. Persistence snapshots exclude the hints.",
+    "Response bodies use simulated/PAPER markers and fixed validation errors. Logs store only request count/status, not submitted order fields or secrets."
+  ],
+  "task_bundle_id": "e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9a",
+  "findings": [],
+  "scope": [
+    "src/api/app.ts",
+    "src/domain/local-test-harness.ts",
+    "src/domain/config.ts",
+    "src/main.ts"
+  ],
+  "candidate_id": "872ab51a90d37a6ee64617073206eaa5bb2944760f7ff5c87930c5c32a7dfe83"
+}

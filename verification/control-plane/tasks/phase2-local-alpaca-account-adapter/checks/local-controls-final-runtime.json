@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "local-controls-final-runtime",
+  "task_id": "phase2-local-alpaca-account-adapter",
+  "bundle_id": "8af198f9a5cca633d4203ff316ecbc2eb4df8001247043fbe54364aaaede8162",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "cmd.exe",
+  "args": [
+    "/c",
+    "set LOCAL_CONTROL_URL=http://127.0.0.1:31943&& corepack pnpm verify:local-controls"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-alpaca-account-adapter/checks/local-controls-final-runtime.log",
+  "started_at": "2026-10-04T15:54:20.054Z",
+  "completed_at": "2026-10-04T15:54:20.945Z",
+  "signal": null,
+  "error": null
+}

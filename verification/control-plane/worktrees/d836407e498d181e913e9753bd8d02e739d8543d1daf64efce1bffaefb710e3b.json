@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "unit_of_work": "phase2-market-stream-frames-security",
+  "base_sha": "ea9a83e069f1be79c307fd8a9c4b9fca85977409",
+  "worktree": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\phase2-market-stream-frames-security",
+  "branch": "codex/phase2-market-stream-frames-security",
+  "owner": "security_auditor",
+  "scope": [
+    "verification/control-plane/tasks/phase2-market-stream-frames/lanes/security.json"
+  ],
+  "integration_target": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0",
+  "assignment_id": "d836407e498d181e913e9753bd8d02e739d8543d1daf64efce1bffaefb710e3b",
+  "active": false,
+  "created_at": "2026-10-04T08:19:16.720Z",
+  "released_at": "2026-10-04T08:24:20.656Z"
+}

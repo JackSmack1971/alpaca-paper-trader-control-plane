@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-alpaca-account-adapter",
+  "task_bundle_id": "8af198f9a5cca633d4203ff316ecbc2eb4df8001247043fbe54364aaaede8162",
+  "candidate_id": "89635b21e947c8b71ba2eb5f4dd38935e78ebcbacf0c6a66bb27a4f3b9e93a2d",
+  "verdict": "PASS",
+  "identity_bindings": {
+    "candidate_record": "PASS",
+    "reviewer_record": "PASS",
+    "security_review_record": "PASS",
+    "verifier_record": "PASS",
+    "structured_checks": "PASS",
+    "details": "The frozen candidate, reviewer, security review, verifier, and structured checks match the requested task id, bundle id, and candidate id. Reviewer, security reviewer, and verifier independently report exact candidate identity verification. candidate-required-lanes.json passes, and test-results.json reports PASS including all four required candidate-bound lanes: evaluation, review, security-review, and verifier."
+  },
+  "criteria": [
+    {
+      "criterion_id": "LOCAL-RECONCILE-USES-ALPACA-ADAPTER",
+      "verdict": "PASS",
+      "evidence": [
+        "Frozen source routes the loopback local account reconcile endpoint through AlpacaPaperAccountReconciler and AlpacaPaperAccountClient, injecting the local simulated fetch transport.",
+        "Verifier reports focused integration tests passed (12/12) and offline suite passed (72 tests across 7 files). The integration assertions exercise account, positions, open orders, and clock, and verify normalized alpaca_paper AccountState.",
+        "Candidate structured check offline-full-final.json is PASS (exit 0)."
+      ]
+    },
+    {
+      "criterion_id": "LOCAL-ADAPTER-IS-NETWORK-AND-CREDENTIAL-FREE",
+      "verdict": "PASS",
+      "evidence": [
+        "Transport allows only the fixed PAPER origin, exact GET routes/query, and has no global-fetch fallback; unsupported requests are rejected before fixture reads.",
+        "Security review reports local configuration rejects provider credentials, the local branch uses hardcoded placeholders, production network construction remains outside that local branch, and PAPER-only guard passes.",
+        "Verifier reports the integration test stubs global fetch to fail and confirms it is never called; the focused transport checks reject altered host, route/query, and method. Failure injection and recovery are exercised without credentials or provider network."
+      ]
+    },
+    {
+      "criterion_id": "LOCAL-RECONCILIATION-IS-OBSERVABLE",
+      "verdict": "PASS",
+      "evidence": [
+        "Candidate tests assert successful normalized state plus provider health, sanitized application logs and route traces; network, rate-limit, and broker failures preserve the prior state, surface degraded health/observations, then recover on a subsequent reconciliation.",
+        "Candidate structured check local-controls-final-runtime.json is PASS (exit 0); verifier reports in-process integration assertions for failure, recovery, health, logs, and traces."
+      ]
+    }
+  ],
+  "limitations": [
+    "Evidence establishes the local in-memory simulated PAPER adapter path with synthetic provider-shaped fixtures; it does not qualify live Alpaca behavior or prove live broker/network connectivity.",
+    "The standalone external-process runtime/restart check was not run because existing endpoints and the database could not be safely attributed to this candidate. The verifier assessed it unnecessary for these three task-specific criteria, which were exercised through in-process Fastify integration tests.",
+    "This evaluation covers only the three original task criteria and does not evaluate Phase 2 closeout."
+  ]
+}

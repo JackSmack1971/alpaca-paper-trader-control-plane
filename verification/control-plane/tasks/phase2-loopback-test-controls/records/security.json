@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "lane": "security",
+  "candidate_id": "a7b885c0d48d5c7264d7e9f3abe8eb549bd0332643ae73557aef606c0fa01de1",
+  "status": "PASS",
+  "findings": [],
+  "evidence": "Independent security lane passed for candidate a7b885c0d48d5c7264d7e9f3abe8eb549bd0332643ae73557aef606c0fa01de1; source and findings are in lanes\\security.a7b885c0.json",
+  "limitations": [
+    "This is a source-and-test-evidence security review; tests were not rerun by this reviewer.",
+    "The controls still do not establish an end-to-end orchestrator/order lifecycle or credential-backed Alpaca qualification."
+  ],
+  "task_id": "phase2-loopback-test-controls",
+  "task_bundle_id": "1505d0ad8c3af5b4b27f9f372667f528918c85210611b859ca1e9a13259bad64",
+  "verdict": "PASS"
+}

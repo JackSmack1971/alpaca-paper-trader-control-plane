@@ -1,0 +1,28 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 test C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0
+> vitest run
+
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0
+
+ ✓ tests/market-state.test.ts (3 tests) 33ms
+ ✓ tests/account-state.test.ts (12 tests) 51ms
+ ✓ tests/config.test.ts (6 tests) 48ms
+{"level":30,"time":1791098435681,"pid":22844,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791098435693,"pid":22844,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791098435686,"pid":22844,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":200},"responseTime":4.4724999999998545,"msg":"request completed"}
+{"level":30,"time":1791098435693,"pid":22844,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":503},"responseTime":0.4339999999999691,"msg":"request completed"}
+{"level":30,"time":1791098435694,"pid":22844,"hostname":"bretlaptop","reqId":"req-2","req":{"method":"POST","url":"/orders","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791098435694,"pid":22844,"hostname":"bretlaptop","reqId":"req-2","msg":"Route POST:/orders not found"}
+{"level":30,"time":1791098435694,"pid":22844,"hostname":"bretlaptop","reqId":"req-2","res":{"statusCode":404},"responseTime":0.33039999999982683,"msg":"request completed"}
+ ✓ tests/app.test.ts (2 tests) 199ms
+{"level":30,"time":1791098435771,"pid":16932,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/__local/state","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791098435772,"pid":16932,"hostname":"bretlaptop","reqId":"req-1","msg":"Route GET:/__local/state not found"}
+{"level":30,"time":1791098435772,"pid":16932,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":404},"responseTime":0.3056000000001404,"msg":"request completed"}
+ ✓ tests/local-test-harness.test.ts (2 tests) 301ms
+
+ Test Files  5 passed (5)
+      Tests  25 passed (25)
+   Start at  03:20:34
+   Duration  1.46s (transform 351ms, setup 0ms, collect 2.13s, tests 633ms, environment 1ms, prepare 1.09s)
+

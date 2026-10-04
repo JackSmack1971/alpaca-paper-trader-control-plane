@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "failure-queue-cap-offline-v1",
+  "task_id": "phase2-market-frame-hardening",
+  "bundle_id": "a6675919900adf742882e9bd9e2e6dc1c893f1317ccb014f49a31ecd5fd56c5f",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "C:\\Program Files\\nodejs\\node.exe",
+  "args": [
+    "C:\\Users\\click\\AppData\\Local\\node\\corepack\\v1\\pnpm\\10.18.1\\bin\\pnpm.cjs",
+    "verify:offline"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/failure-queue-cap-offline-v1.log",
+  "started_at": "2026-10-04T09:20:26.532Z",
+  "completed_at": "2026-10-04T09:20:34.767Z",
+  "signal": null,
+  "error": null
+}

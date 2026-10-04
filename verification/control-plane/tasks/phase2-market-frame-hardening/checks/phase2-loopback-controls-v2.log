@@ -1,0 +1,26 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 verify:local-controls C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0
+> tsx scripts/verify-local-controls.ts
+
+ ELIFECYCLE  Command failed with exit code 1.
+
+=http://127.0.0.1:3001 : The term '=http://127.0.0.1:3001' is not recognized as the name of a cmdlet, function, script 
+file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct 
+and try again.
+At line:1 char:1
++ ='http://127.0.0.1:3001'; & 'C:\Program Files\nodejs\corepack.cmd' pn ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (=http://127.0.0.1:3001:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\scripts\verify-local-controls.ts:9
+  if (!response.ok) throw new Error(`local control request failed: ${response.status} ${path}`);
+                          ^
+
+
+Error: local control request failed: 404 /__local/reset
+    at request (C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\scripts\verify-local-controls.ts:9:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async <anonymous> (C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\scripts\verify-local-controls.ts:21:19)
+
+Node.js v22.20.0

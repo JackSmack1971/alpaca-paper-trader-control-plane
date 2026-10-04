@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-trade-update-sim",
+  "task_bundle_id": "e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9",
+  "candidate_id": "a71521968046b070bfc4e1ab16f3b20e42ef92f9470f0e9f74d53fd5b9746d2e",
+  "verdict": "PASS",
+  "scope": [
+    "src/api/app.ts",
+    "src/domain/local-test-harness.ts",
+    "src/domain/config.ts",
+    "src/main.ts"
+  ],
+  "findings": [],
+  "assessment": [
+    "Verified the current app.ts, local-test-harness.ts, config.ts, and main.ts SHA-256 digests match the specified frozen candidate manifest.",
+    "Trade-update injection and inspection routes are registered only when localTestMode is enabled and a fixture-backed harness exists. Local-test configuration rejects Alpaca and OpenRouter credentials and requires loopback application and database hosts. Startup code avoids constructing live Alpaca adapters in local-test mode.",
+    "The route accepts bounded JSON bodies, validates a strict top-level/update schema, caps each batch at 20, validates all updates before mutation, and caps retained observations at 100. Errors do not echo payload data; local mode disables Fastify request logging, and the harness logs only accepted count and a fixed target/status.",
+    "Observations are returned as synthetic PAPER-marked hints, are kept separately from canonical account positions and open orders, are not included in persisted runtime snapshots, and are cleared by reset. Request-supplied order identifiers are exposed back only as caller-provided synthetic fixture data; no credential fields are accepted or logged."
+  ]
+}

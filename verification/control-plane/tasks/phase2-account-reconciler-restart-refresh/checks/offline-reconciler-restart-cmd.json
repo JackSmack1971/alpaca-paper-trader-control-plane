@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "id": "offline-reconciler-restart-cmd",
+  "task_id": "phase2-account-reconciler-restart-refresh",
+  "bundle_id": "5a392ee137b19bb6e9b996f4e1dc4271818f247e9845acf9a81dc973450920b2",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "cmd.exe",
+  "args": [
+    "/c",
+    "corepack",
+    "pnpm",
+    "verify:offline"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-account-reconciler-restart-refresh/checks/offline-reconciler-restart-cmd.log",
+  "started_at": "2026-10-04T15:16:23.528Z",
+  "completed_at": "2026-10-04T15:16:31.698Z",
+  "signal": null,
+  "error": null
+}

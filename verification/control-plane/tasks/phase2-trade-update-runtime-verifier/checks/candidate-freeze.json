@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "id": "candidate-freeze",
+  "task_id": "phase2-trade-update-runtime-verifier",
+  "bundle_id": "49ed08744e4a244211a60d19758f97124498cf90a5a768898917df9449fc4e63",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "scripts/control-plane/candidate-id.mjs",
+    "--snapshot",
+    "verification/control-plane/snapshots/05234d81c3eab975db6fce5a4e5f980277b8e0bc080bbe943974cb95cfc6243d.json",
+    "--task-id",
+    "phase2-trade-update-runtime-verifier"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-trade-update-runtime-verifier/checks/candidate-freeze.log",
+  "started_at": "2026-10-04T12:21:28.368Z",
+  "completed_at": "2026-10-04T12:21:28.978Z",
+  "signal": null,
+  "error": null
+}

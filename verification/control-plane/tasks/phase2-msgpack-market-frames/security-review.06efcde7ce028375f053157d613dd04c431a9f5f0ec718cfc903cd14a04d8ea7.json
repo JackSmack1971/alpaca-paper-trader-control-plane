@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-msgpack-market-frames",
+  "task_bundle_id": "c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2",
+  "candidate_id": "06efcde7ce028375f053157d613dd04c431a9f5f0ec718cfc903cd14a04d8ea7",
+  "verdict": "PASS",
+  "evidence": "Independent read-only security audit recomputed this exact candidate from its frozen snapshot and current worktree via buildCandidate: candidate ID 06efcde7ce028375f053157d613dd04c431a9f5f0ec718cfc903cd14a04d8ea7 matched; bundle c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2 matched; tracked diff SHA-256 222485975962498081e60cfee41ca6ffe42a7ea2a0983ca86b8bd112391f4b95 matched; 55 non-evidence untracked entries matched. Reviewed market frame decoder: 256 KiB byte cap runs before JSON/MessagePack parsing, MessagePack decoder caps string/bin/array/map/ext lengths, decoded depth is iteratively limited to 16, malformed decoder/schema errors become fixed application-owned errors, data schema limits batches to 100, and normalized data contains only explicitly selected fields. Controls must be singleton arrays; subscription channel/symbol values are allowlisted and bounded; provider error msg is discarded and only safe integer code plus application-owned name survives. Reviewed live adapter: codec is selected from validated config, handshake Content-Type and binary/text expectation match codec, ws maxPayload is 256 KiB, URLs use fixed Alpaca market-data WSS host/feed enum, socket/consumer failures use fixed safe status strings, and no raw payload or credentials are logged or retained in status. Factory maps codec configuration into stream; startup starts it only when not in credential-free local mode and both Alpaca credentials exist. Local test config rejects all provider credentials. App mode and Alpaca paper endpoint invariants remain enforced; this adapter only consumes market data. @msgpack/msgpack is exact-pinned at 3.1.3 and lockfile includes SHA-512 integrity. Reviewed checked-in binary fixtures and tests for batched frame, connected/subscription/error controls, malformed/oversized/deep/mixed frames, codec mismatch, and payload redaction. Current candidate-bound structured focused test and offline suite records are PASS; offline log reports 7 files and 69 tests passed, PAPER-only guard and live-route guard pass. No security finding in this slice. Residual: no live credentialed stream session was performed; live codec interoperability is not established by this offline audit.",
+  "findings": [],
+  "checked_paths": [
+    "src/domain/market-state.ts",
+    "src/infra/alpaca-market-stream.ts",
+    "src/domain/config.ts",
+    "src/infra/config.ts",
+    "src/main.ts",
+    "src/api/app.ts",
+    "src/domain/paper.ts",
+    "package.json",
+    "pnpm-lock.yaml",
+    "tests/market-state.test.ts",
+    "tests/alpaca-market-stream.test.ts",
+    "tests/config.test.ts",
+    "fixtures/market/msgpack/batch.bin",
+    "fixtures/market/msgpack/connected.bin",
+    "fixtures/market/msgpack/subscription.bin",
+    "fixtures/market/msgpack/error.bin",
+    "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/focused-msgpack-wired.json",
+    "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/offline-msgpack-wired.json"
+  ],
+  "candidate_identity": "recomputed-pass"
+}

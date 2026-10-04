@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-market-frame-hardening",
+  "task_bundle_id": "a6675919900adf742882e9bd9e2e6dc1c893f1317ccb014f49a31ecd5fd56c5f",
+  "candidate_id": "4e3bdb39ece2b0655d0cfeadf2d41d0f467905a7b3c9829f402c25bf58eedb11",
+  "verdict": "PASS",
+  "evidence": "Independent read-only review recomputed candidate identity from snapshot 0ef1045f976a0bd4b465602dc16b616042729560c3e0de342eb894dc40bd9212, verified all 44 advertised untracked hashes, and inspected bounded strict fixture loading, fixed-error redaction, normalized/allowlisted provider responses, replay/persistence limits, and failure queue bounds. No findings. Live Alpaca and MessagePack behavior/full Phase 2 completion not established."
+}

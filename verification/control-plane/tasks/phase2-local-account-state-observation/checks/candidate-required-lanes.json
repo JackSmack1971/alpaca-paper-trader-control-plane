@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "candidate-required-lanes",
+  "task_id": "phase2-local-account-state-observation",
+  "bundle_id": "408998a3b9720f7b9eb7f67dad6ff56c2fecd0156bb707d74c7a3000f8c16760",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "-e",
+    "const fs=require(\"node:fs\");const assert=require(\"node:assert/strict\");const dir=\"verification/control-plane/tasks/phase2-local-account-state-observation\";const id=\"3e0ef9d10fda42cfc5e147dec5906ed5ec4ff409c7bd0107d378c1d3ada7c7e7\";const bundle=\"408998a3b9720f7b9eb7f67dad6ff56c2fecd0156bb707d74c7a3000f8c16760\";for(const kind of [\"review\",\"security-review\",\"verifier\"]){const r=JSON.parse(fs.readFileSync(`${dir}/${kind}.${id}.json`,\"utf8\"));assert.equal(r.candidate_id,id);assert.equal(r.task_id,\"phase2-local-account-state-observation\");assert.equal(r.task_bundle_id??r.bundle_id,bundle);assert.equal(r.verdict,\"PASS\");}"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-account-state-observation/checks/candidate-required-lanes.log",
+  "started_at": "2026-10-04T13:49:02.999Z",
+  "completed_at": "2026-10-04T13:49:03.072Z",
+  "signal": null,
+  "error": null
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": 2,
+  "id": "required-lanes-e103",
+  "task_id": "phase2-market-frame-hardening",
+  "bundle_id": "a6675919900adf742882e9bd9e2e6dc1c893f1317ccb014f49a31ecd5fd56c5f",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "C:\\Program Files\\nodejs\\node.exe",
+  "args": [
+    "verification/control-plane/tasks/phase2-market-frame-hardening/validate-required-lanes-e103.mjs"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/required-lanes-e103.log",
+  "started_at": "2026-10-04T09:48:31.779Z",
+  "completed_at": "2026-10-04T09:48:31.853Z",
+  "signal": null,
+  "error": null
+}

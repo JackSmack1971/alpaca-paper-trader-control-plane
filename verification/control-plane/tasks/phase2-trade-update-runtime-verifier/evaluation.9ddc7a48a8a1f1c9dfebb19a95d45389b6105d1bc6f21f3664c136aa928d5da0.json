@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-trade-update-runtime-verifier",
+  "task_bundle_id": "49ed08744e4a244211a60d19758f97124498cf90a5a768898917df9449fc4e63",
+  "candidate_id": "9ddc7a48a8a1f1c9dfebb19a95d45389b6105d1bc6f21f3664c136aa928d5da0",
+  "verdict": "PASS",
+  "summary": "Exact frozen candidate satisfies TUV-01 through TUV-03 and all routed critical acceptance lanes. Candidate-bound independent review, security review, verifier, and verification records pass; structured final offline and live local-controls checks pass.",
+  "criteria": [
+    {
+      "id": "TUV-01",
+      "status": "PASS",
+      "evidence": "Frozen local-controls verifier hash matches manifest; posts provider-shaped synthetic trade update and asserts accepted count plus simulated/PAPER response markers. Candidate-bound live-local-controls-redirect-guard check passes with exit 0."
+    },
+    {
+      "id": "TUV-02",
+      "status": "PASS",
+      "evidence": "Frozen script asserts virtual receivedAt, expected-state comparison match, and deep equality of canonical positions and openOrders before/after. Candidate-bound verifier and live check pass."
+    },
+    {
+      "id": "TUV-03",
+      "status": "PASS",
+      "evidence": "Frozen script asserts reset returns replayCursor 0 and empty tradeUpdates. Candidate-bound verifier and live check pass."
+    },
+    {
+      "id": "ROUTED-ACCEPTANCE",
+      "status": "PASS",
+      "evidence": "Critical route requires review, security-review, verifier, and evaluation. Candidate-bound review, security-review, and verifier records all bind task/bundle/candidate with PASS; verification record and final offline/live check records bind the same bundle and PASS with exit 0."
+    }
+  ],
+  "candidate_bound_records": [
+    "verification/control-plane/tasks/phase2-trade-update-runtime-verifier/review.9ddc7a48a8a1f1c9dfebb19a95d45389b6105d1bc6f21f3664c136aa928d5da0.json",
+    "verification/control-plane/tasks/phase2-trade-update-runtime-verifier/security-review.9ddc7a48a8a1f1c9dfebb19a95d45389b6105d1bc6f21f3664c136aa928d5da0.json",
+    "verification/control-plane/tasks/phase2-trade-update-runtime-verifier/verifier.9ddc7a48a8a1f1c9dfebb19a95d45389b6105d1bc6f21f3664c136aa928d5da0.json",
+    "verification/control-plane/tasks/phase2-trade-update-runtime-verifier/verification.9ddc7a48a8a1f1c9dfebb19a95d45389b6105d1bc6f21f3664c136aa928d5da0.json"
+  ]
+}

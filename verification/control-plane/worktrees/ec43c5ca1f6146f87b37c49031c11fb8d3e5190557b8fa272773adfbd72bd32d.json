@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "unit_of_work": "phase1-runtime-foundation",
+  "base_sha": "ea9a83e069f1be79c307fd8a9c4b9fca85977409",
+  "worktree": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\phase1-runtime-foundation",
+  "branch": "codex/phase1-runtime-foundation",
+  "owner": "implementer",
+  "scope": [
+    "goals/phase-01-foundation.md",
+    "docs/PROJECT_CHARTER.md",
+    "src",
+    "migrations",
+    "scripts",
+    "verification"
+  ],
+  "integration_target": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0",
+  "assignment_id": "ec43c5ca1f6146f87b37c49031c11fb8d3e5190557b8fa272773adfbd72bd32d",
+  "active": false,
+  "created_at": "2026-10-04T04:05:00.469Z",
+  "released_at": "2026-10-04T05:09:33.729Z"
+}

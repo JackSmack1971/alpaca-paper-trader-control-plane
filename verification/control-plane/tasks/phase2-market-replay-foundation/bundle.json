@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-market-replay-foundation",
+  "bundle_id": "4d585aecdcf00381dbc9fc498253aceb79a54a4011489f8476785a900064c295",
+  "intake_digest": "faa402f18c9ed2f2e579247fffcdbcc67c72318ee8afbcb74e54b0d98a939984",
+  "artifacts": {
+    "intake": "intake.json",
+    "route": "route.json",
+    "candidates": "candidates/",
+    "acceptance": "test-results.json",
+    "checks": "checks/",
+    "review": "review.<candidate_id>.json",
+    "security_review": "security-review.<candidate_id>.json",
+    "verifier": "verifier.<candidate_id>.json",
+    "verification": "verification.<candidate_id>.json",
+    "evaluation": "evaluation.<candidate_id>.json"
+  }
+}

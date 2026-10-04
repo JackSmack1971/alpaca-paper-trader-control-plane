@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "trade-update-typecheck",
+  "task_id": "phase2-local-trade-update-sim",
+  "bundle_id": "e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9a",
+  "status": "FAIL",
+  "exit_code": 1,
+  "executable": "node",
+  "args": [
+    "node_modules/typescript/bin/tsc",
+    "--noEmit"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-trade-update-sim/checks/trade-update-typecheck.log",
+  "started_at": "2026-10-04T11:43:01.090Z",
+  "completed_at": "2026-10-04T11:43:01.226Z",
+  "signal": null,
+  "error": null
+}

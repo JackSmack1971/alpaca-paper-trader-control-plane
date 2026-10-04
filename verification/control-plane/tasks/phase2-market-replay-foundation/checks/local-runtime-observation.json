@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "id": "local-runtime-observation",
+  "task_id": "phase2-market-replay-foundation",
+  "bundle_id": "4d585aecdcf00381dbc9fc498253aceb79a54a4011489f8476785a900064c295",
+  "status": "FAIL",
+  "exit_code": 1,
+  "executable": "C:\\Progra~1\\nodejs\\node.exe",
+  "args": [
+    "C:\\Progra~1\\nodejs\\node_modules\\corepack\\dist\\corepack.js",
+    "pnpm",
+    "verify:runtime"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-market-replay-foundation/checks/local-runtime-observation.log",
+  "started_at": "2026-10-04T05:57:46.855Z",
+  "completed_at": "2026-10-04T05:57:47.727Z",
+  "signal": null,
+  "error": null
+}

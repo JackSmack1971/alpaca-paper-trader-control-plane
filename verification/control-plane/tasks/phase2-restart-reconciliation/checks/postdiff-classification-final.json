@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "id": "postdiff-classification-final",
+  "task_id": "phase2-restart-reconciliation",
+  "bundle_id": "02912e17d9b90524f7db46970dd8e1c5d6012c1feb64ac0e261a109013215cf4",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "--input-type=module",
+    "-e",
+    "import fs from 'node:fs'; const id='bab243228347302e92274fa57b0053f67c783dfd662e44b096f31b6679415982'; const p='verification/control-plane/tasks/phase2-restart-reconciliation/candidates/'+id+'.json'; const c=JSON.parse(fs.readFileSync(p,'utf8')); if(c.candidate_id!==id||c.post_diff_risk?.level!=='critical'||!c.post_diff_risk.classification_id||!c.post_diff_risk.patch_sha256||c.post_diff_risk.removed_safeguards.length!==0) process.exit(1); console.log('PASS: candidate has reconciled classification and no removed safeguards.');"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-restart-reconciliation/checks/postdiff-classification-final.log",
+  "started_at": "2026-10-04T07:38:03.682Z",
+  "completed_at": "2026-10-04T07:38:03.773Z",
+  "signal": null,
+  "error": null
+}

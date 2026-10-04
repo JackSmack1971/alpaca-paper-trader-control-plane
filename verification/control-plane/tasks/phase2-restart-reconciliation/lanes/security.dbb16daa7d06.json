@@ -1,0 +1,22 @@
+{
+  "candidate_id": "dbb16daa7d062c31009a1148d4509deb2fefc5f53359f176a54ed799395654d4",
+  "status": "PASS",
+  "findings": [],
+  "criteria_considered": [
+    "LOCAL_TEST_MODE loopback application and database hosts and absence of Alpaca/OpenRouter credentials",
+    "bounded strict snapshot JSON and database size with fixture/cursor semantic validation",
+    "parameterized SQL and append-only migration history",
+    "no provider client, trading route, or secret exposure"
+  ],
+  "evidence": [
+    "src/domain/config.ts requires a loopback bind host and loopback DATABASE_URL hostname when localTestMode is true, and rejects Alpaca key ID/secret and OpenRouter API key in that mode.",
+    "src/infra/local-runtime-snapshot.ts parses a strict versioned object shape, bounds market state to 100 entries and fields to constrained formats/lengths, verifies row identity/version, limits serialized snapshot bytes to 262144 UTF-8 bytes, and binds SELECT/INSERT values as PostgreSQL parameters.",
+    "src/domain/market-state.ts bounds restored cursor to fixture length and recomputes expected market state from fixture events up to that cursor; it rejects inconsistent symbols, feed, source timestamp, trade, or quote state before accepting restoration.",
+    "migrations/0005_bound_local_runtime_snapshots.sql enforces octet_length(snapshot::text) <= 262144 at the database layer. Existing migrations 0001 through 0004 match the exact candidate manifest SHA-256 values; migration 0005 adds the constraint without rewriting prior history.",
+    "src/api/app.ts registers health/status and fixture-backed local controls only when localTestMode is enabled; source scan found no outbound provider client or order-submission route. The PAPER invariant is asserted at startup. Public config omits database and credential values, startup/config errors are generic, and local traces/logs retain route templates and bounded metadata rather than query, body, or header data.",
+    "Relevant audited file hashes match the dbb16 candidate manifest, including app/config/runtime restore/replay/migration sources and all five migration files."
+  ],
+  "limitations": [
+    "Static source and manifest review only; no tests, live database, or provider connectivity checks were run."
+  ]
+}

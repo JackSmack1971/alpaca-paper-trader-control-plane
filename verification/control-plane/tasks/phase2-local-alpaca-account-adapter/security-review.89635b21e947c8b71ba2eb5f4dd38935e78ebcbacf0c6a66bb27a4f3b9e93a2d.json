@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-alpaca-account-adapter",
+  "task_bundle_id": "8af198f9a5cca633d4203ff316ecbc2eb4df8001247043fbe54364aaaede8162",
+  "candidate_id": "89635b21e947c8b71ba2eb5f4dd38935e78ebcbacf0c6a66bb27a4f3b9e93a2d",
+  "verdict": "PASS",
+  "evidence": "Independent read-only security audit of the frozen worktree. Recomputed candidate_id from the task snapshot and current worktree: exact match; tracked_diff_sha256 and the untracked transport file SHA-256 match the frozen candidate record. Reviewed src/infra/local-alpaca-account-transport.ts, src/infra/alpaca-account.ts, src/api/app.ts, src/domain/config.ts, src/domain/local-test-harness.ts, src/domain/account-state.ts and related tests. Ran node scripts/control-plane/check-paper-only.mjs successfully.",
+  "findings": [],
+  "checks": [
+    {
+      "id": "candidate-identity",
+      "status": "PASS",
+      "details": "Recomputed candidate 89635b21e947c8b71ba2eb5f4dd38935e78ebcbacf0c6a66bb27a4f3b9e93a2d; tracked diff SHA-256 is 222485975962498081e60cfee41ca6ffe42a7ea2a0983ca86b8bd112391f4b95; src/infra/local-alpaca-account-transport.ts SHA-256 is ac159222e96e902efd3e043e2f09ced12449bec9cedccc6b1ba3d5deb63f96bc."
+    },
+    {
+      "id": "credential-and-network-boundary",
+      "status": "PASS",
+      "details": "Local mode configuration requires loopback app/database hosts and rejects Alpaca/OpenRouter credentials. The local reconciliation construction is guarded by localTestMode and injects createLocalAlpacaAccountFetch; that transport has no global-fetch fallback and allows only exact PAPER origin, four fixed GET path/query pairs, and sanitized synthetic provider data. Production account client retains the fixed PAPER base URL and is constructed with configured credentials only in the non-local startup branch."
+    },
+    {
+      "id": "paper-only-and-read-only",
+      "status": "PASS",
+      "details": "The Alpaca account client exposes only fixed GET account/positions/open-orders/clock reads and calls assertPaperOnly. The repository PAPER-only source guard passed. Local transport rejects unsupported origin/path/query/method before invoking the resource reader; no order-writing adapter operation is present."
+    },
+    {
+      "id": "redaction-and-observation",
+      "status": "PASS",
+      "details": "Adapter errors expose a bounded failure kind, not provider response bodies or request headers. Local API logging is disabled; harness logs/traces retain bounded route/status/resource/error-kind fields, not request headers, payloads, or raw exceptions. Tests assert local placeholder credentials and a secret-sentinel fixture value are not leaked. Normalization projects provider records into explicit fields, so passthrough input fields are not returned in normalized account state."
+    },
+    {
+      "id": "test-coverage",
+      "status": "PASS",
+      "details": "Reviewed tests cover the integrated local reconcile transport path, four-resource call observation, failures and recovery, global fetch non-use, fixed-origin allowlist rejection, credential-free local configuration, sanitized errors/logs, and PAPER invariants."
+    }
+  ],
+  "limitations": [
+    "This verdict covers local in-memory simulation and source-level safety properties. It does not qualify live Alpaca behavior or establish live broker/network credentials."
+  ]
+}

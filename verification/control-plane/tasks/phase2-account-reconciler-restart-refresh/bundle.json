@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-account-reconciler-restart-refresh",
+  "bundle_id": "5a392ee137b19bb6e9b996f4e1dc4271818f247e9845acf9a81dc973450920b2",
+  "intake_digest": "ecb74c6210b55a650ad134912525f11c401a50e62bb555ff46f4b656424f5610",
+  "artifacts": {
+    "intake": "intake.json",
+    "route": "route.json",
+    "candidates": "candidates/",
+    "acceptance": "test-results.json",
+    "checks": "checks/",
+    "review": "review.<candidate_id>.json",
+    "security_review": "security-review.<candidate_id>.json",
+    "verifier": "verifier.<candidate_id>.json",
+    "verification": "verification.<candidate_id>.json",
+    "evaluation": "evaluation.<candidate_id>.json"
+  }
+}

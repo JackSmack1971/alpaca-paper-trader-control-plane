@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "id": "offline-verification",
+  "task_id": "phase2-local-account-state-observation",
+  "bundle_id": "408998a3b9720f7b9eb7f67dad6ff56c2fecd0156bb707d74c7a3000f8c16760",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "cmd.exe",
+  "args": [
+    "/c",
+    "corepack",
+    "pnpm",
+    "verify:offline"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-account-state-observation/checks/offline-verification.log",
+  "started_at": "2026-10-04T13:40:07.443Z",
+  "completed_at": "2026-10-04T13:40:15.195Z",
+  "signal": null,
+  "error": null
+}

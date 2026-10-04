@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-loopback-test-controls",
+  "bundle_id": "1505d0ad8c3af5b4b27f9f372667f528918c85210611b859ca1e9a13259bad64",
+  "intake_digest": "d697d84dae4cbc88bee1416f0ea42489700c79b1d69f1dabf0a50ecb5f204bb5",
+  "artifacts": {
+    "intake": "intake.json",
+    "route": "route.json",
+    "candidates": "candidates/",
+    "acceptance": "test-results.json",
+    "checks": "checks/",
+    "review": "review.<candidate_id>.json",
+    "security_review": "security-review.<candidate_id>.json",
+    "verifier": "verifier.<candidate_id>.json",
+    "verification": "verification.<candidate_id>.json",
+    "evaluation": "evaluation.<candidate_id>.json"
+  }
+}

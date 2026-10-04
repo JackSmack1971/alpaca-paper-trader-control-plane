@@ -1,0 +1,16 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 verify:runtime C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0
+> tsx scripts/verify-runtime.ts
+
+ ELIFECYCLE  Command failed with exit code 1.
+
+[
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "databaseUrl"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  }
+]

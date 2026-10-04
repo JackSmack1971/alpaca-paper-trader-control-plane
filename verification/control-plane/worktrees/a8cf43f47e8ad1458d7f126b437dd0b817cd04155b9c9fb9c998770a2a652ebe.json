@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "unit_of_work": "phase2-account-state-normalization",
+  "base_sha": "ea9a83e069f1be79c307fd8a9c4b9fca85977409",
+  "worktree": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\phase2-account-state-normalization",
+  "branch": "codex/phase2-account-state-normalization",
+  "owner": "implementer",
+  "scope": [
+    "src/domain/account-state.ts",
+    "tests/account-state.test.ts",
+    "fixtures/account/reconciliation-sample.json",
+    "docs/runbook.md"
+  ],
+  "integration_target": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0",
+  "assignment_id": "a8cf43f47e8ad1458d7f126b437dd0b817cd04155b9c9fb9c998770a2a652ebe",
+  "active": false,
+  "created_at": "2026-10-04T06:05:05.860Z",
+  "released_at": "2026-10-04T06:21:18.438Z"
+}

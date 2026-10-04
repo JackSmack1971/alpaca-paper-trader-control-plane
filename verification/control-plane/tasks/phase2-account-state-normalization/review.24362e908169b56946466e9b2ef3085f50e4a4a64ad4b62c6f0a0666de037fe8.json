@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-account-state-normalization",
+  "task_bundle_id": "c1fa6af641c6c5d6c8a53c89a7eb383c749dc1090f3e184bd6a524730416cdb1",
+  "candidate_id": "24362e908169b56946466e9b2ef3085f50e4a4a64ad4b62c6f0a0666de037fe8",
+  "verdict": "PASS",
+  "findings": [],
+  "coverage": {
+    "authority": [
+      "AGENTS.md",
+      "docs/PROJECT_CHARTER.md",
+      "goals/phase-02-alpaca-data-account-state.md",
+      "docs/control-plane/phase-contracts.json"
+    ],
+    "scope": "Frozen candidate account normalization, fixture, focused tests, and relevant market-state foundation inspected.",
+    "criteria": {
+      "ACCT-01": "PASS: normalized application-owned AccountState carries account fields, positions, open orders, market clock, injected reconciliation time and provenance.",
+      "ACCT-02": "PASS: exposure uses scaled BigInt decimal arithmetic, classifies long/short, supports market-value fallback from quantity and price, and exposes incomplete unpriced state.",
+      "ACCT-03": "PASS: schema validation rejects malformed numeric/timestamp/side values and duplicate position/order identities; explicit signed market-value versus position-side consistency checks reject both contradictory directions.",
+      "ACCT-04": "PASS: fixture is synthetic and loaded directly by offline tests without credentials or sockets."
+    },
+    "reviewed_behaviors": [
+      "decimal precision and bounds",
+      "canonical decimal formatting",
+      "deterministic state ordering",
+      "duplicate detection",
+      "market clock ordering",
+      "position valuation and signed exposure",
+      "redaction-by-projection",
+      "PAPER mode and source provenance"
+    ],
+    "observed_verification": "Candidate-bound checks report typecheck PASS and offline pnpm test PASS (22 tests, 4 files). This reviewer inspected recorded command evidence and did not execute checks.",
+    "limitations": "Review is limited to this task candidate and its normalization acceptance criteria; it is not a phase completion assessment or credential-backed Alpaca verification."
+  },
+  "independence": "independent read-only reviewer"
+}

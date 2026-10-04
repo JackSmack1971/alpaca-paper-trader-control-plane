@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "id": "candidate-classification-162066",
+  "task_id": "phase2-account-reconciler-restart-refresh",
+  "bundle_id": "5a392ee137b19bb6e9b996f4e1dc4271818f247e9845acf9a81dc973450920b2",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "--input-type=module",
+    "-e",
+    "import fs from \"node:fs\";import assert from \"node:assert/strict\";import {buildCandidate} from \"./scripts/control-plane/candidate-id.mjs\";const task=\"phase2-account-reconciler-restart-refresh\",id=\"1620669848f244323b8ad3e974e9610e756d1e792b5188c9c772c5c766d5f0ec\",root=process.cwd(),snapshot=\"verification/control-plane/snapshots/3c4fa9dc12163e6d4404dd6093d1692db990930f63f06c698c4f305b686ae4e0.json\";const candidate=buildCandidate(root,snapshot,task),route=JSON.parse(fs.readFileSync(`verification/control-plane/tasks/${task}/route.json`,\"utf8\"));assert.equal(candidate.candidate_id,id);assert.equal(candidate.post_diff_risk.classification_id,route.signals.post_diff_risk.classification_id);assert.equal(candidate.post_diff_risk.effective_level,route.signals.post_diff_risk.effective_level);console.log(JSON.stringify({candidateId:id,risk:candidate.post_diff_risk.level,requiredRoles:candidate.post_diff_risk.required_roles}));"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-account-reconciler-restart-refresh/checks/candidate-classification-162066.log",
+  "started_at": "2026-10-04T15:22:02.816Z",
+  "completed_at": "2026-10-04T15:22:03.187Z",
+  "signal": null,
+  "error": null
+}

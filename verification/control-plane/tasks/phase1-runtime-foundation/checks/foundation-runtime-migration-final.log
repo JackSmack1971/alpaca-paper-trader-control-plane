@@ -1,0 +1,5 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 verify:runtime C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0
+> tsx scripts/verify-runtime.ts
+
+{"status":"verified","mode":"paper","app":"http://127.0.0.1:3000","database":"connected","credentials":"absent","providers":{"alpacaPaper":"not_configured","openrouter":"not_configured"},"paperHeader":true,"requiredTables":11,"correlatedPaperModeColumns":["decision_contexts.mode","stage_runs.mode"],"tables":["configuration_snapshots","cycle_outcomes","decision_contexts","decision_cycles","fills","health_connection_samples","kill_switch_state","normalized_market_records","paper_orders","risk_decisions","schema_migrations","stage_runs"]}

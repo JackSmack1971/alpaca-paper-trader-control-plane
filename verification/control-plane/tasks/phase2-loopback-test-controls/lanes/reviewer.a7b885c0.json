@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "lane": "reviewer",
+  "candidate_id": "a7b885c0d48d5c7264d7e9f3abe8eb549bd0332643ae73557aef606c0fa01de1",
+  "status": "PASS",
+  "scope": "Independent read-only review of the updated loopback runtime controls, structured application logs, simulated provider/failure behavior, and PAPER safety against LRT-01..LRT-04.",
+  "findings": [],
+  "evidence": [
+    {
+      "criterion_id": "LRT-01",
+      "result": "PASS",
+      "details": "src/domain/config.ts:8,29-30 defaults localTestMode false and rejects non-loopback binds or Alpaca/OpenRouter credentials when enabled. src/api/app.ts:48 gates route registration on local mode. tests/config.test.ts covers default-off behavior and disallowed bind/credential cases."
+    },
+    {
+      "criterion_id": "LRT-02",
+      "result": "PASS",
+      "details": "src/infra/local-fixtures.ts:8-10 loads fixed checked-in fixtures. src/domain/local-test-harness.ts:34-64 resets, sets virtual time and bounds replay to 1..100 events without provider/network access."
+    },
+    {
+      "criterion_id": "LRT-03",
+      "result": "PASS",
+      "details": "src/domain/local-test-harness.ts:65-70 returns normalized market/account snapshots, positions, open orders, exposure and replay cursor."
+    },
+    {
+      "criterion_id": "LRT-04",
+      "result": "PASS",
+      "details": "src/api/app.ts:19-22 records only method, route template and response status for traces. src/domain/local-test-harness.ts:71-79 caps traces at 200 and reads at 100; no query, body or headers are passed into the record API."
+    },
+    {
+      "criterion_id": "structured-application-logs",
+      "result": "PASS",
+      "details": "src/api/app.ts:82-85 now calls a distinct logs API. src/domain/local-test-harness.ts:77-86 creates separate structured HTTP-completion records, and :109-116 emits a provider-failure warning. Both use the virtual clock; both contain only explicit allowlisted fields (method, route template, status, target, safe error code). src/domain/local-test-harness.ts:94-97 applies after/limit bounds and :83-86 caps retention at 200. tests/local-test-harness.test.ts:26-32 asserts virtual-time HTTP events and that logs differ from traces; :41 asserts injected failure warning. scripts/verify-local-controls.ts:48-54 checks query sentinel exclusion, event presence and virtual timestamps."
+    },
+    {
+      "criterion_id": "simulated-provider-and-failure-health",
+      "result": "PASS",
+      "details": "src/domain/local-test-harness.ts:100-121 implements bounded queued market/account failures, deterministic 503/429/403 outcomes, health degradation/recovery, reset clearing and PAPER-marked fixture responses. Tests cover rate-limit, network and broker cases."
+    },
+    {
+      "criterion_id": "paper-only-and-secret-boundary",
+      "result": "PASS",
+      "details": "src/api/app.ts:12 disables Fastify's default logger in local mode and :14-17 emits X-Paper-Mode. Simulated responses are labeled mode=paper. Trace/log records are constructed from explicit safe fields and do not include query strings, payloads, headers or raw exceptions."
+    }
+  ],
+  "verification": {
+    "attempted": "corepack pnpm test -- tests/local-test-harness.test.ts",
+    "outcome": "NOT_RUN",
+    "details": "Vitest could not be loaded because the sandbox denied reading node_modules/.pnpm/.../vitest.mjs with EPERM. The review is based on source and existing test/verifier assertions; no test pass is claimed here."
+  },
+  "limitations": [
+    "The broader goal still requires the decision-to-risk-governor-to-order lifecycle, persisted state, bounded orchestrator execution and expected-versus-observed assertions; this candidate does not claim those capabilities."
+  ]
+}

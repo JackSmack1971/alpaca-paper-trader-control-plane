@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-msgpack-market-frames",
+  "task_bundle_id": "c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2",
+  "candidate_id": "d6ac30057f74c4fdc43a1bb1a4f6564a595698e7ac1d0accf3b3fd7f3dd6e201",
+  "verifier": "independent-read-only-verifier",
+  "verdict": "FAIL",
+  "criteria": [
+    {
+      "evidence": "Recomputed with node scripts/control-plane/candidate-id.mjs against stored snapshot 7645d784fdab5bb4472b073b10db258c1443342afc2439ac9958114d53f4ce09. Candidate ID, tracked diff SHA-256 222485975962498081e60cfee41ca6ffe42a7ea2a0983ca86b8bd112391f4b95, and all untracked hashes match d6ac30057f74c4fdc43a1bb1a4f6564a595698e7ac1d0accf3b3fd7f3dd6e201.",
+      "criterion_id": "CANDIDATE-IDENTITY",
+      "verdict": "PASS"
+    },
+    {
+      "evidence": "Focused test command passed 3 files / 37 tests. tests/market-state.test.ts reads batch.bin, connected.bin, subscription.bin, error.bin and asserts batch JSON equivalence plus singleton controls and error redaction.",
+      "criterion_id": "STATIC-MSGPACK-FIXTURES",
+      "verdict": "PASS"
+    },
+    {
+      "evidence": "corepack pnpm exec vitest run tests/market-state.test.ts tests/alpaca-market-stream.test.ts tests/config.test.ts => exit 0, 3 files and 37 tests passed.",
+      "criterion_id": "FOCUSED-TESTS",
+      "verdict": "PASS"
+    },
+    {
+      "evidence": "corepack pnpm verify:offline => exit 0; typecheck passed, 7 test files / 68 tests passed, config check passed with Alpaca and OpenRouter credentials reported missing, PAPER-only guard passed, no-live-routes guard passed.",
+      "criterion_id": "OFFLINE-SUITE",
+      "verdict": "PASS"
+    },
+    {
+      "evidence": "Acceptance criterion MPF-03 requires the real WebSocket adapter to select its configured content type consistently. src/infra/config.ts loads alpacaMarketDataCodec, but src/main.ts constructs AlpacaMarketStream without codec: config.alpacaMarketDataCodec. The adapter defaults an omitted codec to json; therefore selecting ALPACA_MARKET_DATA_CODEC=msgpack does not select MessagePack at startup. Existing stream tests set codec directly and do not cover startup wiring.",
+      "criterion_id": "RUNTIME-CODEC-WIRING",
+      "finding_id": "MPF-03-CODEC-WIRING",
+      "verdict": "FAIL"
+    }
+  ],
+  "verification": {
+    "network_requests_made": false,
+    "notes": "Read-only verification. Dependency installation used the existing offline pnpm store; no network request was made.",
+    "credentials_used": false,
+    "live_market_or_broker_session": false
+  },
+  "commands": [
+    {
+      "summary": "3 files, 37 tests passed",
+      "command": "corepack pnpm exec vitest run tests/market-state.test.ts tests/alpaca-market-stream.test.ts tests/config.test.ts",
+      "exit_code": 0
+    },
+    {
+      "summary": "typecheck, 68 tests, config, PAPER-only, no-live-routes passed",
+      "command": "corepack pnpm verify:offline",
+      "exit_code": 0
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+
+[
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "databaseUrl"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  }
+]

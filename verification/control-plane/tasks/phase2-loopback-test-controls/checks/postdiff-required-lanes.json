@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "id": "postdiff-required-lanes",
+  "task_id": "phase2-loopback-test-controls",
+  "bundle_id": "1505d0ad8c3af5b4b27f9f372667f528918c85210611b859ca1e9a13259bad64",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "--input-type=module",
+    "-e",
+    "import fs from 'node:fs'; import path from 'node:path';\nimport { validateRequiredLaneEvidence } from './scripts/control-plane/validate-closeout.mjs';\nconst id='a7b885c0d48d5c7264d7e9f3abe8eb549bd0332643ae73557aef606c0fa01de1'; const task='phase2-loopback-test-controls';\nconst dir='verification/control-plane/tasks/phase2-loopback-test-controls';\nconst candidate=JSON.parse(fs.readFileSync(path.join(dir,'candidates',`${id}.json`),'utf8'));\nconst bundle=JSON.parse(fs.readFileSync(path.join(dir,'bundle.json'),'utf8'));\nconst manifest={}; for (const [key,file] of [['review',`review.${id}.json`],['security_review',`security-review.${id}.json`],['verifier',`verifier.${id}.json`],['evaluation',`evaluation.${id}.json`]]) manifest[key]=JSON.parse(fs.readFileSync(path.join(dir,file),'utf8'));\nvalidateRequiredLaneEvidence({directory:path.resolve(dir)},id,task,bundle.bundle_id,candidate.post_diff_risk,manifest);\nconsole.log('PASS: every required independent lane binds PASS to this candidate and task bundle.');"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-loopback-test-controls/checks/postdiff-required-lanes.log",
+  "started_at": "2026-10-04T07:04:49.083Z",
+  "completed_at": "2026-10-04T07:04:49.186Z",
+  "signal": null,
+  "error": null
+}

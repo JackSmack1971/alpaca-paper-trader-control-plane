@@ -1,0 +1,23 @@
+{
+  "candidate_id": "dbb16daa7d062c31009a1148d4509deb2fefc5f53359f176a54ed799395654d4",
+  "status": "PASS",
+  "findings": [],
+  "criteria_considered": [
+    "normalized market state must match the fixture prefix represented by replay cursor",
+    "virtual clock rewind must survive a real process restart with normalized state unchanged",
+    "persisted snapshot fields, byte size, and market collection must be strictly bounded",
+    "migrations 0001-0004 remain unchanged and migration 0005 adds the snapshot size constraint",
+    "runbook accurately describes restart and rewind behavior"
+  ],
+  "evidence": [
+    "Candidate manifest hashes matched the current market replay/harness, snapshot schema, restart verifier, regression test, runbook, and migration 0005 files.",
+    "MarketReplay.restore bounds cursor to fixture length, reconstructs expected state from the fixture prefix, and requires exact symbol set, feed, source event time, trade, and quote equality before changing its cursor or state. It intentionally does not reject receivedAt later than virtual now, allowing a rewind; snapshot() recalculates freshness from the restored virtual clock.",
+    "The harness test restores a cursor-2 snapshot at an earlier virtual time and asserts the rewind and fresh state. The Docker restart verifier advances replay, sets an earlier timestamp, stops and starts two app processes, and compares virtual time, cursor, normalized market/account state, and PostgreSQL reconciliation source/revision.",
+    "Snapshot restore uses strict versioned Zod objects, a 100-row market cap, bounded symbol/feed/staleReason and nested fields; writes enforce a 262144-byte UTF-8 limit and migration 0005 adds a matching database JSONB text-size constraint.",
+    "SHA-256 hashes for migrations 0001-0004 match the candidate manifest: 4152be71b6642e032f909a29e540cd8340992120f83931f1b3592b6273c9214b; 51c3f91c192f29c1bdb428049ed01552f38d628bd4b0e604422fbc317c40986d; 6c426fa28e72ac2418ed59de65e2a910451e531adc01b0eefe545e981b3cb04d; 93050db7c8c4661c4d2633b0e7da5f77adb249078713528ea29fa63c48b8a256.",
+    "Runbook describes the persisted virtual time/cursor/state, restart reconciliation, credential-free loopback verifier, and append-only migration recovery consistently with the implementation."
+  ],
+  "limitations": [
+    "Source review only; no tests or Docker runtime checks were run in this lane."
+  ]
+}

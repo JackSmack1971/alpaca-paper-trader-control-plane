@@ -1,0 +1,122 @@
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0/.codex/worktrees/phase2-local-market-stream-adapter
+
+ ✓ tests/alpaca-market-stream.test.ts (9 tests) 38ms
+{"level":30,"time":1791132018060,"pid":5784,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/__local/state","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791132018060,"pid":5784,"hostname":"bretlaptop","reqId":"req-1","msg":"Route GET:/__local/state not found"}
+{"level":30,"time":1791132018061,"pid":5784,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":404},"responseTime":0.21359999999981483,"msg":"request completed"}
+{"level":30,"time":1791132018061,"pid":5784,"hostname":"bretlaptop","reqId":"req-2","req":{"method":"GET","url":"/__local/trade-updates","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791132018061,"pid":5784,"hostname":"bretlaptop","reqId":"req-2","msg":"Route GET:/__local/trade-updates not found"}
+{"level":30,"time":1791132018061,"pid":5784,"hostname":"bretlaptop","reqId":"req-2","res":{"statusCode":404},"responseTime":0.09689999999977772,"msg":"request completed"}
+ ❯ tests/local-test-harness.test.ts (13 tests | 4 failed) 785ms
+   ✓ loopback local runtime controls > routes local account reconciliation through the PAPER adapter with bounded simulated failures and recovery  632ms
+   ✓ loopback local runtime controls > allows the local Alpaca transport only the fixed PAPER GET resources and never falls through to network 3ms
+   ✓ loopback local runtime controls > compares bounded expected state projections and reports only mismatch paths 15ms
+   × loopback local runtime controls > resets, controls virtual time, replays bounded fixtures, and exposes normalized account state 22ms
+     → expected [ { symbol: 'AAPL', …(7) } ] to deeply equal ArrayContaining{…}
+   × loopback local runtime controls > injects deterministic market-stream failures and recovers through the in-memory adapter 6ms
+     → an Alpaca market stream is already owned by this process
+   ✓ loopback local runtime controls > does not register controls by default 75ms
+   ✓ loopback local runtime controls > accepts zero cumulative fill quantity on unfilled provider-shaped orders 5ms
+   × loopback local runtime controls > accepts bounded simulated trade update hints without changing account truth and resets them 3ms
+     → an Alpaca market stream is already owned by this process
+   ✓ loopback local runtime controls > bounds queued simulated failures and rejects overflow without mutation 8ms
+   ✓ loopback local runtime controls > returns only normalized market data from simulated provider responses 3ms
+   × loopback local runtime controls > replaces simulated account responses with a validated resettable PAPER scenario 4ms
+     → an Alpaca market stream is already owned by this process
+   ✓ loopback local runtime controls > redacts rejected fixture contents from startup errors 2ms
+   ✓ loopback local runtime controls > persists and restores a normalized crossed quote without changing its state 4ms
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  4 failed | 18 passed (22)
+   Start at  12:40:16
+   Duration  1.94s (transform 283ms, setup 0ms, collect 1.03s, tests 823ms, environment 0ms, prepare 294ms)
+
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/local-test-harness.test.ts > loopback local runtime controls > resets, controls virtual time, replays bounded fixtures, and exposes normalized account state
+AssertionError: expected [ { symbol: 'AAPL', …(7) } ] to deeply equal ArrayContaining{…}
+
+- Expected
++ Received
+
+- ArrayContaining [
+-   ObjectContaining {
++ [
++   {
++     "feed": "iex",
++     "freshness": "fresh",
+      "lastTrade": {
++       "id": 1,
+        "price": 190.25,
+        "size": 2,
+        "sourceTime": "2025-01-02T14:30:00.000Z",
+      },
++     "quote": {
++       "ask": 190.3,
++       "askSize": 12,
++       "bid": 190.2,
++       "bidSize": 10,
++       "sourceTime": "2025-01-02T14:30:01.000Z",
++     },
++     "receivedAt": "2025-01-02T14:30:00.000Z",
++     "sourceEventTime": "2025-01-02T14:30:01.000Z",
++     "staleReason": null,
+      "symbol": "AAPL",
+    },
+  ]
+
+ ❯ tests/local-test-harness.test.ts:132:29
+    130|     const observed = (await app.inject('/__local/state')).json();
+    131|     expect(observed).toMatchObject({ replayCursor: 2, marketStream: { …
+    132|     expect(observed.market).toEqual(expect.arrayContaining([expect.obj…
+       |                             ^
+    133|     const replaySnapshot = harness.persistenceSnapshot();
+    134|     const restoredHarness = new LocalTestHarness(await loadLocalFixtur…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/local-test-harness.test.ts > loopback local runtime controls > injects deterministic market-stream failures and recovers through the in-memory adapter
+Error: an Alpaca market stream is already owned by this process
+ ❯ AlpacaMarketStream.start src/infra/alpaca-market-stream.ts:128:64
+    126|   start(): void {
+    127|     if (this.started || this.stopped) return;
+    128|     if (activeStreamOwner && activeStreamOwner !== this) throw new Err…
+       |                                                                ^
+    129|     activeStreamOwner = this;
+    130|     this.started = true;
+ ❯ createApp src/api/app.ts:23:24
+ ❯ tests/local-test-harness.test.ts:197:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/local-test-harness.test.ts > loopback local runtime controls > accepts bounded simulated trade update hints without changing account truth and resets them
+Error: an Alpaca market stream is already owned by this process
+ ❯ AlpacaMarketStream.start src/infra/alpaca-market-stream.ts:128:64
+    126|   start(): void {
+    127|     if (this.started || this.stopped) return;
+    128|     if (activeStreamOwner && activeStreamOwner !== this) throw new Err…
+       |                                                                ^
+    129|     activeStreamOwner = this;
+    130|     this.started = true;
+ ❯ createApp src/api/app.ts:23:24
+ ❯ tests/local-test-harness.test.ts:243:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/local-test-harness.test.ts > loopback local runtime controls > replaces simulated account responses with a validated resettable PAPER scenario
+Error: an Alpaca market stream is already owned by this process
+ ❯ AlpacaMarketStream.start src/infra/alpaca-market-stream.ts:128:64
+    126|   start(): void {
+    127|     if (this.started || this.stopped) return;
+    128|     if (activeStreamOwner && activeStreamOwner !== this) throw new Err…
+       |                                                                ^
+    129|     activeStreamOwner = this;
+    130|     this.started = true;
+ ❯ createApp src/api/app.ts:23:24
+ ❯ tests/local-test-harness.test.ts:307:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+

@@ -1,0 +1,27 @@
+{
+  "id": "phase3-decision-context",
+  "task_kind": "feature",
+  "uncertainty": "high",
+  "files": [
+    "src/domain/decision-context.ts",
+    "src/domain/local-test-harness.ts",
+    "src/api/app.ts",
+    "src/infra/decision-context-store.ts",
+    "tests/decision-context.test.ts",
+    "tests/local-test-harness.test.ts",
+    "docs/runbook.md"
+  ],
+  "architectural_file_count": 4,
+  "expected_code_lines": 260,
+  "blast_radius": ["functional-correctness", "database-schema"],
+  "verification_difficulty": "deterministic",
+  "implementation_required": true,
+  "research_required": false,
+  "acceptance_criteria": [
+    { "id": "CONTEXT-DETERMINISTIC", "text": "Identical recorded normalized market/account inputs, virtual as_of, identifiers, and transform versions produce byte-identical canonical decision contexts and content hashes." },
+    { "id": "CONTEXT-NUMERICS-AND-MISSINGNESS", "text": "Returns, spread, exposure and freshness are calculated deterministically with documented rounding; unavailable or stale values remain null with structured reasons and are never replaced by zero." },
+    { "id": "CONTEXT-PROVENANCE", "text": "Every context includes immutable cycle/context identity, symbol, semantic version, built_at, effective as_of, transform versions and ordered source provenance sufficient to reconstruct each input." },
+    { "id": "CONTEXT-PERSISTED-REPLAY", "text": "The local runtime can persist a context and replay its stored source inputs to reproduce the exact canonical payload and hash, with idempotent writes and explicit conflict detection." },
+    { "id": "CONTEXT-BOUNDED", "text": "Single-symbol serialized contexts enforce a deterministic token-budget estimate below 4,000 tokens, with tests covering the selected estimation methodology and rejection boundary." }
+  ]
+}

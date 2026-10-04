@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "local-restart-runtime",
+  "task_id": "phase2-local-alpaca-account-adapter",
+  "bundle_id": "8af198f9a5cca633d4203ff316ecbc2eb4df8001247043fbe54364aaaede8162",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "cmd.exe",
+  "args": [
+    "/c",
+    "corepack pnpm verify:local-restart"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-alpaca-account-adapter/checks/local-restart-runtime.log",
+  "started_at": "2026-10-04T15:51:11.282Z",
+  "completed_at": "2026-10-04T15:51:25.254Z",
+  "signal": null,
+  "error": null
+}

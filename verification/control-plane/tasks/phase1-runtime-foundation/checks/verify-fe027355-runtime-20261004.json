@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "verify-fe027355-runtime-20261004",
+  "task_id": "phase1-runtime-foundation",
+  "bundle_id": "88e26fe33f47b4b0cdf5ab5f9a3a90efa4503841f4b111979d3be8981aa2cf75",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "corepack.cmd",
+  "args": [
+    "pnpm",
+    "verify:runtime"
+  ],
+  "log_path": "verification/control-plane/tasks/phase1-runtime-foundation/checks/verify-fe027355-runtime-20261004.log",
+  "started_at": "2026-10-04T05:19:17.895Z",
+  "completed_at": "2026-10-04T05:19:20.238Z",
+  "signal": null,
+  "error": null
+}

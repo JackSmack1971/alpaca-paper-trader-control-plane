@@ -1,0 +1,30 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 test C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0
+> vitest run "--" "tests/local-test-harness.test.ts"
+
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0
+
+ ✓ tests/config.test.ts (6 tests) 39ms
+ ✓ tests/account-state.test.ts (12 tests) 59ms
+ ✓ tests/market-state.test.ts (13 tests) 152ms
+{"level":30,"time":1791105552130,"pid":3048,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791105552148,"pid":3048,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791105552139,"pid":3048,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":200},"responseTime":7.48700000000008,"msg":"request completed"}
+{"level":30,"time":1791105552149,"pid":3048,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":503},"responseTime":0.7101999999999862,"msg":"request completed"}
+{"level":30,"time":1791105552150,"pid":3048,"hostname":"bretlaptop","reqId":"req-2","req":{"method":"POST","url":"/orders","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791105552150,"pid":3048,"hostname":"bretlaptop","reqId":"req-2","msg":"Route POST:/orders not found"}
+{"level":30,"time":1791105552151,"pid":3048,"hostname":"bretlaptop","reqId":"req-2","res":{"statusCode":404},"responseTime":0.6907000000001062,"msg":"request completed"}
+ ✓ tests/app.test.ts (2 tests) 524ms
+   ✓ HTTP health and status observation > shows PAPER mode and an available local database  514ms
+{"level":30,"time":1791105552184,"pid":6720,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/__local/state","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791105552186,"pid":6720,"hostname":"bretlaptop","reqId":"req-1","msg":"Route GET:/__local/state not found"}
+{"level":30,"time":1791105552186,"pid":6720,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":404},"responseTime":0.48709999999982756,"msg":"request completed"}
+ ✓ tests/local-test-harness.test.ts (4 tests) 670ms
+   ✓ loopback local runtime controls > resets, controls virtual time, replays bounded fixtures, and exposes normalized account state  600ms
+
+ Test Files  5 passed (5)
+      Tests  37 passed (37)
+   Start at  05:19:10
+   Duration  1.98s (transform 414ms, setup 0ms, collect 2.52s, tests 1.44s, environment 2ms, prepare 1.08s)
+

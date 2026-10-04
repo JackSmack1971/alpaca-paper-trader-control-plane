@@ -1,0 +1,12 @@
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0/.codex/worktrees/phase2-msgpack-market-frames
+
+ ✓ tests/config.test.ts (9 tests) 36ms
+ ✓ tests/alpaca-market-stream.test.ts (7 tests) 51ms
+ ✓ tests/market-state.test.ts (21 tests) 145ms
+
+ Test Files  3 passed (3)
+      Tests  37 passed (37)
+   Start at  10:07:45
+   Duration  929ms (transform 196ms, setup 0ms, collect 790ms, tests 232ms, environment 1ms, prepare 568ms)
+

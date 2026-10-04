@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-market-stream-adapter",
+  "task_bundle_id": "459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803",
+  "candidate_id": "249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e",
+  "verdict": "PASS",
+  "evidence": "Independently recomputed candidate-id.mjs against snapshot 6011238f4f62f44b7c74527b6f53980246ac1b049a716b4098b2d5a6a4892e24. Recomputed candidate id 249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e and tracked_diff_sha256 222485975962498081e60cfee41ca6ffe42a7ea2a0983ca86b8bd112391f4b95 exactly match the candidate record; all 57 listed untracked file hashes independently matched. Static review found the local transport constructs only an in-memory WebSocket-compatible EventEmitter and its socket factory enforces the exact configured Alpaca stock stream URL, codec content type, and disabled compression; local startup constructs the production AlpacaMarketStream with this factory and hardcoded local-only placeholder keys. The adapter returns AlpacaMarketStream.marketStates() for app observations, runs deterministic auth/subscription/frame handling, bounds each injected frame and timer flush, restores accumulator identity/state from a checked fixture prefix, and resets session/cursor/time through local controls. Network, rate-limit, and broker perturbations route through the stream transport, record sanitized harness observations, and use bounded retry or controlled restart recovery. Existing stream/domain tests cover JSON and MessagePack decoding, malformed frame rejection, duplicate/out-of-order event rejection, startup handshake, and single-owner lifecycle; local integration tests cover replay, reset, virtual time, failure/recovery, logs/traces, and restart restoration. No correctness or maintainability defect against this task slice was found. This is a source-level review; no tests were run for this review lane.",
+  "findings": [],
+  "reviewed_paths": [
+    "src/infra/local-alpaca-market-transport.ts",
+    "src/infra/alpaca-market-stream.ts",
+    "src/domain/market-state.ts",
+    "src/domain/local-test-harness.ts",
+    "src/api/app.ts",
+    "src/main.ts",
+    "tests/alpaca-market-stream.test.ts",
+    "tests/market-state.test.ts",
+    "tests/local-test-harness.test.ts",
+    "verification/control-plane/tasks/phase2-local-market-stream-adapter/intake.json",
+    "verification/control-plane/tasks/phase2-local-market-stream-adapter/candidates/249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e.json"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-trade-update-sim",
+  "task_bundle_id": "e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9",
+  "candidate_id": "872ab51a90d37a6ee64617073206eaa5bb2944760f7ff5c87930c5c32a7dfe83",
+  "reviewer": "independent-reviewer",
+  "verdict": "FAIL",
+  "findings": [
+    {
+      "recommendation": "Validate the selected fields needed for the observation while stripping/ignoring unrelated provider fields, or provide a versioned documented synthetic subset contract and revise the acceptance criterion to avoid implying provider-shaped messages.",
+      "criterion": "LTU-02",
+      "severity": "MAJOR",
+      "failure_mode": "The schema applies strict rejection to the outer data object and order object while modeling only a small subset of their fields. Alpaca documents trade_updates.data messages with fields such as execution_id and an order object carrying fields including asset_class, asset_id, created_at, updated_at, submitted_at, filled_at, order_class, order_type, time_in_force, limit_price, and extended_hours. A documented provider-shaped message therefore fails validation before the selected fields can be normalized; the handcrafted minimal test fixture does not cover this realistic payload.",
+      "evidence": "Official Alpaca Websocket Streaming docs state trade_updates order is the same object returned from REST and show a full order object plus execution_id: https://docs.alpaca.markets/us/docs/websocket-streaming . The candidate schema makes these extra properties invalid at lines 23-37.",
+      "requirement": "Valid synthetic provider-shaped trade updates must be accepted and normalized.",
+      "location": "src/domain/local-test-harness.ts:21-37, tradeUpdateSchema"
+    }
+  ],
+  "coverage": [
+    "Candidate identity and task bundle identity from frozen candidate artifact.",
+    "Active phase 2 and PAPER/authority charter invariants.",
+    "Local-test-mode loopback and credential gating in src/domain/config.ts and src/main.ts.",
+    "Trade update schema/normalization, bounded ring, virtual receive time, reset, state comparison, and account non-mutation paths.",
+    "Local API registration and response markers.",
+    "Focused test assertions for mode gating, atomic rejection, capacity/reset, comparison, and account invariance.",
+    "Runbook synthetic HTTP contract description."
+  ],
+  "limitations": [
+    "Did not execute verification commands; implementation verifier lane owns executable evidence.",
+    "Did not inspect unrelated runtime capabilities or full repository baseline; scope limited to the routed four-file trade-update slice and directly relevant configuration/phase authority.",
+    "Official docs establish the mismatch in accepted input shape; no live credentials or stream session were used or required."
+  ],
+  "reviewed_at": "2026-10-04T12:00:00Z"
+}

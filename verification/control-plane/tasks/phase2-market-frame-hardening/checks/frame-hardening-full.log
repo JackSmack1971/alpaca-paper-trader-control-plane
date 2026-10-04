@@ -1,0 +1,25 @@
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0
+
+ ✓ tests/market-state.test.ts (10 tests) 78ms
+ ✓ tests/account-state.test.ts (12 tests) 82ms
+ ✓ tests/config.test.ts (6 tests) 37ms
+{"level":30,"time":1791102711772,"pid":14828,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791102711789,"pid":14828,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791102711778,"pid":14828,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":200},"responseTime":5.1059999999999945,"msg":"request completed"}
+{"level":30,"time":1791102711789,"pid":14828,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":503},"responseTime":0.4731000000001586,"msg":"request completed"}
+{"level":30,"time":1791102711790,"pid":14828,"hostname":"bretlaptop","reqId":"req-2","req":{"method":"POST","url":"/orders","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791102711790,"pid":14828,"hostname":"bretlaptop","reqId":"req-2","msg":"Route POST:/orders not found"}
+{"level":30,"time":1791102711790,"pid":14828,"hostname":"bretlaptop","reqId":"req-2","res":{"statusCode":404},"responseTime":0.42020000000002256,"msg":"request completed"}
+ ✓ tests/app.test.ts (2 tests) 193ms
+{"level":30,"time":1791102711834,"pid":18168,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/__local/state","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791102711835,"pid":18168,"hostname":"bretlaptop","reqId":"req-1","msg":"Route GET:/__local/state not found"}
+{"level":30,"time":1791102711835,"pid":18168,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":404},"responseTime":0.3705999999999676,"msg":"request completed"}
+ ✓ tests/local-test-harness.test.ts (2 tests) 364ms
+   ✓ loopback local runtime controls > resets, controls virtual time, replays bounded fixtures, and exposes normalized account state  328ms
+
+ Test Files  5 passed (5)
+      Tests  32 passed (32)
+   Start at  04:31:50
+   Duration  1.51s (transform 324ms, setup 0ms, collect 2.05s, tests 754ms, environment 1ms, prepare 1.03s)
+

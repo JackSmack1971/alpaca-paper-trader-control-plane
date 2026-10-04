@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "id": "offline-msgpack-suite",
+  "task_id": "phase2-msgpack-market-frames",
+  "bundle_id": "c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "cmd.exe",
+  "args": [
+    "/c",
+    "corepack",
+    "pnpm",
+    "verify:offline"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/offline-msgpack-suite.log",
+  "started_at": "2026-10-04T14:07:46.442Z",
+  "completed_at": "2026-10-04T14:07:54.440Z",
+  "signal": null,
+  "error": null
+}

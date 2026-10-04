@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "docker-isolated-restart",
+  "task_id": "phase2-local-trade-update-sim",
+  "bundle_id": "e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9a",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "C:\\Progra~1\\nodejs\\corepack.cmd",
+  "args": [
+    "pnpm",
+    "verify:local-restart"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-trade-update-sim/checks/docker-isolated-restart.log",
+  "started_at": "2026-10-04T12:09:21.689Z",
+  "completed_at": "2026-10-04T12:09:36.396Z",
+  "signal": null,
+  "error": null
+}

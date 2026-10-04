@@ -1,0 +1,24 @@
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0
+
+ ✓ tests/market-state.test.ts (3 tests) 34ms
+ ✓ tests/config.test.ts (6 tests) 35ms
+ ✓ tests/account-state.test.ts (12 tests) 62ms
+{"level":30,"time":1791097567009,"pid":22572,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791097567022,"pid":22572,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791097567014,"pid":22572,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":200},"responseTime":3.729000000000042,"msg":"request completed"}
+{"level":30,"time":1791097567023,"pid":22572,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":503},"responseTime":0.923799999999801,"msg":"request completed"}
+{"level":30,"time":1791097567024,"pid":22572,"hostname":"bretlaptop","reqId":"req-2","req":{"method":"POST","url":"/orders","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791097567024,"pid":22572,"hostname":"bretlaptop","reqId":"req-2","msg":"Route POST:/orders not found"}
+{"level":30,"time":1791097567024,"pid":22572,"hostname":"bretlaptop","reqId":"req-2","res":{"statusCode":404},"responseTime":0.44059999999990396,"msg":"request completed"}
+ ✓ tests/app.test.ts (2 tests) 196ms
+{"level":30,"time":1791097567081,"pid":18212,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/__local/state","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791097567082,"pid":18212,"hostname":"bretlaptop","reqId":"req-1","msg":"Route GET:/__local/state not found"}
+{"level":30,"time":1791097567082,"pid":18212,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":404},"responseTime":0.3710000000000946,"msg":"request completed"}
+ ✓ tests/local-test-harness.test.ts (2 tests) 327ms
+
+ Test Files  5 passed (5)
+      Tests  25 passed (25)
+   Start at  03:06:05
+   Duration  1.43s (transform 317ms, setup 0ms, collect 2.06s, tests 654ms, environment 1ms, prepare 957ms)
+

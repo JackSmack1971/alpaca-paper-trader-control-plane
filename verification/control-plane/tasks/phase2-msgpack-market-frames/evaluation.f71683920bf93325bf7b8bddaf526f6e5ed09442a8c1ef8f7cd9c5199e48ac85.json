@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-msgpack-market-frames",
+  "task_bundle_id": "c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2",
+  "candidate_id": "f71683920bf93325bf7b8bddaf526f6e5ed09442a8c1ef8f7cd9c5199e48ac85",
+  "evaluator": "independent-read-only-task-evaluator",
+  "verdict": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "MPF-01",
+      "verdict": "PASS",
+      "evidence": "In the candidate worktree src/domain/market-state.ts routes JSON and MessagePack through decodeMarketFrame and the same bounded normalization/schema boundary. The candidate-bound focused test record and its log pass; candidate-bound review, security review, and verifier independently describe the shared boundary and bounds."
+    },
+    {
+      "criterion_id": "MPF-02",
+      "verdict": "PASS",
+      "evidence": "The candidate includes checked-in MessagePack binary fixtures for batched data and connected, subscription, and error controls. tests/market-state.test.ts covers JSON/MessagePack normalization equivalence and rejects malformed, wrong-type, oversized, too-deep, mixed, invalid-control, and over-count frames. focused-msgpack-wired passes (3 files, 38 tests); offline-msgpack-wired also passes."
+    },
+    {
+      "criterion_id": "MPF-03",
+      "verdict": "PASS",
+      "evidence": "The production factory transfers validated ALPACA_MARKET_DATA_CODEC to AlpacaMarketStream; the configured Content-Type and expected text/binary frame type select the shared decoder consistently. Tests cover factory wiring, handshake headers, binary decoding, codec mismatch, and status redaction. Security review found no credential leakage in logs, state, or fixtures. This is source and offline test evidence, not live credential-backed qualification."
+    }
+  ],
+  "verification": {
+    "candidate_identity": "PASS",
+    "recomputed_candidate_id": "f71683920bf93325bf7b8bddaf526f6e5ed09442a8c1ef8f7cd9c5199e48ac85",
+    "task_bundle_id": "c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2",
+    "tracked_diff_sha256": "222485975962498081e60cfee41ca6ffe42a7ea2a0983ca86b8bd112391f4b95",
+    "untracked_hashes_match": 55,
+    "matching_lanes": {
+      "review": "verification/control-plane/tasks/phase2-msgpack-market-frames/review.f71683920bf93325bf7b8bddaf526f6e5ed09442a8c1ef8f7cd9c5199e48ac85.json: PASS",
+      "security_review": "verification/control-plane/tasks/phase2-msgpack-market-frames/security-review.f71683920bf93325bf7b8bddaf526f6e5ed09442a8c1ef8f7cd9c5199e48ac85.json: PASS",
+      "verifier": "verification/control-plane/tasks/phase2-msgpack-market-frames/verifier.f71683920bf93325bf7b8bddaf526f6e5ed09442a8c1ef8f7cd9c5199e48ac85.json: PASS"
+    },
+    "checks": {
+      "focused": "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/focused-msgpack-wired.json: PASS, exit 0; log reports 3 files and 38 tests passed",
+      "offline": "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/offline-msgpack-wired.json: PASS, exit 0; log reports typecheck, 7 test files / 69 tests, configuration check, PAPER-only guard, and no-live-routes guard passed"
+    }
+  },
+  "limitations": [
+    "No credential-backed live Alpaca stream qualification or live market session is claimed.",
+    "The task acceptance file test-results.json currently reports aggregate status FAIL although MPF-01, MPF-02, MPF-03, POST-DIFF-CLASSIFICATION, and POST-DIFF-REQUIRED-LANES are each marked PASS. This evaluator judges only MPF-01 through MPF-03; aggregate task acceptance still requires repair and validation outside this criterion evaluation."
+  ],
+  "evaluated_at": "2026-10-04T14:40:00Z"
+}

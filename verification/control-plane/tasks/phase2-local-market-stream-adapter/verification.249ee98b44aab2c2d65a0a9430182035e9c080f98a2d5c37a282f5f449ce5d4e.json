@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-market-stream-adapter",
+  "task_bundle_id": "459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803",
+  "candidate_id": "249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e",
+  "status": "PASS",
+  "commands": [
+    {
+      "command": "node scripts/control-plane/validate.mjs",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/controlplane-validation-3.json"
+    },
+    {
+      "command": "TypeScript 5.9.3 tsc --noEmit --project tsconfig.json",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/verifier-typecheck-1.json"
+    },
+    {
+      "command": "Vitest full offline suite",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/verifier-full-offline-2.json (7 files, 74 tests passed)"
+    },
+    {
+      "command": "node scripts/verify-no-live-routes.mjs",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/phase2-no-live-routes-2.json"
+    },
+    {
+      "command": "node scripts/control-plane/check-paper-only.mjs",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/phase2-paper-guard-2.json"
+    },
+    {
+      "command": "tsx scripts/config-check.ts",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/phase2-config-check-2.json (PAPER mode, Alpaca and OpenRouter credentials missing)"
+    },
+    {
+      "command": "tsx scripts/seed-dev.ts with DATABASE_URL=postgres://postgres@127.0.0.1:55432/alpaca_paper_dev",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-disposable-db-seed-2.json (synthetic PAPER fixture seeded)"
+    },
+    {
+      "command": "tsx scripts/verify-local-controls.ts against http://127.0.0.1:31886",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-running-controls-1.json (scenario replacement, state comparison, failure injection, logs/traces, reset passed)"
+    },
+    {
+      "command": "tsx scripts/verify-local-restart.ts against disposable PostgreSQL",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-docker-restart-3.json (credential-free PAPER startup and state restoration passed)"
+    }
+  ]
+}

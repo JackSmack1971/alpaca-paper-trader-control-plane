@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "adapter-postdiff-required-lanes-1",
+  "task_id": "phase2-local-market-stream-adapter",
+  "bundle_id": "459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "C:\\Program Files\\nodejs\\node.exe",
+  "args": [
+    "-e",
+    "const fs=require('node:fs'); const base='verification/control-plane/tasks/phase2-local-market-stream-adapter/'; const id='249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e'; const bundle='459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803'; for (const [kind,file] of [['review','review.'+id+'.json'],['security','security-review.'+id+'.json'],['verifier','verifier.'+id+'.json'],['evaluation','evaluation.'+id+'.json']]) { const row=JSON.parse(fs.readFileSync(base+file,'utf8')); if(row.candidate_id!==id || row.task_bundle_id!==bundle || row.verdict!=='PASS') throw new Error(kind+' lane does not bind PASS to the frozen candidate'); } console.log('PASS: all four candidate-bound required lanes passed');"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-postdiff-required-lanes-1.log",
+  "started_at": "2026-10-04T17:07:12.812Z",
+  "completed_at": "2026-10-04T17:07:12.891Z",
+  "signal": null,
+  "error": null
+}

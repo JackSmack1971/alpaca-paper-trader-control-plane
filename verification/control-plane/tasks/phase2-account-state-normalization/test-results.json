@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "task_id": "phase2-account-state-normalization",
+  "bundle_id": "c1fa6af641c6c5d6c8a53c89a7eb383c749dc1090f3e184bd6a524730416cdb1",
+  "status": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "ACCT-01",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "account-offline-tests-2",
+        "check_path": "verification/control-plane/tasks/phase2-account-state-normalization/checks/account-offline-tests-2.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "ACCT-02",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "account-offline-tests-2",
+        "check_path": "verification/control-plane/tasks/phase2-account-state-normalization/checks/account-offline-tests-2.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "ACCT-03",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "account-offline-tests-2",
+        "check_path": "verification/control-plane/tasks/phase2-account-state-normalization/checks/account-offline-tests-2.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "ACCT-04",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "account-offline-tests-2",
+        "check_path": "verification/control-plane/tasks/phase2-account-state-normalization/checks/account-offline-tests-2.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-CLASSIFICATION",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "account-candidate-freeze-2",
+        "check_path": "verification/control-plane/tasks/phase2-account-state-normalization/checks/account-candidate-freeze-2.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-REQUIRED-LANES",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "account-candidate-freeze-2",
+        "check_path": "verification/control-plane/tasks/phase2-account-state-normalization/checks/account-candidate-freeze-2.json",
+        "exit_code": 0
+      }
+    }
+  ],
+  "generated_at": "2026-10-04T06:05:05.878Z"
+}

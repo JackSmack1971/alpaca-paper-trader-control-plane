@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-market-stream-frames",
+  "task_bundle_id": "5c894db28593aa85421d1dde7f8e5e3a912cffdb4483bea5d0bb5ce4c3450b09",
+  "candidate_id": "af6b56d4b88b3c7ddf582767da763ef2e1b881bf12b430fd566b0824133cf399",
+  "status": "PASS",
+  "commands": [
+    {
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-market-stream-frames/checks/verifier-af6b-focused-v1.json (21 tests)",
+      "command": "focused market and local harness tests"
+    },
+    {
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-market-stream-frames/checks/verifier-af6b-offline-v1.json (41 tests, typecheck, config, PAPER-only, no-live-route)",
+      "command": "pnpm verify:offline"
+    }
+  ]
+}

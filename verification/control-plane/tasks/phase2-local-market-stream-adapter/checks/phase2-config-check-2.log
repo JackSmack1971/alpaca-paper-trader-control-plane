@@ -1,0 +1,32 @@
+{
+  "mode": "paper",
+  "host": "127.0.0.1",
+  "localTestMode": false,
+  "port": 3000,
+  "universe": [
+    "SPY"
+  ],
+  "analysisModel": "",
+  "reviewModel": "",
+  "decisionCadenceSeconds": 60,
+  "accountStateStaleAfterSeconds": 60,
+  "accountReconciliationSeconds": 60,
+  "accountRequestTimeoutMs": 10000,
+  "accountRetryBaseSeconds": 5,
+  "accountRetryMaxSeconds": 60,
+  "maxPositionPct": "0.10",
+  "maxDailyLossPct": "0.02",
+  "alpacaDataFeed": "iex",
+  "alpacaMarketDataPlan": "basic",
+  "alpacaMarketDataCodec": "json",
+  "alpacaStreamRetry": {
+    "maxReconnects": 3,
+    "baseDelayMs": 250,
+    "maxDelayMs": 2000
+  },
+  "openRouterBaseUrl": "redacted",
+  "credentials": {
+    "alpaca": "missing",
+    "openrouter": "missing"
+  }
+}

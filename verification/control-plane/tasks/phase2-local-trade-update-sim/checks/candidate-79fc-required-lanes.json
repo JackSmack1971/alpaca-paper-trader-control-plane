@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "candidate-79fc-required-lanes",
+  "task_id": "phase2-local-trade-update-sim",
+  "bundle_id": "e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9a",
+  "status": "FAIL",
+  "exit_code": 1,
+  "executable": "node",
+  "args": [
+    "-e",
+    "const fs=require(\"node:fs\");const assert=require(\"node:assert/strict\");const dir=\"verification/control-plane/tasks/phase2-local-trade-update-sim\";const id=\"79fc6142ec7c46ae54d9d5fce7a6920782f09506ea7b0c9bfc121c1ad253697b\";const bundle=\"e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9\";for(const kind of [\"review\",\"security-review\",\"verifier\"]){const r=JSON.parse(fs.readFileSync(`${dir}/${kind}.${id}.json`,\"utf8\"));assert.equal(r.candidate_id,id);assert.equal(r.task_bundle_id,bundle);assert.equal(r.verdict,\"PASS\");}"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-trade-update-sim/checks/candidate-79fc-required-lanes.log",
+  "started_at": "2026-10-04T12:04:37.336Z",
+  "completed_at": "2026-10-04T12:04:37.423Z",
+  "signal": null,
+  "error": null
+}

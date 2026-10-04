@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-restart-reconciliation",
+  "candidate_id": "dbb16daa7d062c31009a1148d4509deb2fefc5f53359f176a54ed799395654d4",
+  "verdict": "PASS",
+  "findings": [
+    {
+      "id": "EVAL-01",
+      "severity": "informational",
+      "summary": "The current test-results.json has not yet been regenerated: it retains RRC-01 through RRC-04 as PASS and reports POST-DIFF-CLASSIFICATION and POST-DIFF-REQUIRED-LANES as PENDING. The classification check and candidate-bound review, security, and verifier lanes are present and PASS; the required-lanes criterion can become complete after this evaluator artifact is recorded and aggregate results are refreshed."
+    },
+    {
+      "id": "EVAL-02",
+      "severity": "scope-limitation",
+      "summary": "This candidate implements and verifies only the bounded local restart-reconciliation slice. The wider user goal still lacks PAPER order-intent simulation and a bounded orchestrator cycle."
+    }
+  ],
+  "evidence": [
+    {
+      "source": "verification/control-plane/tasks/phase2-restart-reconciliation/intake.json",
+      "assessment": "RRC-01 through RRC-04 define the bounded local scenario snapshot, restart restore/reconciliation, persistence of reset/replay/time controls, and credential-free Docker restart verification."
+    },
+    {
+      "source": "verification/control-plane/tasks/phase2-restart-reconciliation/checks/restart-offline-rewind-verifier.json",
+      "assessment": "PASS, exit 0, pnpm verify:offline. It is task-bundle bound; the verifier lane independently identifies the candidate and records its successful offline suite."
+    },
+    {
+      "source": "verification/control-plane/tasks/phase2-restart-reconciliation/checks/restart-docker-rewind-final.json",
+      "assessment": "PASS, exit 0, pnpm verify:local-restart. Candidate-bound verifier evidence reports the exact candidate ID, successful Docker-backed restart, credential-free operation, rewind, restored normalized market/account state, and reconciliation revision. Its noted occupied compose port was worked around using an already healthy PostgreSQL instance at the configured loopback port."
+    },
+    {
+      "source": "verification/control-plane/tasks/phase2-restart-reconciliation/checks/postdiff-classification-dbb.json",
+      "assessment": "PASS, exit 0; this dbb-specific structured command checks the exact candidate ID, critical classification, classification and patch hashes, and zero removed safeguards."
+    },
+    {
+      "source": "verification/control-plane/tasks/phase2-restart-reconciliation/lanes/review.dbb16daa7d06.json",
+      "assessment": "Candidate-bound PASS with no findings; review covers rewind semantics, strict snapshot bounds, migration immutability and runbook consistency."
+    },
+    {
+      "source": "verification/control-plane/tasks/phase2-restart-reconciliation/lanes/security.dbb16daa7d06.json",
+      "assessment": "Candidate-bound PASS with no findings; security review covers loopback-only local mode, credential exclusion, strict bounded snapshots, parameterized SQL, append-only migrations, and absence of order/provider routes or secret exposure."
+    },
+    {
+      "source": "verification/control-plane/tasks/phase2-restart-reconciliation/lanes/verifier.dbb16daa7d06.json",
+      "assessment": "Candidate-bound PASS. Candidate identity was independently recomputed; frozen install, typecheck, 25 unit tests, and Docker-backed restart verifier passed. Compose startup hit an occupied port, and verifier used the existing healthy loopback PostgreSQL container."
+    },
+    {
+      "source": "verification/control-plane/tasks/phase2-restart-reconciliation/candidates/dbb16daa7d062c31009a1148d4509deb2fefc5f53359f176a54ed799395654d4.json",
+      "assessment": "The candidate manifest carries the requested candidate ID, exact tracked-diff hash, untracked source hashes, and critical post-diff classification metadata. The verifier lane independently reports that the candidate identity and file hashes match."
+    },
+    {
+      "source": "verification/control-plane/tasks/phase2-restart-reconciliation/test-results.json",
+      "assessment": "RRC-01 through RRC-04 are marked PASS. The aggregate still has POST-DIFF-CLASSIFICATION and POST-DIFF-REQUIRED-LANES PENDING; this is expected to remain pending until all candidate-bound lanes, including this evaluator artifact, are recorded and aggregate results are refreshed. It does not negate the bounded restart slice PASS."
+    },
+    {
+      "source": "docs/control-plane/phase-state.json and goals/phase-02-alpaca-data-account-state.md",
+      "assessment": "Phase 2 remains active. The bounded local restart evidence is not the full phase goal or broader project goal. No supplied evidence demonstrates PAPER order-intent simulation or a bounded orchestrator cycle."
+    }
+  ],
+  "limitations": [
+    "Evaluation used only the permitted structured JSON artifacts and charter/goal sources; no raw logs or builder transcripts were inspected.",
+    "The supplied restart check JSON records the task bundle rather than the candidate ID directly. Candidate binding is supported by the candidate-specific verifier lane, which reports recomputation of the exact candidate and successful execution from its isolated worktree.",
+    "No live Alpaca verification or production broker reconciliation is established by this local fixture-backed slice.",
+    "The candidate-specific review lane itself reports source review only; runtime claims rely on the separate structured verifier and check records."
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-msgpack-market-frames",
+  "task_bundle_id": "c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2",
+  "candidate_id": "f71683920bf93325bf7b8bddaf526f6e5ed09442a8c1ef8f7cd9c5199e48ac85",
+  "reviewer": "independent-read-only-reviewer",
+  "verdict": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "MPF-01",
+      "verdict": "PASS",
+      "evidence": "In the assigned execution worktree, src/domain/market-state.ts decodes JSON and MessagePack through the same bounded decoder and normalized event schemas. MessagePack has a 256 KiB input bound, decoder limits for strings/binary/arrays/maps/extensions, a nesting bound, a 100-message data-frame bound, and rejects mixed control/data frames. Normalized events retain only application-owned fields."
+    },
+    {
+      "criterion_id": "MPF-02",
+      "verdict": "PASS",
+      "evidence": "tests/market-state.test.ts loads checked-in binary batch, connected, subscription, and error fixtures, compares normalized MessagePack events with equivalent JSON, and exercises malformed, wrong-type, oversized, too-deep, mixed, invalid-control, and over-count binary inputs. The candidate-bound focused-msgpack-wired and offline-msgpack-wired records both show PASS with exit code 0."
+    },
+    {
+      "criterion_id": "MPF-03",
+      "verdict": "PASS",
+      "evidence": "src/infra/alpaca-market-stream.ts passes the configured codec through the production stream factory, sets application/json or application/msgpack Content-Type accordingly, enforces matching text/binary frames, and invokes the shared decoder. Tests cover configured factory wiring, MessagePack connection headers, binary handshake/data decoding, codec mismatch rejection, and redaction from status."
+    }
+  ],
+  "findings": [
+    {
+      "severity": "workflow",
+      "status": "OPEN",
+      "finding": "The candidate-bound acceptance file test-results.json has all five criteria marked PASS but aggregate status FAIL. This review cannot reconcile that inconsistent acceptance state; acceptance/phase closeout must remain unverified until the aggregate is repaired and validated."
+    }
+  ],
+  "verification": {
+    "candidate_id": "f71683920bf93325bf7b8bddaf526f6e5ed09442a8c1ef8f7cd9c5199e48ac85",
+    "candidate_source_hashes_match": true,
+    "tracked_diff_sha256_match": true,
+    "untracked_hashes_match": true,
+    "tracked_diff_sha256": "222485975962498081e60cfee41ca6ffe42a7ea2a0983ca86b8bd112391f4b95",
+    "untracked_files_checked": 55,
+    "source_only_review": true,
+    "checks_inspected": [
+      "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/focused-msgpack-wired.json",
+      "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/offline-msgpack-wired.json"
+    ]
+  },
+  "limitations": [
+    "No credential-backed Alpaca qualification was performed. The repository's Phase 2 trade-update research records the documented authentication/codec conflict as BLOCKED; this credential-free market-frame review does not resolve it.",
+    "This task-level review does not by itself prove all Phase 2 closeout criteria, including runtime restart reconciliation against broker truth or the highest externally authorized Alpaca verification rung."
+  ]
+}

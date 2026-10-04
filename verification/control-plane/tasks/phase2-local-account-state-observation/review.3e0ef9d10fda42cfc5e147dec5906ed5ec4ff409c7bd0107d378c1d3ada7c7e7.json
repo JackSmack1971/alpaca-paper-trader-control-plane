@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-account-state-observation",
+  "task_bundle_id": "408998a3b9720f7b9eb7f67dad6ff56c2fecd0156bb707d74c7a3000f8c16760",
+  "candidate_id": "3e0ef9d10fda42cfc5e147dec5906ed5ec4ff409c7bd0107d378c1d3ada7c7e7",
+  "verdict": "PASS",
+  "reviewer": "independent-review",
+  "reviewed_at": "2026-10-04T13:50:00.000Z",
+  "scope": [
+    "LAS-01",
+    "LAS-02",
+    "LAS-03",
+    "Phase 2 scope",
+    "PAPER-only charter"
+  ],
+  "findings": [],
+  "evidence": {
+    "source_hash": "60dc6cbf07983d1085af8a72aeccbc41a4b4b19dbf375b3d55fd6bf567a9cd17",
+    "live_check": "verification/control-plane/tasks/phase2-local-account-state-observation/checks/live-account-observation.json",
+    "observed_summary": "PASS; fixtureCompared, scenarioChanged, resetRestored, provider PAPER markers, and decimal exposure all asserted."
+  },
+  "rationale": "The frozen verifier hashes match. LAS-01 compares canonical normalized account state against expected fixture-derived quantities, orders and exposure; LAS-02 exercises simulated provider resources with simulated/PAPER markers and checks resource data; LAS-03 changes equity, short position quantity and exposure, checks updated provider and normalized state, then resets and matches the baseline. This remains within Phase 2 account-state observability and preserves PAPER-only behavior."
+}

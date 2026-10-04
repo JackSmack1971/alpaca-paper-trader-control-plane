@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "task_id": "phase2-market-replay-foundation",
+  "bundle_id": "4d585aecdcf00381dbc9fc498253aceb79a54a4011489f8476785a900064c295",
+  "status": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "MKT-01",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-tests-2",
+        "check_path": "verification/control-plane/tasks/phase2-market-replay-foundation/checks/candidate-tests-2.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "MKT-02",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-tests-2",
+        "check_path": "verification/control-plane/tasks/phase2-market-replay-foundation/checks/candidate-tests-2.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "MKT-03",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-tests-2",
+        "check_path": "verification/control-plane/tasks/phase2-market-replay-foundation/checks/candidate-tests-2.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-CLASSIFICATION",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-freeze-3",
+        "check_path": "verification/control-plane/tasks/phase2-market-replay-foundation/checks/candidate-freeze-3.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-REQUIRED-LANES",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-freeze-3",
+        "check_path": "verification/control-plane/tasks/phase2-market-replay-foundation/checks/candidate-freeze-3.json",
+        "exit_code": 0
+      }
+    }
+  ],
+  "generated_at": "2026-10-04T05:37:34.784Z"
+}

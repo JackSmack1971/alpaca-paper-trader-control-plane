@@ -1,0 +1,194 @@
+{
+  "schema_version": 2,
+  "baseline_commit": "ea9a83e069f1be79c307fd8a9c4b9fca85977409",
+  "current_head": "ea9a83e069f1be79c307fd8a9c4b9fca85977409",
+  "goal_digest": "22c88ea1b0723cd0b7673431186a94df1fc2f5f5f05a3b8c9c7fee0a7eb53e81",
+  "snapshot_id": "fca618a6ae5606d4adb0ccd96904e6e1407085988fa0c9e80b6417417fcd8dcb",
+  "task_id": "phase1-runtime-foundation",
+  "task_bundle_id": "88e26fe33f47b4b0cdf5ab5f9a3a90efa4503841f4b111979d3be8981aa2cf75",
+  "tracked_diff_sha256": "cc9350f0a0b867f2e592f965c6edefd4b17a9018f800e584c2e3d038016a9220",
+  "untracked": [
+    {
+      "path": "compose.yaml",
+      "sha256": "4546f29625f4623bf426c88efc6ba6032a1a801c587d7dd3b089af085187adaa"
+    },
+    {
+      "path": "config/default.json",
+      "sha256": "5fac041421ae3be2c236685a258dc75d874108e72c9ab5c4d14593c8bdd990b8"
+    },
+    {
+      "path": "docs/runbook.md",
+      "sha256": "214e75b4ee0da085771eff79f7f3f94b8f1dc3298dfa276b119c458dfd70b71f"
+    },
+    {
+      "path": "fixtures/dev/seed.json",
+      "sha256": "3e5d63cb071cd154d7140c39add981b87a2542e17a8c9f94869661dfa470646f"
+    },
+    {
+      "path": "migrations/0001_initial.sql",
+      "sha256": "4152be71b6642e032f909a29e540cd8340992120f83931f1b3592b6273c9214b"
+    },
+    {
+      "path": "migrations/0002_paper_mode_correlation.sql",
+      "sha256": "51c3f91c192f29c1bdb428049ed01552f38d628bd4b0e604422fbc317c40986d"
+    },
+    {
+      "path": "package.json",
+      "sha256": "dbdbec7be382788c2ab85364eb877cbbafea1648051f9e10bd24fb0971fc63a8"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "6e7850eec84491b570e3b8ca6a88b447c2e0f6ffd26912cc41190b41c2ecb698"
+    },
+    {
+      "path": "scripts/config-check.ts",
+      "sha256": "9b611fba05b5a2ac78c4e156ae22790d6034b25c25d6834d78ca1d427442ad8d"
+    },
+    {
+      "path": "scripts/migrate.mjs",
+      "sha256": "c220123dea2d3a515b37d8f51b570735b62b598cf7d3ebd2a376bc60228d7b78"
+    },
+    {
+      "path": "scripts/migrate.ts",
+      "sha256": "961598380b19fac29cb3e3ff363211c60ee8d98d0f0b91a966330359a72a995f"
+    },
+    {
+      "path": "scripts/seed-dev.ts",
+      "sha256": "150641386a8b91c26e7ed83828d7c610c3cbda942e1114e0afc2bbde6962da79"
+    },
+    {
+      "path": "scripts/verify-no-live-routes.mjs",
+      "sha256": "69ef9c1be6db798b52b875e0a715bfc9f504bd5d9df96c6ac7ab5db8a3628463"
+    },
+    {
+      "path": "scripts/verify-runtime.ts",
+      "sha256": "cb34af8874e370da13fa58f7434b3073021ab435b92ae93ad9d4008314ae0147"
+    },
+    {
+      "path": "src/api/app.ts",
+      "sha256": "ac97a896cd433fa83e4641df1bc1edee5c88abab15ba09d0cf5295cb2b6d206f"
+    },
+    {
+      "path": "src/domain/config.ts",
+      "sha256": "996aecb04db2a30d1c13bb6e89c343af242c2564f2f4cbfea863aeb78f8ffc4d"
+    },
+    {
+      "path": "src/domain/dev-db.ts",
+      "sha256": "eeba2f14bebd4d7d0118d5481ac89e4439f5e5f8bdcc2b3c1b49bb32dc3c908c"
+    },
+    {
+      "path": "src/domain/paper.ts",
+      "sha256": "6449b5da4e070a06b4d7aab6c431aaf220ab9f2dae97a4e83216d3fc1810dafb"
+    },
+    {
+      "path": "src/infra/capabilities.ts",
+      "sha256": "f8a0bc4891401690b2f89e8778e9333a2593fd252c929230004fd5d5721ca282"
+    },
+    {
+      "path": "src/infra/config.ts",
+      "sha256": "886f937777fafd5d548a5b8b5c53b94c5cd9cf52ca1be1223d27fc64bc11fff7"
+    },
+    {
+      "path": "src/infra/db/client.ts",
+      "sha256": "662e0e50e030599f3f6e98a72c1cd78b2794e75179319f664610994a7f5d313d"
+    },
+    {
+      "path": "src/infra/db/schema.ts",
+      "sha256": "26f3fe6fbbefa50503393437424d098c88cda1213559c162c5bb8aee56a0e2eb"
+    },
+    {
+      "path": "src/infra/migrations.ts",
+      "sha256": "5e6d2ac81460d494bebe8ccc110dea5d8ffb2d18a1d14e9921845bae2edf4f4b"
+    },
+    {
+      "path": "src/main.ts",
+      "sha256": "80ffa97cb826b89720e6afe19954396def0743029a3c3a554456ea2482624462"
+    },
+    {
+      "path": "tests/app.test.ts",
+      "sha256": "0b21009bd0fbd80e2df0c225b2f27f53d87233e7a12ac210808c4a17a3670266"
+    },
+    {
+      "path": "tests/config.test.ts",
+      "sha256": "4665b65e6fa1c82ab2552c8a36d3b2983700d02f77470df72c013902da198755"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "64107884b58d19519ac7e004b82d8f069c2e8e5a34547d9c56fed970575dfdbb"
+    },
+    {
+      "path": "vitest.config.ts",
+      "sha256": "88e293ea2afc24cd79f22df2d7f1dde24bc3c6b4b0f879ebf748aaee93950f85"
+    }
+  ],
+  "post_diff_risk": {
+    "schema_version": 1,
+    "level": "high",
+    "paths": [
+      ".gitignore",
+      "README.md",
+      "compose.yaml",
+      "config/default.json",
+      "docs/runbook.md",
+      "fixtures/dev/seed.json",
+      "migrations/0001_initial.sql",
+      "migrations/0002_paper_mode_correlation.sql",
+      "package.json",
+      "pnpm-lock.yaml",
+      "scripts/config-check.ts",
+      "scripts/control-plane/post-diff-risk.mjs",
+      "scripts/migrate.mjs",
+      "scripts/migrate.ts",
+      "scripts/seed-dev.ts",
+      "scripts/verify-no-live-routes.mjs",
+      "scripts/verify-runtime.ts",
+      "src/api/app.ts",
+      "src/domain/config.ts",
+      "src/domain/dev-db.ts",
+      "src/domain/paper.ts",
+      "src/infra/capabilities.ts",
+      "src/infra/config.ts",
+      "src/infra/db/client.ts",
+      "src/infra/db/schema.ts",
+      "src/infra/migrations.ts",
+      "src/main.ts",
+      "tests/app.test.ts",
+      "tests/config.test.ts",
+      "tsconfig.json",
+      "vitest.config.ts"
+    ],
+    "changed_file_count": 31,
+    "added_lines": 2527,
+    "deleted_lines": 2,
+    "categories": [
+      "change-magnitude",
+      "dependency",
+      "high-impact-surface",
+      "migration",
+      "permission-or-configuration",
+      "public-api",
+      "security-sensitive",
+      "test"
+    ],
+    "removed_safeguards": [],
+    "deleted_guard_line_count": 0,
+    "required_roles": [
+      "reviewer",
+      "security_auditor",
+      "verifier",
+      "evaluator"
+    ],
+    "required_lanes": [
+      "evaluation",
+      "review",
+      "security-review",
+      "verifier"
+    ],
+    "patch_sha256": "c8b90066ea09375248ec2f8085b47a6d38890ab3edb95ca35f4e4f72e3c26f40",
+    "classification_id": "fec734e3dcbb87bfdf75f30ce053d26a476c7a10d7da7511b02ea772121f2d20",
+    "initial_level": "high",
+    "effective_level": "high",
+    "escalated": false
+  },
+  "candidate_id": "09b949e545c5f1ccee1e3a3ffd3164cffe84c5fe030732e7ac5ce3ea9b13ee65"
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-alpaca-account-adapter",
+  "task_bundle_id": "8af198f9a5cca633d4203ff316ecbc2eb4df8001247043fbe54364aaaede8162",
+  "candidate_id": "89635b21e947c8b71ba2eb5f4dd38935e78ebcbacf0c6a66bb27a4f3b9e93a2d",
+  "verdict": "PASS",
+  "evidence": "Independently recomputed candidate using candidate-id.mjs buildCandidate against snapshot 3f4b7b72a452e5239e780302f66b2e9bce45c6bfff832391090c44a10569a4b2: candidate id, tracked diff SHA-256 (222485975962498081e60cfee41ca6ffe42a7ea2a0983ca86b8bd112391f4b95), bundle id and 56 untracked entries match the frozen candidate. Static review of src/api/app.ts, src/infra/local-alpaca-account-transport.ts, src/infra/alpaca-account.ts, src/domain/local-test-harness.ts and tests/local-test-harness.test.ts found that local reconcile constructs the production AlpacaPaperAccountClient/Reconciler with the fixed-host in-memory transport; reads account, positions, open orders and clock; exposes normalized alpaca_paper AccountState; and reports success/failure through local health, logs and request traces. Transport permits only the fixed PAPER origin and four GET routes and never delegates to global fetch. Tests shown in candidate assert adapters' four-resource reconciliation, global fetch exclusion, unsupported host/method/path rejection, network/rate-limit/broker failure plus recovery, no credential values in failure logs, and traces/health state. No source defect against the three task acceptance criteria found. Review is source-level; no tests were run per assignment.",
+  "findings": [],
+  "reviewed_paths": [
+    "src/api/app.ts",
+    "src/infra/local-alpaca-account-transport.ts",
+    "src/infra/alpaca-account.ts",
+    "src/domain/local-test-harness.ts",
+    "tests/local-test-harness.test.ts",
+    "verification/control-plane/tasks/phase2-local-alpaca-account-adapter/intake.json",
+    "verification/control-plane/tasks/phase2-local-alpaca-account-adapter/candidates/89635b21e947c8b71ba2eb5f4dd38935e78ebcbacf0c6a66bb27a4f3b9e93a2d.json"
+  ]
+}

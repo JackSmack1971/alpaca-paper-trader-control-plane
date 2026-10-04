@@ -1,0 +1,55 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 verify:offline C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0
+> corepack pnpm typecheck && corepack pnpm test && corepack pnpm config:check && node scripts/control-plane/check-paper-only.mjs && node scripts/verify-no-live-routes.mjs
+
+
+> alpaca-paper-trader-control-plane@1.1.0 typecheck C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0
+> tsc --noEmit
+
+
+> alpaca-paper-trader-control-plane@1.1.0 test C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0
+> vitest run
+
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0
+
+ ✓ tests/config.test.ts (4 tests) 17ms
+{"level":30,"time":1791089816106,"pid":17296,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791089816116,"pid":17296,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791089816111,"pid":17296,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":200},"responseTime":3.827400000000125,"msg":"request completed"}
+{"level":30,"time":1791089816117,"pid":17296,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":503},"responseTime":0.47710000000006403,"msg":"request completed"}
+{"level":30,"time":1791089816117,"pid":17296,"hostname":"bretlaptop","reqId":"req-2","req":{"method":"POST","url":"/orders","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791089816117,"pid":17296,"hostname":"bretlaptop","reqId":"req-2","msg":"Route POST:/orders not found"}
+{"level":30,"time":1791089816118,"pid":17296,"hostname":"bretlaptop","reqId":"req-2","res":{"statusCode":404},"responseTime":0.41229999999995925,"msg":"request completed"}
+ ✓ tests/app.test.ts (2 tests) 216ms
+
+ Test Files  2 passed (2)
+      Tests  6 passed (6)
+   Start at  00:56:55
+   Duration  1.13s (transform 131ms, setup 0ms, collect 599ms, tests 233ms, environment 0ms, prepare 322ms)
+
+
+> alpaca-paper-trader-control-plane@1.1.0 config:check C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0
+> tsx scripts/config-check.ts
+
+{
+  "mode": "paper",
+  "host": "127.0.0.1",
+  "port": 3000,
+  "universe": [
+    "SPY"
+  ],
+  "analysisModel": "",
+  "reviewModel": "",
+  "decisionCadenceSeconds": 60,
+  "maxPositionPct": "0.10",
+  "maxDailyLossPct": "0.02",
+  "alpacaDataFeed": "iex",
+  "openRouterBaseUrl": "https://openrouter.ai/api/v1",
+  "credentials": {
+    "alpaca": "missing",
+    "openrouter": "missing"
+  }
+}
+PASS: no prohibited live-trading endpoint/mode material found in production src/.
+PASS: no live-trading endpoint or trading route is registered.

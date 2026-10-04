@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "candidate-required-lanes-rerun",
+  "task_id": "phase2-local-freshness-runtime-verifier",
+  "bundle_id": "1f40c6b6bc08efca9954997dd0184b8c341243e08f4bcea2f54d7caf0cba7d8b",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "-e",
+    "const fs=require(\"node:fs\");const assert=require(\"node:assert/strict\");const dir=\"verification/control-plane/tasks/phase2-local-freshness-runtime-verifier\";const id=\"10e8aaebf94c00f7ca610372a39019adb6fe7790035804c61937d0157430374c\";const bundle=\"1f40c6b6bc08efca9954997dd0184b8c341243e08f4bcea2f54d7caf0cba7d8b\";for(const kind of [\"review\",\"security-review\",\"verifier\"]){const r=JSON.parse(fs.readFileSync(`${dir}/${kind}.${id}.json`,\"utf8\"));assert.equal(r.candidate_id,id);assert.equal(r.task_id,\"phase2-local-freshness-runtime-verifier\");assert.equal(r.task_bundle_id??r.bundle_id,bundle);assert.ok(r.verdict===\"PASS\"||r.status===\"VERIFIED\");}"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-freshness-runtime-verifier/checks/candidate-required-lanes-rerun.log",
+  "started_at": "2026-10-04T13:26:00.742Z",
+  "completed_at": "2026-10-04T13:26:00.802Z",
+  "signal": null,
+  "error": null
+}

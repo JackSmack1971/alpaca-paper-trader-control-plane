@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-trade-update-sim",
+  "task_bundle_id": "e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9a",
+  "candidate_id": "a71521968046b070bfc4e1ab16f3b20e42ef92f9470f0e9f74d53fd5b9746d2e",
+  "reviewer": "independent-reviewer",
+  "verdict": "PASS",
+  "findings": [
+    {
+      "recommendation": "Accept zero for cumulative order.filled_qty (nonnegative validation), while keeping order.qty, execution qty/price, and filled_avg_price positive. Add a new-order fixture with filled_qty: 0.",
+      "criterion": "LTU-02",
+      "severity": "MEDIUM",
+      "failure_mode": "A provider-shaped new/accepted trade update with cumulative filled_qty 0 is rejected by positiveScalarSchema, so valid no-fill events cannot be injected or observed.",
+      "evidence": "src/domain/local-test-harness.ts:34-36 applies positiveScalarSchema to order.filled_qty; tests cover only partial_fill with filled_qty 2.",
+      "requirement": "Valid synthetic provider-shaped trade updates normalize to bounded application-owned event observations stamped with controllable local receive time.",
+      "location": "src/domain/local-test-harness.ts:20,34-36"
+    }
+  ],
+  "coverage": [
+    "Checked LTU-01..04 route gating, bounded ingestion, virtual time, reset, state comparison, PAPER markers, and account non-mutation.",
+    "Confirmed provider extension fields nested in data and order are stripped and fixture covers execution_id, asset_id, order_class, and time_in_force."
+  ],
+  "limitations": [
+    "Did not execute verification commands; verifier lane owns executable evidence.",
+    "Read-only review; no live Alpaca connection or credentials used."
+  ]
+}

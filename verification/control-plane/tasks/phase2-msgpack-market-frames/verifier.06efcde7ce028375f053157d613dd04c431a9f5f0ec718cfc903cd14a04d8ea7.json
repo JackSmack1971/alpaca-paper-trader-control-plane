@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-msgpack-market-frames",
+  "task_bundle_id": "c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2",
+  "candidate_id": "06efcde7ce028375f053157d613dd04c431a9f5f0ec718cfc903cd14a04d8ea7",
+  "verifier": "independent-read-only-verifier",
+  "verdict": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "CANDIDATE-IDENTITY",
+      "verdict": "PASS",
+      "evidence": "Recomputed candidate using buildCandidate against stored snapshot; exact deep equality with frozen artifact. Candidate ID and task bundle match; tracked diff SHA-256 222485975962498081e60cfee41ca6ffe42a7ea2a0983ca86b8bd112391f4b95 and all 55 untracked hashes match."
+    },
+    {
+      "criterion_id": "STATIC-MSGPACK-FIXTURES",
+      "verdict": "PASS",
+      "evidence": "Fixtures batch.bin, connected.bin, subscription.bin, error.bin are included in candidate hashes. market-state.test.ts loads all four and asserts binary batch equivalence, singleton controls and redacted errors; all assertions pass."
+    },
+    {
+      "criterion_id": "RUNTIME-CODEC-WIRING",
+      "verdict": "PASS",
+      "evidence": "Production startup calls createConfiguredAlpacaMarketStream(config); factory passes config.alpacaMarketDataCodec to AlpacaMarketStream. Focused test supplies msgpack config, simulates binary connected/authenticated/subscription frames, and asserts connected with invalidFrames 0."
+    },
+    {
+      "criterion_id": "FOCUSED-TESTS",
+      "verdict": "PASS",
+      "evidence": "Focused suite: tests/market-state.test.ts, tests/alpaca-market-stream.test.ts, tests/config.test.ts; 3 files, 38 tests passed. Additional startup codec wiring test passed (1 test)."
+    },
+    {
+      "criterion_id": "OFFLINE-SUITE",
+      "verdict": "PASS",
+      "evidence": "cmd.exe /c corepack pnpm verify:offline exited 0: typecheck passed, all 7 test files / 69 tests passed, config check reported Alpaca and OpenRouter credentials missing, PAPER-only guard passed, no-live-routes guard passed. No credentials, live market, or broker session used."
+    }
+  ],
+  "verification": {
+    "network_requests_made": false,
+    "credentials_used": false,
+    "live_market_or_broker_session": false,
+    "notes": "Read-only verification of exact frozen candidate. Elevated access was required to invoke local pnpm tooling; no source files were modified."
+  },
+  "commands": [
+    {
+      "command": "node --input-type=module -e buildCandidate + deepEqual frozen candidate",
+      "exit_code": 0,
+      "summary": "Candidate identity and every included untracked source hash match exactly."
+    },
+    {
+      "command": "corepack pnpm exec vitest run tests/market-state.test.ts tests/alpaca-market-stream.test.ts tests/config.test.ts",
+      "exit_code": 0,
+      "summary": "3 files / 38 tests passed."
+    },
+    {
+      "command": "corepack pnpm exec vitest run tests/alpaca-market-stream.test.ts -t \"wires validated application codec configuration into the production stream factory\"",
+      "exit_code": 0,
+      "summary": "1 startup codec wiring test passed."
+    },
+    {
+      "command": "cmd.exe /c corepack pnpm verify:offline",
+      "exit_code": 0,
+      "summary": "Typecheck, 7 test files / 69 tests, config, PAPER-only and no-live-routes passed."
+    }
+  ]
+}

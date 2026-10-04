@@ -25,6 +25,10 @@ node scripts/control-plane/show-phase.mjs
 
 Then follow `docs/control-plane/START_HERE.md`.
 
+## Application foundation
+
+The Phase 1 service setup, local PostgreSQL requirements, startup behavior and credential-free verification are documented in [`docs/runbook.md`](docs/runbook.md). The application remains PAPER-only; later decision, execution, replay and simulation capabilities are not implemented by this foundation.
+
 ## Security boundary
 
 This package does not contain provider credentials and does not grant provider, filesystem, network, Git publication or deployment authority. Codex configuration and Skills shape behavior/capability exposure; the active runtime policy remains authoritative for effects. The eventual application must mechanically enforce PAPER-only behavior itself.

@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-market-stream-adapter",
+  "task_bundle_id": "459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803",
+  "candidate_id": "249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e",
+  "evaluator": "independent-read-only-task-evaluator",
+  "verdict": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "LOCAL-REPLAY-USES-PRODUCTION-STREAM",
+      "verdict": "PASS",
+      "evidence": "Candidate source wires local fixture events through LocalAlpacaMarketTransport's in-memory socket into the production AlpacaMarketStream handshake, decoder, and MarketStateAccumulator. Local API observations use stream.marketStates(); candidate-bound focused integration evidence passes. Independent reviewer confirms frame and accumulator path."
+    },
+    {
+      "criterion_id": "LOCAL-MARKET-TRANSPORT-IS-NETWORK-FREE",
+      "verdict": "PASS",
+      "evidence": "The local socket factory validates the configured Alpaca stock stream URL and codec headers, then returns an EventEmitter-backed in-memory socket; it never constructs a WebSocket client. Local startup uses fixed simulation-only credentials and the test harness requires credential-free loopback configuration. Security review found no external network route or credential lookup. Candidate-bound focused suite and security review pass."
+    },
+    {
+      "criterion_id": "LOCAL-MARKET-REPLAY-IS-DETERMINISTIC",
+      "verdict": "PASS",
+      "evidence": "Fixture replay has bounded steps, a virtual clock, reset controls, and checked replay-prefix accumulator restoration preserving normalized state. Candidate-bound Docker restart check adapter-docker-restart-3 passes and reports credentialFree=true, PAPER mode, virtual-time rewind, and restoration of virtual_time, replay_cursor, normalized_market, and normalized_account."
+    },
+    {
+      "criterion_id": "LOCAL-MARKET-FAILURES-ARE-OBSERVABLE",
+      "verdict": "PASS",
+      "evidence": "Candidate-bound focused integration evidence exercises network, rate-limit, and broker stream failure injection, sanitized health/log/trace observations, deterministic retry scheduling, and bounded recovery. Full verifier suite passes. Security review independently checked bounded failure controls and sanitized observations."
+    },
+    {
+      "criterion_id": "LOCAL-MARKET-FRAMES-ARE-ASSERTABLE",
+      "verdict": "PASS",
+      "evidence": "Candidate-bound focused evidence covers JSON and MessagePack frame handling, malformed/duplicate/out-of-order rejection, replay state and recovery; the in-memory socket implementation provides evidence no real WebSocket was created. Full offline suite reports 7 files and 74 tests passed."
+    },
+    {
+      "criterion_id": "ROUTED-REQUIRED-LANES",
+      "verdict": "PASS",
+      "evidence": "The frozen candidate classifies as critical and requires review, security-review, verifier, and evaluation lanes. Candidate-bound review, security-review, verifier, and this evaluation record bind the same task bundle and candidate with PASS. Verifier also records successful full offline tests, TypeScript noEmit, and the local Docker restart check."
+    }
+  ],
+  "verification": {
+    "candidate_identity": "PASS",
+    "recomputed_candidate_id": "249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e",
+    "task_bundle_id": "459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803",
+    "tracked_diff_sha256": "222485975962498081e60cfee41ca6ffe42a7ea2a0983ca86b8bd112391f4b95",
+    "untracked_hashes_match": 57,
+    "matching_lanes": {
+      "review": "verification/control-plane/tasks/phase2-local-market-stream-adapter/review.249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e.json: PASS",
+      "security_review": "verification/control-plane/tasks/phase2-local-market-stream-adapter/security-review.249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e.json: PASS",
+      "verifier": "verification/control-plane/tasks/phase2-local-market-stream-adapter/verifier.249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e.json: PASS"
+    },
+    "checks": {
+      "focused": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-final-focused-1.json: PASS, exit 0; log reports 7 files and 74 tests passed",
+      "typecheck": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/verifier-typecheck-1.json: PASS, exit 0",
+      "restart": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-docker-restart-3.json: PASS, exit 0; credential-free PAPER restart and normalized state restoration"
+    }
+  },
+  "limitations": [
+    "This evaluation is limited to the frozen Phase 2 market-stream adapter slice; it does not establish the requested end-to-end decision-to-order simulation, which belongs to later phases.",
+    "No credential-backed live Alpaca qualification or live market session is claimed."
+  ],
+  "evaluated_at": "2026-10-04T17:10:00Z",
+  "evidence": "Fresh read-only evaluation passed all five market-stream acceptance criteria and the required candidate-bound lanes after independent candidate-id and file-hash recomputation; see per-criterion evidence and matching review, security-review, verifier, and test records."
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-alpaca-account-adapter",
+  "task_bundle_id": "8af198f9a5cca633d4203ff316ecbc2eb4df8001247043fbe54364aaaede8162",
+  "candidate_id": "89635b21e947c8b71ba2eb5f4dd38935e78ebcbacf0c6a66bb27a4f3b9e93a2d",
+  "verdict": "PASS",
+  "generated_at": "2026-10-04T16:02:21.604Z",
+  "evidence": "Independent read-only verification in .codex/worktrees/phase2-local-alpaca-account-adapter. Recomputed candidate using buildCandidate against snapshot 3f4b7b72a452e5239e780302f66b2e9bce45c6bfff832391090c44a10569a4b2; candidate id, bundle id, tracked diff SHA-256 (222485975962498081e60cfee41ca6ffe42a7ea2a0983ca86b8bd112391f4b95), and 56 untracked files match the frozen candidate. Focused local harness test passed (exit 0, 12/12); complete verify:offline passed (exit 0: typecheck, 72 tests across 7 files, config check, PAPER-only guard, and no-live-routes guard). Source and test review confirms local reconcile constructs the production read-only AlpacaPaperAccountClient/Reconciler with virtual time and the strict in-memory local transport; the integration test observes all four resources, normalized alpaca_paper state including positions/orders/exposure/clock, no global fetch, failure health/log/trace and recovery. Transport tests reject a live host, altered route/query, and POST without reading fixtures. No credentials or provider network were used.",
+  "checks": [
+    {
+      "id": "candidate-identity",
+      "status": "PASS",
+      "exit_code": 0,
+      "details": "Recomputed candidate exactly matches the requested candidate and frozen record."
+    },
+    {
+      "id": "focused-integration",
+      "status": "PASS",
+      "exit_code": 0,
+      "command": "vitest run tests/local-test-harness.test.ts",
+      "details": "12 tests passed, including local account adapter reconciliation, four-resource response normalization, injected network/rate-limit/broker failures, health/log/trace observations, recovery, and strict transport rejection."
+    },
+    {
+      "id": "offline-suite",
+      "status": "PASS",
+      "exit_code": 0,
+      "command": "corepack pnpm verify:offline",
+      "details": "Typecheck passed; 72 tests in 7 files passed; configuration, PAPER-only and no-live-route guards passed."
+    },
+    {
+      "id": "criterion-local-reconcile-uses-alpaca-adapter",
+      "status": "PASS",
+      "details": "src/api/app.ts local endpoint calls AlpacaPaperAccountReconciler.reconcileOnce(); reconciler uses AlpacaPaperAccountClient and local transport. Tests assert account, positions, orders, and clock resources and normalized AccountState/provenance."
+    },
+    {
+      "id": "criterion-local-adapter-network-and-credential-free",
+      "status": "PASS",
+      "details": "src/infra/local-alpaca-account-transport.ts has no global fetch fallback and allows only the exact PAPER origin, GET method, and four fixed resource paths. Tests prove unexpected live host, route/query, and method are rejected before fixture reads; global fetch is stubbed to fail and remains uncalled. Local client placeholders are hardcoded in local-only app construction and omitted from outputs."
+    },
+    {
+      "id": "criterion-local-reconciliation-observable",
+      "status": "PASS",
+      "details": "Integration assertions cover success/failure/recovery health, sanitized logs and route/status traces, preservation of previous normalized snapshot on failure, and restored adapter state."
+    },
+    {
+      "id": "standalone-local-runtime-and-restart",
+      "status": "NOT_RUN",
+      "exit_code": null,
+      "details": "Ports 3001 and 31873 already served local-mode endpoints but their owning process could not be associated with this candidate. verify:local-controls resets scenario state, and verify:local-restart uses PostgreSQL at 55432 and resets persisted state; the active database's disposability/ownership was not established. Avoided mutating either unrelated service. These checks are not needed to establish the three task-specific criteria, which were exercised by in-process Fastify integration tests."
+    }
+  ],
+  "findings": [],
+  "limitations": [
+    "Evidence proves the credential-free in-memory adapter path against synthetic provider-shaped fixtures; it does not prove live Alpaca behavior.",
+    "No standalone external-process runtime/restart check was run because the currently active endpoints and database could not be safely attributed to this candidate."
+  ]
+}

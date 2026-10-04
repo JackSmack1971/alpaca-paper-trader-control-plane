@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-freshness-runtime-verifier",
+  "bundle_id": "1f40c6b6bc08efca9954997dd0184b8c341243e08f4bcea2f54d7caf0cba7d8b",
+  "candidate_id": "10e8aaebf94c00f7ca610372a39019adb6fe7790035804c61937d0157430374c",
+  "status": "VERIFIED",
+  "captured_at": "2026-10-04T13:22:12.844Z",
+  "candidate_binding": {
+    "head": "ea9a83e069f1be79c307fd8a9c4b9fca85977409",
+    "candidate_untracked_file_digests": "MATCH",
+    "candidate_untracked_file_count": 41
+  },
+  "checks": [
+    {
+      "id": "independent-offline-rerun-escalated",
+      "command": "cmd.exe /c corepack pnpm verify:offline",
+      "status": "PASS",
+      "exit_code": 0,
+      "supports": "Rung 0 offline suite and Rung 1 repository verification",
+      "evidence_path": "verification/control-plane/tasks/phase2-local-freshness-runtime-verifier/checks/independent-offline-rerun-escalated.json",
+      "log_path": "verification/control-plane/tasks/phase2-local-freshness-runtime-verifier/checks/independent-offline-rerun-escalated.log"
+    },
+    {
+      "id": "independent-local-controls-31892-elevated",
+      "command": "LOCAL_CONTROL_URL=http://127.0.0.1:31892 cmd.exe /c corepack pnpm verify:local-controls",
+      "status": "PASS",
+      "exit_code": 0,
+      "supports": "LFR-01, LFR-02, and LFR-03 against the local synthetic PAPER runtime",
+      "observed": {
+        "simulated_paper": true,
+        "market_became_stale": true,
+        "account_became_stale": true,
+        "account_reconciled": true,
+        "expected_state_matched": true,
+        "reset_cursor": 0
+      },
+      "evidence_path": "verification/control-plane/tasks/phase2-local-freshness-runtime-verifier/checks/independent-local-controls-31892-elevated.json",
+      "log_path": "verification/control-plane/tasks/phase2-local-freshness-runtime-verifier/checks/independent-local-controls-31892-elevated.log"
+    }
+  ],
+  "failures_and_attribution": [
+    {
+      "id": "independent-offline-rerun",
+      "status": "BLOCKED",
+      "attribution": "SANDBOX_ACCESS",
+      "reason": "The sandbox denied reading the candidate worktree's cached TypeScript compiler with EPERM before typecheck began. The same check passed when rerun with the required local file-read access."
+    },
+    {
+      "id": "independent-local-controls-31892",
+      "status": "BLOCKED",
+      "attribution": "SANDBOX_ACCESS",
+      "reason": "The sandbox denied reading the candidate worktree's cached tsx runner with EPERM before the verifier made a request. The same local verifier passed when rerun with local file-read access."
+    }
+  ],
+  "skipped_or_blocked": [
+    {
+      "check": "credential-backed provider, market-session, and end-to-end PAPER verification",
+      "status": "SKIPPED",
+      "reason": "No credentials or authorization for external provider sessions were present; synthetic local controls are not represented as live provider evidence."
+    }
+  ],
+  "highest_verification_rung": 0,
+  "git_state": {
+    "before": "Candidate source was untracked at HEAD ea9a83e; 41 candidate file digests matched the supplied manifest before checks.",
+    "after": "Verification created only candidate-bundle check logs/results and this verifier record; no source or configuration files were changed."
+  }
+}

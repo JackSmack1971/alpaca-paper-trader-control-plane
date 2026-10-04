@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-account-state-observation",
+  "task_bundle_id": "408998a3b9720f7b9eb7f67dad6ff56c2fecd0156bb707d74c7a3000f8c16760",
+  "candidate_id": "3e0ef9d10fda42cfc5e147dec5906ed5ec4ff409c7bd0107d378c1d3ada7c7e7",
+  "verdict": "PASS",
+  "evidence": "Independent verification recomputed the candidate identity from the frozen snapshot, tracked diff, and 41 untracked file hashes; recomputed candidate and task bundle IDs match. Reran corepack pnpm verify:offline successfully: TypeScript typecheck passed, 62 tests across 7 files passed, config:check reported Alpaca and OpenRouter credentials missing, PAPER-only guard passed, and no-live-routes guard passed. Reran scripts/verify-local-controls.ts against http://127.0.0.1:31893 in the local simulated PAPER environment; it passed account fixture/positions/orders/exposure comparison, changed scenario and reset restoration, freshness aging and simulated reconciliation, synthetic trade-update observation, network/rate_limit/broker failure injection, trace/log inspection, and final reset (replay cursor 0, tradeUpdates 0). No provider credentials were required for this verifier run."
+}

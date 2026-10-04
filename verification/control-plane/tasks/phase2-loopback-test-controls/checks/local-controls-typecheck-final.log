@@ -1,0 +1,23 @@
+
+node:fs:441
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: EPERM: operation not permitted, open 'C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\phase2-loopback-test-controls\node_modules\.pnpm\typescript@5.9.3\node_modules\typescript\lib\_tsc.js'
+    at Object.readFileSync (node:fs:441:20)
+    at defaultLoadImpl (node:internal/modules/cjs/loader:1105:17)
+    at loadSource (node:internal/modules/cjs/loader:1733:20)
+    at Object..js (node:internal/modules/cjs/loader:1832:44)
+    at Module.load (node:internal/modules/cjs/loader:1441:32)
+    at Function._load (node:internal/modules/cjs/loader:1263:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+    at Module.require (node:internal/modules/cjs/loader:1463:12)
+    at require (node:internal/modules/helpers:147:16) {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\phase2-loopback-test-controls\\node_modules\\.pnpm\\typescript@5.9.3\\node_modules\\typescript\\lib\\_tsc.js'
+}
+
+Node.js v22.20.0

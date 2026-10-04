@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-market-stream-frames",
+  "task_bundle_id": "5c894db28593aa85421d1dde7f8e5e3a912cffdb4483bea5d0bb5ce4c3450b09",
+  "candidate_id": "af6b56d4b88b3c7ddf582767da763ef2e1b881bf12b430fd566b0824133cf399",
+  "verdict": "PASS",
+  "evidence": "Independent verifier recomputed candidate/snapshot identity and matched tracked diff plus all 44 untracked hashes. Focused parser/harness checks passed 21/21; verify:offline passed 41/41 with typecheck/config/PAPER/no-live guards. Credentials absent; highest rung offline."
+}

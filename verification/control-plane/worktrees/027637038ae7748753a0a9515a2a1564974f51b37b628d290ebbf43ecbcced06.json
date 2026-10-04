@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "unit_of_work": "phase2-market-frame-hardening-review",
+  "base_sha": "ea9a83e069f1be79c307fd8a9c4b9fca85977409",
+  "worktree": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\phase2-market-frame-hardening-review",
+  "branch": "codex/phase2-market-frame-hardening-review",
+  "owner": "reviewer",
+  "scope": [
+    "verification/control-plane/tasks/phase2-market-frame-hardening/lanes/review.json"
+  ],
+  "integration_target": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0",
+  "assignment_id": "027637038ae7748753a0a9515a2a1564974f51b37b628d290ebbf43ecbcced06",
+  "active": false,
+  "created_at": "2026-10-04T08:32:38.695Z",
+  "released_at": "2026-10-04T08:36:42.921Z"
+}

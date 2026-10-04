@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "id": "verifier-af6b-focused-v1",
+  "task_id": "phase2-market-stream-frames",
+  "bundle_id": "5c894db28593aa85421d1dde7f8e5e3a912cffdb4483bea5d0bb5ce4c3450b09",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "tests/market-state.test.ts",
+    "tests/local-test-harness.test.ts"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-market-stream-frames/checks/verifier-af6b-focused-v1.log",
+  "started_at": "2026-10-04T10:03:55.788Z",
+  "completed_at": "2026-10-04T10:03:58.728Z",
+  "signal": null,
+  "error": null
+}

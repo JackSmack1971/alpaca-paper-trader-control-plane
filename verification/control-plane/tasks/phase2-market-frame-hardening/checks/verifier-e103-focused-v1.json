@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "id": "verifier-e103-focused-v1",
+  "task_id": "phase2-market-frame-hardening",
+  "bundle_id": "a6675919900adf742882e9bd9e2e6dc1c893f1317ccb014f49a31ecd5fd56c5f",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "tests/market-state.test.ts",
+    "tests/local-test-harness.test.ts"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/verifier-e103-focused-v1.log",
+  "started_at": "2026-10-04T09:39:43.626Z",
+  "completed_at": "2026-10-04T09:39:46.143Z",
+  "signal": null,
+  "error": null
+}

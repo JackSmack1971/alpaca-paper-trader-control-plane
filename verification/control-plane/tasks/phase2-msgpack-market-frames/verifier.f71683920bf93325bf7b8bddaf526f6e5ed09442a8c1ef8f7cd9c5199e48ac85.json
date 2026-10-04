@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-msgpack-market-frames",
+  "task_bundle_id": "c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2",
+  "candidate_id": "f71683920bf93325bf7b8bddaf526f6e5ed09442a8c1ef8f7cd9c5199e48ac85",
+  "verifier": "independent-read-only-verifier",
+  "verdict": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "CANDIDATE-IDENTITY",
+      "verdict": "PASS",
+      "evidence": "Recomputed buildCandidate from the assigned worktree using the frozen snapshot and task bundle. Exact deep equality with the frozen candidate; candidate ID matched; tracked diff SHA-256 was 222485975962498081e60cfee41ca6ffe42a7ea2a0983ca86b8bd112391f4b95; all 55 untracked file hashes matched."
+    },
+    {
+      "criterion_id": "OFFLINE-SUITE",
+      "verdict": "PASS",
+      "evidence": "Executed corepack pnpm verify:offline in the candidate worktree with elevated local execution after an initial sandbox EPERM. Typecheck passed; all 7 test files and 69 tests passed; config check completed with Alpaca and OpenRouter credentials missing; PAPER-only guard passed; no-live-routes guard passed."
+    },
+    {
+      "criterion_id": "RUNTIME-CONTROLS-EVIDENCE",
+      "verdict": "PASS-WITH-SCOPE-LIMITATION",
+      "evidence": "Inspected verification/control-plane/tasks/phase2-trade-update-runtime-verifier/checks/live-local-controls.json and its log: recorded PASS / exit 0 and output reports replay cursor 2, simulated PAPER, one synthetic trade update matched, network/rate-limit/broker injections, 25 trace records, 30 log records, and reset cursor/trade updates zero. Inspected verification/control-plane/tasks/phase2-local-freshness-runtime-verifier/checks/live-local-freshness-controls.json and log: recorded PASS / exit 0 with market/account stale transitions, reconciliation, expected-state match, same failure injections, traces/logs, and reset. These are existing runtime records from separate task bundles, not newly executed against this exact frozen candidate."
+    },
+    {
+      "criterion_id": "RESTART-EVIDENCE",
+      "verdict": "PASS-WITH-SCOPE-LIMITATION",
+      "evidence": "Inspected verification/control-plane/tasks/phase2-restart-reconciliation/checks/restart-docker-runtime-final.json and log: recorded PASS / exit 0; output says mode paper, credentialFree true, restored virtual_time, replay_cursor, normalized_market, normalized_account, revision 12. This is an existing runtime record from a separate task bundle and was not newly executed against this exact frozen candidate."
+    }
+  ],
+  "verification": {
+    "network_requests_made": false,
+    "credentials_used": false,
+    "live_market_or_broker_session": false,
+    "loopback_endpoints_probed": false,
+    "notes": "Read-only independent verification. The offline suite ran against the exact frozen candidate. Runtime control and restart records were inspected from separate task bundles and are not exact-candidate runtime qualification. No claims are made about credential-backed Alpaca qualification or live provider behavior."
+  },
+  "commands": [
+    {
+      "command": "node --input-type=module -e buildCandidate(worktree, frozenSnapshot, taskId) + deep equality",
+      "exit_code": 0,
+      "summary": "Candidate ID f71683920bf93325bf7b8bddaf526f6e5ed09442a8c1ef8f7cd9c5199e48ac85; all included hashes match exactly."
+    },
+    {
+      "command": "corepack pnpm verify:offline",
+      "exit_code": 0,
+      "summary": "Typecheck, 7 files / 69 tests, config, PAPER-only guard, and no-live-routes guard passed."
+    },
+    {
+      "command": "corepack pnpm verify:offline (sandbox attempt)",
+      "exit_code": 1,
+      "summary": "Initial sandbox attempt stopped at TypeScript loader with EPERM opening the installed package; the elevated rerun above completed successfully."
+    }
+  ]
+}

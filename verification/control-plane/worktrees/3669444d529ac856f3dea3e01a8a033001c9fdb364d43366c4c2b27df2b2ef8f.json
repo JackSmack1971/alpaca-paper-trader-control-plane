@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "unit_of_work": "phase2-local-alpaca-account-adapter",
+  "base_sha": "ea9a83e069f1be79c307fd8a9c4b9fca85977409",
+  "worktree": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\phase2-local-alpaca-account-adapter",
+  "branch": "codex/phase2-local-alpaca-account-adapter",
+  "owner": "implementer",
+  "scope": [
+    "src/api/app.ts",
+    "src/domain/local-test-harness.ts",
+    "src/infra/local-fixtures.ts",
+    "tests/local-test-harness.test.ts",
+    "docs/runbook.md"
+  ],
+  "integration_target": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0",
+  "assignment_id": "3669444d529ac856f3dea3e01a8a033001c9fdb364d43366c4c2b27df2b2ef8f",
+  "active": false,
+  "created_at": "2026-10-04T15:34:37.021Z",
+  "released_at": "2026-10-04T16:12:59.428Z"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "unit_of_work": "phase2-market-frame-hardening-security",
+  "base_sha": "ea9a83e069f1be79c307fd8a9c4b9fca85977409",
+  "worktree": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\phase2-market-frame-hardening-security",
+  "branch": "codex/phase2-market-frame-hardening-security",
+  "owner": "security_auditor",
+  "scope": [
+    "verification/control-plane/tasks/phase2-market-frame-hardening/lanes/security.json"
+  ],
+  "integration_target": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0",
+  "assignment_id": "94ab409e39bbb633f241c50205f80268555d3099e8f89a1f5dfdbc2e7db6f5af",
+  "active": false,
+  "created_at": "2026-10-04T08:32:40.291Z",
+  "released_at": "2026-10-04T08:36:44.399Z"
+}

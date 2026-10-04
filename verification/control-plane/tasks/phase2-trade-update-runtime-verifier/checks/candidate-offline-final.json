@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "candidate-offline-final",
+  "task_id": "phase2-trade-update-runtime-verifier",
+  "bundle_id": "49ed08744e4a244211a60d19758f97124498cf90a5a768898917df9449fc4e63",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "C:\\Progra~1\\nodejs\\corepack.cmd",
+  "args": [
+    "pnpm",
+    "verify:offline"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-trade-update-runtime-verifier/checks/candidate-offline-final.log",
+  "started_at": "2026-10-04T12:27:50.395Z",
+  "completed_at": "2026-10-04T12:27:58.176Z",
+  "signal": null,
+  "error": null
+}

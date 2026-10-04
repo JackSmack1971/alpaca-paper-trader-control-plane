@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-trade-update-runtime-verifier",
+  "task_bundle_id": "49ed08744e4a244211a60d19758f97124498cf90a5a768898917df9449fc4e63",
+  "candidate_id": "a789143ba79f7149a62911dcde1ab552c453b93cd47fba72b60563cad8147311",
+  "verdict": "FAIL",
+  "findings": [
+    {
+      "summary": "The base URL is validated as loopback, but fetch follows redirects by default. A local endpoint can redirect any request, including synthetic trade-update fixture POST bodies and the marker query, to a non-loopback host, so the verifier does not guarantee loopback-only traffic.",
+      "file": "scripts/verify-local-controls.ts",
+      "lines": [
+        8,
+        23,
+        33,
+        46,
+        55
+      ],
+      "recommendation": "Set redirect: error for every fetch (including rawRequest), or validate every redirect target as loopback before following it; add a regression check that a loopback redirect is rejected without contacting the destination.",
+      "severity": "high"
+    }
+  ],
+  "checks": {
+    "loopback_target_validation": "PASS: accepts only http and exact loopback hostnames and rejects URL credentials/query/fragment in the base URL",
+    "secret_hygiene": "PASS: no real credentials; trace-query-secret-sentinel is an explicit benign sentinel and output checks ensure query redaction",
+    "fixture_ids_values": "PASS: local-* IDs and fixed AAPL values are synthetic fixtures",
+    "reset_cleanup": "PASS WITH LIMIT: successful path resets at end and catch path attempts reset while preserving original error",
+    "account_assertions": "PASS: compares positions and openOrders before and after trade-update observation",
+    "live_broker_traffic": "FAIL: implicit fetch redirect can send synthetic data to non-loopback destination"
+  }
+}

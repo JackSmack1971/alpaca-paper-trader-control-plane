@@ -1,0 +1,343 @@
+{
+  "schema_version": 2,
+  "baseline_commit": "ea9a83e069f1be79c307fd8a9c4b9fca85977409",
+  "current_head": "ea9a83e069f1be79c307fd8a9c4b9fca85977409",
+  "goal_digest": "5d0734fc88aa5a04ed67cb19a69e6140dd40620cc9b0a99feb8ec11399cc3533",
+  "snapshot_id": "195c14c0a18060604921afd9aefd0ebe62f9e07cc7bad2696ada6333db4ad46e",
+  "task_id": "phase2-local-trade-update-sim",
+  "task_bundle_id": "e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9a",
+  "tracked_diff_sha256": "7fdbbf242adf77a1467839a4ff6ebab9ee6e3b25ea9140c6496c936d6b125831",
+  "untracked": [
+    {
+      "path": "config/default.json",
+      "sha256": "bb58e7aba1c8b44e496061da1b12004a67a8187d98d23e5df748e25d76897061"
+    },
+    {
+      "path": "docs/runbook.md",
+      "sha256": "ccd3de3bd7ff6ebc512b603d8855b7893dbe0b53575e4b78c06f0b8fe07273a2"
+    },
+    {
+      "path": "fixtures/account/reconciliation-sample.json",
+      "sha256": "e2482f8b5d4ddbe533c2a3ec0e8a063871b5efc046db9ee85fc494cce93bb5dc"
+    },
+    {
+      "path": "fixtures/dev/seed.json",
+      "sha256": "3e5d63cb071cd154d7140c39add981b87a2542e17a8c9f94869661dfa470646f"
+    },
+    {
+      "path": "fixtures/market/replay-sample.json",
+      "sha256": "985d0b0ccba0fbe086cd81da9a30b065b493265f8fb1662f2ae3fb965f719d6f"
+    },
+    {
+      "path": "migrations/0001_initial.sql",
+      "sha256": "4152be71b6642e032f909a29e540cd8340992120f83931f1b3592b6273c9214b"
+    },
+    {
+      "path": "migrations/0002_paper_mode_correlation.sql",
+      "sha256": "51c3f91c192f29c1bdb428049ed01552f38d628bd4b0e604422fbc317c40986d"
+    },
+    {
+      "path": "migrations/0003_paper_mode_cycle_outcomes.sql",
+      "sha256": "6c426fa28e72ac2418ed59de65e2a910451e531adc01b0eefe545e981b3cb04d"
+    },
+    {
+      "path": "migrations/0004_local_runtime_snapshots.sql",
+      "sha256": "93050db7c8c4661c4d2633b0e7da5f77adb249078713528ea29fa63c48b8a256"
+    },
+    {
+      "path": "migrations/0005_bound_local_runtime_snapshots.sql",
+      "sha256": "ab989c9330b2609163d4432da67077a0592db91e1df7a974accf0464a121c08f"
+    },
+    {
+      "path": "package.json",
+      "sha256": "e65b77ef0a644de29d0fd9abb00665f65b8567679a77bf8e0eadb7bea4ae5c0a"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "96c2abffceaa748db85ea810dfd03c2f9b95d9984999504d74f2a1c0cf829fef"
+    },
+    {
+      "path": "scripts/config-check.ts",
+      "sha256": "9b611fba05b5a2ac78c4e156ae22790d6034b25c25d6834d78ca1d427442ad8d"
+    },
+    {
+      "path": "scripts/verify-local-controls.ts",
+      "sha256": "76017755e4f5bc6a6db1e420874282a11d7fdac8cf4082dcbff4198a86dd5df7"
+    },
+    {
+      "path": "scripts/verify-local-restart.ts",
+      "sha256": "e2fc0d3984631feaf75e3e7073628109867b0e767008d0fcd240c56ef487ada0"
+    },
+    {
+      "path": "src/api/app.ts",
+      "sha256": "47a5c0c804588875a8f58834f9d495bc4ba876ca78c2cb5eb07d68ca1a884004"
+    },
+    {
+      "path": "src/domain/account-state.ts",
+      "sha256": "cd765d3d9753ac75f0a4786b829b272292be4fe7cb3a02bff922015f0032e351"
+    },
+    {
+      "path": "src/domain/config.ts",
+      "sha256": "837c87717988866a25032c19b6b373f5d09caa7bd8642801e7c4b70870335854"
+    },
+    {
+      "path": "src/domain/dev-db.ts",
+      "sha256": "eeba2f14bebd4d7d0118d5481ac89e4439f5e5f8bdcc2b3c1b49bb32dc3c908c"
+    },
+    {
+      "path": "src/domain/local-test-harness.ts",
+      "sha256": "e09676059f7dc916ff5174ea80d343e7473283c84d49a31338a03e94b47587ca"
+    },
+    {
+      "path": "src/domain/market-state.ts",
+      "sha256": "4948725324c53eabdb6c4a7d91f5291c76dec88dd05992887bcbbe8e453afdc1"
+    },
+    {
+      "path": "src/domain/paper.ts",
+      "sha256": "6449b5da4e070a06b4d7aab6c431aaf220ab9f2dae97a4e83216d3fc1810dafb"
+    },
+    {
+      "path": "src/infra/alpaca-account.ts",
+      "sha256": "455f4371c442c0f435f399a435ccb2d322a5283594c6074de915a16407203f91"
+    },
+    {
+      "path": "src/infra/alpaca-market-stream.ts",
+      "sha256": "37126f19fac9dda568c497a77bdf253c61511fa7739701ba5d8cb90deac68d35"
+    },
+    {
+      "path": "src/infra/capabilities.ts",
+      "sha256": "f8a0bc4891401690b2f89e8778e9333a2593fd252c929230004fd5d5721ca282"
+    },
+    {
+      "path": "src/infra/config.ts",
+      "sha256": "627bb98ea2f3e3f4dffb16e6966531e0e5a2c5ee03080411e6164a87564a291e"
+    },
+    {
+      "path": "src/infra/db/client.ts",
+      "sha256": "662e0e50e030599f3f6e98a72c1cd78b2794e75179319f664610994a7f5d313d"
+    },
+    {
+      "path": "src/infra/db/schema.ts",
+      "sha256": "19749bfafa2b4b0e5148d54228852df91345eaab5d1df3322bf1b1d557af1acd"
+    },
+    {
+      "path": "src/infra/local-fixtures.ts",
+      "sha256": "88348dee16ea5942d243474a1efb135ae13d5660b85f6f3daa1130b961b2a55d"
+    },
+    {
+      "path": "src/infra/local-runtime-snapshot.ts",
+      "sha256": "0467b98468e93a3dc52d87ce46686ac1fecbced4389f5e925d60f007cec26b5b"
+    },
+    {
+      "path": "src/infra/migrations.ts",
+      "sha256": "5e6d2ac81460d494bebe8ccc110dea5d8ffb2d18a1d14e9921845bae2edf4f4b"
+    },
+    {
+      "path": "src/main.ts",
+      "sha256": "8fb80834d5151728c192490bb8f10f57726bf8671edb5eb5add03cfe38927d00"
+    },
+    {
+      "path": "tests/account-state.test.ts",
+      "sha256": "3c3fe689bdffb5eabe33994a219ce60bdb7241ddd02ad61f1273c842ba844a91"
+    },
+    {
+      "path": "tests/alpaca-account.test.ts",
+      "sha256": "ec1e0644eefd60fa6ef09e5cf40bb0c782e2a523ac990d5b6fce647d3fcb3a03"
+    },
+    {
+      "path": "tests/alpaca-market-stream.test.ts",
+      "sha256": "e5e5c7cf259f1bed8a72df800d3383b037406e8851b4455b1eeffe1fda58bf20"
+    },
+    {
+      "path": "tests/app.test.ts",
+      "sha256": "2d3339d39aa912c0a4954c59a0ad6d7687b6fc7198427b88cd0866b73c2676af"
+    },
+    {
+      "path": "tests/config.test.ts",
+      "sha256": "1851c5b1deeb2a097de17f11534c8b9823921316402508daf0e59e87704791f5"
+    },
+    {
+      "path": "tests/local-test-harness.test.ts",
+      "sha256": "44b1b6bbcfc1cc8c6255b7c4a523893069c30fbee1ea891e5b0036418b69699d"
+    },
+    {
+      "path": "tests/market-state.test.ts",
+      "sha256": "c8e3451eae17198a0dd5bbf3599bdaa2e2c2faa9f17d4b88c891174c1ecc9cc8"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "64107884b58d19519ac7e004b82d8f069c2e8e5a34547d9c56fed970575dfdbb"
+    },
+    {
+      "path": "vitest.config.ts",
+      "sha256": "88e293ea2afc24cd79f22df2d7f1dde24bc3c6b4b0f879ebf748aaee93950f85"
+    }
+  ],
+  "post_diff_risk": {
+    "schema_version": 1,
+    "level": "critical",
+    "paths": [
+      ".gitignore",
+      "config/default.json",
+      "docs/control-plane/phase-state.json",
+      "docs/runbook.md",
+      "fixtures/account/reconciliation-sample.json",
+      "fixtures/dev/seed.json",
+      "fixtures/market/replay-sample.json",
+      "migrations/0001_initial.sql",
+      "migrations/0002_paper_mode_correlation.sql",
+      "migrations/0003_paper_mode_cycle_outcomes.sql",
+      "migrations/0004_local_runtime_snapshots.sql",
+      "migrations/0005_bound_local_runtime_snapshots.sql",
+      "package.json",
+      "pnpm-lock.yaml",
+      "scripts/config-check.ts",
+      "scripts/control-plane/post-diff-risk.mjs",
+      "scripts/verify-local-controls.ts",
+      "scripts/verify-local-restart.ts",
+      "src/api/app.ts",
+      "src/domain/account-state.ts",
+      "src/domain/config.ts",
+      "src/domain/dev-db.ts",
+      "src/domain/local-test-harness.ts",
+      "src/domain/market-state.ts",
+      "src/domain/paper.ts",
+      "src/infra/alpaca-account.ts",
+      "src/infra/alpaca-market-stream.ts",
+      "src/infra/capabilities.ts",
+      "src/infra/config.ts",
+      "src/infra/db/client.ts",
+      "src/infra/db/schema.ts",
+      "src/infra/local-fixtures.ts",
+      "src/infra/local-runtime-snapshot.ts",
+      "src/infra/migrations.ts",
+      "src/main.ts",
+      "tests/account-state.test.ts",
+      "tests/alpaca-account.test.ts",
+      "tests/alpaca-market-stream.test.ts",
+      "tests/app.test.ts",
+      "tests/config.test.ts",
+      "tests/local-test-harness.test.ts",
+      "tests/market-state.test.ts",
+      "tsconfig.json",
+      "vitest.config.ts"
+    ],
+    "changed_file_count": 44,
+    "added_lines": 5187,
+    "deleted_lines": 5,
+    "categories": [
+      "change-magnitude",
+      "control-plane-or-charter",
+      "dependency",
+      "high-impact-surface",
+      "migration",
+      "permission-or-configuration",
+      "public-api",
+      "security-sensitive",
+      "test"
+    ],
+    "removed_safeguards": [],
+    "deleted_guard_line_count": 0,
+    "required_roles": [
+      "reviewer",
+      "security_auditor",
+      "verifier",
+      "evaluator"
+    ],
+    "required_lanes": [
+      "evaluation",
+      "review",
+      "security-review",
+      "verifier"
+    ],
+    "patch_sha256": "2a20420a4ce3f40d743659c68d0cb772304474b7ece211b0563380303f76e64f",
+    "classification_id": "76b330fde233ab87cbac1b1c2b25aadf060984d7cf642ab9f1731d6d94758053",
+    "initial_level": "high",
+    "effective_level": "critical",
+    "escalated": true
+  },
+  "candidate_id": "a71521968046b070bfc4e1ab16f3b20e42ef92f9470f0e9f74d53fd5b9746d2e",
+  "reconciled_post_diff_risk": {
+    "schema_version": 1,
+    "level": "critical",
+    "paths": [
+      ".gitignore",
+      "config/default.json",
+      "docs/control-plane/phase-state.json",
+      "docs/runbook.md",
+      "fixtures/account/reconciliation-sample.json",
+      "fixtures/dev/seed.json",
+      "fixtures/market/replay-sample.json",
+      "migrations/0001_initial.sql",
+      "migrations/0002_paper_mode_correlation.sql",
+      "migrations/0003_paper_mode_cycle_outcomes.sql",
+      "migrations/0004_local_runtime_snapshots.sql",
+      "migrations/0005_bound_local_runtime_snapshots.sql",
+      "package.json",
+      "pnpm-lock.yaml",
+      "scripts/config-check.ts",
+      "scripts/control-plane/post-diff-risk.mjs",
+      "scripts/verify-local-controls.ts",
+      "scripts/verify-local-restart.ts",
+      "src/api/app.ts",
+      "src/domain/account-state.ts",
+      "src/domain/config.ts",
+      "src/domain/dev-db.ts",
+      "src/domain/local-test-harness.ts",
+      "src/domain/market-state.ts",
+      "src/domain/paper.ts",
+      "src/infra/alpaca-account.ts",
+      "src/infra/alpaca-market-stream.ts",
+      "src/infra/capabilities.ts",
+      "src/infra/config.ts",
+      "src/infra/db/client.ts",
+      "src/infra/db/schema.ts",
+      "src/infra/local-fixtures.ts",
+      "src/infra/local-runtime-snapshot.ts",
+      "src/infra/migrations.ts",
+      "src/main.ts",
+      "tests/account-state.test.ts",
+      "tests/alpaca-account.test.ts",
+      "tests/alpaca-market-stream.test.ts",
+      "tests/app.test.ts",
+      "tests/config.test.ts",
+      "tests/local-test-harness.test.ts",
+      "tests/market-state.test.ts",
+      "tsconfig.json",
+      "vitest.config.ts"
+    ],
+    "changed_file_count": 44,
+    "added_lines": 5187,
+    "deleted_lines": 5,
+    "categories": [
+      "change-magnitude",
+      "control-plane-or-charter",
+      "dependency",
+      "high-impact-surface",
+      "migration",
+      "permission-or-configuration",
+      "public-api",
+      "security-sensitive",
+      "test"
+    ],
+    "removed_safeguards": [],
+    "deleted_guard_line_count": 0,
+    "required_roles": [
+      "reviewer",
+      "security_auditor",
+      "verifier",
+      "evaluator"
+    ],
+    "required_lanes": [
+      "evaluation",
+      "review",
+      "security-review",
+      "verifier"
+    ],
+    "patch_sha256": "2a20420a4ce3f40d743659c68d0cb772304474b7ece211b0563380303f76e64f",
+    "classification_id": "76b330fde233ab87cbac1b1c2b25aadf060984d7cf642ab9f1731d6d94758053",
+    "initial_level": "high",
+    "effective_level": "critical",
+    "escalated": true
+  }
+}

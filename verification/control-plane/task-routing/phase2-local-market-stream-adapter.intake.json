@@ -1,0 +1,28 @@
+{
+  "id": "phase2-local-market-stream-adapter",
+  "task_kind": "feature",
+  "uncertainty": "high",
+  "files": [
+    "src/infra/alpaca-market-stream.ts",
+    "src/infra/local-alpaca-market-transport.ts",
+    "src/main.ts",
+    "src/api/app.ts",
+    "src/domain/local-test-harness.ts",
+    "tests/alpaca-market-stream.test.ts",
+    "tests/local-test-harness.test.ts",
+    "docs/runbook.md"
+  ],
+  "architectural_file_count": 4,
+  "expected_code_lines": 200,
+  "blast_radius": ["functional-correctness", "security-boundary"],
+  "verification_difficulty": "deterministic",
+  "implementation_required": true,
+  "research_required": false,
+  "acceptance_criteria": [
+    { "id": "LOCAL-REPLAY-USES-PRODUCTION-STREAM", "text": "Local historical replay drives AlpacaMarketStream through its normal connect, authenticate, subscribe, and frame handling, and observed market snapshots come from its production MarketStateAccumulator." },
+    { "id": "LOCAL-MARKET-TRANSPORT-IS-NETWORK-FREE", "text": "Local mode uses an in-memory transport that accepts only the fixed Alpaca market stream URL, cannot fall through to a real socket, performs no credential lookup, and makes no external network calls." },
+    { "id": "LOCAL-MARKET-REPLAY-IS-DETERMINISTIC", "text": "Replay remains bounded, resettable, virtual-clock controlled, and restart-restorable with stable cursor and normalized market state." },
+    { "id": "LOCAL-MARKET-FAILURES-ARE-OBSERVABLE", "text": "Injected transport and broker stream failures produce deterministic sanitized health/log/trace observations and allow bounded recovery." },
+    { "id": "LOCAL-MARKET-FRAMES-ARE-ASSERTABLE", "text": "Integration evidence covers frame decoding, malformed/duplicate/out-of-order rejection, recovery, replay state, and proof that no real WebSocket was opened." }
+  ]
+}

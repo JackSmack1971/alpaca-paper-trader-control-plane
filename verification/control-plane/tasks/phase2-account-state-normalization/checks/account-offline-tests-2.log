@@ -1,0 +1,24 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 test C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\phase2-account-state-normalization
+> vitest run
+
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0/.codex/worktrees/phase2-account-state-normalization
+
+ ✓ tests/market-state.test.ts (3 tests) 26ms
+ ✓ tests/account-state.test.ts (12 tests) 38ms
+ ✓ tests/config.test.ts (5 tests) 21ms
+{"level":30,"time":1791094496993,"pid":12944,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791094497003,"pid":12944,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791094496998,"pid":12944,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":200},"responseTime":4.402399999999943,"msg":"request completed"}
+{"level":30,"time":1791094497004,"pid":12944,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":503},"responseTime":0.4239000000000033,"msg":"request completed"}
+{"level":30,"time":1791094497004,"pid":12944,"hostname":"bretlaptop","reqId":"req-2","req":{"method":"POST","url":"/orders","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791094497004,"pid":12944,"hostname":"bretlaptop","reqId":"req-2","msg":"Route POST:/orders not found"}
+{"level":30,"time":1791094497005,"pid":12944,"hostname":"bretlaptop","reqId":"req-2","res":{"statusCode":404},"responseTime":0.3953999999999951,"msg":"request completed"}
+ ✓ tests/app.test.ts (2 tests) 190ms
+
+ Test Files  4 passed (4)
+      Tests  22 passed (22)
+   Start at  02:14:56
+   Duration  1.03s (transform 249ms, setup 0ms, collect 993ms, tests 274ms, environment 1ms, prepare 756ms)
+

@@ -1,0 +1,34 @@
+{
+  "candidate_id": "b56ed71e5f028a5f2a5c84bb910cdd7e106224d4117bc32ce8297d53d76f8b00",
+  "status": "PASS",
+  "commands": [
+    {
+      "evidence": "verification/control-plane/tasks/phase2-market-frame-hardening/candidates/b56ed71e5f028a5f2a5c84bb910cdd7e106224d4117bc32ce8297d53d76f8b00.json",
+      "command": "candidate source hash verification (44 recorded file hashes)",
+      "exit_code": 0
+    },
+    {
+      "evidence": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/verifier-focus-b56-v1.json",
+      "command": "Vitest focused crossed quote and provider text checks",
+      "exit_code": 0
+    },
+    {
+      "evidence": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/verifier-typecheck-b56-v1.json",
+      "command": "TypeScript typecheck",
+      "exit_code": 0
+    },
+    {
+      "evidence": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/verifier-full-tests-b56-v1.json",
+      "command": "Full offline test suite (34 tests)",
+      "exit_code": 0
+    },
+    {
+      "evidence": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/verifier-config-b56-v1.json; verifier-paper-guard-b56-v1.json; verifier-live-route-guard-b56-v1.json",
+      "command": "Config check, PAPER-only guard, and no-live-route guard",
+      "exit_code": 0
+    }
+  ],
+  "task_id": "phase2-market-frame-hardening",
+  "task_bundle_id": "a6675919900adf742882e9bd9e2e6dc1c893f1317ccb014f49a31ecd5fd56c5f",
+  "schema_version": 1
+}

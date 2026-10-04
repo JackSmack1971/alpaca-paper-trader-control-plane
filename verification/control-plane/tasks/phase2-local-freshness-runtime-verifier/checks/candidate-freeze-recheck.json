@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "id": "candidate-freeze-recheck",
+  "task_id": "phase2-local-freshness-runtime-verifier",
+  "bundle_id": "1f40c6b6bc08efca9954997dd0184b8c341243e08f4bcea2f54d7caf0cba7d8b",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "scripts/control-plane/candidate-id.mjs",
+    "--snapshot",
+    "verification/control-plane/snapshots/c6c037e6a3521c4ae8de87ed22c54417e723b19bee5aefce063272bbb1a1d6dc.json",
+    "--task-id",
+    "phase2-local-freshness-runtime-verifier"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-freshness-runtime-verifier/checks/candidate-freeze-recheck.log",
+  "started_at": "2026-10-04T13:17:46.295Z",
+  "completed_at": "2026-10-04T13:17:46.914Z",
+  "signal": null,
+  "error": null
+}

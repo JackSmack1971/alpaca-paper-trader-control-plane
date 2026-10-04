@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-msgpack-market-frames",
+  "task_bundle_id": "c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2",
+  "candidate_id": "06efcde7ce028375f053157d613dd04c431a9f5f0ec718cfc903cd14a04d8ea7",
+  "reviewer": "independent-read-only-reviewer",
+  "verdict": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "MPF-01",
+      "verdict": "PASS",
+      "evidence": "src/domain/market-state.ts decodeMarketFrame routes JSON and bounded MessagePack inputs through the same application-owned market-event schema boundary. MessagePack decoding enforces byte, string, binary, array, map, extension, nesting, and message-count bounds; controls are constrained and mixed control/data frames are rejected. tests/market-state.test.ts exercises equivalent normalization and malformed/unsupported inputs."
+    },
+    {
+      "criterion_id": "MPF-02",
+      "verdict": "PASS",
+      "evidence": "tests/market-state.test.ts loads fixtures/market/msgpack/{batch,connected,subscription,error}.bin and asserts normalized events and singleton controls. It also asserts malformed, oversized, too-deep, mixed, wrong-type, and over-count rejection. Candidate-bound focused-msgpack-wired and offline-msgpack-wired checks both record PASS (exit code 0)."
+    },
+    {
+      "criterion_id": "MPF-03",
+      "verdict": "PASS",
+      "evidence": "src/main.ts imports and calls createConfiguredAlpacaMarketStream(config, ...). The configured factory in src/infra/alpaca-market-stream.ts maps config.alpacaMarketDataCodec into the stream's codec option, which controls both Content-Type and binary/text frame handling. tests/alpaca-market-stream.test.ts tests that factory using msgpack application configuration, observes the application/msgpack request header, feeds binary success/authentication/subscription frames, and asserts connected status with no invalid frames."
+    }
+  ],
+  "findings": [],
+  "verification": {
+    "candidate_recomputed": true,
+    "candidate_id_match": true,
+    "task_bundle_id_match": true,
+    "tracked_diff_match": true,
+    "untracked_hashes_match": true,
+    "recomputation": "scripts/control-plane/candidate-id.mjs --snapshot verification/control-plane/snapshots/7645d784fdab5bb4472b073b10db258c1443342afc2439ac9958114d53f4ce09.json --task-id phase2-msgpack-market-frames",
+    "checks_inspected": [
+      "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/focused-msgpack-wired.json",
+      "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/focused-msgpack-wired.log",
+      "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/offline-msgpack-wired.json",
+      "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/offline-msgpack-wired.log"
+    ],
+    "source_only_review": true
+  },
+  "limitations": [
+    "No credentialed live Alpaca stream session was performed; this review verifies deterministic local implementation and test evidence, not live provider qualification."
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "schema_version": 3,
+  "phase": 2,
+  "charter_digest": "8fff9dfd9423c22da6db234e5f7d45f0f6f4414e15c131ba865f3ef7ccc6de5f",
+  "goal_digest": "5d0734fc88aa5a04ed67cb19a69e6140dd40620cc9b0a99feb8ec11399cc3533",
+  "snapshot_id": "6011238f4f62f44b7c74527b6f53980246ac1b049a716b4098b2d5a6a4892e24",
+  "snapshot_artifact": "verification/control-plane/snapshots/6011238f4f62f44b7c74527b6f53980246ac1b049a716b4098b2d5a6a4892e24.json",
+  "task_id": "phase2-local-market-stream-adapter",
+  "task_bundle_id": "459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803",
+  "candidate_id": "249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e",
+  "acceptance": [
+    {
+      "criterion_id": "P02-C01",
+      "disposition": "PASS",
+      "evidence": "Normalized market/account state and freshness, production stream health, local PAPER observations, and restart restoration passed adapter-running-controls-1, adapter-docker-restart-3, and candidate-bound offline verification."
+    },
+    {
+      "criterion_id": "P02-C02",
+      "disposition": "PASS",
+      "evidence": "Offline fixtures, typecheck, PAPER-only guard, no-live-route scan, and local runtime controls passed; absent credentials make rung 1 the highest authorized rung, as documented in phase-02.md."
+    }
+  ],
+  "verification": [
+    {
+      "command": "node scripts/control-plane/validate.mjs",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/controlplane-validation-3.json"
+    },
+    {
+      "command": "TypeScript 5.9.3 tsc --noEmit --project tsconfig.json",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/verifier-typecheck-1.json"
+    },
+    {
+      "command": "Vitest full offline suite",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/verifier-full-offline-2.json (7 files, 74 tests passed)"
+    },
+    {
+      "command": "node scripts/verify-no-live-routes.mjs",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/phase2-no-live-routes-2.json"
+    },
+    {
+      "command": "node scripts/control-plane/check-paper-only.mjs",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/phase2-paper-guard-2.json"
+    },
+    {
+      "command": "tsx scripts/config-check.ts",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/phase2-config-check-2.json (PAPER mode, Alpaca and OpenRouter credentials missing)"
+    },
+    {
+      "command": "tsx scripts/seed-dev.ts with DATABASE_URL=postgres://postgres@127.0.0.1:55432/alpaca_paper_dev",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-disposable-db-seed-2.json (synthetic PAPER fixture seeded)"
+    },
+    {
+      "command": "tsx scripts/verify-local-controls.ts against http://127.0.0.1:31886",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-running-controls-1.json (scenario replacement, state comparison, failure injection, logs/traces, reset passed)"
+    },
+    {
+      "command": "tsx scripts/verify-local-restart.ts against disposable PostgreSQL",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-docker-restart-3.json (credential-free PAPER startup and state restoration passed)"
+    }
+  ],
+  "review": {
+    "schema_version": 1,
+    "task_id": "phase2-local-market-stream-adapter",
+    "task_bundle_id": "459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803",
+    "candidate_id": "249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e",
+    "verdict": "PASS",
+    "evidence": "Independently recomputed candidate-id.mjs against snapshot 6011238f4f62f44b7c74527b6f53980246ac1b049a716b4098b2d5a6a4892e24. Recomputed candidate id 249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e and tracked_diff_sha256 222485975962498081e60cfee41ca6ffe42a7ea2a0983ca86b8bd112391f4b95 exactly match the candidate record; all 57 listed untracked file hashes independently matched. Static review found the local transport constructs only an in-memory WebSocket-compatible EventEmitter and its socket factory enforces the exact configured Alpaca stock stream URL, codec content type, and disabled compression; local startup constructs the production AlpacaMarketStream with this factory and hardcoded local-only placeholder keys. The adapter returns AlpacaMarketStream.marketStates() for app observations, runs deterministic auth/subscription/frame handling, bounds each injected frame and timer flush, restores accumulator identity/state from a checked fixture prefix, and resets session/cursor/time through local controls. Network, rate-limit, and broker perturbations route through the stream transport, record sanitized harness observations, and use bounded retry or controlled restart recovery. Existing stream/domain tests cover JSON and MessagePack decoding, malformed frame rejection, duplicate/out-of-order event rejection, startup handshake, and single-owner lifecycle; local integration tests cover replay, reset, virtual time, failure/recovery, logs/traces, and restart restoration. No correctness or maintainability defect against this task slice was found. This is a source-level review; no tests were run for this review lane.",
+    "findings": [],
+    "reviewed_paths": [
+      "src/infra/local-alpaca-market-transport.ts",
+      "src/infra/alpaca-market-stream.ts",
+      "src/domain/market-state.ts",
+      "src/domain/local-test-harness.ts",
+      "src/api/app.ts",
+      "src/main.ts",
+      "tests/alpaca-market-stream.test.ts",
+      "tests/market-state.test.ts",
+      "tests/local-test-harness.test.ts",
+      "verification/control-plane/tasks/phase2-local-market-stream-adapter/intake.json",
+      "verification/control-plane/tasks/phase2-local-market-stream-adapter/candidates/249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e.json"
+    ]
+  },
+  "verifier": {
+    "schema_version": 1,
+    "verdict": "PASS",
+    "candidate_id": "249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e",
+    "task_id": "phase2-local-market-stream-adapter",
+    "task_bundle_id": "459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803",
+    "evidence": "Candidate identity was recomputed from the frozen task snapshot and matched. Full offline Vitest suite passed (7 files, 74 tests) in verifier-full-offline-2; TypeScript noEmit passed in verifier-typecheck-1. Existing candidate-bound adapter-docker-restart-3 record passed and reported credentialFree=true, mode=paper, virtualTimeRewind=true, and restoration of virtual_time, replay_cursor, normalized_market, normalized_account. The initial verifier-full-offline-1 attempt was sandbox-blocked (EPERM) on node_modules junction access; rerun with approved access passed."
+  },
+  "evaluation": {
+    "schema_version": 1,
+    "task_id": "phase2-local-market-stream-adapter",
+    "task_bundle_id": "459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803",
+    "candidate_id": "249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e",
+    "evaluator": "independent-read-only-task-evaluator",
+    "verdict": "PASS",
+    "criteria": [
+      {
+        "criterion_id": "LOCAL-REPLAY-USES-PRODUCTION-STREAM",
+        "verdict": "PASS",
+        "evidence": "Candidate source wires local fixture events through LocalAlpacaMarketTransport's in-memory socket into the production AlpacaMarketStream handshake, decoder, and MarketStateAccumulator. Local API observations use stream.marketStates(); candidate-bound focused integration evidence passes. Independent reviewer confirms frame and accumulator path."
+      },
+      {
+        "criterion_id": "LOCAL-MARKET-TRANSPORT-IS-NETWORK-FREE",
+        "verdict": "PASS",
+        "evidence": "The local socket factory validates the configured Alpaca stock stream URL and codec headers, then returns an EventEmitter-backed in-memory socket; it never constructs a WebSocket client. Local startup uses fixed simulation-only credentials and the test harness requires credential-free loopback configuration. Security review found no external network route or credential lookup. Candidate-bound focused suite and security review pass."
+      },
+      {
+        "criterion_id": "LOCAL-MARKET-REPLAY-IS-DETERMINISTIC",
+        "verdict": "PASS",
+        "evidence": "Fixture replay has bounded steps, a virtual clock, reset controls, and checked replay-prefix accumulator restoration preserving normalized state. Candidate-bound Docker restart check adapter-docker-restart-3 passes and reports credentialFree=true, PAPER mode, virtual-time rewind, and restoration of virtual_time, replay_cursor, normalized_market, and normalized_account."
+      },
+      {
+        "criterion_id": "LOCAL-MARKET-FAILURES-ARE-OBSERVABLE",
+        "verdict": "PASS",
+        "evidence": "Candidate-bound focused integration evidence exercises network, rate-limit, and broker stream failure injection, sanitized health/log/trace observations, deterministic retry scheduling, and bounded recovery. Full verifier suite passes. Security review independently checked bounded failure controls and sanitized observations."
+      },
+      {
+        "criterion_id": "LOCAL-MARKET-FRAMES-ARE-ASSERTABLE",
+        "verdict": "PASS",
+        "evidence": "Candidate-bound focused evidence covers JSON and MessagePack frame handling, malformed/duplicate/out-of-order rejection, replay state and recovery; the in-memory socket implementation provides evidence no real WebSocket was created. Full offline suite reports 7 files and 74 tests passed."
+      },
+      {
+        "criterion_id": "ROUTED-REQUIRED-LANES",
+        "verdict": "PASS",
+        "evidence": "The frozen candidate classifies as critical and requires review, security-review, verifier, and evaluation lanes. Candidate-bound review, security-review, verifier, and this evaluation record bind the same task bundle and candidate with PASS. Verifier also records successful full offline tests, TypeScript noEmit, and the local Docker restart check."
+      }
+    ],
+    "verification": {
+      "candidate_identity": "PASS",
+      "recomputed_candidate_id": "249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e",
+      "task_bundle_id": "459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803",
+      "tracked_diff_sha256": "222485975962498081e60cfee41ca6ffe42a7ea2a0983ca86b8bd112391f4b95",
+      "untracked_hashes_match": 57,
+      "matching_lanes": {
+        "review": "verification/control-plane/tasks/phase2-local-market-stream-adapter/review.249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e.json: PASS",
+        "security_review": "verification/control-plane/tasks/phase2-local-market-stream-adapter/security-review.249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e.json: PASS",
+        "verifier": "verification/control-plane/tasks/phase2-local-market-stream-adapter/verifier.249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e.json: PASS"
+      },
+      "checks": {
+        "focused": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-final-focused-1.json: PASS, exit 0; log reports 7 files and 74 tests passed",
+        "typecheck": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/verifier-typecheck-1.json: PASS, exit 0",
+        "restart": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-docker-restart-3.json: PASS, exit 0; credential-free PAPER restart and normalized state restoration"
+      }
+    },
+    "limitations": [
+      "This evaluation is limited to the frozen Phase 2 market-stream adapter slice; it does not establish the requested end-to-end decision-to-order simulation, which belongs to later phases.",
+      "No credential-backed live Alpaca qualification or live market session is claimed."
+    ],
+    "evaluated_at": "2026-10-04T17:10:00Z",
+    "evidence": "Fresh read-only evaluation passed all five market-stream acceptance criteria and the required candidate-bound lanes after independent candidate-id and file-hash recomputation; see per-criterion evidence and matching review, security-review, verifier, and test records."
+  },
+  "unresolved_blockers": [],
+  "phase_status": "COMPLETE",
+  "security_review": {
+    "schema_version": 1,
+    "task_id": "phase2-local-market-stream-adapter",
+    "task_bundle_id": "459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803",
+    "candidate_id": "249ee98b44aab2c2d65a0a9430182035e9c080f98a2d5c37a282f5f449ce5d4e",
+    "verdict": "PASS",
+    "evidence": "Independent read-only security review of the frozen candidate. Verified all 57 candidate-listed non-evidence files against declared SHA-256 hashes; all matched. Independently computed the tracked diff from baseline ea9a83e069f1be79c307fd8a9c4b9fca85977409 with git diff --binary --full-index --no-ext-diff; SHA-256 matched candidate tracked_diff_sha256 222485975962498081e60cfee41ca6ffe42a7ea2a0983ca86b8bd112391f4b95. Task and bundle metadata match. Credential-free local execution: validated localTestMode rejects Alpaca/OpenRouter credentials and requires loopback application/database hosts; main creates the local market stream only in local mode and uses a LocalAlpacaMarketTransport that returns an in-memory EventEmitter socket. The local socket factory validates a fixed feed URL and codec headers, but never constructs ws/WebSocket or opens a network connection. Its auth credentials are fixed non-provider simulation constants used only within this in-memory handshake and are not returned in snapshots. Account simulation injects a fetch implementation that has no delegation to global fetch, accepts only the fixed PAPER origin, exact allowlisted GET paths and no userinfo/hash; it maps harness responses to in-memory Response objects. Production account adapter remains fixed to Alpaca PAPER origin and GET-only, with no order-writing method. Mode is literal paper and assertPaperOnly remains enforced; API routes do not expose order-writing endpoints. Local HTTP controls are only mounted under validated loopback localTestMode and request body limit is 64 KiB; replay steps, event batches, trace/log pagination, account fixtures, and failure queues are bounded. Market events pass the bounded production decoder. Traces store route templates rather than request URLs, logs use fixed event names and selected fields, and error messages/provider details are reduced to fixed codes; captured simulated auth frames are not exposed by HTTP snapshots (only counts are exposed). Candidate-bound focused and restart check records are PASS. No material security issue identified. This review does not constitute live Alpaca qualification.",
+    "findings": [],
+    "checked_paths": [
+      "src/domain/config.ts",
+      "src/main.ts",
+      "src/api/app.ts",
+      "src/domain/paper.ts",
+      "src/domain/local-test-harness.ts",
+      "src/domain/market-state.ts",
+      "src/infra/alpaca-account.ts",
+      "src/infra/alpaca-market-stream.ts",
+      "src/infra/local-alpaca-account-transport.ts",
+      "src/infra/local-alpaca-market-transport.ts",
+      "src/infra/local-fixtures.ts",
+      "src/infra/local-runtime-snapshot.ts",
+      "scripts/verify-no-live-routes.mjs",
+      "scripts/verify-local-controls.ts",
+      "scripts/verify-local-restart.ts",
+      "compose.yaml",
+      "fixtures/market/msgpack/batch.bin",
+      "fixtures/market/msgpack/connected.bin",
+      "fixtures/market/msgpack/subscription.bin",
+      "fixtures/market/msgpack/error.bin",
+      "fixtures/market/replay-sample.json",
+      "fixtures/account/reconciliation-sample.json",
+      "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-final-focused-1.json",
+      "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/adapter-docker-restart-3.json"
+    ],
+    "candidate_identity": "candidate-file-hashes-and-tracked-diff-verified"
+  }
+}

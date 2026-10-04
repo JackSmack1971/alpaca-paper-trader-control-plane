@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-trade-update-sim",
+  "task_bundle_id": "e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9a",
+  "candidate_id": "79fc6142ec7c46ae54d9d5fce7a6920782f09506ea7b0c9bfc121c1ad253697b",
+  "role": "verifier",
+  "status": "PASS",
+  "verdict": "PASS",
+  "commands": [
+    {
+      "command": "corepack pnpm verify:offline",
+      "exit_code": 0,
+      "result": "Independent elevated verification passed typecheck, 62 tests across 7 files, config, PAPER-only guard, and live-route guard.",
+      "evidence": "checks/verifier-final-offline-elevated.json"
+    },
+    {
+      "command": "candidate-79fc-freeze",
+      "exit_code": 0,
+      "result": "Candidate freeze passed.",
+      "evidence": "checks/candidate-79fc-freeze.json"
+    },
+    {
+      "command": "candidate-79fc-offline",
+      "exit_code": 0,
+      "result": "Candidate-bound offline check passed.",
+      "evidence": "checks/candidate-79fc-offline.json"
+    }
+  ],
+  "criteria": [
+    {
+      "disposition": "PASS",
+      "criterion_id": "LTU-01",
+      "status": "PASS",
+      "evidence": [
+        "Local trade-update routes are registered only in opt-in loopback mode; test confirms disabled mode returns 404."
+      ]
+    },
+    {
+      "disposition": "PASS",
+      "criterion_id": "LTU-02",
+      "status": "PASS",
+      "evidence": [
+        "Inspected strict synthetic update schema, event normalization, virtual receive timestamp, and 100-observation cap. Test includes unfilled zero cumulative quantity."
+      ]
+    },
+    {
+      "disposition": "PASS",
+      "criterion_id": "LTU-03",
+      "status": "PASS",
+      "evidence": [
+        "Tests exercise atomic malformed batch rejection, negative price rejection, 20 item batch maximum, virtual clock, reset, bounded retention, and expected-state projection."
+      ]
+    },
+    {
+      "disposition": "PASS",
+      "criterion_id": "LTU-04",
+      "status": "PASS",
+      "evidence": [
+        "Test asserts PAPER/simulated response markers and unchanged positions/open orders; hints remain in a separate in-memory list."
+      ]
+    }
+  ],
+  "independence_note": "Compared all 41 candidate manifest file hashes against the main checkout and independently inspected relevant route, harness, tests, and runbook. Reran verify:offline successfully through the elevated runner after sandboxed execution hit EPERM on installed dependencies.",
+  "findings": [],
+  "generated_at": "2026-10-04T11:59:46.7905525Z"
+}

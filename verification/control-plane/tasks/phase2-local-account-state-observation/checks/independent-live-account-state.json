@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "independent-live-account-state",
+  "task_id": "phase2-local-account-state-observation",
+  "bundle_id": "408998a3b9720f7b9eb7f67dad6ff56c2fecd0156bb707d74c7a3000f8c16760",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "corepack.cmd",
+  "args": [
+    "pnpm",
+    "verify:local-controls"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-account-state-observation/checks/independent-live-account-state.log",
+  "started_at": "2026-10-04T13:44:06.638Z",
+  "completed_at": "2026-10-04T13:44:07.471Z",
+  "signal": null,
+  "error": null
+}

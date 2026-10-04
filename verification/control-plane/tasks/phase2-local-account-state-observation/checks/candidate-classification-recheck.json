@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "id": "candidate-classification-recheck",
+  "task_id": "phase2-local-account-state-observation",
+  "bundle_id": "408998a3b9720f7b9eb7f67dad6ff56c2fecd0156bb707d74c7a3000f8c16760",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "scripts/control-plane/candidate-id.mjs",
+    "--snapshot",
+    "verification/control-plane/snapshots/0053bf9b0ed86590ee7d6291a02fc8a4a5f2b7be935298042e91283cc005c942.json",
+    "--task-id",
+    "phase2-local-account-state-observation"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-account-state-observation/checks/candidate-classification-recheck.log",
+  "started_at": "2026-10-04T13:40:47.719Z",
+  "completed_at": "2026-10-04T13:40:48.345Z",
+  "signal": null,
+  "error": null
+}

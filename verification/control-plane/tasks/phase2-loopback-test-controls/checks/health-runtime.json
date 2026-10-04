@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "health-runtime",
+  "task_id": "phase2-loopback-test-controls",
+  "bundle_id": "1505d0ad8c3af5b4b27f9f372667f528918c85210611b859ca1e9a13259bad64",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "node_modules/tsx/dist/cli.mjs",
+    "scripts/verify-local-controls.ts"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-loopback-test-controls/checks/health-runtime.log",
+  "started_at": "2026-10-04T06:49:43.553Z",
+  "completed_at": "2026-10-04T06:49:44.194Z",
+  "signal": null,
+  "error": null
+}

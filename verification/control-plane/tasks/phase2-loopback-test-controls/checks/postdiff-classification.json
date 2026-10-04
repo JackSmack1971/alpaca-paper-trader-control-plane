@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "id": "postdiff-classification",
+  "task_id": "phase2-loopback-test-controls",
+  "bundle_id": "1505d0ad8c3af5b4b27f9f372667f528918c85210611b859ca1e9a13259bad64",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "--input-type=module",
+    "-e",
+    "import fs from 'node:fs';\nconst id='a7b885c0d48d5c7264d7e9f3abe8eb549bd0332643ae73557aef606c0fa01de1';\nconst c=JSON.parse(fs.readFileSync(`verification/control-plane/tasks/phase2-loopback-test-controls/candidates/${id}.json`,'utf8'));\nif(c.candidate_id!==id||!c.snapshot_id||c.post_diff_risk?.level!=='critical'||!c.post_diff_risk.classification_id||!c.post_diff_risk.patch_sha256||c.post_diff_risk.removed_safeguards.length!==0) process.exit(1);\nconsole.log('PASS: frozen candidate has a reconciled post-diff classification with no removed safeguards.');"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-loopback-test-controls/checks/postdiff-classification.log",
+  "started_at": "2026-10-04T07:04:48.893Z",
+  "completed_at": "2026-10-04T07:04:48.970Z",
+  "signal": null,
+  "error": null
+}

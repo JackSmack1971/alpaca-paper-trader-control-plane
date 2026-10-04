@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "id": "account-offline-tests",
+  "task_id": "phase2-account-state-normalization",
+  "bundle_id": "c1fa6af641c6c5d6c8a53c89a7eb383c749dc1090f3e184bd6a524730416cdb1",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "C:\\Progra~1\\nodejs\\node.exe",
+  "args": [
+    "C:\\Progra~1\\nodejs\\node_modules\\corepack\\dist\\corepack.js",
+    "pnpm",
+    "test"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-account-state-normalization/checks/account-offline-tests.log",
+  "started_at": "2026-10-04T06:11:07.401Z",
+  "completed_at": "2026-10-04T06:11:09.500Z",
+  "signal": null,
+  "error": null
+}

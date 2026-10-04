@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "id": "postdiff-required-lanes-dbb",
+  "task_id": "phase2-restart-reconciliation",
+  "bundle_id": "02912e17d9b90524f7db46970dd8e1c5d6012c1feb64ac0e261a109013215cf4",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "--input-type=module",
+    "-e",
+    "import fs from 'node:fs'; import path from 'node:path'; import {validateRequiredLaneEvidence} from './scripts/control-plane/validate-closeout.mjs'; const id='dbb16daa7d062c31009a1148d4509deb2fefc5f53359f176a54ed799395654d4'; const task='phase2-restart-reconciliation'; const dir='verification/control-plane/tasks/'+task; const candidate=JSON.parse(fs.readFileSync(path.join(dir,'candidates',id+'.json'),'utf8')); const bundle=JSON.parse(fs.readFileSync(path.join(dir,'bundle.json'),'utf8')); const manifest={candidate_id:id,task_id:task,task_bundle_id:bundle.bundle_id}; for(const [key,file] of [['review','review'],['security_review','security-review'],['verifier','verifier'],['evaluation','evaluation']]) manifest[key]=JSON.parse(fs.readFileSync(path.join(dir,file+'.'+id+'.json'),'utf8')); validateRequiredLaneEvidence({directory:path.resolve(dir)},id,task,bundle.bundle_id,candidate.post_diff_risk,manifest); console.log('PASS: every candidate-bound lane passed for this task bundle.');"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-restart-reconciliation/checks/postdiff-required-lanes-dbb.log",
+  "started_at": "2026-10-04T08:05:00.196Z",
+  "completed_at": "2026-10-04T08:05:00.296Z",
+  "signal": null,
+  "error": null
+}

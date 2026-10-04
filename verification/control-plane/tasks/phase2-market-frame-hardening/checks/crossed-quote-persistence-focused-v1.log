@@ -1,0 +1,38 @@
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0
+
+ ✓ tests/market-state.test.ts (13 tests) 81ms
+{"level":30,"time":1791104891399,"pid":20428,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/__local/state","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791104891400,"pid":20428,"hostname":"bretlaptop","reqId":"req-1","msg":"Route GET:/__local/state not found"}
+{"level":30,"time":1791104891400,"pid":20428,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":404},"responseTime":0.40020000000004075,"msg":"request completed"}
+ ❯ tests/local-test-harness.test.ts (3 tests | 1 failed) 260ms
+   ✓ loopback local runtime controls > resets, controls virtual time, replays bounded fixtures, and exposes normalized account state 200ms
+   ✓ loopback local runtime controls > does not register controls by default 47ms
+   × loopback local runtime controls > persists and restores a normalized crossed quote without changing its state 11ms
+     → persisted market state does not match replay cursor
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 15 passed (16)
+   Start at  05:08:10
+   Duration  1.22s (transform 223ms, setup 0ms, collect 682ms, tests 341ms, environment 0ms, prepare 311ms)
+
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/local-test-harness.test.ts > loopback local runtime controls > persists and restores a normalized crossed quote without changing its state
+Error: persisted market state does not match replay cursor
+ ❯ MarketReplay.restore src/domain/market-state.ts:249:15
+    247|       if (!actual || actual.feed !== expectedState.feed || actual.sour…
+    248|         JSON.stringify(actual.lastTrade) !== JSON.stringify(expectedSt…
+    249|         throw new Error('persisted market state does not match replay …
+       |               ^
+    250|       }
+    251|     }
+ ❯ LocalTestHarness.restore src/domain/local-test-harness.ts:70:12
+ ❯ tests/local-test-harness.test.ts:94:90
+ ❯ restoreLocalRuntime src/infra/local-runtime-snapshot.ts:28:5
+ ❯ tests/local-test-harness.test.ts:94:28
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

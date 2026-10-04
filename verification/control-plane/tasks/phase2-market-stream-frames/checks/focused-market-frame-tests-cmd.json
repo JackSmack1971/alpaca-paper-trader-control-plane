@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "id": "focused-market-frame-tests-cmd",
+  "task_id": "phase2-market-stream-frames",
+  "bundle_id": "5c894db28593aa85421d1dde7f8e5e3a912cffdb4483bea5d0bb5ce4c3450b09",
+  "status": "FAIL",
+  "exit_code": 1,
+  "executable": "C:\\Program Files\\nodejs\\corepack.cmd",
+  "args": [
+    "pnpm",
+    "test",
+    "--",
+    "tests/market-state.test.ts"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-market-stream-frames/checks/focused-market-frame-tests-cmd.log",
+  "started_at": "2026-10-04T08:16:42.602Z",
+  "completed_at": "2026-10-04T08:16:42.649Z",
+  "signal": null,
+  "error": null
+}

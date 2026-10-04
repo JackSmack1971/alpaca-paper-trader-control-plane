@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-freshness-runtime-verifier",
+  "task_bundle_id": "1f40c6b6bc08efca9954997dd0184b8c341243e08f4bcea2f54d7caf0cba7d8b",
+  "candidate_id": "10e8aaebf94c00f7ca610372a39019adb6fe7790035804c61937d0157430374c",
+  "verdict": "PASS",
+  "evaluated_at": "2026-10-04T13:30:00.000Z",
+  "criteria": [
+    {
+      "criterion_id": "LFR-01",
+      "verdict": "PASS",
+      "evidence_path": "verification/control-plane/tasks/phase2-local-freshness-runtime-verifier/verifier.10e8aaebf94c00f7ca610372a39019adb6fe7790035804c61937d0157430374c.json",
+      "finding": "Independent loopback runtime evidence reports market state became stale under virtual time."
+    },
+    {
+      "criterion_id": "LFR-02",
+      "verdict": "PASS",
+      "evidence_path": "verification/control-plane/tasks/phase2-local-freshness-runtime-verifier/verifier.10e8aaebf94c00f7ca610372a39019adb6fe7790035804c61937d0157430374c.json",
+      "finding": "Independent loopback runtime evidence reports account became stale then simulated reconciliation restored freshness."
+    },
+    {
+      "criterion_id": "LFR-03",
+      "verdict": "PASS",
+      "evidence_path": "verification/control-plane/tasks/phase2-local-freshness-runtime-verifier/verifier.10e8aaebf94c00f7ca610372a39019adb6fe7790035804c61937d0157430374c.json",
+      "finding": "Independent loopback runtime evidence reports expected state matched and reset cursor returned to zero."
+    },
+    {
+      "criterion_id": "POST-DIFF-CLASSIFICATION",
+      "verdict": "PASS",
+      "evidence_path": "verification/control-plane/tasks/phase2-local-freshness-runtime-verifier/checks/candidate-freeze-recheck.json",
+      "finding": "Frozen candidate identity was recomputed and post-diff classification passed."
+    },
+    {
+      "criterion_id": "POST-DIFF-REQUIRED-LANES",
+      "verdict": "PASS",
+      "evidence_path": "verification/control-plane/tasks/phase2-local-freshness-runtime-verifier/checks/candidate-required-lanes-rerun.json",
+      "finding": "Review, security review, and verifier records bind the exact candidate and task bundle and pass."
+    }
+  ],
+  "required_lanes": [
+    {
+      "lane": "review",
+      "verdict": "PASS",
+      "record": "review.10e8aaebf94c00f7ca610372a39019adb6fe7790035804c61937d0157430374c.json"
+    },
+    {
+      "lane": "security-review",
+      "verdict": "PASS",
+      "record": "security-review.10e8aaebf94c00f7ca610372a39019adb6fe7790035804c61937d0157430374c.json"
+    },
+    {
+      "lane": "verifier",
+      "verdict": "PASS",
+      "record": "verifier.10e8aaebf94c00f7ca610372a39019adb6fe7790035804c61937d0157430374c.json"
+    },
+    {
+      "lane": "evaluation",
+      "verdict": "PASS",
+      "record": "this evaluation"
+    }
+  ],
+  "verification": {
+    "loopback_evidence": "verifier.10e8aaebf94c00f7ca610372a39019adb6fe7790035804c61937d0157430374c.json",
+    "offline_evidence": "checks/independent-offline-rerun-escalated.json",
+    "reason": "No credentials or external-session authorization; this task acceptance covers local synthetic PAPER freshness controls.",
+    "credential_backed_provider": "SKIPPED",
+    "offline": "PASS",
+    "loopback": "PASS"
+  },
+  "limitations": [
+    "Initial independent checks were blocked by sandbox EPERM; their same-command reruns passed with required local file-read access.",
+    "Credential-backed provider and market-session verification was not performed and is not claimed."
+  ],
+  "findings": []
+}

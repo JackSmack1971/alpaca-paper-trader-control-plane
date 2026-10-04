@@ -1,0 +1,17 @@
+{
+  "schema_version": 2,
+  "id": "verifier-paper-guard-b56-v1",
+  "task_id": "phase2-market-frame-hardening",
+  "bundle_id": "a6675919900adf742882e9bd9e2e6dc1c893f1317ccb014f49a31ecd5fd56c5f",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "C:\\Program Files\\nodejs\\node.exe",
+  "args": [
+    "scripts/control-plane/check-paper-only.mjs"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/verifier-paper-guard-b56-v1.log",
+  "started_at": "2026-10-04T08:57:04.384Z",
+  "completed_at": "2026-10-04T08:57:04.473Z",
+  "signal": null,
+  "error": null
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-account-reconciler-restart-refresh",
+  "task_bundle_id": "5a392ee137b19bb6e9b996f4e1dc4271818f247e9845acf9a81dc973450920b2",
+  "candidate_id": "1620669848f244323b8ad3e974e9610e756d1e792b5188c9c772c5c766d5f0ec",
+  "verdict": "PASS",
+  "findings": [],
+  "coverage": {
+    "scope": "Independent read-only review of the frozen candidate, tests/alpaca-account.test.ts, AlpacaPaperAccountClient, AlpacaPaperAccountReconciler, and normalization/provenance contracts.",
+    "candidate_equality": "Candidate metadata matched task and bundle identifiers; worktree HEAD matched frozen baseline; all 55 candidate-listed untracked file hashes matched the isolated worktree.",
+    "criteria": {
+      "restart_refresh": "PASS: the test creates a fresh client and reconciler after changing fixture equity, calls reconcileOnce, asserts exactly four fetches and the complete endpoint path group, then asserts returned normalized equity is 125000.5 alongside positions and open orders.",
+      "no_cached_state": "PASS: both processes use newly constructed clients/reconcilers, so the second successful complete response demonstrates refresh rather than reuse of first in-memory snapshot.",
+      "provenance": "PASS: assertions describe adapter output with alpaca_paper provenance; the fetch implementation returns local structured fixtures and uses test credentials. The test does not establish live broker truth or credential-backed qualification.",
+      "contracts": "PASS: client only issues GET requests to fixed PAPER host endpoints, normalizes complete account/positions/orders/clock atomically, and reconciler replaces latest state only on successful reconciliation."
+    },
+    "limitations": "Evidence is deterministic mocked-provider unit coverage. It does not demonstrate live Alpaca connectivity or process persistence restoration."
+  },
+  "independence": "independent read-only reviewer"
+}

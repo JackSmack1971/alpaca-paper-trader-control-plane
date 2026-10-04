@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "lane": "evaluator",
+  "task_id": "phase2-loopback-test-controls",
+  "candidate_id": "a7b885c0d48d5c7264d7e9f3abe8eb549bd0332643ae73557aef606c0fa01de1",
+  "status": "PASS",
+  "assessment": "The candidate satisfies the four supplied LRT acceptance criteria for the scoped loopback test controls.",
+  "criteria": [
+    {
+      "criterion_id": "LRT-01",
+      "status": "PASS",
+      "evidence": [
+        "src/domain/config.ts defaults localTestMode to false and rejects enabled mode for hosts outside 127.0.0.1, ::1, and localhost, or when Alpaca/OpenRouter credentials are present.",
+        "src/api/app.ts registers /__local routes only when localTestMode is enabled and a harness is supplied; createApp rejects enabled mode without the harness.",
+        "tests/config.test.ts covers default-off and invalid bind/credential cases; tests/local-test-harness.test.ts confirms the state route is 404 by default.",
+        "verification/control-plane/tasks/phase2-loopback-test-controls/checks/health-tests.json records PASS, exit_code 0. The verifier lane also records criterion-level PASS."
+      ]
+    },
+    {
+      "criterion_id": "LRT-02",
+      "status": "PASS",
+      "evidence": [
+        "src/infra/local-fixtures.ts loads checked-in fixtures from fixed module-relative paths.",
+        "src/domain/local-test-harness.ts reset() restores fixture start time and replay state; setClock() controls virtual time; advance() rejects values outside 1..100 and advances only available fixture events.",
+        "The harness has no provider, database, or network dependency; provider responses are assembled from fixture data.",
+        "tests/local-test-harness.test.ts covers reset, virtual time, replay bounds, and simulated failure/recovery. verification/control-plane/tasks/phase2-loopback-test-controls/checks/health-runtime.json records PASS, exit_code 0."
+      ]
+    },
+    {
+      "criterion_id": "LRT-03",
+      "status": "PASS",
+      "evidence": [
+        "src/domain/local-test-harness.ts state() returns replay market snapshot, normalized account snapshot, and replay cursor/total.",
+        "src/domain/account-state.ts normalization supplies positions, open orders, and exposure; the local test asserts these fields.",
+        "The health-runtime structured check records PASS, exit_code 0; verifier evidence independently maps the implementation and test coverage to this criterion."
+      ]
+    },
+    {
+      "criterion_id": "LRT-04",
+      "status": "PASS",
+      "evidence": [
+        "src/api/app.ts records request method, Fastify route template, response status, and harness virtual timestamp through the response hook; it does not pass URL query or body into record().",
+        "src/domain/local-test-harness.ts bounds trace retention at 200 and pages at 100 records. Trace records contain no query or body fields.",
+        "tests/local-test-harness.test.ts checks query-sentinel exclusion, route query exclusion, and virtual-time records. verification/control-plane/tasks/phase2-loopback-test-controls/checks/health-runtime.json records PASS, exit_code 0."
+      ]
+    }
+  ],
+  "findings": [],
+  "verification_evidence": [
+    {
+      "path": "verification/control-plane/tasks/phase2-loopback-test-controls/checks/health-typecheck.json",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "path": "verification/control-plane/tasks/phase2-loopback-test-controls/checks/health-tests.json",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "path": "verification/control-plane/tasks/phase2-loopback-test-controls/checks/health-runtime.json",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "path": "verification/control-plane/tasks/phase2-loopback-test-controls/lanes/reviewer.json",
+      "status": "PASS",
+      "details": "No findings; its attempted test invocation was not run, so its conclusion is source review rather than test execution."
+    },
+    {
+      "path": "verification/control-plane/tasks/phase2-loopback-test-controls/lanes/security.json",
+      "status": "PASS",
+      "details": "No findings; source-and-test-evidence security review, tests not rerun by that lane."
+    },
+    {
+      "path": "verification/control-plane/tasks/phase2-loopback-test-controls/lanes/verifier.json",
+      "status": "PASS",
+      "details": "Reports typecheck and full test suite success with criterion-level evidence."
+    }
+  ],
+  "limitations": [
+    "This evaluation covers only LRT-01..LRT-04 for the loopback test-control slice. It does not fulfill the broader user objective or all Phase 2 requirements in goals/phase-02-alpaca-data-account-state.md.",
+    "The Phase 2 goal includes production Alpaca PAPER data/account integration, stream ownership and limits, robust stream/reconciliation behavior, downstream use of normalized state, operational observability, and verification at the highest authorized Alpaca rung. This candidate does not establish those requirements.",
+    "The scoped checks demonstrate offline local controls; they do not establish credential-backed Alpaca connectivity or a complete decision-to-risk-governor-to-order lifecycle."
+  ],
+  "generated_at": "2026-10-04T07:00:00Z",
+  "task_bundle_id": "1505d0ad8c3af5b4b27f9f372667f528918c85210611b859ca1e9a13259bad64",
+  "verdict": "PASS",
+  "evidence": "Independent evaluator lane passed for candidate a7b885c0d48d5c7264d7e9f3abe8eb549bd0332643ae73557aef606c0fa01de1; source and findings are in lanes\\evaluator.a7b885c0.json"
+}

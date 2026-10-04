@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-msgpack-market-frames",
+  "task_bundle_id": "c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2",
+  "candidate_id": "d6ac30057f74c4fdc43a1bb1a4f6564a595698e7ac1d0accf3b3fd7f3dd6e201",
+  "verdict": "PASS",
+  "evidence": "Independent security audit recomputed the candidate identity with scripts/control-plane/candidate-id.mjs and matched the frozen ID (tracked diff 222485975962498081e60cfee41ca6ffe42a7ea2a0983ca86b8bd112391f4b95; 55 non-evidence untracked files). Reviewed src/domain/market-state.ts: byte-length cap runs before decode; MessagePack decode has bounded string/bin/array/map/ext options; decoded nesting is checked iteratively at depth 16; parse exceptions and Zod failures are reduced to fixed MarketFrameError messages; controls retain only known success/subscription fields and error code/name, discarding msg; normalized event objects retain only schema fields. Reviewed src/infra/alpaca-market-stream.ts: ws maxPayload is 256 KiB, codec/text mismatch is rejected, frame errors and transport errors map to application-owned status strings, and the only URL is fixed Alpaca market-data WSS; construction enforces PAPER invariant. Config exposes only json/msgpack codec and local-test credential-free restrictions remain. Dependency @msgpack/msgpack is exactly pinned to 3.1.3 and lockfile has a SHA-512 integrity digest. Inspected structured check records: focused-msgpack-tests and offline-msgpack-suite both PASS; coverage includes malformed, oversized, depth-20, mixed-control, payload-redaction, and codec mismatch cases. No security defect found in audited slice. Residual qualification: no live stream session was run; extreme decoder recursion behavior is constrained by the pre-parse byte cap and decoder catch but lacks an explicit very-deep hostile-input test.",
+  "findings": [],
+  "checked_paths": [
+    "src/domain/market-state.ts",
+    "src/infra/alpaca-market-stream.ts",
+    "src/domain/config.ts",
+    "src/infra/config.ts",
+    "src/main.ts",
+    "package.json",
+    "pnpm-lock.yaml",
+    "tests/market-state.test.ts",
+    "tests/alpaca-market-stream.test.ts",
+    "fixtures/market/msgpack/error.bin",
+    "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/focused-msgpack-tests.json",
+    "verification/control-plane/tasks/phase2-msgpack-market-frames/checks/offline-msgpack-suite.json"
+  ],
+  "candidate_identity": "recomputed-pass"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "id": "live-account-observation",
+  "task_id": "phase2-local-account-state-observation",
+  "bundle_id": "408998a3b9720f7b9eb7f67dad6ff56c2fecd0156bb707d74c7a3000f8c16760",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "cmd.exe",
+  "args": [
+    "/c",
+    "corepack",
+    "pnpm",
+    "verify:local-controls"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-account-state-observation/checks/live-account-observation.log",
+  "started_at": "2026-10-04T13:40:27.476Z",
+  "completed_at": "2026-10-04T13:40:28.306Z",
+  "signal": null,
+  "error": null
+}

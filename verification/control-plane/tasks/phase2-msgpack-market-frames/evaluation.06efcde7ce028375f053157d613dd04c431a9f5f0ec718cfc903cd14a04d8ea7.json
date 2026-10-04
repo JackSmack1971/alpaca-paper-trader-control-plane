@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-msgpack-market-frames",
+  "task_bundle_id": "c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2",
+  "candidate_id": "06efcde7ce028375f053157d613dd04c431a9f5f0ec718cfc903cd14a04d8ea7",
+  "evaluator": "independent-read-only-evaluator",
+  "verdict": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "MPF-01",
+      "evidence": "The same application-owned decodeMarketFrame path accepts JSON and bounded MessagePack before normalization through the shared application schema. Matching review/security/verifier records describe byte and decoder limits, bounded control values, and credential-free behavior. Candidate-bound tests and offline suite pass.",
+      "verdict": "PASS"
+    },
+    {
+      "criterion_id": "MPF-02",
+      "evidence": "Static batch, connected, subscription, and error binary fixtures are included in the frozen candidate and loaded by market-state tests. Tests assert valid batch/control normalization and malformed, wrong-type, oversized, too-deep, mixed-control/data, and over-count rejection. focused-msgpack-wired PASS, 38 focused tests.",
+      "verdict": "PASS"
+    },
+    {
+      "criterion_id": "MPF-03",
+      "evidence": "Production startup uses createConfiguredAlpacaMarketStream(config); configured factory transfers validated codec into adapter. Matching candidate review and verifier confirm msgpack config drives application/msgpack Content-Type and binary frame decoding through the startup factory test. Security review records no credential leakage in logs/state/fixtures.",
+      "verdict": "PASS"
+    }
+  ],
+  "verification": {
+    "candidate_identity": "PASS",
+    "recomputed_candidate_id": "06efcde7ce028375f053157d613dd04c431a9f5f0ec718cfc903cd14a04d8ea7",
+    "task_bundle_id": "c280b54e4ac63c6280c2e476a18b095f32a936e6a7cfed24fbeb6fc297943ef2",
+    "tracked_diff_sha256": "222485975962498081e60cfee41ca6ffe42a7ea2a0983ca86b8bd112391f4b95",
+    "untracked_hashes_match": 55,
+    "matching_lanes": {
+      "verifier": "PASS",
+      "review": "PASS",
+      "security_review": "PASS"
+    },
+    "checks": {
+      "focused": "focused-msgpack-wired: PASS, exit 0 (3 files, 38 tests)",
+      "offline": "offline-msgpack-wired: PASS, exit 0",
+      "classification": "postdiff-classification-wired: PASS, exit 0"
+    }
+  },
+  "limitations": [
+    "No credential-backed live Alpaca stream qualification is claimed."
+  ],
+  "notes": [
+    "The candidate-bound test-results.json records MPF-01/02/03 as PASS but its aggregate status remains FAIL because POST-DIFF-REQUIRED-LANES was still marked PENDING when that file was generated. Matching review, security-review, and verifier records are now present and PASS; this evaluation supplies the required evaluator lane."
+  ],
+  "evaluated_at": "2026-10-04T14:25:00Z"
+}

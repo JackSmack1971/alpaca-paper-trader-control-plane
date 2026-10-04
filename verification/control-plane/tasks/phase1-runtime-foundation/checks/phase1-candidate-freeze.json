@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "id": "phase1-candidate-freeze",
+  "task_id": "phase1-runtime-foundation",
+  "bundle_id": "88e26fe33f47b4b0cdf5ab5f9a3a90efa4503841f4b111979d3be8981aa2cf75",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "scripts/control-plane/candidate-id.mjs",
+    "--snapshot",
+    "verification/control-plane/snapshots/68705911f0095d35f2cb5d6f9b86ea3dbc141a60059681fbca8f4a3903c43e52.json",
+    "--task-id",
+    "phase1-runtime-foundation"
+  ],
+  "log_path": "verification/control-plane/tasks/phase1-runtime-foundation/checks/phase1-candidate-freeze.log",
+  "started_at": "2026-10-04T04:31:41.060Z",
+  "completed_at": "2026-10-04T04:31:41.554Z",
+  "signal": null,
+  "error": null
+}

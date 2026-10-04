@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-market-frame-hardening",
+  "task_bundle_id": "a6675919900adf742882e9bd9e2e6dc1c893f1317ccb014f49a31ecd5fd56c5f",
+  "candidate_id": "4e3bdb39ece2b0655d0cfeadf2d41d0f467905a7b3c9829f402c25bf58eedb11",
+  "verdict": "PASS",
+  "evidence": "Independent verifier recomputed candidate identity before/after checks and matched source hashes. Focused tests passed 21/21; verify:offline passed with typecheck, 41 tests, config/PAPER/no-live guards; candidate local controls and restart restoration passed. Rung 0 offline; credentialed and rung 1 checks unavailable/not run. Initial acceptance validation attempt failed while required-lanes evidence was pending and is superseded by the final rerun after lane recording."
+}

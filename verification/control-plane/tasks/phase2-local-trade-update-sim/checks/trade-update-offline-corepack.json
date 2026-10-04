@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "trade-update-offline-corepack",
+  "task_id": "phase2-local-trade-update-sim",
+  "bundle_id": "e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9a",
+  "status": "FAIL",
+  "exit_code": 1,
+  "executable": "corepack",
+  "args": [
+    "pnpm",
+    "verify:offline"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-trade-update-sim/checks/trade-update-offline-corepack.log",
+  "started_at": "2026-10-04T11:42:39.078Z",
+  "completed_at": "2026-10-04T11:42:39.084Z",
+  "signal": null,
+  "error": "spawnSync corepack ENOENT"
+}

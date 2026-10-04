@@ -1,0 +1,41 @@
+{
+  "id": "phase2-loopback-test-controls",
+  "task_kind": "feature",
+  "uncertainty": "low",
+  "files": [
+    "src/api/app.ts",
+    "src/domain/config.ts",
+    "src/domain/local-test-harness.ts",
+    "src/infra/config.ts",
+    "src/infra/local-fixtures.ts",
+    "tests/local-test-harness.test.ts",
+    "docs/runbook.md"
+  ],
+  "architectural_file_count": 4,
+  "expected_code_lines": 230,
+  "blast_radius": [
+    "security-boundary",
+    "functional-correctness"
+  ],
+  "verification_difficulty": "difficult",
+  "implementation_required": true,
+  "research_required": false,
+  "acceptance_criteria": [
+    {
+      "id": "LRT-01",
+      "text": "Local test controls are absent by default and startup rejects enabling them when the service is not loopback-bound or any provider credential is configured."
+    },
+    {
+      "id": "LRT-02",
+      "text": "The opt-in local surface resets to checked-in synthetic scenarios, sets virtual time, and executes a bounded number of market fixture events without network access."
+    },
+    {
+      "id": "LRT-03",
+      "text": "The local state inspection returns normalized market and account snapshots, positions, open orders, exposure, and replay cursor."
+    },
+    {
+      "id": "LRT-04",
+      "text": "The local trace endpoint exposes bounded request/control records with virtual timestamps and route templates, excluding query strings and request bodies."
+    }
+  ]
+}

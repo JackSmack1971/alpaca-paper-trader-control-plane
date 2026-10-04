@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "id": "foundation-candidate-cycle-mode-final",
+  "task_id": "phase1-runtime-foundation",
+  "bundle_id": "88e26fe33f47b4b0cdf5ab5f9a3a90efa4503841f4b111979d3be8981aa2cf75",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "scripts/control-plane/candidate-id.mjs",
+    "--snapshot",
+    "verification/control-plane/snapshots/86e288823b5f67adf8d5a940f6154d0f8f55ecf1e0e7669991c321753f0867f1.json",
+    "--task-id",
+    "phase1-runtime-foundation"
+  ],
+  "log_path": "verification/control-plane/tasks/phase1-runtime-foundation/checks/foundation-candidate-cycle-mode-final.log",
+  "started_at": "2026-10-04T05:17:03.152Z",
+  "completed_at": "2026-10-04T05:17:03.806Z",
+  "signal": null,
+  "error": null
+}

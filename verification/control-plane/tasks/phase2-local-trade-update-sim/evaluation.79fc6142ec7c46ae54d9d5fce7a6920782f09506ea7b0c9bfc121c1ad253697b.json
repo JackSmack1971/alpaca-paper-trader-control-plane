@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "lane": "evaluator",
+  "task_id": "phase2-local-trade-update-sim",
+  "task_bundle_id": "e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9a",
+  "candidate_id": "79fc6142ec7c46ae54d9d5fce7a6920782f09506ea7b0c9bfc121c1ad253697b",
+  "verdict": "PASS",
+  "status": "PASS",
+  "assessment": "The frozen candidate satisfies LTU-01..04 and the routed acceptance contract. Source hashes for app.ts, local-test-harness.ts, local-test-harness.test.ts, and runbook.md match the candidate manifest. The candidate-bound offline check, verifier, verification record, reviewer, and security-review all report PASS for this candidate and bundle. The required-lanes structured check passes, and the acceptance contract in the assigned task execution worktree marks LTU-01..04, post-diff classification, and required lanes PASS.",
+  "criteria": [
+    {
+      "criterion_id": "LTU-01",
+      "evidence": [
+        "Routes are registered only when localTestMode and a harness are present; default-mode test asserts route absence."
+      ],
+      "status": "PASS"
+    },
+    {
+      "criterion_id": "LTU-02",
+      "evidence": [
+        "Synthetic trade update input is validated and normalized to application-owned bounded observations stamped from virtual now; nested provider extensions are stripped. Tests include realistic provider extension fields and zero cumulative fill."
+      ],
+      "status": "PASS"
+    },
+    {
+      "criterion_id": "LTU-03",
+      "evidence": [
+        "Batch validation is atomic; tests cover malformed input, negative price, request over the 20-item limit, reset, retention cap, and expected-state comparison."
+      ],
+      "status": "PASS"
+    },
+    {
+      "criterion_id": "LTU-04",
+      "evidence": [
+        "Trade hints are separate from canonical positions/open orders and persisted broker snapshot; tests verify account/open-order invariance, reset, and simulated PAPER response markers."
+      ],
+      "status": "PASS"
+    }
+  ],
+  "findings": [],
+  "verification_evidence": [
+    {
+      "exit_code": 0,
+      "status": "PASS",
+      "path": "verification/control-plane/tasks/phase2-local-trade-update-sim/checks/candidate-79fc-offline.json"
+    },
+    {
+      "path": "verification/control-plane/tasks/phase2-local-trade-update-sim/verifier.79fc6142ec7c46ae54d9d5fce7a6920782f09506ea7b0c9bfc121c1ad253697b.json",
+      "status": "PASS"
+    },
+    {
+      "path": "verification/control-plane/tasks/phase2-local-trade-update-sim/verification.79fc6142ec7c46ae54d9d5fce7a6920782f09506ea7b0c9bfc121c1ad253697b.json",
+      "status": "PASS"
+    },
+    {
+      "path": "verification/control-plane/tasks/phase2-local-trade-update-sim/review.79fc6142ec7c46ae54d9d5fce7a6920782f09506ea7b0c9bfc121c1ad253697b.json",
+      "status": "PASS"
+    },
+    {
+      "path": "verification/control-plane/tasks/phase2-local-trade-update-sim/security-review.79fc6142ec7c46ae54d9d5fce7a6920782f09506ea7b0c9bfc121c1ad253697b.json",
+      "status": "PASS"
+    },
+    {
+      "exit_code": 0,
+      "status": "PASS",
+      "path": "verification/control-plane/tasks/phase2-local-trade-update-sim/checks/candidate-79fc-required-lanes-pass.json"
+    }
+  ],
+  "limitations": [
+    "This evaluation is limited to the routed local trade-update slice and does not establish completion of the broader decision-to-risk-governor-to-order objective or the overall Phase 2 goal.",
+    "No live Alpaca session or credentials were used or required."
+  ],
+  "generated_at": "2026-10-04T12:06:08.5055382Z"
+}

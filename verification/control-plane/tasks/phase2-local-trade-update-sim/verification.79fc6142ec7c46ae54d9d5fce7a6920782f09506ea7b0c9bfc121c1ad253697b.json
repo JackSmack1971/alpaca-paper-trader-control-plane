@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-local-trade-update-sim",
+  "task_bundle_id": "e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9a",
+  "candidate_id": "79fc6142ec7c46ae54d9d5fce7a6920782f09506ea7b0c9bfc121c1ad253697b",
+  "status": "PASS",
+  "commands": [
+    {
+      "command": "corepack pnpm verify:offline",
+      "exit_code": 0,
+      "evidence": "checks/verifier-final-offline-elevated.json"
+    },
+    {
+      "command": "candidate-bound verify:offline",
+      "exit_code": 0,
+      "evidence": "checks/candidate-79fc-offline.json"
+    }
+  ],
+  "evidence": "Independent verifier inspected LTU-01..04 and confirmed frozen candidate file hashes and successful offline verification."
+}

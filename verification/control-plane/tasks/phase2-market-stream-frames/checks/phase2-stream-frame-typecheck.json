@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "phase2-stream-frame-typecheck",
+  "task_id": "phase2-market-stream-frames",
+  "bundle_id": "5c894db28593aa85421d1dde7f8e5e3a912cffdb4483bea5d0bb5ce4c3450b09",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "C:\\Program Files\\nodejs\\node.exe",
+  "args": [
+    "node_modules/typescript/bin/tsc",
+    "--noEmit"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-market-stream-frames/checks/phase2-stream-frame-typecheck.log",
+  "started_at": "2026-10-04T08:17:37.504Z",
+  "completed_at": "2026-10-04T08:17:42.274Z",
+  "signal": null,
+  "error": null
+}

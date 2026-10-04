@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "id": "phase2-exception-fixes-offline-v2",
+  "task_id": "phase2-market-frame-hardening",
+  "bundle_id": "a6675919900adf742882e9bd9e2e6dc1c893f1317ccb014f49a31ecd5fd56c5f",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+  "args": [
+    "-NoProfile",
+    "-Command",
+    "& 'C:\\Program Files\\nodejs\\corepack.cmd' pnpm verify:offline"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-market-frame-hardening/checks/phase2-exception-fixes-offline-v2.log",
+  "started_at": "2026-10-04T09:00:06.731Z",
+  "completed_at": "2026-10-04T09:00:15.676Z",
+  "signal": null,
+  "error": null
+}

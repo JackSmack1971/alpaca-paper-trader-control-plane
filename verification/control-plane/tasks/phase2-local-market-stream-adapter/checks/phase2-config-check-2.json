@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "phase2-config-check-2",
+  "task_id": "phase2-local-market-stream-adapter",
+  "bundle_id": "459cdd941db1ea940fff909ecb7a6072819af98965415cd10a83ad2c41cf4803",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "C:\\\\Program Files\\\\nodejs\\\\node.exe",
+  "args": [
+    "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\\\node_modules\\\\.pnpm\\\\tsx@4.23.15\\\\node_modules\\\\tsx\\\\dist\\\\cli.mjs",
+    "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\\\scripts\\\\config-check.ts"
+  ],
+  "log_path": "verification/control-plane/tasks/phase2-local-market-stream-adapter/checks/phase2-config-check-2.log",
+  "started_at": "2026-10-04T17:11:26.304Z",
+  "completed_at": "2026-10-04T17:11:27.036Z",
+  "signal": null,
+  "error": null
+}

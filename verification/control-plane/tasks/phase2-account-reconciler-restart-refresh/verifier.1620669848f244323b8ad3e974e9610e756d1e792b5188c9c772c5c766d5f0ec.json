@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task_id": "phase2-account-reconciler-restart-refresh",
+  "task_bundle_id": "5a392ee137b19bb6e9b996f4e1dc4271818f247e9845acf9a81dc973450920b2",
+  "candidate_id": "1620669848f244323b8ad3e974e9610e756d1e792b5188c9c772c5c766d5f0ec",
+  "verdict": "PASS",
+  "independence": "independent read-only verifier",
+  "candidate_identity": {
+    "status": "PASS",
+    "computed_candidate_id": "1620669848f244323b8ad3e974e9610e756d1e792b5188c9c772c5c766d5f0ec",
+    "tracked_diff_sha256_match": true,
+    "untracked_file_hashes_match": true,
+    "untracked_file_count": 55,
+    "task_bundle_id_match": true,
+    "snapshot": "C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0/verification/control-plane/snapshots/3c4fa9dc12163e6d4404dd6093d1692db990930f63f06c698c4f305b686ae4e0.json",
+    "note": "The assigned worktree did not contain the snapshot file; the authoritative root snapshot was read by absolute path. Candidate computation and diff/hash inputs remained rooted at the assigned worktree."
+  },
+  "checks": [
+    {
+      "id": "focused-account-reconciler-test",
+      "command": "node ..\\..\\..\\node_modules\\vitest\\vitest.mjs run tests/alpaca-account.test.ts",
+      "status": "PASS",
+      "exit_code": 0,
+      "observed": "6 tests passed. Initial non-elevated attempt was blocked with EPERM while loading Vitest; elevated retry completed successfully."
+    },
+    {
+      "id": "full-offline-verification",
+      "command": "corepack pnpm verify:offline",
+      "status": "PASS",
+      "exit_code": 0,
+      "observed": "Typecheck passed; all 7 Vitest files and 70 tests passed; config check passed with Alpaca and OpenRouter credentials missing; PAPER-only and no-live-routes checks passed. Initial non-elevated attempt was blocked with EPERM while loading TypeScript; elevated retry completed successfully."
+    },
+    {
+      "id": "docker-runtime-availability",
+      "command": "docker ps --format '{{.Names}} {{.Status}}'",
+      "status": "PASS",
+      "exit_code": 0,
+      "observed": "Elevated read-only query confirmed alpaca-paper-trader-control-plane-v110-db-1 Up and healthy. Initial non-elevated attempt was blocked by access denied to the Docker config and engine pipe."
+    },
+    {
+      "id": "bounded-credential-free-restart-runtime",
+      "command": "corepack pnpm verify:local-restart",
+      "status": "PASS",
+      "exit_code": 0,
+      "observed": "Credential-free PAPER runtime restarted successfully; verifier confirmed virtual time rewind and persistence restoration for replay cursor, normalized market, and normalized account. Reported revision 250. Verifier completed its reset and stopped the app process."
+    }
+  ],
+  "limitations": [
+    "No Alpaca or other provider network calls were made; live credential-backed qualification remains outside this check."
+  ]
+}

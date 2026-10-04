@@ -1,0 +1,28 @@
+
+node:assert:150
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9a'
+- 'e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9'
+
+    at [eval]:1:472
+    at runScriptInThisContext (node:internal/vm:209:10)
+    at node:internal/process/execution:446:12
+    at [eval]-wrapper:6:24
+    at runScriptInContext (node:internal/process/execution:444:60)
+    at evalFunction (node:internal/process/execution:279:30)
+    at evalTypeScript (node:internal/process/execution:291:3)
+    at node:internal/main/eval_string:74:3 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9a',
+  expected: 'e134275749c1e7141b436d53b81fe70dd6e265fd0308c3d41fc8ef1b12c46e9',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.20.0
