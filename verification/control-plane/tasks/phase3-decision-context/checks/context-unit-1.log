@@ -1,0 +1,70 @@
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0/.codex/worktrees/phase3-decision-context
+
+ ❯ tests/decision-context.test.ts (6 tests | 2 failed) 287ms
+   ✓ deterministic decision context > produces byte-identical canonical payload, context ID, and digest for identical recorded inputs 243ms
+   × deterministic decision context > uses exact decimal arithmetic for return, spread, exposure, and unrealized P&L 14ms
+     → expected { feed: 'test', …(10) } to match object { current_price: '190.4', …(8) }
+(2 matching properties omitted from actual)
+   ✓ deterministic decision context > rounds exact half-way returns to even at the documented eight decimal places 5ms
+   ✓ deterministic decision context > keeps missing account and market facts null and blocks inference instead of manufacturing zeroes 1ms
+   ✓ deterministic decision context > marks stale market and account inputs unusable and rejects future source observations 10ms
+   × deterministic decision context > rejects invalid symbols, crossed quotes, and serialized contexts above the conservative byte budget 12ms
+     → expected [Function] to throw error matching /4,000-token/ but got 'market data batch exceeds the 100 mes…'
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 4 passed (6)
+   Start at  13:38:31
+   Duration  1.08s (transform 133ms, setup 0ms, collect 340ms, tests 287ms, environment 0ms, prepare 153ms)
+
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/decision-context.test.ts > deterministic decision context > uses exact decimal arithmetic for return, spread, exposure, and unrealized P&L
+AssertionError: expected { feed: 'test', …(10) } to match object { current_price: '190.4', …(8) }
+(2 matching properties omitted from actual)
+
+- Expected
++ Received
+
+@@ -4,8 +4,8 @@
+    "observed_trade_volume": "3",
+    "realized_variance": null,
+    "return_five_trades": null,
+    "return_one_trade": "0.00078844",
+    "spread": "0.1",
+-   "spread_basis_points": "5.256242",
++   "spread_basis_points": "5.26",
+    "trend": null,
+  }
+
+ ❯ tests/decision-context.test.ts:44:34
+     42|   it('uses exact decimal arithmetic for return, spread, exposure, and …
+     43|     const built = buildDecisionContext(await readyInput());
+     44|     expect(built.context.market).toMatchObject({
+       |                                  ^
+     45|       current_price: '190.4',
+     46|       return_one_trade: '0.00078844',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/decision-context.test.ts > deterministic decision context > rejects invalid symbols, crossed quotes, and serialized contexts above the conservative byte budget
+AssertionError: expected [Function] to throw error matching /4,000-token/ but got 'market data batch exceeds the 100 mes…'
+
+- Expected: 
+/4,000-token/
+
++ Received: 
+"market data batch exceeds the 100 message application limit"
+
+ ❯ tests/decision-context.test.ts:124:47
+    122|     const large = await readyInput();
+    123|     large.marketHistory = Array.from({ length: 500 }, (_, index) => ({…
+    124|     expect(() => buildDecisionContext(large)).toThrow(/4,000-token/);
+       |                                               ^
+    125|     const bounded = buildDecisionContext(await readyInput());
+    126|     expect(bounded.tokenEstimateMethod).toBe(TOKEN_ESTIMATE_METHOD);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+

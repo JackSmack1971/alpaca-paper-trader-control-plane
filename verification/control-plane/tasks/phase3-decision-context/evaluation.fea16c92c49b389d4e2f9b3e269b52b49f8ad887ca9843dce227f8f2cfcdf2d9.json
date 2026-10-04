@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "kind": "evaluation",
+  "verdict": "PASS",
+  "task_id": "phase3-decision-context",
+  "task_bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+  "candidate_id": "fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9",
+  "snapshot_id": "2adc274e8e44b88c588480d92a8efbb234633151f7fe729c207a37393ac08b7b",
+  "baseline_commit": "d46ebbaa4a50e757354b5e568401f2fea906db87",
+  "evaluated_head": "d46ebbaa4a50e757354b5e568401f2fea906db87",
+  "criterion": "P03-C01",
+  "sources_inspected": [
+    "goals/phase-03-deterministic-decision-context.md",
+    "docs/PROJECT_CHARTER.md",
+    "src/domain/decision-context.ts",
+    "src/infra/decision-context-store.ts",
+    "tests/decision-context.test.ts",
+    "verification/control-plane/tasks/phase3-decision-context/candidates/fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9.json",
+    "verification/control-plane/tasks/phase3-decision-context/review.fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9.json",
+    "verification/control-plane/tasks/phase3-decision-context/security-review.fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9.json",
+    "verification/control-plane/tasks/phase3-decision-context/verifier.fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9.json",
+    "verification/control-plane/tasks/phase3-decision-context/verification.fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9.json",
+    "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-persisted-replay.json",
+    "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-offline-junction.json"
+  ],
+  "limitations": [
+    "Read-only independent evaluation; no commands or tests were run.",
+    "Offline test and PostgreSQL replay conclusions rely on structured candidate-bound verifier records, not raw logs.",
+    "No credential-backed provider qualification was performed; this is not required for Phase 3.",
+    "The assigned evaluation-lane scope file was absent from the isolated worktree, so the task assignment itself governed scope."
+  ],
+  "evidence": "verification/control-plane/tasks/phase3-decision-context/evaluation.fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9.json"
+}

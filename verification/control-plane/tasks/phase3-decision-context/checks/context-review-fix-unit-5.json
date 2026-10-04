@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "id": "context-review-fix-unit-5",
+  "task_id": "phase3-decision-context",
+  "bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "corepack.cmd",
+  "args": [
+    "pnpm",
+    "test",
+    "tests/decision-context.test.ts"
+  ],
+  "log_path": "verification/control-plane/tasks/phase3-decision-context/checks/context-review-fix-unit-5.log",
+  "started_at": "2026-10-04T18:49:16.259Z",
+  "completed_at": "2026-10-04T18:49:18.237Z",
+  "signal": null,
+  "error": null
+}

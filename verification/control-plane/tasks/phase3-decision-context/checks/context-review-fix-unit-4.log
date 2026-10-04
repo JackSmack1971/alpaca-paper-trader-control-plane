@@ -1,0 +1,52 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 test C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\github-runtime-bootstrap
+> vitest run "tests/decision-context.test.ts"
+
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0/.codex/worktrees/github-runtime-bootstrap
+
+ ❯ tests/decision-context.test.ts (13 tests | 1 failed) 116ms
+   ✓ deterministic decision context > produces byte-identical canonical payload, context ID, and digest for identical recorded inputs 40ms
+   ✓ deterministic decision context > uses exact decimal arithmetic for return, spread, exposure, and unrealized P&L 5ms
+   ✓ deterministic decision context > rounds exact half-way returns to even at the documented eight decimal places 3ms
+   ✓ deterministic decision context > keeps missing account and market facts null and blocks inference instead of manufacturing zeroes 1ms
+   ✓ deterministic decision context > marks stale market and account inputs unusable and rejects future source observations 7ms
+   ✓ deterministic decision context > preserves an explicit stale marker even when the market receive timestamp is recent 3ms
+   ✓ deterministic decision context > marks recently received market data stale when its source event is too old 3ms
+   ✓ deterministic decision context > rejects malformed normalized market and account snapshots before deriving context 6ms
+   ✓ deterministic decision context > blocks inference when required market, account, session, or capability facts are incomplete 7ms
+   ✓ deterministic decision context > applies trade corrections and cancellations and leaves unknown receive provenance null 7ms
+   ✓ deterministic decision context > sums individually safe trade sizes without overflowing JavaScript number arithmetic 2ms
+   ✓ deterministic decision context > marks a fully populated recent market/account context as inference-ready 14ms
+   × deterministic decision context > rejects invalid symbols, crossed quotes, and serialized contexts above the conservative byte budget 16ms
+     → expected [Function] to throw error matching /4,000-token/ but got 'invalid normalized account input'
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 12 passed (13)
+   Start at  14:48:34
+   Duration  872ms (transform 141ms, setup 0ms, collect 276ms, tests 116ms, environment 0ms, prepare 132ms)
+
+ ELIFECYCLE  Test failed. See above for more details.
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/decision-context.test.ts > deterministic decision context > rejects invalid symbols, crossed quotes, and serialized contexts above the conservative byte budget
+AssertionError: expected [Function] to throw error matching /4,000-token/ but got 'invalid normalized account input'
+
+- Expected: 
+/4,000-token/
+
++ Received: 
+"invalid normalized account input"
+
+ ❯ tests/decision-context.test.ts:248:47
+    246|       submittedAt: large.asOf, updatedAt: large.asOf,
+    247|     }));
+    248|     expect(() => buildDecisionContext(large)).toThrow(/4,000-token/);
+       |                                               ^
+    249|     const bounded = buildDecisionContext(await readyInput());
+    250|     expect(bounded.tokenEstimateMethod).toBe(TOKEN_ESTIMATE_METHOD);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

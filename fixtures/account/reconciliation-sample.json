@@ -1,0 +1,50 @@
+{
+  "account": {
+    "id": "00000000-0000-4000-8000-000000000001",
+    "status": "ACTIVE",
+    "currency": "USD",
+    "equity": "100000.00",
+    "cash": "2500.00",
+    "buying_power": "10000.00",
+    "trading_blocked": false,
+    "account_blocked": false,
+    "shorting_enabled": true
+  },
+  "positions": [
+    {
+      "symbol": "TSLA",
+      "qty": "2",
+      "side": "short",
+      "avg_entry_price": "250.00",
+      "current_price": "240.25",
+      "market_value": "-480.50"
+    },
+    {
+      "symbol": "AAPL",
+      "qty": "3.5",
+      "side": "long",
+      "avg_entry_price": "188.00",
+      "current_price": "190.4",
+      "market_value": "666.40"
+    }
+  ],
+  "open_orders": [
+    {
+      "id": "00000000-0000-4000-8000-000000000010",
+      "client_order_id": "fixture-open-order-1",
+      "symbol": "MSFT",
+      "side": "buy",
+      "qty": "1.25",
+      "status": "accepted",
+      "created_at": "2025-01-02T14:55:00.000Z",
+      "type": "limit"
+    }
+  ],
+  "clock": {
+    "timestamp": "2025-01-02T15:00:00.000Z",
+    "is_open": true,
+    "next_open": "2025-01-03T14:30:00.000Z",
+    "next_close": "2025-01-02T21:00:00.000Z",
+    "market": "NYSE"
+  }
+}

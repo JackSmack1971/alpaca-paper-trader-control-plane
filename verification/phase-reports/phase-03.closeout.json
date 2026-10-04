@@ -1,0 +1,166 @@
+{
+  "schema_version": 3,
+  "phase": 3,
+  "charter_digest": "8fff9dfd9423c22da6db234e5f7d45f0f6f4414e15c131ba865f3ef7ccc6de5f",
+  "goal_digest": "6994c477d06bb54944d4079803cb59b335e68da698fc164cd864609f6424ccbb",
+  "snapshot_id": "2adc274e8e44b88c588480d92a8efbb234633151f7fe729c207a37393ac08b7b",
+  "snapshot_artifact": "verification/control-plane/snapshots/2adc274e8e44b88c588480d92a8efbb234633151f7fe729c207a37393ac08b7b.json",
+  "candidate_id": "fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9",
+  "task_id": "phase3-decision-context",
+  "task_bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+  "acceptance": [
+    {
+      "criterion_id": "P03-C01",
+      "disposition": "PASS",
+      "evidence": "Candidate-bound verifier and evaluator records confirm persisted replay equivalence, tested numeric/freshness/missingness behavior, reconstructable provenance, bounded context, and PAPER/no-order-authority safeguards."
+    }
+  ],
+  "verification": [
+    {
+      "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-offline-junction.json",
+      "command": "corepack.cmd pnpm verify:offline",
+      "check_id": "verifier-fea16-offline-junction",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-offline-junction.json"
+    },
+    {
+      "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-persisted-replay.json",
+      "command": "corepack.cmd pnpm verify:decision-context",
+      "check_id": "verifier-fea16-persisted-replay",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-persisted-replay.json"
+    }
+  ],
+  "review": {
+    "schema_version": 1,
+    "kind": "review",
+    "verdict": "PASS",
+    "task_id": "phase3-decision-context",
+    "task_bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+    "candidate_id": "fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9",
+    "snapshot_id": "2adc274e8e44b88c588480d92a8efbb234633151f7fe729c207a37393ac08b7b",
+    "baseline_commit": "d46ebbaa4a50e757354b5e568401f2fea906db87",
+    "reviewed_head": "d46ebbaa4a50e757354b5e568401f2fea906db87",
+    "findings": [],
+    "scope": "Independent source review of the Phase 3 deterministic decision-context implementation, including decimal trend comparison and local mutation route Host/Origin checks, against the active Phase 3 goal and charter. Frozen candidate and snapshot identities were confirmed at the integration target; baseline and HEAD match and tracked diff is empty.",
+    "limitations": "Read-only review. Tests were not rerun; existing structured check results were consulted. No live credential or broker qualification was performed.",
+    "evidence": "verification/control-plane/tasks/phase3-decision-context/review.fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9.json"
+  },
+  "security_review": {
+    "schema_version": 1,
+    "kind": "security-review",
+    "verdict": "PASS",
+    "task_id": "phase3-decision-context",
+    "task_bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+    "candidate_id": "fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9",
+    "snapshot_id": "2adc274e8e44b88c588480d92a8efbb234633151f7fe729c207a37393ac08b7b",
+    "baseline_commit": "d46ebbaa4a50e757354b5e568401f2fea906db87",
+    "reviewed_head": "d46ebbaa4a50e757354b5e568401f2fea906db87",
+    "findings": [],
+    "scope": "Reviewed the Phase 3 security boundaries, local-mode Host/Origin checks, loopback and provider-credential restrictions, persisted normalized snapshot validation, immutable decision-context persistence/replay checks, PAPER-only enforcement, and source paths to AI/order authority.",
+    "limitations": "The assignment scope file was absent from the specified worktree, so scope followed the task instructions. No source edits or tests were performed. Local-mode mutation endpoints remain callable by local processes and originless non-browser loopback clients; local mode requires loopback application/database hosts and no Alpaca or OpenRouter credentials, so this is treated as an intended local-process trust assumption.",
+    "evidence": "verification/control-plane/tasks/phase3-decision-context/security-review.fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9.json"
+  },
+  "verifier": {
+    "schema_version": 1,
+    "lane_id": "phase3-verifier-fea16",
+    "role": "verifier",
+    "status": "PASS",
+    "candidate_id": "fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9",
+    "head": "d46ebbaa4a50e757354b5e568401f2fea906db87",
+    "snapshot_id": "2adc274e8e44b88c588480d92a8efbb234633151f7fe729c207a37393ac08b7b",
+    "task_id": "phase3-decision-context",
+    "bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+    "checks": [
+      {
+        "id": "verifier-fea16-offline-junction",
+        "command": "node scripts/control-plane/verify-command.mjs --id verifier-fea16-offline-junction --task-id phase3-decision-context -- corepack.cmd pnpm verify:offline",
+        "exit_code": 0,
+        "result": "PASS",
+        "result_path": "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-offline-junction.json",
+        "log_path": "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-offline-junction.log",
+        "summary": "Typecheck passed; all 8 test files and 89 tests passed; config:check passed; PAPER-only guard passed; no-live-route checks passed."
+      },
+      {
+        "id": "verifier-fea16-persisted-replay",
+        "command": "node scripts/control-plane/verify-command.mjs --id verifier-fea16-persisted-replay --task-id phase3-decision-context -- corepack.cmd pnpm verify:decision-context",
+        "exit_code": 0,
+        "result": "PASS",
+        "result_path": "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-persisted-replay.json",
+        "log_path": "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-persisted-replay.log",
+        "summary": {
+          "simulated": true,
+          "mode": "paper",
+          "replayed_events": 3,
+          "persisted_hash": "7bca1a556195f5c1a1fe5f7757f9b70bd6b60184dc330735edc4eefe589f1158",
+          "deterministic_idempotence": true,
+          "replay_hash_matched": true,
+          "unavailable_data_explicit": true,
+          "changed_input_conflict_status": 409
+        }
+      }
+    ],
+    "runtime": {
+      "host": "127.0.0.1",
+      "port": 3000,
+      "local_test_mode": true,
+      "provider_credential_variables": "removed from app process environment; none were present",
+      "startup_health": "database connected; Alpaca and OpenRouter not configured",
+      "app_process_root_pid": 22876,
+      "app_listener_child_pid": 24348,
+      "stop_result": "app process tree stopped; verified port 3000 listener closed",
+      "database_service": "existing healthy loopback PostgreSQL container left running; not restarted or stopped"
+    },
+    "synthetic_reset": "The verifier's documented POST /__local/reset was used only for its bounded synthetic fixture scenario, as authorized. It replayed three checked-in fixture events and persisted/replayed the test context.",
+    "dependency_setup": {
+      "junction": "worktree-root node_modules -> C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\node_modules",
+      "setup": "PASS",
+      "source_edits": false
+    },
+    "preserved_initial_failures": [
+      "verifier-fea16-focused",
+      "verifier-fea16-focused-with-parent-deps",
+      "verifier-fea16-offline"
+    ],
+    "highest_verification_rung": "offline automated verification plus loopback PostgreSQL-backed persisted context replay",
+    "notes": "Final focused persisted replay and full offline verification both pass for this candidate.",
+    "task_bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+    "verdict": "PASS",
+    "evidence": "verification/control-plane/tasks/phase3-decision-context/verifier.fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9.json"
+  },
+  "evaluation": {
+    "schema_version": 1,
+    "kind": "evaluation",
+    "verdict": "PASS",
+    "task_id": "phase3-decision-context",
+    "task_bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+    "candidate_id": "fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9",
+    "snapshot_id": "2adc274e8e44b88c588480d92a8efbb234633151f7fe729c207a37393ac08b7b",
+    "baseline_commit": "d46ebbaa4a50e757354b5e568401f2fea906db87",
+    "evaluated_head": "d46ebbaa4a50e757354b5e568401f2fea906db87",
+    "criterion": "P03-C01",
+    "sources_inspected": [
+      "goals/phase-03-deterministic-decision-context.md",
+      "docs/PROJECT_CHARTER.md",
+      "src/domain/decision-context.ts",
+      "src/infra/decision-context-store.ts",
+      "tests/decision-context.test.ts",
+      "verification/control-plane/tasks/phase3-decision-context/candidates/fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9.json",
+      "verification/control-plane/tasks/phase3-decision-context/review.fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9.json",
+      "verification/control-plane/tasks/phase3-decision-context/security-review.fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9.json",
+      "verification/control-plane/tasks/phase3-decision-context/verifier.fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9.json",
+      "verification/control-plane/tasks/phase3-decision-context/verification.fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9.json",
+      "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-persisted-replay.json",
+      "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-offline-junction.json"
+    ],
+    "limitations": [
+      "Read-only independent evaluation; no commands or tests were run.",
+      "Offline test and PostgreSQL replay conclusions rely on structured candidate-bound verifier records, not raw logs.",
+      "No credential-backed provider qualification was performed; this is not required for Phase 3.",
+      "The assigned evaluation-lane scope file was absent from the isolated worktree, so the task assignment itself governed scope."
+    ],
+    "evidence": "verification/control-plane/tasks/phase3-decision-context/evaluation.fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9.json"
+  },
+  "unresolved_blockers": [],
+  "phase_status": "COMPLETE"
+}

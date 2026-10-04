@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "id": "required-lanes-fea16",
+  "task_id": "phase3-decision-context",
+  "bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "--input-type=module",
+    "-e",
+    "import fs from 'node:fs';\nconst task='phase3-decision-context', bundle='ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123', id='fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9';\nconst dir=`verification/control-plane/tasks/${task}`;\nconst candidate=JSON.parse(fs.readFileSync(`${dir}/candidates/${id}.json`,'utf8'));\nfor (const lane of ['review','security-review','verifier','evaluation']) {\n const record=JSON.parse(fs.readFileSync(`${dir}/${lane}.${id}.json`,'utf8'));\n if (record.verdict!=='PASS' || record.candidate_id!==id || record.task_id!==task || record.task_bundle_id!==bundle || !record.evidence) throw new Error(`invalid ${lane} evidence`);\n}\nif (!['review','security-review','verifier','evaluation'].every(lane => candidate.post_diff_risk.required_lanes.includes(lane==='security-review'?'security-review':lane))) throw new Error('candidate required lanes differ');\nconsole.log('PASS: all frozen candidate required-lane records bind task and bundle.');"
+  ],
+  "log_path": "verification/control-plane/tasks/phase3-decision-context/checks/required-lanes-fea16.log",
+  "started_at": "2026-10-04T19:16:46.305Z",
+  "completed_at": "2026-10-04T19:16:46.384Z",
+  "signal": null,
+  "error": null
+}

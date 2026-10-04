@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0/.codex/worktrees/phase3-decision-context
+
+ ✓ tests/decision-context.test.ts (6 tests) 84ms
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  13:42:12
+   Duration  828ms (transform 131ms, setup 0ms, collect 298ms, tests 84ms, environment 0ms, prepare 127ms)
+

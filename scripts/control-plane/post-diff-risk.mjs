@@ -48,11 +48,11 @@ export function classifyPostDiff(root, snapshot) {
   for (const pathname of files.keys()) if (excluded(pathname)) files.delete(pathname);
 
   const paths = [...files.keys()].sort();
-  const addedSensitiveLines = patch.split(/\r?\n/).filter(line => line.startsWith('+') && !line.startsWith('+++') && /(assertPaperOnly|authenticat|authoriz|credential|password|secret|access.?token|permission|encrypt|decrypt|\.env|allow.?list|deny.?list)/i.test(line));
-  if (addedSensitiveLines.length) categories.add('security-sensitive');
   const addedLines = [...files.values()].reduce((sum, item) => sum + item.added, 0);
   const deletedLines = [...files.values()].reduce((sum, item) => sum + item.deleted, 0);
   const categories = new Set();
+  const addedSensitiveLines = patch.split(/\r?\n/).filter(line => line.startsWith('+') && !line.startsWith('+++') && /(assertPaperOnly|authenticat|authoriz|credential|password|secret|access.?token|permission|encrypt|decrypt|\.env|allow.?list|deny.?list)/i.test(line));
+  if (addedSensitiveLines.length) categories.add('security-sensitive');
   const deleted = paths.filter(p => files.get(p).status === 'D');
   for (const p of paths) {
     const lower = p.toLowerCase();

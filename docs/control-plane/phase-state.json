@@ -2,13 +2,13 @@
   "schema_version": 1,
   "control_plane_version": "1.3.0",
   "charter_sha256": "8fff9dfd9423c22da6db234e5f7d45f0f6f4414e15c131ba865f3ef7ccc6de5f",
-  "active_phase": 1,
+  "active_phase": 4,
   "phases": [
     {
       "id": 1,
       "title": "FOUNDATION",
       "slug": "foundation",
-      "status": "active",
+      "status": "complete",
       "goal_file": "goals/phase-01-foundation.md",
       "report_file": "verification/phase-reports/phase-01.md"
     },
@@ -16,7 +16,7 @@
       "id": 2,
       "title": "ALPACA DATA AND ACCOUNT STATE",
       "slug": "alpaca-data-account-state",
-      "status": "pending",
+      "status": "complete",
       "goal_file": "goals/phase-02-alpaca-data-account-state.md",
       "report_file": "verification/phase-reports/phase-02.md"
     },
@@ -24,7 +24,7 @@
       "id": 3,
       "title": "DETERMINISTIC DECISION CONTEXT",
       "slug": "deterministic-decision-context",
-      "status": "pending",
+      "status": "complete",
       "goal_file": "goals/phase-03-deterministic-decision-context.md",
       "report_file": "verification/phase-reports/phase-03.md"
     },
@@ -32,7 +32,7 @@
       "id": 4,
       "title": "OPENROUTER LLM1 MARKET ANALYST",
       "slug": "openrouter-llm1-market-analyst",
-      "status": "pending",
+      "status": "active",
       "goal_file": "goals/phase-04-openrouter-llm1-market-analyst.md",
       "report_file": "verification/phase-reports/phase-04.md"
     },

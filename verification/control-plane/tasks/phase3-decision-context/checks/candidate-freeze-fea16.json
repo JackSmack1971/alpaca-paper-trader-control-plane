@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "id": "candidate-freeze-fea16",
+  "task_id": "phase3-decision-context",
+  "bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "scripts/control-plane/candidate-id.mjs",
+    "--snapshot",
+    "verification/control-plane/snapshots/2adc274e8e44b88c588480d92a8efbb234633151f7fe729c207a37393ac08b7b.json",
+    "--task-id",
+    "phase3-decision-context"
+  ],
+  "log_path": "verification/control-plane/tasks/phase3-decision-context/checks/candidate-freeze-fea16.log",
+  "started_at": "2026-10-04T19:09:31.411Z",
+  "completed_at": "2026-10-04T19:09:31.961Z",
+  "signal": null,
+  "error": null
+}

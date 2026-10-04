@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "task_id": "phase3-decision-context",
+  "route": "post-diff-critical-independent-review",
+  "signals": {
+    "task_kind": "feature",
+    "uncertainty": "high",
+    "file_count": 7,
+    "architectural_file_count": 4,
+    "expected_code_lines": 260,
+    "high_radius": true,
+    "high_complexity": true,
+    "independent_review_triggered": true,
+    "post_diff_risk": {
+      "schema_version": 1,
+      "level": "low",
+      "paths": [],
+      "changed_file_count": 0,
+      "added_lines": 0,
+      "deleted_lines": 0,
+      "categories": [],
+      "removed_safeguards": [],
+      "deleted_guard_line_count": 0,
+      "required_roles": [],
+      "required_lanes": [
+        "evaluation",
+        "review",
+        "security-review",
+        "verifier"
+      ],
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification_id": "009fbb94bc7f7579f4b8ed5ccfde00b926164381b09488c0ea9a28dfaa2259be",
+      "initial_level": "high",
+      "effective_level": "critical",
+      "escalated": true
+    }
+  },
+  "roles": [
+    "phase_mapper",
+    "implementer",
+    "reviewer",
+    "security_auditor",
+    "verifier",
+    "evaluator"
+  ],
+  "worktree_required": true,
+  "assignment_owner": "implementer",
+  "acceptance_contract_required": true,
+  "default_fail_contract": "undefined/test-results.json",
+  "bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+  "evidence_bundle": "verification/control-plane/tasks/phase3-decision-context",
+  "intake_path": "verification/control-plane/tasks/phase3-decision-context/intake.json",
+  "execution_root": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\github-runtime-bootstrap",
+  "initial_route": "planner-builder-independent-evaluator",
+  "initial_risk_level": "high"
+}

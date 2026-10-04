@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "id": "context-unit-1",
+  "task_id": "phase3-decision-context",
+  "bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+  "status": "FAIL",
+  "exit_code": 1,
+  "executable": "node.exe",
+  "args": [
+    "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\node_modules\\.pnpm\\vitest@3.2.7_@types+node@22.20.5_tsx@4.23.15\\node_modules\\vitest\\vitest.mjs",
+    "run",
+    "tests/decision-context.test.ts"
+  ],
+  "log_path": "verification/control-plane/tasks/phase3-decision-context/checks/context-unit-1.log",
+  "started_at": "2026-10-04T17:38:30.594Z",
+  "completed_at": "2026-10-04T17:38:32.673Z",
+  "signal": null,
+  "error": null
+}
