@@ -49,6 +49,8 @@ Delegation never authorizes commit, push, PR, merge, release, deployment, destru
 
 ## 4. Build falsifiable verification evidence
 
+For an explicitly registered debugging task, follow `docs/control-plane/causal-debugging.md`. Require a nonzero executable minimal reproduction that emits the exact reported error signature before the first source change. The hook consumes that evidence on one scoped edit call; reproduce again before a second causal edit. This requirement does not apply to ordinary feature implementation.
+
 Run the narrowest checks that can disprove the changed behavior first. A failed check stays failed until the relevant check is rerun successfully.
 
 Then use `verification-ladder` for the highest charter rung actually available. Distinguish passing evidence, introduced failures, demonstrably pre-existing unrelated failures, blockers, and unexecuted checks. Never replace unavailable live qualification with a mock or expose credentials.
@@ -59,7 +61,7 @@ If a pre-existing failure blocks attribution, establish a safe baseline when pos
 
 ## 5. Independently challenge stable evidence
 
-Freeze the candidate first with `node scripts/control-plane/candidate-id.mjs --snapshot <snapshot-artifact> --out verification/control-plane/candidates/current.json`. Then, when subagents were explicitly requested, spawn `reviewer` and `verifier` only after the candidate diff and primary evidence are stable. They may run in parallel because neither owns production-code changes. The reviewer inspects the actual diff and surrounding code; the verifier independently executes acceptance evidence. Neither may treat the implementer's summary as proof.
+Freeze the candidate with `node scripts/control-plane/candidate-id.mjs --snapshot <snapshot-artifact> --task-id <task-id>`. Freeze runs post-diff risk reclassification and updates effective roles plus default-fail acceptance criteria before it writes the candidate. Inspect `route.json` and `test-results.json` after freeze; schedule every effective lane from the frozen risk record. Higher observed risk adds scrutiny and never removes intake-required scrutiny. Roles inspect the actual diff and execute evidence independently; none may treat the implementer's summary as proof.
 
 Require reviewer and verifier outputs to name the exact `candidate_id`. Adjudicate findings against source, diff, and executed evidence. Route fixes through the one writer. A material post-review change invalidates affected review/verification evidence; rerun the smallest stale lane, broadening only if the risk surface changed.
 

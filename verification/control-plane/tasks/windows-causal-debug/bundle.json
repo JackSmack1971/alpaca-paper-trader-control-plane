@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "task_id": "windows-causal-debug",
+  "bundle_id": "424eab8751d025de51971904ec6ff3475418043a56d2e355a161d2737de4b4a2",
+  "intake_digest": "465bb9ad91bca5d6162b746b2a810114f884dffbb584d0339eeb7281179b1b2d",
+  "artifacts": {
+    "intake": "intake.json",
+    "route": "route.json",
+    "candidates": "candidates/",
+    "acceptance": "test-results.json",
+    "checks": "checks/",
+    "review": "review.<candidate_id>.json",
+    "verifier": "verifier.<candidate_id>.json",
+    "verification": "verification.<candidate_id>.json",
+    "evaluation": "evaluation.<candidate_id>.json"
+  }
+}

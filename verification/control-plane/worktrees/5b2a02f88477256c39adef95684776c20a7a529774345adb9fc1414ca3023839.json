@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "unit_of_work": "Bring all project skills to passing static audit standard",
+  "base_sha": "ce4816f8671bd12a195cde6f838c8b828a54239c",
+  "worktree": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\skill-audit-upgrade",
+  "branch": "codex/skill-audit-upgrade",
+  "owner": "primary",
+  "scope": [
+    ".agents/skills/adr-escalation",
+    ".agents/skills/diff-review",
+    ".agents/skills/mcp-bounds",
+    ".agents/skills/paper-safety-audit",
+    ".agents/skills/phase-closeout",
+    ".agents/skills/research-external-contract",
+    ".agents/skills/schema-migration",
+    ".agents/skills/task-routing",
+    ".agents/skills/verification-ladder"
+  ],
+  "integration_target": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0",
+  "assignment_id": "5b2a02f88477256c39adef95684776c20a7a529774345adb9fc1414ca3023839",
+  "active": false,
+  "created_at": "2026-10-03T23:59:55.434Z",
+  "released_at": "2026-10-04T00:24:05.997Z"
+}

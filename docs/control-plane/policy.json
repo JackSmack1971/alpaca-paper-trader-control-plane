@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "control_plane_version": "1.3.0",
+  "mcp": {
+    "require_filter": true,
+    "require_page_size": true,
+    "maximum_page_size": 100,
+    "maximum_result_utf8_bytes": 24000,
+    "oversize_behavior": "drop_result_and_request_narrower_query"
+  },
+  "routing": {
+    "routine_task_kinds": ["syntax", "documentation", "dependency", "sequential-same-file"],
+    "critical_areas": ["authentication", "authorization", "security-boundary", "secrets", "database-schema", "migration", "cloud-infrastructure", "application-architecture", "functional-correctness"],
+    "complexity": { "architectural_file_count_gt": 3, "expected_code_lines_gt": 50, "difficult_verification_triggers": true },
+    "roles": [
+      { "id": "phase_mapper", "file": ".codex/agents/phase-mapper.toml", "config_file": "agents/phase-mapper.toml", "default_permissions": ":read-only" },
+      { "id": "task_router", "file": ".codex/agents/task-router.toml", "config_file": "agents/task-router.toml", "default_permissions": ":read-only" },
+      { "id": "provider_researcher", "file": ".codex/agents/provider-researcher.toml", "config_file": "agents/provider-researcher.toml", "default_permissions": ":read-only" },
+      { "id": "implementer", "file": ".codex/agents/implementer.toml", "config_file": "agents/implementer.toml", "default_permissions": "project-implement" },
+      { "id": "reviewer", "file": ".codex/agents/reviewer.toml", "config_file": "agents/reviewer.toml", "default_permissions": ":read-only" },
+      { "id": "verifier", "file": ".codex/agents/verifier.toml", "config_file": "agents/verifier.toml", "default_permissions": "project-verify" },
+      { "id": "evaluator", "file": ".codex/agents/evaluator.toml", "config_file": "agents/evaluator.toml", "default_permissions": ":read-only" },
+      { "id": "security_auditor", "file": ".codex/agents/security-auditor.toml", "config_file": "agents/security-auditor.toml", "default_permissions": ":read-only" },
+      { "id": "summarizer", "file": ".codex/agents/summarizer.toml", "config_file": "agents/summarizer.toml", "default_permissions": ":read-only" }
+    ],
+    "delegated_roles": ["phase_mapper", "provider_researcher", "reviewer", "security_auditor", "verifier", "evaluator"]
+  },
+  "verification_statuses": {
+    "check": ["PASS", "FAIL", "UNKNOWN"],
+    "criterion": ["PASS", "FAIL", "NOT_APPLICABLE"],
+    "evidence_verdict": ["PASS", "FAIL", "INCONCLUSIVE"],
+    "qualification": ["QUALIFIED", "UNVERIFIED"],
+    "preflight": ["READY", "BLOCKED"]
+  },
+  "evidence_schema_versions": {
+    "components": 2,
+    "capabilities": 1,
+    "phase_state": 1,
+    "phase_contracts": 1,
+    "snapshot": 2,
+    "candidate": 2,
+    "task_bundle": 1,
+    "task_route": 1,
+    "task_acceptance": 2,
+    "task_acceptance_legacy": 1,
+    "check_result": 2,
+    "check_result_legacy": 1,
+    "task_route_legacy": 1,
+    "task_route_migrated": 2,
+    "closeout_manifest": 3,
+    "runtime_observation": 1,
+    "qualification": 1,
+    "causal_debug_task": 1,
+    "worktree_assignment": 1
+  }
+}

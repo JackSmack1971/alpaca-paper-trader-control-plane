@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "control_plane_version": "1.2.0",
+  "control_plane_version": "1.3.0",
   "runtime": {
     "node_major": 22
   },
@@ -35,6 +35,7 @@
   "rule_files": [
     ".codex/rules/default.rules"
   ],
+  "policy_file": "docs/control-plane/policy.json",
   "lifecycle_scripts": [
     "scripts/control-plane/lib.mjs",
     "scripts/control-plane/canonical-digest.mjs",
@@ -44,16 +45,21 @@
     "scripts/control-plane/qualify-control-plane.mjs",
     "scripts/control-plane/snapshot-control-plane.mjs",
     "scripts/control-plane/candidate-id.mjs",
+    "scripts/control-plane/post-diff-risk.mjs",
     "scripts/control-plane/validate-closeout.mjs",
     "scripts/control-plane/validate-closeout-cli.mjs",
     "scripts/control-plane/advance-phase.mjs",
     "scripts/control-plane/worktree-assignment.mjs",
     "scripts/control-plane/create-worktree.mjs",
     "scripts/control-plane/route-task.mjs",
+    "scripts/control-plane/task-evidence.mjs",
+    "scripts/control-plane/record-task-evidence.mjs",
     "scripts/control-plane/init-test-results.mjs",
+    "scripts/control-plane/migrate-test-results.mjs",
     "scripts/control-plane/set-test-result.mjs",
     "scripts/control-plane/validate-test-results.mjs",
     "scripts/control-plane/verify-command.mjs",
+    "scripts/control-plane/causal-debug.mjs",
     "scripts/control-plane/check-paper-only.mjs",
     "scripts/control-plane/test-control-plane.mjs"
   ],

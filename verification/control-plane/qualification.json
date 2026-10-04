@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "status": "UNVERIFIED",
+  "captured_at": "2026-10-03T18:23:02.588Z",
+  "platform": "native-windows",
+  "codex_version": null,
+  "git_head": "aedb7c0b767ddce261e7d4f8c90f21e090d37328",
+  "project_runtime": {
+    "project_layer_loaded": true,
+    "permission_mode": "default",
+    "model": "diagnostic",
+    "observation_digest": "5105f23afc2f3102239fceb9c29dce0fecb555ee3ab9460a9b9eab4a216a17f6"
+  },
+  "source_digests": {
+    "config": "c0378e57caf817e4f88c18fe3a9f31440770fe556fdb521f462eb469f91787a5",
+    "hooks": "82aed38f05aa86dd9fb669958a96b895676cfd3a08b7f3bb72b1e0b160c92684",
+    "rules": "f3bceae6092cec0eb719e795d24922a9573e66e764928326487b6c2b0947ab0b",
+    "components": "9614f15034bbcc1283e76668ec0e1109393ebc4b302d68d3c3bdfb08692954b5"
+  },
+  "runtime_checks": {
+    "strict_config": null,
+    "permission_profile": null,
+    "rules": null
+  },
+  "required_agents": [
+    "phase_mapper",
+    "provider_researcher",
+    "implementer",
+    "reviewer",
+    "verifier",
+    "evaluator"
+  ],
+  "required_skills": [
+    "adr-escalation",
+    "diff-review",
+    "execute-phase",
+    "paper-safety-audit",
+    "phase-closeout",
+    "research-external-contract",
+    "schema-migration",
+    "verification-ladder"
+  ],
+  "capability_contract_digest": "0562aefb18251975ad30240754c88011d7403f8186b2dc072c3d1a2a50d61bd1",
+  "mcp_required": [],
+  "mcp_list_observation_sha256": null,
+  "issues": [
+    "Codex executable/version is unavailable in this runtime",
+    "working tree has non-evidence changes; qualification must bind a clean engineering baseline"
+  ],
+  "qualification_id": "9ba8ccfe37d9b83de5b32530f1fb8f11bb27e6cdc1ea256d8c423dafec3e7627"
+}

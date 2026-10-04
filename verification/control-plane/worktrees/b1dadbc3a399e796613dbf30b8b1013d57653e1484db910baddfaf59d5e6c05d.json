@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "unit_of_work": "windows-causal-debug",
+  "base_sha": "ce4816f8671bd12a195cde6f838c8b828a54239c",
+  "worktree": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\windows-causal-debug",
+  "branch": "codex/windows-causal-debug",
+  "owner": "implementer",
+  "scope": [
+    ".codex/hooks.json",
+    ".codex/hooks/pre-tool-use.mjs",
+    ".codex/hooks/post-tool-use.mjs",
+    ".codex/config.toml",
+    "AGENTS.md",
+    ".agents/skills/execute-phase/SKILL.md",
+    "scripts/control-plane",
+    "docs/control-plane"
+  ],
+  "integration_target": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0",
+  "assignment_id": "b1dadbc3a399e796613dbf30b8b1013d57653e1484db910baddfaf59d5e6c05d",
+  "active": true,
+  "created_at": "2026-10-03T20:57:10.390Z"
+}

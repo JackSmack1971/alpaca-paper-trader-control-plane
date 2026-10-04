@@ -18,7 +18,7 @@
     ],
     "PreToolUse": [
       {
-        "matcher": "^Bash$",
+        "matcher": ".*",
         "hooks": [
           {
             "type": "command",
@@ -26,18 +26,6 @@
             "commandWindows": "powershell -NoProfile -Command \"$root=(git rev-parse --show-toplevel); node (Join-Path $root '.codex/hooks/pre-tool-use.mjs')\"",
             "timeout": 5,
             "statusMessage": "Checking repository command policy"
-          }
-        ]
-      },
-      {
-        "matcher": "^mcp__.*$",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$(git rev-parse --show-toplevel)/.codex/hooks/pre-tool-use.mjs\"",
-            "commandWindows": "powershell -NoProfile -Command \"$root=(git rev-parse --show-toplevel); node (Join-Path $root '.codex/hooks/pre-tool-use.mjs')\"",
-            "timeout": 5,
-            "statusMessage": "Checking MCP query bounds"
           }
         ]
       }

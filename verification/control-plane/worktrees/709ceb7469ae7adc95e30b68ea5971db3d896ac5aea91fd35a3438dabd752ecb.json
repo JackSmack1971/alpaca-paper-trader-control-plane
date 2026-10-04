@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "unit_of_work": "windows-hook-launcher-bootstrap",
+  "base_sha": "aedb7c0b767ddce261e7d4f8c90f21e090d37328",
+  "worktree": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0",
+  "branch": "main",
+  "owner": "primary",
+  "scope": [
+    ".codex/hooks.json",
+    ".codex/hooks/scripts",
+    "scripts/control-plane/test-hooks-windows.mjs",
+    "docs/control-plane/components.json"
+  ],
+  "integration_target": null,
+  "assignment_id": "709ceb7469ae7adc95e30b68ea5971db3d896ac5aea91fd35a3438dabd752ecb",
+  "active": true,
+  "created_at": "2026-10-03T17:47:20.544Z"
+}

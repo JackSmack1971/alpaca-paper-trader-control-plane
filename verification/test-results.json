@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "task_id": "windows-causal-debug",
+  "status": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "WIN-HOOK-01",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "windows-causal-debug-root-validate",
+        "check_path": "verification/control-plane/check-results/windows-causal-debug-root-validate.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "DEBUG-REPRO-01",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "windows-causal-debug-root-regression",
+        "check_path": "verification/control-plane/check-results/windows-causal-debug-root-regression.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "DEBUG-REPRO-02",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "windows-causal-debug-root-regression",
+        "check_path": "verification/control-plane/check-results/windows-causal-debug-root-regression.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "DEBUG-CAUSE-01",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "windows-causal-debug-root-regression",
+        "check_path": "verification/control-plane/check-results/windows-causal-debug-root-regression.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "COMPAT-01",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "windows-causal-debug-root-regression",
+        "check_path": "verification/control-plane/check-results/windows-causal-debug-root-regression.json",
+        "exit_code": 0
+      }
+    }
+  ],
+  "generated_at": "2026-10-03T22:06:13.4960268Z"
+}

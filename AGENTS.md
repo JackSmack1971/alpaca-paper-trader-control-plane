@@ -11,6 +11,8 @@ This repository is governed by `docs/PROJECT_CHARTER.md`. The charter is the arc
 
 ## Before editing
 
+At task intake, treat requests to fix an existing failure, regression, or error trace as debugging tasks and register them before editing source. Follow `docs/control-plane/causal-debugging.md`: reproduce the exact reported error before source edits, keep each causal change scoped, and rerun reproduction before another edit. Hook enforcement is bounded by the Codex PreToolUse payload and is not an OS filesystem sandbox.
+
 For every implementation task:
 
 0. Run the control-plane start gate from `docs/control-plane/START_HERE.md`; implementation requires passing static validation, a clean preflight, and an immutable execution snapshot. Live Codex runtime qualification is optional diagnostics, not an implementation or closeout gate.
@@ -36,7 +38,7 @@ For every implementation task:
 
 Treat one active phase as the outer unit of work and implement it through small coherent slices. Do not start later-phase features early merely because they are easy. A slice must have an immutable execution snapshot, known clean Git baseline, intended delta, frozen candidate identity, executed verification evidence, and an explicit completion/blocker state.
 
-Before task execution, apply `$task-routing` to select the smallest sufficient workflow. Routine syntax corrections, documentation additions, dependency updates, and sequential same-file edits stay single-agent. Do not use a fixed multi-agent count. Use `$mcp-bounds` for MCP calls; list/search/database/log calls require a filter and page size of at most 100, and MCP results are capped at 25,000 tokens. For delegated/background work, create a dedicated Git worktree under `.codex/worktrees/` with `node scripts/control-plane/create-worktree.mjs`; do not run those tasks in the user's active checkout. Preserve existing local changes and do not silently copy them into a new worktree.
+Before task execution, apply `$task-routing` to select the smallest sufficient workflow. Routine syntax corrections, documentation additions, dependency updates, and sequential same-file edits stay single-agent. Do not use a fixed multi-agent count. Use `$mcp-bounds` for MCP calls; list/search/database/log calls require a filter and page size no greater than the policy-defined `maximum_page_size`, and MCP result payloads are capped at the policy-defined `maximum_result_utf8_bytes` (24,000 UTF-8 bytes) in `docs/control-plane/policy.json`. For delegated/background work, create a dedicated Git worktree under `.codex/worktrees/` with `node scripts/control-plane/create-worktree.mjs`; do not run those tasks in the user's active checkout. Preserve existing local changes and do not silently copy them into a new worktree.
 
 When routing selects subagents, use the project roles and the `execute-phase` Skill:
 

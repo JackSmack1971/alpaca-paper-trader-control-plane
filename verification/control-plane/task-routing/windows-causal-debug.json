@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "task_id": "windows-causal-debug",
+  "route": "planner-builder-independent-evaluator",
+  "signals": {
+    "task_kind": "feature",
+    "uncertainty": "high",
+    "file_count": 8,
+    "architectural_file_count": 6,
+    "expected_code_lines": 100,
+    "high_radius": true,
+    "high_complexity": true,
+    "independent_review_triggered": true
+  },
+  "roles": [
+    "phase_mapper",
+    "implementer",
+    "reviewer",
+    "security_auditor",
+    "verifier",
+    "evaluator"
+  ],
+  "worktree_required": true,
+  "assignment_owner": "implementer",
+  "default_fail_contract": "verification/test-results.json",
+  "intake_path": "verification/control-plane/task-routing/windows-causal-debug.intake.json",
+  "execution_root": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\windows-causal-debug"
+}

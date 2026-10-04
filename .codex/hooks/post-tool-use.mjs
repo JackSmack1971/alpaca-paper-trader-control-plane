@@ -1,8 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { findRepoRoot, readStdinJson } from '../../scripts/control-plane/lib.mjs';
-
-const MCP_RESULT_BUDGET_BYTES = 24_000;
+import { findRepoRoot, loadJson, readStdinJson } from '../../scripts/control-plane/lib.mjs';
 
 function visit(value, fn, depth = 0) {
   if (depth > 8) return;
@@ -34,6 +32,8 @@ try {
   const input = readStdinJson();
   if (input.hook_event_name !== 'PostToolUse') process.exit(0);
   const repo = findRepoRoot(input.cwd ?? process.cwd());
+  const policy = loadJson(path.join(repo, 'docs/control-plane/policy.json'));
+  const mcpResultBudgetBytes = policy.mcp.maximum_result_utf8_bytes;
   const toolName = String(input.tool_name ?? '');
 
   if (toolName === 'Bash') {
@@ -44,11 +44,11 @@ try {
       const resultPath = path.join(repo, 'verification/control-plane/check-results', `${wrapper[1]}.json`);
       try { record = JSON.parse(fs.readFileSync(resultPath, 'utf8')); } catch { /* missing record remains unknown */ }
       const marker = findMarker(input.tool_response);
-      const valid = record?.id === wrapper[1] && record?.status === 'PASS' && record?.exit_code === 0 && record?.completed_at && marker?.id === wrapper[1] && marker?.exit_code === 0 && marker?.status === 'PASS';
+      const valid = record?.id === wrapper[1] && record?.status === policy.verification_statuses.check[0] && record?.exit_code === 0 && record?.completed_at && marker?.id === wrapper[1] && marker?.exit_code === 0 && marker?.status === policy.verification_statuses.check[0];
       if (valid) {
         process.stdout.write(JSON.stringify({ hookSpecificOutput: { hookEventName: 'PostToolUse', additionalContext: `DETERMINISTIC CHECK STATUS: PASS (id=${wrapper[1]}, exit_code=0).` } }));
       } else {
-        const status = record?.status === 'FAIL' || marker?.status === 'FAIL' || Number.isInteger(record?.exit_code) && record.exit_code !== 0 ? 'FAIL' : 'UNKNOWN';
+        const status = record?.status === policy.verification_statuses.check[1] || marker?.status === policy.verification_statuses.check[1] || Number.isInteger(record?.exit_code) && record.exit_code !== 0 ? policy.verification_statuses.check[1] : policy.verification_statuses.check[2];
         process.stdout.write(JSON.stringify({ continue: false, hookSpecificOutput: { hookEventName: 'PostToolUse', additionalContext: `DETERMINISTIC CHECK STATUS: ${status}. Only a completed structured result with numeric exit_code 0 is PASS.` } }));
       }
       process.exit(0);
@@ -66,8 +66,8 @@ try {
 
   if (/^mcp__/.test(toolName)) {
     const bytes = Buffer.byteLength(JSON.stringify(input.tool_response ?? null), 'utf8');
-    if (bytes > MCP_RESULT_BUDGET_BYTES) {
-      process.stdout.write(JSON.stringify({ continue: false, hookSpecificOutput: { hookEventName: 'PostToolUse', additionalContext: 'MCP result was dropped because its serialized UTF-8 size exceeded the 24,000-byte context budget. Repeat with a narrower filter, selected fields, and a smaller page.' } }));
+    if (bytes > mcpResultBudgetBytes) {
+      process.stdout.write(JSON.stringify({ continue: false, hookSpecificOutput: { hookEventName: 'PostToolUse', additionalContext: `MCP result was dropped because its serialized UTF-8 size exceeded the ${mcpResultBudgetBytes.toLocaleString('en-US')}-byte context budget. Repeat with a narrower filter, selected fields, and a smaller page.` } }));
     }
   }
 } catch (error) {

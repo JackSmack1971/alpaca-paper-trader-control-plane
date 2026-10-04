@@ -29,21 +29,27 @@ node scripts/control-plane/preflight.mjs
 node scripts/control-plane/snapshot-control-plane.mjs
 ```
 
-Static validation proves repository source coherence. Preflight requires a coherent active phase and clean non-evidence Git baseline. The execution snapshot is generated from checked-in project authority and does not require a running Codex executable or live runtime probes. Runtime qualification remains an optional diagnostic.
+Static validation proves repository source coherence. Preflight requires a coherent active phase and records the current `main` worktree state, including pre-existing edits, as the baseline; it never asks operators to discard those edits. The execution snapshot binds both `HEAD` and a content digest of current non-evidence tracked/untracked changes. A missing deleted-worktree path is historical Git metadata and is not execution baseline state. Runtime qualification remains an optional diagnostic.
 
 ## Execution
 
-Apply `$task-routing` before work. For non-routine tasks, save the fast router's intake JSON and run `route-task.mjs`; its decision records the selected roles and creates a default-fail `test-results.json` for high-complexity/high-radius work. Keep ordinary edits single-agent. When delegation or background execution is selected, create a separate worktree beneath `.codex/worktrees/` using `create-worktree.mjs`, launch the task there, and give each writer a non-overlapping scope. `worktree-assignment.mjs` checks the shared registry; release finished ownership with `--release <assignment-id>`. Read-only research returns a structured `RESEARCH.md` handoff before a builder starts.
+Apply `$task-routing` before work. For non-routine tasks, save the fast router's intake JSON and run `route-task.mjs`; it creates a stable `verification/control-plane/tasks/<task-id>/` evidence bundle. Each bundle owns its intake, route, candidate, acceptance results, checks, review, verification, and evaluation artifacts. Completed bundles remain historical records and never block another task. Keep ordinary edits single-agent. When delegation or background execution is selected, create a separate worktree beneath `.codex/worktrees/` using `create-worktree.mjs`, launch the task there, and give each writer a non-overlapping scope. `worktree-assignment.mjs` checks the shared registry; release finished ownership with `--release <assignment-id>`. Read-only research returns a structured `RESEARCH.md` handoff before a builder starts.
+
+Migrate an existing singleton result and its referenced check records with `node scripts/control-plane/migrate-test-results.mjs --task-id <task-id>`. The migration copies legacy evidence into that task's bundle and leaves the original singleton and check records intact.
 
 ## Candidate freeze
 
 After implementation and primary checks stabilize:
 
 ```text
-node scripts/control-plane/candidate-id.mjs --snapshot verification/control-plane/snapshots/<id>.json --out verification/control-plane/candidates/current.json
+node scripts/control-plane/candidate-id.mjs --snapshot verification/control-plane/snapshots/<id>.json --task-id <task-id>
 ```
 
-Candidate identity binds the snapshot baseline, current HEAD, binary tracked diff, and non-evidence untracked file content. Review, verification, evaluation and closeout must name this same ID. Evidence artifacts under `verification/control-plane/` and `verification/phase-reports/` are excluded from engineering candidate identity so recording runtime, review, and closeout evidence does not recursively mutate the candidate. Those artifacts are validated independently by their own identities and schemas.
+Candidate identity binds the snapshot baseline, current HEAD, binary tracked diff, non-evidence untracked file content, and the selected task and bundle identity. It is written into that task's bundle. Review, verification, evaluation and closeout must name this candidate and task bundle. Evidence artifacts under `verification/control-plane/` and `verification/phase-reports/` are excluded from engineering candidate identity so recording evidence does not recursively mutate the candidate.
+
+Candidate freeze first runs deterministic post-diff risk reclassification over the actual Git delta and non-evidence untracked files. It considers changed-file count and line magnitude, migrations, permissions/configuration, security-sensitive paths, public API, dependencies, tests, safeguard deletions, and control-plane/charter sources. The bundle route is updated monotonically: observed risk can add reviewer, security-auditor, verifier and evaluator lanes but cannot remove intake-required roles. Required default-fail acceptance criteria and effective roles are written before the candidate record. The candidate embeds the classification digest; closeout must reconcile it against current source and collect each required lane.
+
+Keep candidate and role evidence immutable by candidate ID. Save review, security-review, verifier, verification, and evaluation records with `record-task-evidence.mjs --task-id <task-id> --kind <kind> --record <record.json>`. Closeout reconciles every lane required by the candidate's post-diff risk record and the acceptance results from that same bundle.
 
 ## Independent evidence
 
@@ -51,13 +57,13 @@ Reviewer and verifier run against the frozen candidate. A fresh evaluator then a
 
 ## Closeout
 
-`phase-closeout` produces the human report and schema-v3 machine manifest. `validate-closeout-cli.mjs` recomputes candidate identity, reconciles snapshot/goal/charter provenance, requires the exact machine criteria in `phase-contracts.json`, and requires PASS evidence from reviewer, verifier and evaluator. Only then can `advance-phase.mjs` move one phase.
+`phase-closeout` produces the human report and the machine manifest at the version in `policy.json`. `validate-closeout-cli.mjs` recomputes candidate identity, reconciles snapshot/goal/charter provenance, requires the exact machine criteria in `phase-contracts.json`, and requires PASS evidence from reviewer, verifier and evaluator. Only then can `advance-phase.mjs` move one phase.
 
 ## Bounded tool results
 
-For MCP calls, use a selective filter and an explicit page size/cursor for list, search, database, and log operations. The synchronous hooks reject unbounded list/search requests where pagination/filter arguments are absent and replace oversized MCP results with a deterministic bounded notice. The output cap is 25,000 UTF-8 bytes, a conservative hard ceiling below 25,000 tokens. Never use MCP to dump an entire database or log stream.
+For MCP calls, use a selective filter and an explicit page size/cursor no greater than `maximum_page_size` in `policy.json` for list, search, database, and log operations. The synchronous hooks reject unbounded list/search requests where pagination/filter arguments are absent and replace oversized MCP results with a deterministic bounded notice. The output cap is the `maximum_result_utf8_bytes` value in `policy.json` (24,000 UTF-8 bytes). Never use MCP to dump an entire database or log stream.
 
-Run builds and other verification commands through `verify-command.mjs`; it stores raw logs outside evaluator context and emits only a bounded tail with a structured numeric result. The PostToolUse Bash hook accepts only the wrapper's structured result or an explicit numeric exit-code field; absent status is `UNKNOWN`, never a model-inferred pass. Use `set-test-result.mjs` to mark a criterion only from a completed check record, then run `validate-test-results.mjs` before evaluation.
+Run builds and other verification commands through `verify-command.mjs --task-id <task-id>`; it stores checks and raw logs inside that task's bundle and emits only a bounded tail with a structured numeric result. The PostToolUse Bash hook accepts only the wrapper's structured result or an explicit numeric exit-code field; absent status is `UNKNOWN`, never a model-inferred pass. Use `set-test-result.mjs --task-id <task-id>` to mark a criterion only from a completed check record, then run `validate-test-results.mjs --task-id <task-id>` before evaluation.
 
 ## Decision boundary
 
