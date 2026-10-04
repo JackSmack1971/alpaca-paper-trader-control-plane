@@ -15,7 +15,7 @@ Durable phase state is in `docs/control-plane/phase-state.json`; phase requireme
 
 Start with `docs/control-plane/START_HERE.md`. For implementation, use `.agents/skills/execute-phase/SKILL.md`, which selects the smallest active-phase slice and points to the supporting skills. Use `.agents/skills/task-routing/SKILL.md` for workflow selection. The start gate is `validate.mjs`, `preflight.mjs`, then `snapshot-control-plane.mjs`; invoke scripts from the project root. Use `verify-command.mjs` for structured verification records and `.agents/skills/verification-ladder/SKILL.md` to report only checks actually run.
 
-For MCP calls, follow `.agents/skills/mcp-bounds/SKILL.md` and the canonical limits in `docs/control-plane/policy.json`. List/search/database/log calls require a filter and page size no greater than the policy-defined `maximum_page_size`; results are capped at the policy-defined `maximum_result_utf8_bytes` (24,000 UTF-8 bytes).
+For MCP calls, follow `.agents/skills/mcp-bounds/SKILL.md`. Exact per-tool collection semantics live in `docs/control-plane/capabilities.json`; unknown collection-like operations fail closed. The policy-defined `maximum_page_size` and global `maximum_result_utf8_bytes` bounds live in `docs/control-plane/policy.json` (24,000 UTF-8 bytes maximum).
 
 ## Source control and completion
 

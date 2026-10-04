@@ -41,6 +41,50 @@
       "required-vs-optional startup semantics",
       "pagination and filter rules for collection-returning operations",
       "deterministic response-size cap for all MCP results"
+    ],
+    "tools": [
+      {
+        "tool_name": "mcp__db__query_rows",
+        "behavior": "collection",
+        "capability": {
+          "registered": true,
+          "enabled": true,
+          "visible": true,
+          "authorized": true
+        },
+        "required_scope_fields": [
+          "filter"
+        ],
+        "pagination": {
+          "field": "limit",
+          "required": true,
+          "maximum": 100
+        },
+        "result_size": {
+          "maximum_utf8_bytes": 24000
+        }
+      },
+      {
+        "tool_name": "mcp__portfolio__fetchSnapshot",
+        "behavior": "collection",
+        "capability": {
+          "registered": true,
+          "enabled": true,
+          "visible": true,
+          "authorized": true
+        },
+        "required_scope_fields": [
+          "account_scope"
+        ],
+        "pagination": {
+          "field": "batch_count",
+          "required": true,
+          "maximum": 40
+        },
+        "result_size": {
+          "maximum_utf8_bytes": 16000
+        }
+      }
     ]
   }
 }

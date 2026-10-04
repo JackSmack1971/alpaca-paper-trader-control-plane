@@ -111,6 +111,23 @@ if (failures.length === 0) {
   const capability = loadJson('docs/control-plane/capabilities.json');
   if (capability.schema_version !== policy.evidence_schema_versions.capabilities || !Array.isArray(capability.mcp_servers)) failures.push('capability registry is malformed or has a schema version that differs from canonical policy');
   if (capability.mcp_policy?.collection_calls?.require_filter !== policy.mcp.require_filter || capability.mcp_policy?.collection_calls?.require_page_size !== policy.mcp.require_page_size || capability.mcp_policy?.collection_calls?.maximum_page_size !== policy.mcp.maximum_page_size || capability.mcp_policy?.response_budget?.maximum_utf8_bytes !== policy.mcp.maximum_result_utf8_bytes || capability.mcp_policy?.response_budget?.oversize_behavior !== policy.mcp.oversize_behavior || 'maximum_tokens' in (capability.mcp_policy?.response_budget ?? {})) failures.push('MCP policy in capabilities.json differs from canonical policy');
+  const mcpTools = capability.mcp_policy?.tools;
+  if (!Array.isArray(mcpTools)) failures.push('MCP per-tool policy registry is missing');
+  else {
+    const names = new Set();
+    for (const tool of mcpTools) {
+      if (!tool.tool_name || names.has(tool.tool_name)) failures.push(`MCP tool policy has a missing or duplicate tool_name: ${tool.tool_name ?? '(missing)'}`);
+      names.add(tool.tool_name);
+      if (!['collection','scalar'].includes(tool.behavior)) failures.push(`MCP tool policy ${tool.tool_name} has an unsupported behavior`);
+      if (![tool.capability?.registered,tool.capability?.enabled,tool.capability?.visible,tool.capability?.authorized].every(value => typeof value === 'boolean')) failures.push(`MCP tool policy ${tool.tool_name} must preserve separate registered/enabled/visible/authorized states`);
+      if (tool.behavior === 'collection') {
+        if (!Array.isArray(tool.required_scope_fields) || !tool.required_scope_fields.every(field => typeof field === 'string' && field.length)) failures.push(`MCP collection policy ${tool.tool_name} requires explicit scope field names`);
+        if (!tool.pagination || typeof tool.pagination.field !== 'string' || !Number.isInteger(tool.pagination.maximum) || tool.pagination.maximum < 1 || tool.pagination.maximum > policy.mcp.maximum_page_size) failures.push(`MCP collection policy ${tool.tool_name} has invalid pagination bounds`);
+        const resultBound = tool.result_size?.maximum_utf8_bytes;
+        if (resultBound != null && (!Number.isInteger(resultBound) || resultBound < 1 || resultBound > policy.mcp.maximum_result_utf8_bytes)) failures.push(`MCP collection policy ${tool.tool_name} has invalid result-size bounds`);
+      }
+    }
+  }
   const workflow = canonicalText(fs.readFileSync('docs/control-plane/WORKFLOW.md'));
   const traceability = canonicalText(fs.readFileSync('docs/control-plane/TRACEABILITY.md'));
   const mcpSkill = canonicalText(fs.readFileSync('.agents/skills/mcp-bounds/SKILL.md'));

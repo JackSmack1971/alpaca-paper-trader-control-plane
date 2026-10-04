@@ -33,6 +33,7 @@ try {
   if (input.hook_event_name !== 'PostToolUse') process.exit(0);
   const repo = findRepoRoot(input.cwd ?? process.cwd());
   const policy = loadJson(path.join(repo, 'docs/control-plane/policy.json'));
+  const capabilities = loadJson(path.join(repo, 'docs/control-plane/capabilities.json'));
   const mcpResultBudgetBytes = policy.mcp.maximum_result_utf8_bytes;
   const toolName = String(input.tool_name ?? '');
 
@@ -66,8 +67,10 @@ try {
 
   if (/^mcp__/.test(toolName)) {
     const bytes = Buffer.byteLength(JSON.stringify(input.tool_response ?? null), 'utf8');
-    if (bytes > mcpResultBudgetBytes) {
-      process.stdout.write(JSON.stringify({ continue: false, hookSpecificOutput: { hookEventName: 'PostToolUse', additionalContext: `MCP result was dropped because its serialized UTF-8 size exceeded the ${mcpResultBudgetBytes.toLocaleString('en-US')}-byte context budget. Repeat with a narrower filter, selected fields, and a smaller page.` } }));
+    const toolBound = capabilities.mcp_policy?.tools?.find(tool => tool.tool_name === toolName)?.result_size?.maximum_utf8_bytes;
+    const effectiveBudget = Number.isInteger(toolBound) ? Math.min(mcpResultBudgetBytes, toolBound) : mcpResultBudgetBytes;
+    if (bytes > effectiveBudget) {
+      process.stdout.write(JSON.stringify({ continue: false, hookSpecificOutput: { hookEventName: 'PostToolUse', additionalContext: `MCP result was dropped because its serialized UTF-8 size exceeded the ${effectiveBudget.toLocaleString('en-US')}-byte context budget. Repeat with a narrower filter, selected fields, and a smaller page.` } }));
     }
   }
 } catch (error) {
