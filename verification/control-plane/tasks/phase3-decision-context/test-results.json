@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "task_id": "phase3-decision-context",
+  "bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+  "status": "FAIL",
+  "criteria": [
+    {
+      "criterion_id": "CONTEXT-DETERMINISTIC",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "context-final-suite-1",
+        "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/context-final-suite-1.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "CONTEXT-NUMERICS-AND-MISSINGNESS",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "context-final-suite-1",
+        "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/context-final-suite-1.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "CONTEXT-PROVENANCE",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "context-final-suite-1",
+        "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/context-final-suite-1.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "CONTEXT-PERSISTED-REPLAY",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "context-hardening-pg-replay-2",
+        "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/context-hardening-pg-replay-2.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "CONTEXT-BOUNDED",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "context-final-suite-1",
+        "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/context-final-suite-1.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-CLASSIFICATION",
+      "status": "FAIL",
+      "disposition": "PENDING",
+      "evidence": null
+    },
+    {
+      "criterion_id": "POST-DIFF-REQUIRED-LANES",
+      "status": "FAIL",
+      "disposition": "PENDING",
+      "evidence": null
+    }
+  ],
+  "generated_at": "2026-10-04T17:21:42.690Z"
+}

@@ -1,0 +1,12 @@
+
+C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\phase3-decision-context\scripts\verify-decision-context.ts:12
+  if (!response.ok) throw new Error(`decision context check failed: ${response.status} ${path}`);
+                          ^
+
+
+Error: decision context check failed: 404 /__local/decision-context
+    at json (C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\phase3-decision-context\scripts\verify-decision-context.ts:12:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async <anonymous> (C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\phase3-decision-context\scripts\verify-decision-context.ts:27:17)
+
+Node.js v22.20.0

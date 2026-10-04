@@ -1,0 +1,47 @@
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0/.codex/worktrees/github-runtime-bootstrap
+
+ ❯ tests/decision-context.test.ts (9 tests | 1 failed) 126ms
+   ✓ deterministic decision context > produces byte-identical canonical payload, context ID, and digest for identical recorded inputs 51ms
+   ✓ deterministic decision context > uses exact decimal arithmetic for return, spread, exposure, and unrealized P&L 6ms
+   ✓ deterministic decision context > rounds exact half-way returns to even at the documented eight decimal places 4ms
+   × deterministic decision context > keeps missing account and market facts null and blocks inference instead of manufacturing zeroes 14ms
+     → expected [ 'account_unavailable', …(3) ] to deeply equal [ 'account_unavailable', …(1) ]
+   ✓ deterministic decision context > marks stale market and account inputs unusable and rejects future source observations 11ms
+   ✓ deterministic decision context > blocks inference when required market, account, session, or capability facts are incomplete 8ms
+   ✓ deterministic decision context > applies trade corrections and cancellations and leaves unknown receive provenance null 6ms
+   ✓ deterministic decision context > sums individually safe trade sizes without overflowing JavaScript number arithmetic 6ms
+   ✓ deterministic decision context > rejects invalid symbols, crossed quotes, and serialized contexts above the conservative byte budget 17ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 passed (9)
+   Start at  14:02:07
+   Duration  924ms (transform 142ms, setup 0ms, collect 323ms, tests 126ms, environment 0ms, prepare 134ms)
+
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/decision-context.test.ts > deterministic decision context > keeps missing account and market facts null and blocks inference instead of manufacturing zeroes
+AssertionError: expected [ 'account_unavailable', …(3) ] to deeply equal [ 'account_unavailable', …(1) ]
+
+- Expected
++ Received
+
+  [
+    "account_unavailable",
++   "market_price_unavailable",
+    "market_unavailable",
++   "symbol_capabilities_unavailable",
+  ]
+
+ ❯ tests/decision-context.test.ts:86:36
+     84|     const built = buildDecisionContext(input);
+     85|     expect(built.context.eligible_for_inference).toBe(false);
+     86|     expect(built.context.blockers).toEqual(['account_unavailable', 'ma…
+       |                                    ^
+     87|     expect(built.context.market.current_price).toBeNull();
+     88|     expect(built.context.account.equity).toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

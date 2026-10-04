@@ -1,0 +1,32 @@
+src/domain/decision-context.ts(211,59): error TS2349: This expression is not callable.
+  Type 'String' has no call signatures.
+src/domain/decision-context.ts(211,59): error TS2448: Block-scoped variable 'canonical' used before its declaration.
+src/domain/decision-context.ts(211,59): error TS2454: Variable 'canonical' is used before being assigned.
+src/domain/decision-context.ts(219,22): error TS2349: This expression is not callable.
+  Type 'String' has no call signatures.
+src/domain/decision-context.ts(219,22): error TS2448: Block-scoped variable 'canonical' used before its declaration.
+src/domain/decision-context.ts(219,22): error TS2454: Variable 'canonical' is used before being assigned.
+src/domain/decision-context.ts(220,48): error TS2349: This expression is not callable.
+  Type 'String' has no call signatures.
+src/domain/decision-context.ts(220,48): error TS2448: Block-scoped variable 'canonical' used before its declaration.
+src/domain/decision-context.ts(220,48): error TS2454: Variable 'canonical' is used before being assigned.
+src/domain/decision-context.ts(236,24): error TS2349: This expression is not callable.
+  Type 'String' has no call signatures.
+src/domain/decision-context.ts(236,24): error TS2448: Block-scoped variable 'canonical' used before its declaration.
+src/domain/decision-context.ts(236,24): error TS2454: Variable 'canonical' is used before being assigned.
+src/domain/decision-context.ts(242,57): error TS2349: This expression is not callable.
+  Type 'String' has no call signatures.
+src/domain/decision-context.ts(242,57): error TS2448: Block-scoped variable 'canonical' used before its declaration.
+src/domain/decision-context.ts(242,57): error TS2454: Variable 'canonical' is used before being assigned.
+src/domain/decision-context.ts(253,14): error TS2349: This expression is not callable.
+  Type 'String' has no call signatures.
+src/domain/decision-context.ts(253,14): error TS2448: Block-scoped variable 'canonical' used before its declaration.
+src/domain/decision-context.ts(253,14): error TS2454: Variable 'canonical' is used before being assigned.
+src/domain/decision-context.ts(254,17): error TS2349: This expression is not callable.
+  Type 'String' has no call signatures.
+src/domain/decision-context.ts(254,17): error TS2448: Block-scoped variable 'canonical' used before its declaration.
+src/domain/decision-context.ts(254,17): error TS2454: Variable 'canonical' is used before being assigned.
+src/domain/decision-context.ts(281,22): error TS2349: This expression is not callable.
+  Type 'String' has no call signatures.
+src/domain/decision-context.ts(281,22): error TS2448: Block-scoped variable 'canonical' used before its declaration.
+src/domain/decision-context.ts(281,22): error TS2454: Variable 'canonical' is used before being assigned.

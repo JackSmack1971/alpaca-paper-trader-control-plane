@@ -1,0 +1,17 @@
+{
+  "schema_version": 2,
+  "id": "context-final-paper-guard-1",
+  "task_id": "phase3-decision-context",
+  "bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "scripts/control-plane/check-paper-only.mjs"
+  ],
+  "log_path": "verification/control-plane/tasks/phase3-decision-context/checks/context-final-paper-guard-1.log",
+  "started_at": "2026-10-04T18:05:37.258Z",
+  "completed_at": "2026-10-04T18:05:37.335Z",
+  "signal": null,
+  "error": null
+}

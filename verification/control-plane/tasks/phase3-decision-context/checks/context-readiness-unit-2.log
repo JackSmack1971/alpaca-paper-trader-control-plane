@@ -1,0 +1,11 @@
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0/.codex/worktrees/github-runtime-bootstrap
+
+ ✓ tests/market-state.test.ts (21 tests) 131ms
+ ✓ tests/decision-context.test.ts (10 tests) 109ms
+
+ Test Files  2 passed (2)
+      Tests  31 passed (31)
+   Start at  14:13:09
+   Duration  927ms (transform 206ms, setup 0ms, collect 569ms, tests 240ms, environment 0ms, prepare 262ms)
+
