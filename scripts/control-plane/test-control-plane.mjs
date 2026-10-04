@@ -50,12 +50,25 @@ const mcpUnbounded = run(['.codex/hooks/pre-tool-use.mjs'], repo, JSON.stringify
 assert.equal(JSON.parse(mcpUnbounded.stdout).hookSpecificOutput.permissionDecision, 'deny');
 const mcpBounded = run(['.codex/hooks/pre-tool-use.mjs'], repo, JSON.stringify({hook_event_name:'PreToolUse',tool_name:'mcp__db__query_rows',tool_input:{table:'orders',filter:{status:'open'},limit:50}}));
 assert.equal(mcpBounded.stdout, '');
+const mcpUnknownCollection = run(['.codex/hooks/pre-tool-use.mjs'], repo, JSON.stringify({hook_event_name:'PreToolUse',tool_name:'mcp__db__fetchPortfolioSnapshot',tool_input:{account_scope:'acct-1',batch_count:20}}));
+assert.equal(JSON.parse(mcpUnknownCollection.stdout).hookSpecificOutput.permissionDecision,'deny','unregistered collection-like operation must fail closed');
+const mcpExplicitNonObviousUnbounded = run(['.codex/hooks/pre-tool-use.mjs'], repo, JSON.stringify({hook_event_name:'PreToolUse',tool_name:'mcp__portfolio__fetchSnapshot',tool_input:{account_scope:'acct-1'}}));
+assert.equal(JSON.parse(mcpExplicitNonObviousUnbounded.stdout).hookSpecificOutput.permissionDecision,'deny','registered non-obvious collection tool must use its explicit page-size field');
+const mcpExplicitNonObviousBounded = run(['.codex/hooks/pre-tool-use.mjs'], repo, JSON.stringify({hook_event_name:'PreToolUse',tool_name:'mcp__portfolio__fetchSnapshot',tool_input:{account_scope:'acct-1',batch_count:20}}));
+assert.equal(mcpExplicitNonObviousBounded.stdout,'','registered non-obvious collection tool must pass when its declared policy is satisfied');
+const mcpExplicitOverLimit = run(['.codex/hooks/pre-tool-use.mjs'], repo, JSON.stringify({hook_event_name:'PreToolUse',tool_name:'mcp__portfolio__fetchSnapshot',tool_input:{account_scope:'acct-1',batch_count:41}}));
+assert.equal(JSON.parse(mcpExplicitOverLimit.stdout).hookSpecificOutput.permissionDecision,'deny','tool-specific page-size maximum must be enforced');
+const mcpUnknownScalar = run(['.codex/hooks/pre-tool-use.mjs'], repo, JSON.stringify({hook_event_name:'PreToolUse',tool_name:'mcp__account__getBalance',tool_input:{account_id:'acct-1'}}));
+assert.equal(mcpUnknownScalar.stdout,'','unknown scalar lookup should not be classified as a collection by the fallback');
 const mcpLimit = loadJson(path.join(repo,'docs/control-plane/policy.json')).mcp.maximum_result_utf8_bytes;
 const mcpAtLimit = run(['.codex/hooks/post-tool-use.mjs'],repo,JSON.stringify({hook_event_name:'PostToolUse',tool_name:'mcp__db__query_rows',tool_response:'a'.repeat(mcpLimit - 2)}));
 assert.equal(mcpAtLimit.stdout,'','serialized UTF-8 result at exactly 24,000 bytes must be allowed');
 const mcpOverLimit = run(['.codex/hooks/post-tool-use.mjs'],repo,JSON.stringify({hook_event_name:'PostToolUse',tool_name:'mcp__db__query_rows',tool_response:'a'.repeat(mcpLimit - 1)}));
 assert.equal(JSON.parse(mcpOverLimit.stdout).continue,false,'serialized UTF-8 result above 24,000 bytes must be dropped');
 assert.match(JSON.parse(mcpOverLimit.stdout).hookSpecificOutput.additionalContext,/24,000-byte/);
+const perToolOverLimit = run(['.codex/hooks/post-tool-use.mjs'],repo,JSON.stringify({hook_event_name:'PostToolUse',tool_name:'mcp__portfolio__fetchSnapshot',tool_response:'a'.repeat(16002)}));
+assert.equal(JSON.parse(perToolOverLimit.stdout).continue,false,'registered result-size bound must be enforced at post-tool boundary');
+assert.match(JSON.parse(perToolOverLimit.stdout).hookSpecificOutput.additionalContext,/16,000-byte/);
 
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'alpaca-cp-'));
 const sibling = `${temp}-worktree`;

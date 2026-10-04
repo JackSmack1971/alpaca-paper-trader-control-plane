@@ -80,6 +80,7 @@ try {
   if (input.hook_event_name !== 'PreToolUse') process.exit(0);
   const repo = findRepoRoot(input.cwd ?? process.cwd());
   const policy = loadJson(path.join(repo, 'docs/control-plane/policy.json'));
+  const capabilities = loadJson(path.join(repo, 'docs/control-plane/capabilities.json'));
   const activeTaskPath = path.join(repo, 'verification/control-plane/debug-tasks/active.json');
   const tasksDir = path.dirname(activeTaskPath);
   let active = fs.existsSync(activeTaskPath) ? JSON.parse(fs.readFileSync(activeTaskPath, 'utf8')) : null;
@@ -120,29 +121,29 @@ try {
   }
   const command = String(input.tool_input?.command ?? '');
   if (/^mcp__/.test(String(input.tool_name ?? ''))) {
-    const keys = [];
-    const strings = [];
-    const hasValue = value => value != null && (typeof value === 'string' ? value.trim().length > 0 : Array.isArray(value) ? value.length > 0 : typeof value === 'object' ? Object.keys(value).length > 0 : true);
-    const walk = (value, depth = 0) => {
-      if (depth > 8 || value == null) return;
-      if (Array.isArray(value)) { for (const child of value) walk(child, depth + 1); return; }
-      if (typeof value === 'object') {
-        for (const [key, child] of Object.entries(value)) { keys.push([key.toLowerCase().replace(/[-_]/g, ''), child]); walk(child, depth + 1); }
-      } else if (typeof value === 'string') strings.push(value);
-    };
-    walk(input.tool_input);
-    const maxPageSize = policy.mcp.maximum_page_size;
-    const bounded = keys.some(([key, value]) => ['limit','pagesize','perpage','first','take','maxresults'].includes(key) && Number.isInteger(Number(value)) && Number(value) > 0 && Number(value) <= maxPageSize)
-      || strings.some(value => new RegExp(`\\bLIMIT\\s+(?:[1-9]\\d?|${maxPageSize})\\b`, 'i').test(value));
-    const scoped = keys.some(([key, value]) => ['filter','filters','where','search','keyword','path','id','ids','recordid','symbol','project','since','until','from','to','start','end'].includes(key) && hasValue(value))
-      || strings.some(value => /\bWHERE\s+\S/i.test(value));
-    const toolParts = String(input.tool_name ?? '').split('__');
+    const name = String(input.tool_name ?? '');
+    const toolPolicy = capabilities.mcp_policy?.tools?.find(tool => tool.tool_name === name);
+    const toolParts = name.split('__');
     const operation = toolParts.length >= 3 ? toolParts.slice(2).join('__').replace(/([a-z0-9])([A-Z])/g, '$1_$2') : '';
-    const collectionTool = /(?:^|_)(?:list|search|query|select|logs?|history|events?|rows?|records?|database|export|fetch(?:_all)?|get_all|read_(?:all|many|list|rows|records)|scan)(?:_|$)/i.test(operation);
-    if (collectionTool && ((policy.mcp.require_page_size && !bounded) || (policy.mcp.require_filter && !scoped))) {
-      const missing = [(policy.mcp.require_filter && !scoped) && 'a narrow filter', (policy.mcp.require_page_size && !bounded) && `a page size from 1 to ${maxPageSize}`].filter(Boolean).join(' and ');
-      process.stdout.write(JSON.stringify({ hookSpecificOutput: { hookEventName: 'PreToolUse', permissionDecision: 'deny', permissionDecisionReason: `MCP collection calls require ${missing}.` } }));
-      process.exit(0);
+    const looksCollectionLike = /(?:^|_)(?:list|search|query|select|logs?|history|events?|rows?|records?|database|export|fetch(?:_all)?|get_all|read_(?:all|many|list|rows|records)|scan)(?:_|$)/i.test(operation);
+    if (!toolPolicy && looksCollectionLike) deny(`MCP operation ${name} appears collection-like but has no explicit tool policy registration; bounded-query policy cannot be verified.`);
+    if (toolPolicy?.behavior === 'collection') {
+      const args = input.tool_input ?? {};
+      const atPath = fieldPath => String(fieldPath).split('.').reduce((value, part) => value != null ? value[part] : undefined, args);
+      const hasValue = value => value != null && (typeof value === 'string' ? value.trim().length > 0 : Array.isArray(value) ? value.length > 0 : typeof value === 'object' ? Object.keys(value).length > 0 : true);
+      const missingScopes = (toolPolicy.required_scope_fields ?? []).filter(field => !hasValue(atPath(field)));
+      const page = toolPolicy.pagination;
+      const pageSize = page ? Number(atPath(page.field)) : null;
+      const maximumPageSize = Math.min(page?.maximum ?? policy.mcp.maximum_page_size, policy.mcp.maximum_page_size);
+      const invalidPage = page?.required !== false && (!Number.isInteger(pageSize) || pageSize < 1 || pageSize > maximumPageSize);
+      if (missingScopes.length || invalidPage) {
+        const requirements = [...(missingScopes.length ? [`scope field${missingScopes.length === 1 ? '' : 's'} ${missingScopes.join(', ')}`] : []), ...(invalidPage ? [`${page.field} from 1 to ${maximumPageSize}`] : [])];
+        deny(`MCP collection call ${name} requires ${requirements.join(' and ')}.`);
+      }
+      const resultLimit = toolPolicy.result_size?.maximum_utf8_bytes;
+      if (resultLimit != null && (!Number.isInteger(resultLimit) || resultLimit < 1 || resultLimit > policy.mcp.maximum_result_utf8_bytes)) deny(`MCP tool policy for ${name} has an invalid result-size bound.`);
+    } else if (toolPolicy && toolPolicy.behavior !== 'scalar') {
+      deny(`MCP tool policy for ${name} has an unsupported behavior and must be corrected.`);
     }
     process.exit(0);
   }
