@@ -30,7 +30,8 @@
   "hook_scripts": [
     ".codex/hooks/session-start.mjs",
     ".codex/hooks/pre-tool-use.mjs",
-    ".codex/hooks/post-tool-use.mjs"
+    ".codex/hooks/post-tool-use.mjs",
+    ".codex/hooks/run-hook.cmd"
   ],
   "rule_files": [
     ".codex/rules/default.rules"
@@ -61,7 +62,9 @@
     "scripts/control-plane/verify-command.mjs",
     "scripts/control-plane/causal-debug.mjs",
     "scripts/control-plane/check-paper-only.mjs",
-    "scripts/control-plane/test-control-plane.mjs"
+    "scripts/control-plane/test-control-plane.mjs",
+    "scripts/control-plane/test-hooks-windows.mjs",
+    "scripts/control-plane/audit-worktree-assignments.mjs"
   ],
   "agent_roles": [
     {

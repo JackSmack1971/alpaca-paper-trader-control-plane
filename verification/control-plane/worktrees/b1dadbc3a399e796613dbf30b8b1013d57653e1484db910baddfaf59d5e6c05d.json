@@ -17,6 +17,7 @@
   ],
   "integration_target": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0",
   "assignment_id": "b1dadbc3a399e796613dbf30b8b1013d57653e1484db910baddfaf59d5e6c05d",
-  "active": true,
-  "created_at": "2026-10-03T20:57:10.390Z"
+  "active": false,
+  "created_at": "2026-10-03T20:57:10.390Z",
+  "released_at": "2026-10-04T02:13:39.734Z"
 }

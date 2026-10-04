@@ -4,6 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { canonicalText, classifyPlatform, loadJson, objectDigest, sha256 } from './lib.mjs';
+import { auditAssignments } from './audit-worktree-assignments.mjs';
 import { ensureTaskBundle } from './task-evidence.mjs';
 import { validateRequiredLaneEvidence } from './validate-closeout.mjs';
 
@@ -25,7 +26,13 @@ for (const role of ['phase_mapper','task_router','provider_researcher','implemen
 assert.doesNotMatch(rootConfig,/\bdefaultShell\s*=/);
 const hookConfig = JSON.parse(fs.readFileSync(path.join(repo,'.codex/hooks.json'),'utf8'));
 assert.ok(hookConfig.hooks.PreToolUse.some(group => group.matcher === '.*'));
-for (const groups of Object.values(hookConfig.hooks)) for (const group of groups) for (const hook of group.hooks) if (hook.type === 'command') assert.match(hook.commandWindows,/^powershell -NoProfile -Command /i);
+for (const groups of Object.values(hookConfig.hooks)) for (const group of groups) for (const hook of group.hooks) if (hook.type === 'command') assert.match(hook.commandWindows,/^cmd\.exe \/d \/c \.codex\\hooks\\run-hook\.cmd /i);
+const assignmentAudit = auditAssignments(repo, [
+  { assignment_id:'missing', unit_of_work:'missing-worktree', active:true, worktree:path.join(repo,'.codex/worktrees/missing'), branch:'codex/missing' },
+  { assignment_id:'mismatch', unit_of_work:'wrong-branch', active:true, worktree:repo, branch:'codex/other' }
+], [{ path:repo, branch:'main' }]);
+assert.equal(assignmentAudit.status,'REVIEW_REQUIRED');
+assert.deepEqual(assignmentAudit.diagnostics.map(item => item.issues), [['path-missing','branch-missing'],['branch-mismatch','branch-missing']]);
 const causalGuide = fs.readFileSync(path.join(repo,'docs/control-plane/causal-debugging.md'),'utf8');
 for (const phrase of ['hypothesis','minimal reproduction','baseline','one causal','focused regression','verify-fixed']) assert.ok(causalGuide.toLowerCase().includes(phrase),`causal debugging guide must cover ${phrase}`);
 assert.match(causalGuide,/Do not add `defaultShell`/);
@@ -161,9 +168,11 @@ try {
   fs.rmSync(harmlessSource,{force:true});
   const hookJsonPath = path.join(temp,'.codex/hooks.json');
   const goodHooks = fs.readFileSync(hookJsonPath,'utf8');
-  fs.writeFileSync(hookJsonPath,goodHooks.replace('powershell -NoProfile -Command','cmd /c'), 'utf8');
+  const badHooks = JSON.parse(goodHooks);
+  badHooks.hooks.SessionStart[0].hooks[0].commandWindows = 'cmd /c';
+  fs.writeFileSync(hookJsonPath,JSON.stringify(badHooks,null,2), 'utf8');
   const badWindowsHook = run(['scripts/control-plane/validate.mjs'],temp);
-  assert.notEqual(badWindowsHook.status,0,'non-PowerShell Windows hook wrapper must fail validation');
+  assert.notEqual(badWindowsHook.status,0,'unregistered Windows hook command must fail validation');
   fs.writeFileSync(hookJsonPath,goodHooks,'utf8');
 
   // Concurrent writers are gated through Git's shared common directory, not per-worktree untracked files.

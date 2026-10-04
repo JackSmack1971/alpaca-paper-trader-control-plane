@@ -88,7 +88,7 @@ if (failures.length === 0) {
   if (!hooks.hooks?.PostToolUse?.length) failures.push('PostToolUse hook missing');
   for (const event of ['SessionStart','PreToolUse','PostToolUse']) for (const group of hooks.hooks?.[event] ?? []) for (const handler of group.hooks ?? []) {
     if (handler.type === 'command' && (!handler.command || !handler.commandWindows)) failures.push(`${event} command hook must define command and commandWindows`);
-    if (handler.type === 'command' && handler.commandWindows && !/^powershell(?:\.exe)?\s+-NoProfile\s+-Command\s+/i.test(handler.commandWindows)) failures.push(`${event} Windows command hook must use a PowerShell -NoProfile -Command wrapper`);
+    if (handler.type === 'command' && handler.commandWindows && !/^cmd\.exe \/d \/c \.codex\\hooks\\run-hook\.cmd (?:session-start|pre-tool-use|post-tool-use)$/i.test(handler.commandWindows)) failures.push(`${event} Windows command hook must use the registered cmd.exe hook launcher`);
   }
   if (/\bdefaultShell\s*=/.test(config)) failures.push('unsupported defaultShell key must not be added to Codex config.toml');
   if (!(hooks.hooks?.PreToolUse ?? []).some(group => group.matcher === '.*')) failures.push('generic PreToolUse matcher required for mutation-gate tool-name coverage');
