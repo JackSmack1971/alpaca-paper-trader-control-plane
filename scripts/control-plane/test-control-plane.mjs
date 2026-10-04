@@ -68,6 +68,13 @@ try {
   assert.equal(preflight.status,0,preflight.stderr || preflight.stdout);
   assert.equal(JSON.parse(preflight.stdout).status,'READY');
   assert.equal(JSON.parse(preflight.stdout).baseline_kind,'current-main-working-tree');
+  const ciWorkflowPath = path.join(temp,'.github/workflows/control-plane.yml');
+  const ciWorkflowSource = fs.readFileSync(ciWorkflowPath,'utf8');
+  fs.writeFileSync(ciWorkflowPath,ciWorkflowSource.replace('node scripts/control-plane/test-control-plane.mjs','node scripts/control-plane/test-hooks-windows.mjs'));
+  const ciCoverageDrift = run(['scripts/control-plane/validate.mjs'],temp);
+  assert.notEqual(ciCoverageDrift.status,0,'semantic validator must reject removal of required CI regression coverage');
+  assert.match(ciCoverageDrift.stderr + ciCoverageDrift.stdout,/CI workflow missing required trust check: node scripts\/control-plane\/test-control-plane\.mjs/);
+  fs.writeFileSync(ciWorkflowPath,ciWorkflowSource);
   const capabilityPath = path.join(temp,'docs/control-plane/capabilities.json');
   const capabilitySource = fs.readFileSync(capabilityPath,'utf8');
   fs.writeFileSync(capabilityPath,capabilitySource.replace('"maximum_utf8_bytes": 24000','"maximum_utf8_bytes": 25000'));

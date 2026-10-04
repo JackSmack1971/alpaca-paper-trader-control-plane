@@ -7,11 +7,23 @@ const failures = [];
 const warnings = [];
 const exists = rel => fs.existsSync(path.join(root, rel));
 const componentsPath = 'docs/control-plane/components.json';
-const must = ['AGENTS.md','.codex/config.toml','.codex/hooks.json','.codex/rules/default.rules','docs/PROJECT_CHARTER.md','docs/control-plane/phase-state.json',componentsPath,'docs/control-plane/phase-contracts.json','docs/control-plane/capabilities.json','docs/control-plane/policy.json'];
+const must = ['AGENTS.md','.codex/config.toml','.codex/hooks.json','.codex/rules/default.rules','docs/PROJECT_CHARTER.md','docs/control-plane/phase-state.json',componentsPath,'docs/control-plane/phase-contracts.json','docs/control-plane/capabilities.json','docs/control-plane/policy.json','.github/workflows/control-plane.yml'];
 for (const rel of must) if (!exists(rel)) failures.push(`missing ${rel}`);
 if (failures.length === 0) {
   const components = loadJson(componentsPath);
   const policy = loadJson('docs/control-plane/policy.json');
+  const ciWorkflow = canonicalText(fs.readFileSync('.github/workflows/control-plane.yml'));
+  for (const check of [
+    'ubuntu-latest',
+    'windows-latest',
+    'node-version: 22',
+    'node scripts/control-plane/validate.mjs',
+    'node scripts/control-plane/test-control-plane.mjs',
+    'node scripts/control-plane/test-runtime-observation.mjs',
+    'node scripts/control-plane/test-hooks-windows.mjs',
+    'git diff --check'
+  ]) if (!ciWorkflow.includes(check)) failures.push(`CI workflow missing required trust check: ${check}`);
+  if (!/if:\s*runner\.os\s*==\s*'Windows'/.test(ciWorkflow)) failures.push('CI workflow must run Windows PowerShell hook integration only on Windows');
   if (components.schema_version !== policy.evidence_schema_versions.components) failures.push('components.json schema_version differs from canonical policy');
   if (components.policy_file !== 'docs/control-plane/policy.json') failures.push('components.json must link the canonical policy file');
   const nodeMajor = Number(process.versions.node.split('.')[0]);

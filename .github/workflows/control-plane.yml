@@ -1,0 +1,57 @@
+name: Control Plane Trust Checks
+
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  control-plane:
+    name: Control plane (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate control-plane sources and policy
+        run: node scripts/control-plane/validate.mjs
+
+      - name: Run control-plane regression suite
+        run: node scripts/control-plane/test-control-plane.mjs
+
+      - name: Check runtime observations
+        run: node scripts/control-plane/test-runtime-observation.mjs
+
+      - name: Exercise Windows PowerShell hook behavior
+        if: runner.os == 'Windows'
+        run: node scripts/control-plane/test-hooks-windows.mjs
+
+      - name: Check patch whitespace
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BEFORE_SHA: ${{ github.event.before }}
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          if [[ "$EVENT_NAME" == "pull_request" && -n "$BASE_SHA" ]]; then
+            git diff --check "$BASE_SHA...$COMMIT_SHA"
+          elif [[ "$EVENT_NAME" == "push" && -n "$BEFORE_SHA" && ! "$BEFORE_SHA" =~ ^0+$ ]]; then
+            git diff --check "$BEFORE_SHA..$COMMIT_SHA"
+          else
+            git diff --check "$COMMIT_SHA^..$COMMIT_SHA"
+          fi
