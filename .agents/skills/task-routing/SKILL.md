@@ -1,7 +1,7 @@
 ---
 name: task-routing
 description: >
-  Route engineering tasks by uncertainty, structural complexity, and blast radius so routine work stays single-agent and consequential work gets isolated planning, review, and verification.
+  Route non-routine engineering work by uncertainty, structural complexity, and blast radius to the smallest sufficient set of isolated roles. Keep routine reversible edits with the primary agent; include required independent evidence roles when a task may close a phase. Not for product prioritization or permission decisions.
 ---
 
 # Task Routing
@@ -19,6 +19,10 @@ At task intake, classify the requested work before editing. Routine syntax corre
 | Low uncertainty, low complexity, low radius | One strong primary builder; no subagent. Use a focused diff. |
 | High uncertainty, low radius | Fresh read-only `phase_mapper` or `provider_researcher` in an isolated worktree; return concise `RESEARCH.md` content for the primary to persist; synthesize before one builder starts. |
 | High complexity and high radius, or an explicit critical-path trigger | Planner (`phase_mapper`) → one `implementer` → read-only reviewer/security auditor/verifier → fresh read-only evaluator. Create `verification/test-results.json` in default `FAIL` state with acceptance criteria before code generation. |
+
+### Phase-closeout evidence route
+
+When a task invokes `phase-closeout` or intends to declare an active phase complete, schedule independent `reviewer` and `verifier` roles plus a fresh `evaluator` for the frozen candidate, regardless of whether the implementation slice's initial `route-task` result selected them. Treat this as a mandatory closeout evidence lane after the candidate is frozen, not optional review selected by change-size heuristics; do not weaken or rewrite the recorded implementation intake to obtain it. Give each role only its defined read-only/evaluation inputs. If a role or its required isolation is unavailable, keep closeout `BLOCKED`/`INCONCLUSIVE` and identify the missing lane; never recast a primary-agent self-check as independent evidence. Do not schedule these roles for an ordinary slice that is not attempting phase closeout unless normal risk routing calls for them.
 
 Do not delegate routine syntax corrections, documentation additions, dependency updates, or strictly sequential edits in one file. Enablement of multi-agent tools does not imply that every task should use them.
 
@@ -43,7 +47,7 @@ These are routing signals, not proof that the work is high risk. State the evide
 
 ## Model and token budget
 
-Use a fast, low-cost model such as GPT-6 Luna for routing, repository maps, research summaries, logs, state-file generation, and simple lint triage. Reserve a strong builder/planner for implementation and use a fresh strong evaluator only for the high-complexity routes above. Use GPT-6 Astra only for an unusually difficult, bounded architectural evaluation; never make it the default for long-running work. Prefer summaries and bounded evidence over copied transcripts.
+Use the lowest-cost currently configured model that can perform the selected role reliably. Reserve higher-capability models for difficult, bounded planning or evaluation where the task's uncertainty and consequence justify them; do not assume model names, prices, or capability rankings remain stable. Prefer summaries and bounded evidence over copied transcripts.
 
 ## Verification contract
 

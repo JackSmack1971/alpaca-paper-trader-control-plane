@@ -54,6 +54,7 @@
     "scripts/control-plane/set-test-result.mjs",
     "scripts/control-plane/validate-test-results.mjs",
     "scripts/control-plane/verify-command.mjs",
+    "scripts/control-plane/causal-debug.mjs",
     "scripts/control-plane/check-paper-only.mjs",
     "scripts/control-plane/test-control-plane.mjs"
   ],

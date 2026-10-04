@@ -11,6 +11,8 @@ This repository is governed by `docs/PROJECT_CHARTER.md`. The charter is the arc
 
 ## Before editing
 
+At task intake, treat requests to fix an existing failure, regression, or error trace as debugging tasks and register them before editing source. Follow `docs/control-plane/causal-debugging.md`: reproduce the exact reported error before source edits, keep each causal change scoped, and rerun reproduction before another edit. Hook enforcement is bounded by the Codex PreToolUse payload and is not an OS filesystem sandbox.
+
 For every implementation task:
 
 0. Run the control-plane start gate from `docs/control-plane/START_HERE.md`; implementation requires passing static validation, a clean preflight, and an immutable execution snapshot. Live Codex runtime qualification is optional diagnostics, not an implementation or closeout gate.

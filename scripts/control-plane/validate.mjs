@@ -80,8 +80,12 @@ if (failures.length === 0) {
   if (!hooks.hooks?.PostToolUse?.length) failures.push('PostToolUse hook missing');
   for (const event of ['SessionStart','PreToolUse','PostToolUse']) for (const group of hooks.hooks?.[event] ?? []) for (const handler of group.hooks ?? []) {
     if (handler.type === 'command' && (!handler.command || !handler.commandWindows)) failures.push(`${event} command hook must define command and commandWindows`);
+    if (handler.type === 'command' && handler.commandWindows && !/^powershell(?:\.exe)?\s+-NoProfile\s+-Command\s+/i.test(handler.commandWindows)) failures.push(`${event} Windows command hook must use a PowerShell -NoProfile -Command wrapper`);
   }
-  if (!(hooks.hooks?.PreToolUse ?? []).some(group => /^\^mcp__/.test(group.matcher ?? ''))) failures.push('MCP PreToolUse bounds hook missing');
+  if (/\bdefaultShell\s*=/.test(config)) failures.push('unsupported defaultShell key must not be added to Codex config.toml');
+  if (!(hooks.hooks?.PreToolUse ?? []).some(group => group.matcher === '.*')) failures.push('generic PreToolUse matcher required for mutation-gate tool-name coverage');
+  if (!exists('scripts/control-plane/causal-debug.mjs')) failures.push('causal-debug lifecycle command missing');
+  if (!exists('docs/control-plane/causal-debugging.md')) failures.push('causal debugging workflow documentation missing');
   if (!(hooks.hooks?.PostToolUse ?? []).some(group => /^\^mcp__/.test(group.matcher ?? ''))) failures.push('MCP PostToolUse size-limit hook missing');
   if (!(hooks.hooks?.PostToolUse ?? []).some(group => /^\^Bash\$/.test(group.matcher ?? ''))) failures.push('Bash PostToolUse exit-status hook missing');
   const capability = loadJson('docs/control-plane/capabilities.json');

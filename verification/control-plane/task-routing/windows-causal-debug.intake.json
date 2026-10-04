@@ -1,0 +1,19 @@
+{
+  "id": "windows-causal-debug",
+  "task_kind": "feature",
+  "uncertainty": "high",
+  "files": [".codex/hooks.json", ".codex/hooks/pre-tool-use.mjs", ".codex/hooks/post-tool-use.mjs", ".codex/config.toml", "AGENTS.md", ".agents/skills/execute-phase/SKILL.md", "scripts/control-plane", "docs/control-plane"],
+  "architectural_file_count": 6,
+  "expected_code_lines": 100,
+  "blast_radius": ["security-boundary", "functional-correctness"],
+  "verification_difficulty": "difficult",
+  "implementation_required": true,
+  "research_required": true,
+  "acceptance_criteria": [
+    {"id":"WIN-HOOK-01","description":"Every configured command hook has a Windows PowerShell commandWindows wrapper; hook JSON validation rejects missing or non-PowerShell Windows wrappers."},
+    {"id":"DEBUG-REPRO-01","description":"A source-changing tool call during a debugging task is denied until a minimal reproduction command successfully reproduces the reported failure and exact trace, with structured evidence."},
+    {"id":"DEBUG-REPRO-02","description":"After valid reproduction evidence is recorded, the source-edit gate permits the scoped fix; missing, stale, mismatched, or non-reproducing evidence remains denied with corrective guidance."},
+    {"id":"DEBUG-CAUSE-01","description":"Repository guidance mandates hypothesis formation, executable minimal reproduction, baseline confirmation, one causal change at a time, and rerunning reproduction plus focused regression checks."},
+    {"id":"COMPAT-01","description":"No unsupported defaultShell settings key is introduced; docs explain the supported Codex commandWindows mechanism and any user-level settings boundary."}
+  ]
+}

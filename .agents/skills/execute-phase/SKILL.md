@@ -49,6 +49,8 @@ Delegation never authorizes commit, push, PR, merge, release, deployment, destru
 
 ## 4. Build falsifiable verification evidence
 
+For an explicitly registered debugging task, follow `docs/control-plane/causal-debugging.md`. Require a nonzero executable minimal reproduction that emits the exact reported error signature before the first source change. The hook consumes that evidence on one scoped edit call; reproduce again before a second causal edit. This requirement does not apply to ordinary feature implementation.
+
 Run the narrowest checks that can disprove the changed behavior first. A failed check stays failed until the relevant check is rerun successfully.
 
 Then use `verification-ladder` for the highest charter rung actually available. Distinguish passing evidence, introduced failures, demonstrably pre-existing unrelated failures, blockers, and unexecuted checks. Never replace unavailable live qualification with a mock or expose credentials.
