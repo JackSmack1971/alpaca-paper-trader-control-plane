@@ -53,8 +53,26 @@ export function createApp(config: AppConfig, pool: Pool, localHarness?: LocalTes
       redact: ['req.headers.authorization', 'req.headers.cookie', 'req.headers.x-api-key', 'req.headers.alpaca-api-key', 'req.headers.openrouter-api-key'],
     },
   });
-  app.addHook('onRequest', async (_request, reply) => {
+  app.addHook('onRequest', async (request, reply) => {
     reply.header('X-Paper-Mode', 'true');
+    if (config.localTestMode && request.url.startsWith('/__local/') && !['GET', 'HEAD', 'OPTIONS'].includes(request.method)) {
+      const host = request.headers.host;
+      let hostIsLoopback = false;
+      try { hostIsLoopback = ['127.0.0.1', 'localhost', '[::1]'].includes(new URL(`http://${host}`).hostname); } catch { /* reject malformed or absent Host */ }
+      const origin = request.headers.origin;
+      let originIsSameLoopback = true;
+      if (origin) {
+        try {
+          const parsedOrigin = new URL(origin);
+          originIsSameLoopback = parsedOrigin.protocol === 'http:'
+            && ['127.0.0.1', 'localhost', '[::1]'].includes(parsedOrigin.hostname)
+            && parsedOrigin.host === host;
+        } catch { originIsSameLoopback = false; }
+      }
+      if (!hostIsLoopback || !originIsSameLoopback) {
+        return reply.code(403).send({ simulated: true, mode: 'paper', error: 'local_request_origin_rejected' });
+      }
+    }
   });
   app.addHook('onClose', async () => { accountReconciler?.stop(); marketStream?.stop(); });
   if (config.localTestMode && localHarness) {

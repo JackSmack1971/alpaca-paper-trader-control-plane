@@ -230,6 +230,24 @@ describe('deterministic decision context', () => {
     expect(built.context.market).toMatchObject({ return_one_trade: '0.00515464', return_five_trades: '0.02631579', trend: 'up' });
   });
 
+  it('compares trend prices correctly when decimal scales differ', async () => {
+    for (const [prices, expected] of [
+      [[100, 100, 100, 100, 100, 99.99], 'down'],
+      [[99.99, 99.99, 99.99, 99.99, 99.99, 100], 'up'],
+    ] as const) {
+      const input = await readyInput();
+      const end = Date.parse(input.asOf);
+      input.marketHistory = prices.map((price, index) => ({
+        T: 't', i: 200 + index, S: 'AAPL', x: 'D', p: price, s: index + 1,
+        t: new Date(end - (5 - index) * 1_000).toISOString(),
+      }));
+      const lastAt = new Date(end).toISOString();
+      const lastPrice = prices.at(-1)!;
+      input.market = { ...input.market!, sourceEventTime: lastAt, receivedAt: lastAt, lastTrade: { id: 205, price: lastPrice, size: 6, sourceTime: lastAt } };
+      expect(buildDecisionContext(input).context.market.trend).toBe(expected);
+    }
+  });
+
   it('rejects invalid symbols, crossed quotes, and serialized contexts above the conservative byte budget', async () => {
     const invalid = await readyInput();
     invalid.symbol = 'aapl';

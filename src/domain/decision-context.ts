@@ -253,7 +253,12 @@ function deterministicUuid(seed: string): string {
 }
 
 function decimalSum(values: Decimal[]): Decimal { return values.reduce((sum, value) => add(sum, value), { units: 0n, scale: 0 }); }
-function magnitudeDirection(a: Decimal, b: Decimal): 'up' | 'down' | 'flat' { return a.units < b.units ? 'up' : a.units > b.units ? 'down' : 'flat'; }
+function magnitudeDirection(a: Decimal, b: Decimal): 'up' | 'down' | 'flat' {
+  const scale = Math.max(a.scale, b.scale);
+  const left = align(a, scale);
+  const right = align(b, scale);
+  return left < right ? 'up' : left > right ? 'down' : 'flat';
+}
 
 function effectiveTrades(events: MarketEvent[], symbol: string): Array<Extract<MarketEvent, { type: 'trade' }>> {
   const trades = new Map<number, { trade: Extract<MarketEvent, { type: 'trade' }>; order: number }>();

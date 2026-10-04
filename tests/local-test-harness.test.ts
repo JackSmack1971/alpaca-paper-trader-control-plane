@@ -10,6 +10,18 @@ import { createLocalAlpacaMarketStream } from '../src/infra/local-alpaca-market-
 import { ALPACA_PAPER_BASE_URL } from '../src/domain/paper.js';
 
 describe('loopback local runtime controls', () => {
+  it('rejects non-loopback hosts and cross-origin browser mutations', async () => {
+    const config = await loadConfig({ DATABASE_URL: 'postgres://postgres@127.0.0.1/test', LOCAL_TEST_MODE: 'true' });
+    const harness = new LocalTestHarness(await loadLocalFixtures());
+    const app = createApp(config, { query: vi.fn() } as unknown as Pool, harness);
+    const nonLoopback = await app.inject({ method: 'POST', url: '/__local/clock', headers: { host: 'attacker.example' }, payload: { now: '2025-01-02T14:31:00.000Z' } });
+    expect(nonLoopback.statusCode).toBe(403);
+    const crossOrigin = await app.inject({ method: 'POST', url: '/__local/clock', headers: { host: 'localhost:80', origin: 'http://attacker.example' }, payload: { now: '2025-01-02T14:31:00.000Z' } });
+    expect(crossOrigin.statusCode).toBe(403);
+    expect((await app.inject('/__local/state')).json().now).toBe('2025-01-02T14:30:00.000Z');
+    await app.close();
+  });
+
   it('routes local account reconciliation through the PAPER adapter with bounded simulated failures and recovery', async () => {
     const config = await loadConfig({ DATABASE_URL: 'postgres://postgres@127.0.0.1/test', LOCAL_TEST_MODE: 'true' });
     const harness = new LocalTestHarness(await loadLocalFixtures());
