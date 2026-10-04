@@ -9,6 +9,7 @@ async function readyInput(): Promise<DecisionContextInput> {
   const harness = new LocalTestHarness(await loadLocalFixtures());
   harness.advance(3);
   const state = harness.state();
+  const { freshness: _accountFreshness, ...accountSnapshot } = state.account;
   const market = state.market.find((item) => item.symbol === 'AAPL')!;
   const asOf = new Date(Math.max(Date.parse(state.now), Date.parse(market.sourceEventTime))).toISOString();
   return {
@@ -19,9 +20,10 @@ async function readyInput(): Promise<DecisionContextInput> {
     market,
     marketHistory: harness.marketFixtureEvents(0, state.replayCursor),
     marketFreshnessMs: 30_000,
-    account: state.account,
+    account: accountSnapshot,
     accountFreshnessMs: 60_000,
     capabilities: { tradable: true, shortable: true, fractional: true },
+    capabilityProvenance: { source: 'fixture', recordId: 'asset:AAPL', sourceTime: null, receivedAt: asOf },
     recentCycleState: null,
   };
 }
@@ -35,7 +37,7 @@ describe('deterministic decision context', () => {
     expect(first.contentHash).toBe(second.contentHash);
     expect(first.context.decision_context_id).toBe(second.context.decision_context_id);
     expect(first.context.provenance.input_sha256).toBe(second.context.provenance.input_sha256);
-    expect(first.context.transform_versions).toEqual({ context: 'decision-context-transform-1', arithmetic: 'decimal-half-even-8-v1' });
+    expect(first.context.transform_versions).toEqual({ context: 'decision-context-transform-2', arithmetic: 'decimal-half-even-8-v1' });
     expect(canonicalJson({ z: 1, a: 2 })).toBe('{"a":2,"z":1}');
   });
 
@@ -64,6 +66,7 @@ describe('deterministic decision context', () => {
     expect(built.context.unavailable).toContainEqual({ path: 'market.return_five_trades', reason: 'insufficient_history' });
     expect(built.context.unavailable).toContainEqual({ path: 'account.realized_pnl', reason: 'unsupported' });
     expect(built.context.provenance.sources.map((source) => source.record_id)).toEqual(expect.arrayContaining(['1', '2', 'AAPL:2025-01-02T14:30:02.000Z']));
+    expect(built.context.provenance.sources).toContainEqual({ sequence: expect.any(Number), kind: 'symbol_capabilities', source: 'fixture', record_id: 'asset:AAPL', source_time: null, received_at: built.context.as_of });
     expect(built.context.eligible_for_inference).toBe(false);
     expect(built.context.blockers).toEqual(expect.arrayContaining(['insufficient_return_history', 'insufficient_trend_history', 'insufficient_volatility_history']));
   });
@@ -82,7 +85,7 @@ describe('deterministic decision context', () => {
 
   it('keeps missing account and market facts null and blocks inference instead of manufacturing zeroes', () => {
     const at = '2025-01-02T14:30:00.000Z';
-    const input: DecisionContextInput = { cycleId, symbol: 'AAPL', builtAt: at, asOf: at, market: null, marketHistory: [], marketFreshnessMs: 30_000, account: null, accountFreshnessMs: 60_000, capabilities: null, recentCycleState: null };
+    const input: DecisionContextInput = { cycleId, symbol: 'AAPL', builtAt: at, asOf: at, market: null, marketHistory: [], marketFreshnessMs: 30_000, account: null, accountFreshnessMs: 60_000, capabilities: null, capabilityProvenance: null, recentCycleState: null };
     const built = buildDecisionContext(input);
     expect(built.context.eligible_for_inference).toBe(false);
     expect(built.context.blockers).toEqual(expect.arrayContaining(['account_unavailable', 'market_price_unavailable', 'market_unavailable', 'symbol_capabilities_unavailable']));
@@ -114,9 +117,43 @@ describe('deterministic decision context', () => {
     expect(() => buildDecisionContext(future)).toThrow(/future/);
   });
 
+  it('preserves an explicit stale marker even when the market receive timestamp is recent', async () => {
+    const input = await readyInput();
+    input.market = { ...input.market!, freshness: 'stale', staleReason: 'receive_age_exceeded' };
+    const built = buildDecisionContext(input);
+
+    expect(built.context.eligible_for_inference).toBe(false);
+    expect(built.context.blockers).toContain('stale_market');
+    expect(built.context.market).toMatchObject({ freshness: 'stale', current_price: null, return_one_trade: null });
+    expect(built.context.unavailable).toContainEqual({ path: 'market', reason: 'stale' });
+  });
+
+  it('marks recently received market data stale when its source event is too old', async () => {
+    const input = await readyInput();
+    input.market = { ...input.market!, sourceEventTime: '2025-01-02T14:29:00.000Z' };
+    const built = buildDecisionContext(input);
+
+    expect(built.context.eligible_for_inference).toBe(false);
+    expect(built.context.market.freshness).toBe('stale');
+    expect(built.context.market.current_price).toBeNull();
+    expect(built.context.market.data_age_ms).toBeGreaterThan(input.marketFreshnessMs);
+    expect(built.context.blockers).toContain('stale_market');
+  });
+
+  it('rejects malformed normalized market and account snapshots before deriving context', async () => {
+    const malformedMarket = await readyInput();
+    malformedMarket.market = { ...malformedMarket.market!, lastTrade: { ...malformedMarket.market!.lastTrade!, price: '190.40' as unknown as number } };
+    expect(() => buildDecisionContext(malformedMarket)).toThrow(/invalid normalized market input/);
+
+    const malformedAccount = await readyInput();
+    malformedAccount.account = { ...malformedAccount.account!, account: { ...malformedAccount.account!.account, cash: {} as unknown as string } };
+    expect(() => buildDecisionContext(malformedAccount)).toThrow(/invalid normalized account input/);
+  });
+
   it('blocks inference when required market, account, session, or capability facts are incomplete', async () => {
     const input = await readyInput();
     input.capabilities = null;
+    input.capabilityProvenance = null;
     input.account = { ...input.account!, exposure: { ...input.account!.exposure, complete: false, unpricedSymbols: ['AAPL'] } };
     input.account.market.isOpen = false;
     const built = buildDecisionContext(input);
@@ -203,10 +240,10 @@ describe('deterministic decision context', () => {
     const large = await readyInput();
     large.account = structuredClone(large.account!);
     large.account!.openOrders = Array.from({ length: 20 }, (_, index) => ({
-      orderId: `simulated-order-id-${index}`,
-      clientOrderId: `simulated-order-${index}-${'x'.repeat(160)}`,
+      orderId: `00000000-0000-4000-8000-${String(index + 1).padStart(12, '0')}`,
+      clientOrderId: `simulated-order-${index}-${'x'.repeat(100)}`,
       symbol: 'AAPL', side: 'buy' as const, quantity: '1', notional: null, status: 'accepted',
-      submittedAt: large.asOf, updatedAt: large.asOf,
+      submittedAt: large.asOf,
     }));
     expect(() => buildDecisionContext(large)).toThrow(/4,000-token/);
     const bounded = buildDecisionContext(await readyInput());

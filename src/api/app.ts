@@ -112,6 +112,7 @@ export function createApp(config: AppConfig, pool: Pool, localHarness?: LocalTes
       if (!parsed.success) return reply.code(400).send({ simulated: true, mode: 'paper', error: 'invalid_decision_context_request' });
       try {
         const observed = localHarness.state();
+        const { freshness: _accountFreshness, ...accountSnapshot } = observed.account;
         const market = (localState().market as MarketState[]).find((item) => item.symbol === parsed.data.symbol) ?? null;
         const sourceTimes = [Date.parse(observed.now), market ? Date.parse(market.sourceEventTime) : Number.NEGATIVE_INFINITY];
         const asOf = new Date(Math.max(...sourceTimes)).toISOString();
@@ -123,9 +124,10 @@ export function createApp(config: AppConfig, pool: Pool, localHarness?: LocalTes
           market,
           marketHistory: localHarness.marketFixtureEvents(0, observed.replayCursor),
           marketFreshnessMs: 30_000,
-          account: observed.account,
+          account: accountSnapshot,
           accountFreshnessMs: config.accountStateStaleAfterSeconds * 1_000,
           capabilities: null,
+          capabilityProvenance: null,
           recentCycleState: null,
         };
         const built = buildDecisionContext(input);

@@ -4,7 +4,7 @@ import type { AccountState } from './account-state.js';
 import { parseMarketBatch, type MarketEvent, type MarketState } from './market-state.js';
 
 export const DECISION_CONTEXT_SCHEMA_VERSION = 1;
-export const DECISION_CONTEXT_TRANSFORM_VERSION = 'decision-context-transform-1';
+export const DECISION_CONTEXT_TRANSFORM_VERSION = 'decision-context-transform-2';
 export const MAX_DECISION_CONTEXT_TOKENS = 4_000;
 export const TOKEN_ESTIMATE_METHOD = 'utf8-bytes-upper-bound-v1';
 
@@ -22,6 +22,7 @@ export type DecisionContextInput = {
   account: AccountState | null;
   accountFreshnessMs: number;
   capabilities: { tradable: boolean; shortable: boolean; fractional: boolean } | null;
+  capabilityProvenance: { source: string; recordId: string; sourceTime: string | null; receivedAt: string } | null;
   recentCycleState: { status: string; observedAt: string } | null;
 };
 
@@ -90,7 +91,87 @@ const inputSchema = z.object({
   account: z.unknown().nullable(),
   accountFreshnessMs: z.number().int().min(1).max(3_600_000),
   capabilities: z.object({ tradable: z.boolean(), shortable: z.boolean(), fractional: z.boolean() }).strict().nullable(),
+  capabilityProvenance: z.object({
+    source: z.string().min(1).max(64),
+    recordId: z.string().min(1).max(128),
+    sourceTime: z.string().datetime({ offset: true }).nullable(),
+    receivedAt: z.string().datetime({ offset: true }),
+  }).strict().nullable(),
   recentCycleState: z.object({ status: z.string().min(1).max(32), observedAt: z.string().datetime({ offset: true }) }).strict().nullable(),
+}).strict().superRefine((input, context) => {
+  if ((input.capabilities === null) !== (input.capabilityProvenance === null)) {
+    context.addIssue({ code: 'custom', path: ['capabilityProvenance'], message: 'capability values and provenance must be supplied together' });
+  }
+});
+
+const timestamp = z.string().datetime({ offset: true });
+const decimalText = z.string().max(64).regex(/^-?(?:0|[1-9]\d*)(?:\.\d+)?$/);
+const positiveDecimalText = decimalText.refine((value) => {
+  try { return decimal(value).units > 0n; } catch { return false; }
+});
+const normalizedMarketStateSchema = z.object({
+  symbol: z.string().regex(/^[A-Z][A-Z0-9.-]{0,9}$/),
+  feed: z.string().min(1).max(64),
+  lastTrade: z.object({
+    id: z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER).optional(),
+    price: z.number().finite().positive().max(Number.MAX_SAFE_INTEGER),
+    size: z.number().int().positive().max(Number.MAX_SAFE_INTEGER),
+    sourceTime: timestamp,
+  }).strict().nullable(),
+  quote: z.object({
+    bid: z.number().finite().positive().max(Number.MAX_SAFE_INTEGER),
+    bidSize: z.number().int().positive().max(Number.MAX_SAFE_INTEGER),
+    ask: z.number().finite().positive().max(Number.MAX_SAFE_INTEGER),
+    askSize: z.number().int().positive().max(Number.MAX_SAFE_INTEGER),
+    sourceTime: timestamp,
+  }).strict().nullable(),
+  sourceEventTime: timestamp,
+  receivedAt: timestamp,
+  freshness: z.enum(['fresh', 'stale']),
+  staleReason: z.string().min(1).max(128).nullable(),
+}).strict();
+
+const normalizedAccountStateSchema = z.object({
+  mode: z.literal('paper'),
+  account: z.object({
+    equity: decimalText,
+    cash: decimalText,
+    buyingPower: decimalText,
+    currency: z.string().length(3),
+    status: z.string().min(1),
+    restrictions: z.object({ tradingBlocked: z.boolean(), accountBlocked: z.boolean(), shortingEnabled: z.boolean() }).strict(),
+  }).strict(),
+  positions: z.array(z.object({
+    symbol: z.string().regex(/^[A-Z][A-Z0-9.-]{0,19}$/),
+    side: z.enum(['long', 'short']),
+    quantity: positiveDecimalText,
+    averageEntryPrice: positiveDecimalText,
+    currentPrice: positiveDecimalText.nullable(),
+    marketValue: decimalText.nullable(),
+  }).strict()).max(100),
+  openOrders: z.array(z.object({
+    orderId: z.string().uuid(),
+    clientOrderId: z.string().min(1).max(128),
+    symbol: z.string().regex(/^[A-Z][A-Z0-9.-]{0,19}$/),
+    side: z.enum(['buy', 'sell']),
+    quantity: positiveDecimalText.nullable(),
+    notional: positiveDecimalText.nullable(),
+    status: z.string().min(1),
+    submittedAt: timestamp,
+  }).strict().refine((order) => order.quantity !== null || order.notional !== null, 'order must provide quantity or notional')).max(500),
+  exposure: z.object({
+    long: decimalText,
+    short: decimalText,
+    gross: decimalText,
+    complete: z.boolean(),
+    unpricedSymbols: z.array(z.string().regex(/^[A-Z][A-Z0-9.-]{0,19}$/)).max(100),
+  }).strict(),
+  market: z.object({ timestamp, isOpen: z.boolean(), nextOpen: timestamp, nextClose: timestamp }).strict(),
+  reconciledAt: timestamp,
+  provenance: z.object({
+    source: z.enum(['fixture', 'alpaca_paper']),
+    groups: z.tuple([z.literal('account'), z.literal('positions'), z.literal('open_orders'), z.literal('market_clock')]),
+  }).strict(),
 }).strict();
 
 type Decimal = { units: bigint; scale: number };
@@ -198,11 +279,13 @@ export function buildDecisionContext(inputValue: DecisionContextInput): BuiltDec
   if (builtAtMs < asOfMs) throw new Error('built_at must not precede effective as_of');
   if (parsed.market !== null && (typeof parsed.market !== 'object' || Array.isArray(parsed.market))) throw new Error('invalid normalized market input');
   if (parsed.account !== null && (typeof parsed.account !== 'object' || Array.isArray(parsed.account))) throw new Error('invalid normalized account input');
-  const market = parsed.market as MarketState | null;
-  const account = parsed.account as AccountState | null;
+  const marketResult = parsed.market === null ? null : normalizedMarketStateSchema.safeParse(parsed.market);
+  if (marketResult && !marketResult.success) throw new Error('invalid normalized market input');
+  const accountResult = parsed.account === null ? null : normalizedAccountStateSchema.safeParse(parsed.account);
+  if (accountResult && !accountResult.success) throw new Error('invalid normalized account input');
+  const market = marketResult?.data as MarketState | undefined ?? null;
+  const account = accountResult?.data as AccountState | undefined ?? null;
   if (market && market.symbol !== parsed.symbol) throw new Error('market symbol does not match decision context');
-  if (market && (!Number.isFinite(Date.parse(market.receivedAt)) || !Number.isFinite(Date.parse(market.sourceEventTime)))) throw new Error('invalid market source timestamps');
-  if (account && (!Number.isFinite(Date.parse(account.reconciledAt)) || !account.provenance || account.mode !== 'paper')) throw new Error('invalid normalized account input');
   if (parsed.recentCycleState && Date.parse(parsed.recentCycleState.observedAt) > asOfMs) throw new Error('cycle state observation is in the future');
 
   const parsedEvents: MarketEvent[] = parsed.marketHistory.length ? parseMarketBatch(parsed.marketHistory) : [];
@@ -210,12 +293,15 @@ export function buildDecisionContext(inputValue: DecisionContextInput): BuiltDec
   if (symbolEvents.some((event) => Date.parse(event.sourceTime) > asOfMs)) throw new Error('market event is in the future');
   if (market && (Date.parse(market.sourceEventTime) > asOfMs || Date.parse(market.receivedAt) > asOfMs)) throw new Error('market snapshot is in the future');
   if (account && Date.parse(account.reconciledAt) > asOfMs) throw new Error('account reconciliation is in the future');
+  if (parsed.capabilityProvenance && (Date.parse(parsed.capabilityProvenance.receivedAt) > asOfMs || (parsed.capabilityProvenance.sourceTime !== null && Date.parse(parsed.capabilityProvenance.sourceTime) > asOfMs))) throw new Error('symbol capabilities are in the future');
 
   const unavailable: ContextUnavailable[] = [];
   const addUnavailable = (path: string, reason: UnavailableReason) => unavailable.push({ path, reason });
   const blockers: string[] = [];
-  const marketAgeMs = market ? asOfMs - Date.parse(market.receivedAt) : null;
-  const marketFresh = Boolean(market && marketAgeMs !== null && marketAgeMs <= parsed.marketFreshnessMs);
+  const marketReceiveAgeMs = market ? asOfMs - Date.parse(market.receivedAt) : null;
+  const marketSourceAgeMs = market ? asOfMs - Date.parse(market.sourceEventTime) : null;
+  const marketAgeMs = marketReceiveAgeMs === null || marketSourceAgeMs === null ? null : Math.max(marketReceiveAgeMs, marketSourceAgeMs);
+  const marketFresh = Boolean(market && market.freshness === 'fresh' && market.staleReason === null && marketAgeMs !== null && marketAgeMs <= parsed.marketFreshnessMs);
   if (!market) { addUnavailable('market', 'no_feed'); blockers.push('market_unavailable'); }
   else if (!marketFresh) { addUnavailable('market', 'stale'); blockers.push('stale_market'); }
   const accountAgeMs = account ? asOfMs - Date.parse(account.reconciledAt) : null;
@@ -343,6 +429,7 @@ export function buildDecisionContext(inputValue: DecisionContextInput): BuiltDec
   }
   if (market) sources.push({ sequence: sources.length, kind: 'market_snapshot', source: market.feed, record_id: `${market.symbol}:${market.sourceEventTime}`, source_time: market.sourceEventTime, received_at: market.receivedAt });
   if (account) sources.push({ sequence: sources.length, kind: 'account_snapshot', source: account.provenance.source, record_id: account.reconciledAt, source_time: account.market.timestamp, received_at: account.reconciledAt });
+  if (parsed.capabilityProvenance) sources.push({ sequence: sources.length, kind: 'symbol_capabilities', source: parsed.capabilityProvenance.source, record_id: parsed.capabilityProvenance.recordId, source_time: parsed.capabilityProvenance.sourceTime, received_at: parsed.capabilityProvenance.receivedAt });
   if (parsed.recentCycleState) sources.push({ sequence: sources.length, kind: 'recent_cycle_state', source: 'decision_cycle', record_id: `${parsed.recentCycleState.status}:${parsed.recentCycleState.observedAt}`, source_time: parsed.recentCycleState.observedAt, received_at: parsed.recentCycleState.observedAt });
 
   unavailable.sort((a, b) => a.path.localeCompare(b.path) || a.reason.localeCompare(b.reason));
