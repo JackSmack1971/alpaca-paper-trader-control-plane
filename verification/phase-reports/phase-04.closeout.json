@@ -1,0 +1,247 @@
+{
+  "schema_version": 3,
+  "phase": 4,
+  "phase_status": "COMPLETE",
+  "charter_digest": "8fff9dfd9423c22da6db234e5f7d45f0f6f4414e15c131ba865f3ef7ccc6de5f",
+  "goal_digest": "77fd04ca7707e324502dc955fce0cfc0fab9a3abdd0c21f735d3961cc171b6e9",
+  "snapshot_id": "4434967eefd29ceb268e253cf196293fb33591b22322378b99f93d333fb8c16f",
+  "snapshot_artifact": "verification/control-plane/snapshots/4434967eefd29ceb268e253cf196293fb33591b22322378b99f93d333fb8c16f.json",
+  "candidate_id": "650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97",
+  "task_id": "p4-openrouter-llm1-integration",
+  "task_bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+  "acceptance": [
+    {
+      "criterion_id": "P04-C01",
+      "disposition": "PASS",
+      "evidence": "Candidate-bound evaluation and verifier confirm bounded eligible PAPER context, validated versioned structured analysis, persisted provider provenance, and no order authority."
+    },
+    {
+      "criterion_id": "P04-C02",
+      "disposition": "PASS",
+      "evidence": "Candidate-bound evaluation and verifier confirm deterministic coverage of timeout, retry, malformed/unsupported structured output, non-retryable failures, and terminal no-action."
+    }
+  ],
+  "verification": [
+    {
+      "check_id": "typecheck-release",
+      "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/typecheck-release.json",
+      "command": "..\\..\\..\\node_modules\\.bin\\tsc.cmd --noEmit",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/typecheck-release.json"
+    },
+    {
+      "check_id": "full-tests-release",
+      "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/full-tests-release.json",
+      "command": "..\\..\\..\\node_modules\\.bin\\vitest.cmd run",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/full-tests-release.json"
+    },
+    {
+      "check_id": "safety-guards-final",
+      "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/safety-guards-final.json",
+      "command": "node \"--input-type=module\" -e \"import {spawnSync} from 'node:child_process'; for (const s of ['scripts/control-plane/check-paper-only.mjs','scripts/verify-no-live-routes.mjs']) { const r=spawnSync(process.execPath,[s],{encoding:'utf8'}); if(r.status!==0){process.stderr.write(r.stdout+r.stderr); process.exit(r.status??1)} }\"",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/safety-guards-final.json"
+    },
+    {
+      "check_id": "source-gates-final",
+      "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/source-gates-final.json",
+      "command": "node \"--input-type=module\" -e \"import {spawnSync} from 'node:child_process'; const cmds=[['scripts/control-plane/validate.mjs'],['scripts/control-plane/preflight.mjs'],['.agents/skills/research-external-contract/scripts/validate-research-artifact.mjs','docs/research/phase-04/openrouter-llm1-chat-completions.md']]; for(const args of cmds){const r=spawnSync(process.execPath,args,{encoding:'utf8'}); if(r.status!==0){process.stderr.write(r.stdout+r.stderr); process.exit(r.status??1)}}\"",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/source-gates-final.json"
+    },
+    {
+      "check_id": "additive-migration-rerun",
+      "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/additive-migration-rerun.json",
+      "command": "node --import tsx \"scripts/migrate.ts\"",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/additive-migration-rerun.json"
+    },
+    {
+      "check_id": "persisted-runtime-release",
+      "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/persisted-runtime-release.json",
+      "command": "node --import tsx \"scripts/verify-llm1-stage.ts\"",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/persisted-runtime-release.json"
+    },
+    {
+      "check_id": "post-diff-classification",
+      "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/post-diff-classification.json",
+      "command": "node \"--input-type=module\" -e \"import fs from 'node:fs'; import {classifyPostDiff} from './scripts/control-plane/post-diff-risk.mjs'; const root=process.cwd(); const snap=JSON.parse(fs.readFileSync('verification/control-plane/snapshots/4434967eefd29ceb268e253cf196293fb33591b22322378b99f93d333fb8c16f.json','utf8')); const route=JSON.parse(fs.readFileSync('verification/control-plane/tasks/p4-openrouter-llm1-integration/route.json','utf8')); const candidate=JSON.parse(fs.readFileSync('verification/control-plane/tasks/p4-openrouter-llm1-integration/candidates/650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json','utf8')); const observed=classifyPostDiff(root,snap); if(observed.classification_id!==candidate.post_diff_risk.classification_id||observed.classification_id!==route.signals.post_diff_risk.classification_id) process.exit(1); console.log(JSON.stringify({status:'PASS',classification_id:observed.classification_id,level:observed.level,required_lanes:observed.required_lanes,changed_file_count:observed.changed_file_count}));\"",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/post-diff-classification.json"
+    },
+    {
+      "check_id": "required-lanes-verified",
+      "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/required-lanes-verified.json",
+      "command": "node \"--input-type=module\" -e \"import fs from 'node:fs'; const base='verification/control-plane/tasks/p4-openrouter-llm1-integration/'; const id='650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97'; const bundle='7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b'; const task='p4-openrouter-llm1-integration'; for(const kind of ['review','security-review','verifier','evaluation']){const r=JSON.parse(fs.readFileSync(base+kind+'.'+id+'.json','utf8')); if(r.verdict!=='PASS'||r.candidate_id!==id||r.task_id!==task||(r.task_bundle_id??r.bundle_id)!==bundle||r.snapshot_id!=='4434967eefd29ceb268e253cf196293fb33591b22322378b99f93d333fb8c16f'||typeof r.evidence!=='string') process.exit(1)} console.log(JSON.stringify({status:'PASS',candidate_id:id,lanes:['review','security-review','verifier','evaluation']}));\"",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/required-lanes-verified.json"
+    },
+    {
+      "check_id": "acceptance-validation",
+      "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/acceptance-validation.json",
+      "command": "node \"scripts/control-plane/validate-test-results.mjs\" --task-id p4-openrouter-llm1-integration",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/acceptance-validation.json"
+    }
+  ],
+  "review": {
+    "schema_version": 1,
+    "kind": "review",
+    "verdict": "PASS",
+    "task_id": "p4-openrouter-llm1-integration",
+    "task_bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+    "candidate_id": "650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97",
+    "snapshot_id": "4434967eefd29ceb268e253cf196293fb33591b22322378b99f93d333fb8c16f",
+    "baseline_commit": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+    "reviewed_head": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+    "findings": [],
+    "scope": "Reassessed the credential-persistence concern against the candidate source. The recursive credential check scans the full parsed provider response before provenance fields are extracted, so the reported echo path is covered.",
+    "limitations": "Read-only review. No tests were run; no credential-backed OpenRouter qualification was performed.",
+    "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/review.650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json"
+  },
+  "security_review": {
+    "schema_version": 1,
+    "kind": "security-review",
+    "verdict": "PASS",
+    "task_id": "p4-openrouter-llm1-integration",
+    "task_bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+    "candidate_id": "650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97",
+    "snapshot_id": "4434967eefd29ceb268e253cf196293fb33591b22322378b99f93d333fb8c16f",
+    "baseline_commit": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+    "reviewed_head": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+    "findings": [],
+    "scope": "Independent read-only security and PAPER-only review of active Phase 4 requirements, candidate metadata, LLM1 domain/adapter/service and persistence/migration, configuration, verifier, and structured task acceptance/check evidence.",
+    "limitations": "No edits, tests, network/provider requests, database operations, or independent execution were performed. Verification outcomes were reviewed as structured evidence.",
+    "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/security-review.650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json"
+  },
+  "verifier": {
+    "schema_version": 1,
+    "lane_id": "p4-verifier-650102a0",
+    "role": "verifier",
+    "status": "PASS",
+    "candidate_id": "650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97",
+    "head": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+    "snapshot_id": "4434967eefd29ceb268e253cf196293fb33591b22322378b99f93d333fb8c16f",
+    "task_id": "p4-openrouter-llm1-integration",
+    "bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+    "task_bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+    "checks": [
+      {
+        "id": "P04-C01",
+        "exit_code": 0,
+        "result": "PASS",
+        "result_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/persisted-runtime-release.json",
+        "summary": "Persisted eligible PAPER contexts feed bounded prompts; versioned output is locally validated; stage provenance and typed outcomes are persisted. Review, security review, and evaluation pass for this candidate."
+      },
+      {
+        "id": "P04-C02",
+        "exit_code": 0,
+        "result": "PASS",
+        "result_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/full-tests-release.json",
+        "summary": "Tests cover malformed output, unsupported structured output, timeout, retry bounds, non-retryable errors, exhausted credits, and terminal no-action."
+      },
+      {
+        "id": "P4-LLM1-REQ",
+        "exit_code": 0,
+        "result": "PASS",
+        "result_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/full-tests-release.json",
+        "summary": "Acceptance evidence passes for eligible PAPER context, strict structured output, bounded completion and timeout, and required provider parameters."
+      },
+      {
+        "id": "P4-LLM1-FAIL",
+        "exit_code": 0,
+        "result": "PASS",
+        "result_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/full-tests-release.json",
+        "summary": "Injected transport tests cover retry and typed terminal failure behavior."
+      },
+      {
+        "id": "P4-LLM1-PERSIST",
+        "exit_code": 0,
+        "result": "PASS",
+        "result_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/persisted-runtime-release.json",
+        "summary": "Structured runtime evidence supports correlated attempt persistence, provider provenance, parsed output or typed failure, usage, cost, latency, and sanitized evidence."
+      },
+      {
+        "id": "P4-LLM1-SECRET",
+        "exit_code": 0,
+        "result": "PASS",
+        "result_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/safety-guards-final.json",
+        "summary": "Endpoint constraints, secret handling, PAPER-only guards, and absence of tools or order authority are supported by source review and passing checks."
+      },
+      {
+        "id": "P4-LLM1-MIGRATION",
+        "exit_code": 0,
+        "result": "PASS",
+        "result_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/additive-migration-rerun.json",
+        "summary": "Additive migration rerun passes and schema changes match."
+      },
+      {
+        "id": "POST-DIFF-CLASSIFICATION",
+        "exit_code": 0,
+        "result": "PASS",
+        "result_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/post-diff-classification.json",
+        "summary": "Frozen candidate classification matches the route: high risk with evaluation, review, security-review, and verifier lanes required."
+      },
+      {
+        "id": "POST-DIFF-REQUIRED-LANES",
+        "exit_code": 0,
+        "result": "PASS",
+        "result_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/evaluation.650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json",
+        "summary": "Review, security-review, and evaluation records pass and bind the exact task, bundle, candidate, snapshot, and head. This verifier record supplies the fourth candidate-bound lane."
+      }
+    ],
+    "verdict": "PASS",
+    "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/verifier.650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json"
+  },
+  "evaluation": {
+    "schema_version": 1,
+    "kind": "evaluation",
+    "verdict": "PASS",
+    "task_id": "p4-openrouter-llm1-integration",
+    "task_bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+    "candidate_id": "650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97",
+    "snapshot_id": "4434967eefd29ceb268e253cf196293fb33591b22322378b99f93d333fb8c16f",
+    "baseline_commit": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+    "evaluated_head": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+    "criterion": [
+      "P04-C01",
+      "P04-C02"
+    ],
+    "findings": [],
+    "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/evaluation.650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json",
+    "sources_inspected": [
+      "goals/phase-04-openrouter-llm1-market-analyst.md",
+      "docs/control-plane/phase-contracts.json",
+      "verification/control-plane/snapshots/4434967eefd29ceb268e253cf196293fb33591b22322378b99f93d333fb8c16f.json",
+      "verification/control-plane/tasks/p4-openrouter-llm1-integration/bundle.json",
+      "verification/control-plane/tasks/p4-openrouter-llm1-integration/intake.json",
+      "verification/control-plane/tasks/p4-openrouter-llm1-integration/test-results.json",
+      "verification/control-plane/tasks/p4-openrouter-llm1-integration/candidates/650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json",
+      "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/full-tests-release.json",
+      "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/persisted-runtime-release.json",
+      "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/additive-migration-rerun.json",
+      "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/typecheck-release.json",
+      "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/safety-guards-final.json",
+      "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/source-gates-final.json",
+      "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/post-diff-classification.json",
+      "verification/control-plane/tasks/p4-openrouter-llm1-integration/review.650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json",
+      "verification/control-plane/tasks/p4-openrouter-llm1-integration/security-review.650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json",
+      "src/domain/llm1-analysis.ts",
+      "src/infra/openrouter-llm1.ts",
+      "src/services/llm1-stage.ts",
+      "src/infra/stage-run-store.ts",
+      "tests/openrouter-llm1.test.ts",
+      "tests/llm1-stage.test.ts",
+      "tests/stage-run-store.test.ts"
+    ],
+    "limitations": [
+      "No tests or independent verification commands were run; check outcomes were consumed from structured JSON only.",
+      "No raw logs or credential-backed OpenRouter qualification were inspected.",
+      "The task acceptance record shows its post-diff-required-lanes subcriterion pending; this evaluation is limited to P04-C01 and P04-C02, and does not certify completion of other task workflow lanes."
+    ],
+    "evidence_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/evaluation.650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json"
+  },
+  "unresolved_blockers": []
+}

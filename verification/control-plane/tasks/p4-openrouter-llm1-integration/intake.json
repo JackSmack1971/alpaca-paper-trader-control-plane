@@ -1,0 +1,58 @@
+{
+  "id": "p4-openrouter-llm1-integration",
+  "task_kind": "feature",
+  "uncertainty": "high",
+  "files": [
+    "src/domain/llm1-analysis.ts",
+    "src/domain/config.ts",
+    "src/infra/config.ts",
+    "src/infra/openrouter-llm1.ts",
+    "src/infra/stage-run-store.ts",
+    "src/infra/db/schema.ts",
+    "migrations/0006_llm1_stage_provenance.sql",
+    "tests/openrouter-llm1.test.ts",
+    "tests/stage-run-store.test.ts"
+  ],
+  "architectural_file_count": 7,
+  "expected_code_lines": 350,
+  "blast_radius": [
+    "authentication",
+    "security-boundary",
+    "secrets",
+    "database-schema",
+    "migration",
+    "functional-correctness"
+  ],
+  "verification_difficulty": "difficult",
+  "implementation_required": true,
+  "research_required": true,
+  "acceptance_criteria": [
+    {
+      "id": "P4-LLM1-REQ",
+      "description": "An LLM1 call uses only an intact eligible versioned PAPER decision context and sends strict JSON Schema structured output with bounded completion length/timeout and provider parameter support required."
+    },
+    {
+      "id": "P4-LLM1-FAIL",
+      "description": "Injected-transport tests cover malformed output, unsupported schema, timeout, transient failures with at most one retry, non-retryable 4xx without retry, exhausted credits, and typed terminal no-action failures without any live request."
+    },
+    {
+      "id": "P4-LLM1-PERSIST",
+      "description": "Each successful or failed attempt is persisted with stage/run/cycle/context identities, requested/resolved model/provider, generation ID/fingerprint where returned, normalized input reference, parsed output or typed failure, latency, token usage, reported cost, and sanitized evidence."
+    },
+    {
+      "id": "P4-LLM1-SECRET",
+      "description": "OpenRouter credentials are sent only to the validated official OpenRouter HTTPS endpoint and are absent from persisted fields, API responses, logs, and exception messages; the model receives no tools or order authority."
+    },
+    {
+      "id": "P4-LLM1-MIGRATION",
+      "description": "Any stored-contract change is represented in a new append-only migration and matching Drizzle schema; additive migration application and stage-record persistence/retrieval are verified without resetting existing local data."
+    }
+  ],
+  "evidence": {
+    "active_phase": 4,
+    "current_research": "docs/research/phase-04/openrouter-llm1-chat-completions.md",
+    "current_source": "OpenRouter API/structured-output/provider-routing official documentation, retrieved 2026-10-04",
+    "known_current_stage_runs_contract": "Existing stage_runs stores IDs, stage/status, provider/request ID, model, input/output, failure_code, and timestamps; it lacks explicit stage version, fingerprint, latency, token counts, and cost columns.",
+    "known_local_test_seam": "Node fetch can be injected so hermetic tests simulate OpenRouter without credentials; LOCAL_TEST_MODE refuses configured provider credentials."
+  }
+}

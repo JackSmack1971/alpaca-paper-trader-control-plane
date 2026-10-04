@@ -1,0 +1,66 @@
+{
+  "id": "p5jev-stage-flow",
+  "task_kind": "feature",
+  "uncertainty": "low",
+  "files": [
+    "src/domain/jev-decision.ts",
+    "src/infra/openrouter-jev.ts",
+    "src/infra/jev-stage-store.ts",
+    "src/services/jev-stage.ts",
+    "src/services/jev-rate-limiter.ts",
+    "src/domain/config.ts",
+    "src/infra/config.ts",
+    "config/default.json",
+    "tests/jev-decision.test.ts",
+    "tests/openrouter-jev.test.ts",
+    "tests/jev-stage-store.test.ts",
+    "tests/jev-stage.test.ts",
+    "tests/jev-rate-limiter.test.ts",
+    "tests/config.test.ts",
+    "docs/research/phase-05/openrouter-jev-decisions.md"
+  ],
+  "architectural_file_count": 4,
+  "expected_code_lines": 600,
+  "blast_radius": [
+    "functional-correctness",
+    "security-boundary",
+    "database-schema"
+  ],
+  "verification_difficulty": "deterministic",
+  "implementation_required": true,
+  "research_required": true,
+  "acceptance_criteria": [
+    {
+      "id": "jev-fixed-questions",
+      "description": "Build exactly two independent versioned Choice and Noul questions over shared untrusted state containing the validated LLM1 thesis, evidence, and a versioned necessary-precondition set."
+    },
+    {
+      "id": "jev-response-validation",
+      "description": "Validate response envelope, answer IDs and primitive types, Choice options/distribution/confidence, and Noul probability without a fabricated Noul confidence."
+    },
+    {
+      "id": "jev-no-action",
+      "description": "Skip inference for LLM1 no_action and persist the deterministic reason."
+    },
+    {
+      "id": "jev-provider-adapter",
+      "description": "Use only the documented HTTPS Decisions endpoint, bounded timeout/retry and fail-closed parsing without persisting credentials/raw error bodies."
+    },
+    {
+      "id": "jev-persisted-stage",
+      "description": "Persist full sanitized request state/questions, typed answers, provenance, usage, failures, and upstream cycle/context/LLM1 correlation."
+    },
+    {
+      "id": "jev-abstention-policy",
+      "description": "Use versioned, explicitly uncalibrated PAPER abstention thresholds without risk or order authority."
+    },
+    {
+      "id": "jev-preflight-limits",
+      "description": "Enforce fixed question/vocabulary, session, request body/depth, timeout, and application request-spacing bounds; clearly distinguish provider limits that are undocumented."
+    },
+    {
+      "id": "jev-endpoint-evidence",
+      "description": "Record authoritative endpoint/model/response documentation and distinguish it from live qualification."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "id": "persisted-runtime",
+  "task_id": "p4-openrouter-llm1-integration",
+  "bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+  "status": "FAIL",
+  "exit_code": 1,
+  "executable": "node",
+  "args": [
+    "--import",
+    "tsx",
+    "scripts/verify-llm1-stage.ts"
+  ],
+  "log_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/persisted-runtime.log",
+  "started_at": "2026-10-04T20:04:01.254Z",
+  "completed_at": "2026-10-04T20:04:04.803Z",
+  "signal": null,
+  "error": null
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "kind": "evaluation",
+  "verdict": "PASS",
+  "task_id": "p4-openrouter-llm1-integration",
+  "task_bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+  "candidate_id": "650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97",
+  "snapshot_id": "4434967eefd29ceb268e253cf196293fb33591b22322378b99f93d333fb8c16f",
+  "baseline_commit": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "evaluated_head": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "criterion": [
+    "P04-C01",
+    "P04-C02"
+  ],
+  "findings": [],
+  "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/evaluation.650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json",
+  "sources_inspected": [
+    "goals/phase-04-openrouter-llm1-market-analyst.md",
+    "docs/control-plane/phase-contracts.json",
+    "verification/control-plane/snapshots/4434967eefd29ceb268e253cf196293fb33591b22322378b99f93d333fb8c16f.json",
+    "verification/control-plane/tasks/p4-openrouter-llm1-integration/bundle.json",
+    "verification/control-plane/tasks/p4-openrouter-llm1-integration/intake.json",
+    "verification/control-plane/tasks/p4-openrouter-llm1-integration/test-results.json",
+    "verification/control-plane/tasks/p4-openrouter-llm1-integration/candidates/650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json",
+    "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/full-tests-release.json",
+    "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/persisted-runtime-release.json",
+    "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/additive-migration-rerun.json",
+    "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/typecheck-release.json",
+    "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/safety-guards-final.json",
+    "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/source-gates-final.json",
+    "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/post-diff-classification.json",
+    "verification/control-plane/tasks/p4-openrouter-llm1-integration/review.650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json",
+    "verification/control-plane/tasks/p4-openrouter-llm1-integration/security-review.650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json",
+    "src/domain/llm1-analysis.ts",
+    "src/infra/openrouter-llm1.ts",
+    "src/services/llm1-stage.ts",
+    "src/infra/stage-run-store.ts",
+    "tests/openrouter-llm1.test.ts",
+    "tests/llm1-stage.test.ts",
+    "tests/stage-run-store.test.ts"
+  ],
+  "limitations": [
+    "No tests or independent verification commands were run; check outcomes were consumed from structured JSON only.",
+    "No raw logs or credential-backed OpenRouter qualification were inspected.",
+    "The task acceptance record shows its post-diff-required-lanes subcriterion pending; this evaluation is limited to P04-C01 and P04-C02, and does not certify completion of other task workflow lanes."
+  ],
+  "evidence_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/evaluation.650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json"
+}

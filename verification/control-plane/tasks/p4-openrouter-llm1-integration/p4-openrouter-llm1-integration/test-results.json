@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "task_id": "p4-openrouter-llm1-integration",
+  "bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+  "status": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "P4-LLM1-REQ",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "full-tests-release",
+        "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/full-tests-release.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "P4-LLM1-FAIL",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "full-tests-release",
+        "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/full-tests-release.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "P4-LLM1-PERSIST",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "persisted-runtime-release",
+        "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/persisted-runtime-release.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "P4-LLM1-SECRET",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "full-tests-release",
+        "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/full-tests-release.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "P4-LLM1-MIGRATION",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "additive-migration-rerun",
+        "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/additive-migration-rerun.json",
+        "exit_code": 0
+      }
+    }
+  ],
+  "generated_at": "2026-10-04T19:36:15.092Z"
+}

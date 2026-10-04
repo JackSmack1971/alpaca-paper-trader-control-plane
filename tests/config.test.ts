@@ -12,6 +12,12 @@ describe('configuration and PAPER boundary', () => {
     expect(config.alpacaMarketDataPlan).toBe('basic');
     expect(config.alpacaMarketDataCodec).toBe('json');
     expect(config.accountStateStaleAfterSeconds).toBe(60);
+    expect(config.llm1RequestTimeoutMs).toBe(15_000);
+    expect(config.llm1MinimumIntervalMs).toBe(30_000);
+    expect(config.llm1MaxCompletionTokens).toBe(1_200);
+    expect(config.jevRequestTimeoutMs).toBe(12_000);
+    expect(config.jevMinimumIntervalMs).toBe(30_000);
+    expect(config.jevPolicy).toMatchObject({ version: 'paper-jev-abstention-v1', calibrated: false });
     expect(config.alpacaStreamRetry).toEqual({ maxReconnects: 3, baseDelayMs: 250, maxDelayMs: 2000 });
     expect(publicConfig(config).credentials).toEqual({ alpaca: 'missing', openrouter: 'missing' });
   });
@@ -66,6 +72,32 @@ describe('configuration and PAPER boundary', () => {
       DATABASE_URL: 'postgres://local/test',
       OPENROUTER_BASE_URL: 'https://user:secret-sentinel@provider.example/v1?token=token-sentinel',
     })).rejects.toThrow();
+    await expect(loadConfig({ DATABASE_URL: 'postgres://local/test', OPENROUTER_BASE_URL: 'https://provider.example/api/v1' })).rejects.toThrow(/official HTTPS OpenRouter/);
+    await expect(loadConfig({ DATABASE_URL: 'postgres://local/test', OPENROUTER_BASE_URL: 'http://openrouter.ai/api/v1' })).rejects.toThrow(/official HTTPS OpenRouter/);
+  });
+
+  it('bounds LLM1 completion length and timeout configuration', async () => {
+    expect((await loadConfig({ DATABASE_URL: 'postgres://local/test', LLM1_REQUEST_TIMEOUT_MS: '5000', LLM1_MAX_COMPLETION_TOKENS: '900' })).llm1RequestTimeoutMs).toBe(5_000);
+    await expect(loadConfig({ DATABASE_URL: 'postgres://local/test', LLM1_REQUEST_TIMEOUT_MS: '500' })).rejects.toThrow();
+    await expect(loadConfig({ DATABASE_URL: 'postgres://local/test', LLM1_MAX_COMPLETION_TOKENS: '9000' })).rejects.toThrow();
+  });
+
+  it('bounds LLM1 application request spacing configuration', async () => {
+    expect((await loadConfig({ DATABASE_URL: 'postgres://local/test', LLM1_MINIMUM_INTERVAL_MS: '60000' })).llm1MinimumIntervalMs).toBe(60_000);
+    await expect(loadConfig({ DATABASE_URL: 'postgres://local/test', LLM1_MINIMUM_INTERVAL_MS: '100' })).rejects.toThrow();
+    await expect(loadConfig({ DATABASE_URL: 'postgres://local/test', LLM1_MINIMUM_INTERVAL_MS: '120001' })).rejects.toThrow();
+  });
+
+  it('bounds Jev timeout and application request spacing', async () => {
+    expect((await loadConfig({ DATABASE_URL: 'postgres://local/test', JEV_REQUEST_TIMEOUT_MS: '5000', JEV_MINIMUM_INTERVAL_MS: '60000' })).jevMinimumIntervalMs).toBe(60_000);
+    await expect(loadConfig({ DATABASE_URL: 'postgres://local/test', JEV_REQUEST_TIMEOUT_MS: '500' })).rejects.toThrow();
+    await expect(loadConfig({ DATABASE_URL: 'postgres://local/test', JEV_MINIMUM_INTERVAL_MS: '100' })).rejects.toThrow();
+  });
+
+  it('restricts the analysis model to a bounded provider/model identifier', async () => {
+    expect((await loadConfig({ DATABASE_URL: 'postgres://local/test', ANALYSIS_MODEL: 'provider/model-v2.1' })).analysisModel).toBe('provider/model-v2.1');
+    await expect(loadConfig({ DATABASE_URL: 'postgres://local/test', ANALYSIS_MODEL: 'provider/model?api_key=secret' })).rejects.toThrow(/provider\/model identifier/);
+    await expect(loadConfig({ DATABASE_URL: 'postgres://local/test', OPENROUTER_API_KEY: 'provider/secret', ANALYSIS_MODEL: 'provider/provider/secret' })).rejects.toThrow(/must not contain provider credentials/);
   });
 
   it('rejects mode or endpoint changes', () => {

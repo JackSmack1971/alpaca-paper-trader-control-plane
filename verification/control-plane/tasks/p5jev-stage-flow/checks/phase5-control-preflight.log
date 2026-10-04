@@ -1,0 +1,171 @@
+{
+  "status": "READY",
+  "repo_root": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\github-runtime-bootstrap\\.codex\\worktrees\\p5jev-stage-flow",
+  "head": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "branch": "codex/p5jev-stage-flow",
+  "active_phase": 5,
+  "active_phase_title": "JEV STRUCTURED DECISION LAYER",
+  "goal_file": "goals/phase-05-jev-structured-decision-layer.md",
+  "report_file": "verification/phase-reports/phase-05.md",
+  "charter_sha256": "8fff9dfd9423c22da6db234e5f7d45f0f6f4414e15c131ba865f3ef7ccc6de5f",
+  "dirty_non_evidence": [
+    {
+      "code": " M",
+      "path": "config/default.json",
+      "content_sha256": "4e10332dee3e7bf835439a3b244b2241aebec15db416aef1733f150f640196a0"
+    },
+    {
+      "code": " M",
+      "path": "docs/control-plane/phase-state.json",
+      "content_sha256": "e0367d0ba56f98b7a42455db4a7cd39895af1293ebe33093647010f06e1a851f"
+    },
+    {
+      "code": " M",
+      "path": "docs/runbook.md",
+      "content_sha256": "d5c7be608214dbb5c232bf419e20d4fdb21c314ac86d6d07bb9af037aabb2dd3"
+    },
+    {
+      "code": " M",
+      "path": "package.json",
+      "content_sha256": "fc9054b22a6607b0573a44caa1e8ad6684b184761d60607a1462bd896487abf0"
+    },
+    {
+      "code": " M",
+      "path": "src/domain/config.ts",
+      "content_sha256": "c33bd8b079989e0d6d39ec69d5b2cc04a99f3a70e0e95a06e3a68fa7105627c0"
+    },
+    {
+      "code": " M",
+      "path": "src/infra/config.ts",
+      "content_sha256": "531e00df1769594ce3f68c5a7d991a55952ea3d70d9e6cef9ff3b93f4d91b277"
+    },
+    {
+      "code": " M",
+      "path": "src/infra/db/schema.ts",
+      "content_sha256": "45c2ee9fa1fd02250870701c8dc5cc0d766b62ba1cd10ee820c84816d417891b"
+    },
+    {
+      "code": " M",
+      "path": "tests/config.test.ts",
+      "content_sha256": "29b1b177c80a8320b35e999c6f383cf0cf55160b9f823ada72acfea44855908b"
+    },
+    {
+      "code": "??",
+      "path": "docs/research/phase-04/openrouter-llm1-chat-completions.md",
+      "content_sha256": "204a4f4c0a53cce72abdb12807656b9348c560a8edb2daf939315b242a847bb7"
+    },
+    {
+      "code": "??",
+      "path": "docs/research/phase-05/openrouter-jev-decisions.md",
+      "content_sha256": "a77ad83d5d17da987be030e72ec4fc709b4c75d098d51ca071448fe31e5a24ac"
+    },
+    {
+      "code": "??",
+      "path": "migrations/0006_llm1_stage_provenance.sql",
+      "content_sha256": "5099990ec05233d61d0bf4beb36c6f061dd09af90df1b246cce2ea596570cdbf"
+    },
+    {
+      "code": "??",
+      "path": "scripts/verify-jev-stage.ts",
+      "content_sha256": "81c3d41e909e9627d437f805f2dec32b7f6d0f78a43b79507354865d0803461f"
+    },
+    {
+      "code": "??",
+      "path": "scripts/verify-llm1-stage.ts",
+      "content_sha256": "9052f4dfa1ac65a7f44a2791a6bcdac1ef5faaf4d347cd202dbb04f42a54fccb"
+    },
+    {
+      "code": "??",
+      "path": "src/domain/jev-decision.ts",
+      "content_sha256": "0e13fe72d4ac425145c4c64dc7371160d4c57656318c701253511822f62170d4"
+    },
+    {
+      "code": "??",
+      "path": "src/domain/llm1-analysis.ts",
+      "content_sha256": "2fe872c2e44a1841efc39098eb9fe83f1c1d1538e62c8ca38e018ddd0cd660ca"
+    },
+    {
+      "code": "??",
+      "path": "src/infra/jev-stage-store.ts",
+      "content_sha256": "bb7cf7d65d8b00c4e5be4a6eeaabcaff4d9827cba81968b9a457f219227d07da"
+    },
+    {
+      "code": "??",
+      "path": "src/infra/openrouter-jev.ts",
+      "content_sha256": "7ad15df6c83224eff403bcc01efea074e755d90e0656fd0982278cd0553d652e"
+    },
+    {
+      "code": "??",
+      "path": "src/infra/openrouter-llm1.ts",
+      "content_sha256": "43a9a024b5cb510d7ce633e6dc0dc03780a1693cfd667da649d2fe23bb4008f9"
+    },
+    {
+      "code": "??",
+      "path": "src/infra/stage-run-store.ts",
+      "content_sha256": "5dbb19ec02fa4a3f556a28e0fadee2a0bb896649149ef0df2d7735754055d2d6"
+    },
+    {
+      "code": "??",
+      "path": "src/services/jev-rate-limiter.ts",
+      "content_sha256": "ba93364b8a8f86f262f10edab341ff0c1260c4d62ba7eb721d96305381ff618b"
+    },
+    {
+      "code": "??",
+      "path": "src/services/jev-stage.ts",
+      "content_sha256": "c55b51a6abb9e049bce1cd6a0084b5f0a0650ba48896922cb97b529725f9a383"
+    },
+    {
+      "code": "??",
+      "path": "src/services/llm1-stage.ts",
+      "content_sha256": "9ce414a861e347d01249033e1d9342d02cfd6ae02886fc94d6f59aaea3c1905f"
+    },
+    {
+      "code": "??",
+      "path": "tests/jev-decision.test.ts",
+      "content_sha256": "d5d098b6044741a7b3aff591b3735b144873d5b39ab404a2e19f995b3348a286"
+    },
+    {
+      "code": "??",
+      "path": "tests/jev-rate-limiter.test.ts",
+      "content_sha256": "479384ddf3a8a4324ccffb48b5aff777381042c93ad95a270539538e8a686fde"
+    },
+    {
+      "code": "??",
+      "path": "tests/jev-stage-store.test.ts",
+      "content_sha256": "bd402e817174ea79c81a45326489b0faed94674a3b510f6dbaa3b995dd22991f"
+    },
+    {
+      "code": "??",
+      "path": "tests/jev-stage.test.ts",
+      "content_sha256": "24e1d801709c0d8b78480910fe3192f0e6820ba8805e1f0f34212e7054bae256"
+    },
+    {
+      "code": "??",
+      "path": "tests/llm1-analysis.test.ts",
+      "content_sha256": "24d906934bb5ea768be8649057ec4ca8d33831b9c157ce83cb6d4af6de128b08"
+    },
+    {
+      "code": "??",
+      "path": "tests/llm1-stage.test.ts",
+      "content_sha256": "598550a7ee1f4be0a17fcd6c59747a58963300e9f8ee52d69cd7f5baea6991e4"
+    },
+    {
+      "code": "??",
+      "path": "tests/openrouter-jev.test.ts",
+      "content_sha256": "3184dd1f1e908b4ce6d7d89915e58ad86b57b3151fa1bbf7444b5a13f34f43ff"
+    },
+    {
+      "code": "??",
+      "path": "tests/openrouter-llm1.test.ts",
+      "content_sha256": "d0f8ad21ca8217bb7a8cf9d9940f625209cc6cc7f7d1f2bec8643ef23a1b98fa"
+    },
+    {
+      "code": "??",
+      "path": "tests/stage-run-store.test.ts",
+      "content_sha256": "d62532e53fc3eef3bbc1fe6627732fb1f328c465b3aa5df46a941ae99c506013"
+    }
+  ],
+  "baseline_kind": "current-main-working-tree",
+  "working_tree_sha256": "0dafdaaf38b6a20ecc5f10970534960f66785f1f5e13db5fcaee25478dfd562c",
+  "issues": []
+}

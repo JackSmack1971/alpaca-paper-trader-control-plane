@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "kind": "evaluation",
+  "verdict": "PASS",
+  "task_id": "p5jev-stage-flow",
+  "task_bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+  "candidate_id": "a190765ca515ae8d5cf9ecf3a06b4afb4bc895a4506182f8df25fcfaa4331d9b",
+  "snapshot_id": "fe5052707853fb621a13b8e341f3d4f1b56e6a482bb650682eba4c958800db0c",
+  "baseline_commit": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "evaluated_head": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "criteria": [
+    {
+      "criterion_id": "P05-C01",
+      "verdict": "PASS",
+      "evidence": "Inspected fixed questions, bounded shared context, validated responses, option-order stability, abstention, provenance persistence, and no_action failure behavior; candidate-bound checks and lanes pass."
+    },
+    {
+      "criterion_id": "P05-C02",
+      "verdict": "PASS",
+      "evidence": "Research reconciles operation-specific endpoint/model docs and distinguishes documented facts from unperformed live qualification; phase5-research-jev-v2 passes."
+    },
+    {
+      "criterion_id": "jev-fixed-questions",
+      "verdict": "PASS",
+      "evidence": "phase5-offline-final-v2 and verifier report PASS."
+    },
+    {
+      "criterion_id": "jev-response-validation",
+      "verdict": "PASS",
+      "evidence": "Offline check passes and source validates IDs, schema, option coverage, probabilities, and finite values."
+    },
+    {
+      "criterion_id": "jev-no-action",
+      "verdict": "PASS",
+      "evidence": "Persisted Jev check passes with terminal no_action and simulated provider only."
+    },
+    {
+      "criterion_id": "jev-provider-adapter",
+      "verdict": "PASS",
+      "evidence": "Offline check passes; fixed endpoint, bounds, redirect rejection, local parsing, sanitized errors inspected."
+    },
+    {
+      "criterion_id": "jev-persisted-stage",
+      "verdict": "PASS",
+      "evidence": "Persisted Jev check passes with four attempts and expected stages."
+    },
+    {
+      "criterion_id": "jev-abstention-policy",
+      "verdict": "PASS",
+      "evidence": "Source persists abstention policy and baseline evidence on shadow failure; persisted verifier passes."
+    },
+    {
+      "criterion_id": "jev-preflight-limits",
+      "verdict": "PASS",
+      "evidence": "Offline check passes; fixed vocabulary, depth, size, timeout, and application rate limits inspected."
+    },
+    {
+      "criterion_id": "jev-endpoint-evidence",
+      "verdict": "PASS",
+      "evidence": "Research validator check passes and endpoint sources reconcile."
+    }
+  ],
+  "sources_inspected": [
+    "goals/phase-05-jev-structured-decision-layer.md",
+    "docs/PROJECT_CHARTER.md",
+    "docs/control-plane/phase-contracts.json",
+    "verification/control-plane/snapshots/fe5052707853fb621a13b8e341f3d4f1b56e6a482bb650682eba4c958800db0c.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/candidates/a190765ca515ae8d5cf9ecf3a06b4afb4bc895a4506182f8df25fcfaa4331d9b.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/test-results.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-offline-final-v2.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-jev-final-v2.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-research-jev-v2.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/review.a190765ca515ae8d5cf9ecf3a06b4afb4bc895a4506182f8df25fcfaa4331d9b.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/security-review.a190765ca515ae8d5cf9ecf3a06b4afb4bc895a4506182f8df25fcfaa4331d9b.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/verifier.a190765ca515ae8d5cf9ecf3a06b4afb4bc895a4506182f8df25fcfaa4331d9b.json",
+    "docs/research/phase-05/openrouter-jev-decisions.md",
+    "src/domain/jev-decision.ts",
+    "src/infra/openrouter-jev.ts",
+    "src/infra/jev-stage-store.ts",
+    "src/services/jev-stage.ts",
+    "src/services/jev-rate-limiter.ts",
+    "src/services/llm1-rate-limiter.ts",
+    "config/default.json",
+    "scripts/verify-jev-stage.ts"
+  ],
+  "limitations": [
+    "No tests or live provider calls were run during evaluation.",
+    "Provider numeric request limits and account-specific Decisions quota remain undocumented; request spacing is application policy, not evidence of provider-quota compliance.",
+    "Before lane aggregation, test-results.json showed POST-DIFF-REQUIRED-LANES pending; this evaluation is PASS, and lane aggregation must be verified before closeout."
+  ],
+  "evidence": "Candidate-bound evaluation record at verification/control-plane/tasks/p5jev-stage-flow/evaluation.a190765ca515ae8d5cf9ecf3a06b4afb4bc895a4506182f8df25fcfaa4331d9b.json; findings/dispositions are recorded in this artifact."
+}

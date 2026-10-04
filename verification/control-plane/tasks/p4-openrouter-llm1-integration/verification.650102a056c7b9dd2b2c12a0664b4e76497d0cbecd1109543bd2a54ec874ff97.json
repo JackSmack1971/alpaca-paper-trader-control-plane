@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "task_id": "p4-openrouter-llm1-integration",
+  "task_bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+  "candidate_id": "650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97",
+  "snapshot_id": "4434967eefd29ceb268e253cf196293fb33591b22322378b99f93d333fb8c16f",
+  "commands": [
+    {
+      "check_id": "typecheck-release",
+      "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/typecheck-release.json",
+      "command": "..\\..\\..\\node_modules\\.bin\\tsc.cmd --noEmit",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/typecheck-release.json"
+    },
+    {
+      "check_id": "full-tests-release",
+      "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/full-tests-release.json",
+      "command": "..\\..\\..\\node_modules\\.bin\\vitest.cmd run",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/full-tests-release.json"
+    },
+    {
+      "check_id": "safety-guards-final",
+      "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/safety-guards-final.json",
+      "command": "node \"--input-type=module\" -e \"import {spawnSync} from 'node:child_process'; for (const s of ['scripts/control-plane/check-paper-only.mjs','scripts/verify-no-live-routes.mjs']) { const r=spawnSync(process.execPath,[s],{encoding:'utf8'}); if(r.status!==0){process.stderr.write(r.stdout+r.stderr); process.exit(r.status??1)} }\"",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/safety-guards-final.json"
+    },
+    {
+      "check_id": "source-gates-final",
+      "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/source-gates-final.json",
+      "command": "node \"--input-type=module\" -e \"import {spawnSync} from 'node:child_process'; const cmds=[['scripts/control-plane/validate.mjs'],['scripts/control-plane/preflight.mjs'],['.agents/skills/research-external-contract/scripts/validate-research-artifact.mjs','docs/research/phase-04/openrouter-llm1-chat-completions.md']]; for(const args of cmds){const r=spawnSync(process.execPath,args,{encoding:'utf8'}); if(r.status!==0){process.stderr.write(r.stdout+r.stderr); process.exit(r.status??1)}}\"",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/source-gates-final.json"
+    },
+    {
+      "check_id": "additive-migration-rerun",
+      "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/additive-migration-rerun.json",
+      "command": "node --import tsx \"scripts/migrate.ts\"",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/additive-migration-rerun.json"
+    },
+    {
+      "check_id": "persisted-runtime-release",
+      "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/persisted-runtime-release.json",
+      "command": "node --import tsx \"scripts/verify-llm1-stage.ts\"",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/persisted-runtime-release.json"
+    },
+    {
+      "check_id": "post-diff-classification",
+      "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/post-diff-classification.json",
+      "command": "node \"--input-type=module\" -e \"import fs from 'node:fs'; import {classifyPostDiff} from './scripts/control-plane/post-diff-risk.mjs'; const root=process.cwd(); const snap=JSON.parse(fs.readFileSync('verification/control-plane/snapshots/4434967eefd29ceb268e253cf196293fb33591b22322378b99f93d333fb8c16f.json','utf8')); const route=JSON.parse(fs.readFileSync('verification/control-plane/tasks/p4-openrouter-llm1-integration/route.json','utf8')); const candidate=JSON.parse(fs.readFileSync('verification/control-plane/tasks/p4-openrouter-llm1-integration/candidates/650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json','utf8')); const observed=classifyPostDiff(root,snap); if(observed.classification_id!==candidate.post_diff_risk.classification_id||observed.classification_id!==route.signals.post_diff_risk.classification_id) process.exit(1); console.log(JSON.stringify({status:'PASS',classification_id:observed.classification_id,level:observed.level,required_lanes:observed.required_lanes,changed_file_count:observed.changed_file_count}));\"",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/post-diff-classification.json"
+    },
+    {
+      "check_id": "required-lanes-verified",
+      "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/required-lanes-verified.json",
+      "command": "node \"--input-type=module\" -e \"import fs from 'node:fs'; const base='verification/control-plane/tasks/p4-openrouter-llm1-integration/'; const id='650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97'; const bundle='7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b'; const task='p4-openrouter-llm1-integration'; for(const kind of ['review','security-review','verifier','evaluation']){const r=JSON.parse(fs.readFileSync(base+kind+'.'+id+'.json','utf8')); if(r.verdict!=='PASS'||r.candidate_id!==id||r.task_id!==task||(r.task_bundle_id??r.bundle_id)!==bundle||r.snapshot_id!=='4434967eefd29ceb268e253cf196293fb33591b22322378b99f93d333fb8c16f'||typeof r.evidence!=='string') process.exit(1)} console.log(JSON.stringify({status:'PASS',candidate_id:id,lanes:['review','security-review','verifier','evaluation']}));\"",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/required-lanes-verified.json"
+    },
+    {
+      "check_id": "acceptance-validation",
+      "check_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/acceptance-validation.json",
+      "command": "node \"scripts/control-plane/validate-test-results.mjs\" --task-id p4-openrouter-llm1-integration",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/acceptance-validation.json"
+    }
+  ],
+  "highest_verification_rung": "Rung 1; loopback PostgreSQL-backed synthetic persistence verification",
+  "limitations": "No live OpenRouter or Alpaca credential-backed qualification was performed. Database verification used injected fake transport responses and added synthetic records without resetting existing state.",
+  "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/verification.650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json"
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "id": "post-diff-classification",
+  "task_id": "p4-openrouter-llm1-integration",
+  "bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "--input-type=module",
+    "-e",
+    "import fs from 'node:fs'; import {classifyPostDiff} from './scripts/control-plane/post-diff-risk.mjs'; const root=process.cwd(); const snap=JSON.parse(fs.readFileSync('verification/control-plane/snapshots/4434967eefd29ceb268e253cf196293fb33591b22322378b99f93d333fb8c16f.json','utf8')); const route=JSON.parse(fs.readFileSync('verification/control-plane/tasks/p4-openrouter-llm1-integration/route.json','utf8')); const candidate=JSON.parse(fs.readFileSync('verification/control-plane/tasks/p4-openrouter-llm1-integration/candidates/650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json','utf8')); const observed=classifyPostDiff(root,snap); if(observed.classification_id!==candidate.post_diff_risk.classification_id||observed.classification_id!==route.signals.post_diff_risk.classification_id) process.exit(1); console.log(JSON.stringify({status:'PASS',classification_id:observed.classification_id,level:observed.level,required_lanes:observed.required_lanes,changed_file_count:observed.changed_file_count}));"
+  ],
+  "log_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/post-diff-classification.log",
+  "started_at": "2026-10-04T20:21:41.767Z",
+  "completed_at": "2026-10-04T20:21:42.137Z",
+  "signal": null,
+  "error": null
+}

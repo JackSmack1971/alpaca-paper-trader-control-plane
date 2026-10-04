@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "kind": "verification",
+  "status": "PASS",
+  "task_id": "p5jev-stage-flow",
+  "task_bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+  "candidate_id": "a190765ca515ae8d5cf9ecf3a06b4afb4bc895a4506182f8df25fcfaa4331d9b",
+  "commands": [
+    {
+      "check_id": "phase5-offline-final-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-offline-final-v2.json",
+      "command": "corepack.cmd pnpm verify:offline",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-offline-final-v2.json"
+    },
+    {
+      "check_id": "phase5-persisted-jev-final-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-jev-final-v2.json",
+      "command": "corepack.cmd pnpm verify:jev-stage",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-jev-final-v2.json"
+    },
+    {
+      "check_id": "phase5-persisted-llm1-final-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-llm1-final-v2.json",
+      "command": "corepack.cmd pnpm verify:llm1-stage",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-llm1-final-v2.json"
+    },
+    {
+      "check_id": "phase5-source-validate-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-source-validate-v2.json",
+      "command": "node scripts/control-plane/validate.mjs",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-source-validate-v2.json"
+    },
+    {
+      "check_id": "phase5-preflight-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-preflight-v2.json",
+      "command": "node scripts/control-plane/preflight.mjs",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-preflight-v2.json"
+    },
+    {
+      "check_id": "phase5-research-jev-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-research-jev-v2.json",
+      "command": "node .agents/skills/research-external-contract/scripts/validate-research-artifact.mjs docs/research/phase-05/openrouter-jev-decisions.md",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-research-jev-v2.json"
+    },
+    {
+      "check_id": "phase4-research-llm1-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase4-research-llm1-v2.json",
+      "command": "node .agents/skills/research-external-contract/scripts/validate-research-artifact.mjs docs/research/phase-04/openrouter-llm1-chat-completions.md",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase4-research-llm1-v2.json"
+    },
+    {
+      "check_id": "post-diff-classification-a190",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-classification-a190.json",
+      "command": "node --input-type=module -e import fs from \"node:fs\";\nimport { classifyPostDiff } from \"./scripts/control-plane/post-diff-risk.mjs\";\nconst root = process.cwd();\nconst snapshot = JSON.parse(fs.readFileSync(\"verification/control-plane/snapshots/fe5052707853fb621a13b8e341f3d4f1b56e6a482bb650682eba4c958800db0c.json\", \"utf8\"));\nconst route = JSON.parse(fs.readFileSync(\"verification/control-plane/tasks/p5jev-stage-flow/route.json\", \"utf8\"));\nconst candidate = JSON.parse(fs.readFileSync(\"verification/control-plane/tasks/p5jev-stage-flow/candidates/a190765ca515ae8d5cf9ecf3a06b4afb4bc895a4506182f8df25fcfaa4331d9b.json\", \"utf8\"));\nconst observed = classifyPostDiff(root, snapshot);\nif (observed.classification_id !== candidate.post_diff_risk.classification_id || observed.classification_id !== route.signals.post_diff_risk.classification_id) process.exit(1);\nconsole.log(JSON.stringify({status:\"PASS\", candidate_id:candidate.candidate_id, classification_id:observed.classification_id, level:candidate.post_diff_risk.level, required_lanes:candidate.post_diff_risk.required_lanes}));",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-classification-a190.json"
+    },
+    {
+      "check_id": "post-diff-required-lanes-a190",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-required-lanes-a190.json",
+      "command": "node verification/control-plane/tasks/p5jev-stage-flow/checks/assert-required-lanes.mjs",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-required-lanes-a190.json"
+    }
+  ]
+}

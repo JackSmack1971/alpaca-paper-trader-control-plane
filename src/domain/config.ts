@@ -12,8 +12,21 @@ export const appConfigSchema = z.object({
   alpacaSecretKey: z.string().optional(),
   openRouterApiKey: z.string().optional(),
   universe: z.array(z.string().regex(/^[A-Z][A-Z0-9.-]{0,9}$/)).min(1).max(100),
-  analysisModel: z.string(),
+  analysisModel: z.string().max(256).refine((value) => value === '' || /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}\/[A-Za-z0-9][A-Za-z0-9._:+-]{0,127}$/.test(value), 'must be empty or a provider/model identifier'),
   reviewModel: z.string(),
+  llm1RequestTimeoutMs: z.number().int().min(1_000).max(30_000),
+  llm1MinimumIntervalMs: z.number().int().min(30_000).max(120_000),
+  llm1MaxCompletionTokens: z.number().int().min(64).max(4_096),
+  jevRequestTimeoutMs: z.number().int().min(1_000).max(30_000),
+  jevMinimumIntervalMs: z.number().int().min(30_000).max(120_000),
+  jevPolicy: z.object({
+    version: z.string().min(1).max(64),
+    calibrated: z.literal(false),
+    minChoiceConfidence: z.number().finite().min(0).max(1),
+    minChoiceTopProbability: z.number().finite().min(0).max(1),
+    minChoiceMargin: z.number().finite().min(0).max(1),
+    minNecessaryPreconditionsProbability: z.number().finite().min(0).max(1),
+  }).strict(),
   decisionCadenceSeconds: z.number().int().positive(),
   accountStateStaleAfterSeconds: z.number().int().min(1).max(3600),
   accountReconciliationSeconds: z.number().int().min(10).max(3600),
@@ -28,11 +41,14 @@ export const appConfigSchema = z.object({
   alpacaStreamRetry: z.object({ maxReconnects: z.number().int().min(0).max(10), baseDelayMs: z.number().int().positive(), maxDelayMs: z.number().int().positive() }),
   openRouterBaseUrl: z.string().url().refine((value) => {
     const url = new URL(value);
-    return url.username === '' && url.password === '' && url.search === '' && url.hash === '';
-  }, 'must not contain user information, query parameters or fragments')
+    return url.protocol === 'https:' && url.hostname === 'openrouter.ai' && url.port === '' && url.pathname.replace(/\/$/, '') === '/api/v1' && url.username === '' && url.password === '' && url.search === '' && url.hash === '';
+  }, 'must be the official HTTPS OpenRouter API base URL without user information, query parameters or fragments')
 }).superRefine((value, ctx) => {
   if (Boolean(value.alpacaKeyId) !== Boolean(value.alpacaSecretKey)) {
     ctx.addIssue({ code: 'custom', path: ['alpacaKeyId'], message: 'Alpaca key ID and secret must be configured together' });
+  }
+  if (value.openRouterApiKey && value.analysisModel.includes(value.openRouterApiKey)) {
+    ctx.addIssue({ code: 'custom', path: ['analysisModel'], message: 'analysis model must not contain provider credentials' });
   }
   if (new Set(value.universe).size !== value.universe.length) {
     ctx.addIssue({ code: 'custom', path: ['universe'], message: 'symbols must be unique' });

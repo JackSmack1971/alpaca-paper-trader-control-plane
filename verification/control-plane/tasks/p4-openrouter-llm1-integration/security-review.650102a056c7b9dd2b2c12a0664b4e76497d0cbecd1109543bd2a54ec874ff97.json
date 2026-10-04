@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "kind": "security-review",
+  "verdict": "PASS",
+  "task_id": "p4-openrouter-llm1-integration",
+  "task_bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+  "candidate_id": "650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97",
+  "snapshot_id": "4434967eefd29ceb268e253cf196293fb33591b22322378b99f93d333fb8c16f",
+  "baseline_commit": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "reviewed_head": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "findings": [],
+  "scope": "Independent read-only security and PAPER-only review of active Phase 4 requirements, candidate metadata, LLM1 domain/adapter/service and persistence/migration, configuration, verifier, and structured task acceptance/check evidence.",
+  "limitations": "No edits, tests, network/provider requests, database operations, or independent execution were performed. Verification outcomes were reviewed as structured evidence.",
+  "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/security-review.650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json"
+}

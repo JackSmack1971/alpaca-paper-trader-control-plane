@@ -1,0 +1,39 @@
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0/.codex/worktrees/github-runtime-bootstrap/.codex/worktrees/p4-openrouter-llm1-integration
+
+ ✓ tests/config.test.ts (10 tests) 148ms
+ ✓ tests/alpaca-account.test.ts (6 tests) 209ms
+ ✓ tests/market-state.test.ts (21 tests) 335ms
+ ✓ tests/decision-context.test.ts (14 tests) 418ms
+ ✓ tests/llm1-stage.test.ts (4 tests) 314ms
+{"level":30,"time":1791144389203,"pid":24400,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791144389228,"pid":24400,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+ ✓ tests/app.test.ts (2 tests) 423ms
+   ✓ HTTP health and status observation > shows PAPER mode and an available local database  411ms
+{"level":30,"time":1791144389212,"pid":24400,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":200},"responseTime":7.6633999999999105,"msg":"request completed"}
+{"level":30,"time":1791144389218,"pid":24400,"hostname":"bretlaptop","reqId":"req-2","req":{"method":"GET","url":"/account","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791144389219,"pid":24400,"hostname":"bretlaptop","reqId":"req-2","res":{"statusCode":200},"responseTime":1.2364999999999782,"msg":"request completed"}
+{"level":30,"time":1791144389229,"pid":24400,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":503},"responseTime":0.9481000000000677,"msg":"request completed"}
+{"level":30,"time":1791144389230,"pid":24400,"hostname":"bretlaptop","reqId":"req-2","req":{"method":"POST","url":"/orders","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791144389231,"pid":24400,"hostname":"bretlaptop","reqId":"req-2","msg":"Route POST:/orders not found"}
+{"level":30,"time":1791144389231,"pid":24400,"hostname":"bretlaptop","reqId":"req-2","res":{"statusCode":404},"responseTime":0.7029999999999745,"msg":"request completed"}
+ ✓ tests/alpaca-market-stream.test.ts (9 tests) 73ms
+ ✓ tests/openrouter-llm1.test.ts (6 tests) 116ms
+ ✓ tests/llm1-analysis.test.ts (3 tests) 139ms
+ ✓ tests/account-state.test.ts (14 tests) 55ms
+ ✓ tests/stage-run-store.test.ts (3 tests) 22ms
+{"level":30,"time":1791144390064,"pid":23248,"hostname":"bretlaptop","reqId":"req-1","req":{"method":"GET","url":"/__local/state","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791144390065,"pid":23248,"hostname":"bretlaptop","reqId":"req-1","msg":"Route GET:/__local/state not found"}
+{"level":30,"time":1791144390065,"pid":23248,"hostname":"bretlaptop","reqId":"req-1","res":{"statusCode":404},"responseTime":0.32589999999981956,"msg":"request completed"}
+{"level":30,"time":1791144390065,"pid":23248,"hostname":"bretlaptop","reqId":"req-2","req":{"method":"GET","url":"/__local/trade-updates","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1791144390065,"pid":23248,"hostname":"bretlaptop","reqId":"req-2","msg":"Route GET:/__local/trade-updates not found"}
+{"level":30,"time":1791144390066,"pid":23248,"hostname":"bretlaptop","reqId":"req-2","res":{"statusCode":404},"responseTime":0.1384000000002743,"msg":"request completed"}
+ ✓ tests/local-test-harness.test.ts (14 tests) 1368ms
+   ✓ loopback local runtime controls > rejects non-loopback hosts and cross-origin browser mutations  459ms
+   ✓ loopback local runtime controls > routes local account reconciliation through the PAPER adapter with bounded simulated failures and recovery  578ms
+
+ Test Files  12 passed (12)
+      Tests  106 passed (106)
+   Start at  16:06:27
+   Duration  2.97s (transform 1.10s, setup 0ms, collect 5.92s, tests 3.62s, environment 5ms, prepare 3.21s)
+

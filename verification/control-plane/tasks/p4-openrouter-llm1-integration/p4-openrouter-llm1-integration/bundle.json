@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "task_id": "p4-openrouter-llm1-integration",
+  "bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+  "intake_digest": "3bbb1860bbb42bd09aa78736990e57df9c6086dd01568eb8d4be9c534fd3ede3",
+  "artifacts": {
+    "intake": "intake.json",
+    "route": "route.json",
+    "candidates": "candidates/",
+    "acceptance": "test-results.json",
+    "checks": "checks/",
+    "review": "review.<candidate_id>.json",
+    "security_review": "security-review.<candidate_id>.json",
+    "verifier": "verifier.<candidate_id>.json",
+    "verification": "verification.<candidate_id>.json",
+    "evaluation": "evaluation.<candidate_id>.json"
+  }
+}

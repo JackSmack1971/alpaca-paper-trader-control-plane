@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "unit_of_work": "p5jev-stage-flow",
+  "base_sha": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "worktree": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\github-runtime-bootstrap\\.codex\\worktrees\\p5jev-stage-flow",
+  "branch": "codex/p5jev-stage-flow",
+  "owner": "implementer",
+  "scope": [
+    "src/domain/jev-decision.ts",
+    "src/infra/openrouter-jev.ts",
+    "src/infra/jev-stage-store.ts",
+    "src/services/jev-stage.ts",
+    "src/services/jev-rate-limiter.ts",
+    "src/domain/config.ts",
+    "src/infra/config.ts",
+    "config/default.json",
+    "tests/jev-decision.test.ts",
+    "tests/openrouter-jev.test.ts",
+    "tests/jev-stage-store.test.ts",
+    "tests/jev-stage.test.ts",
+    "tests/jev-rate-limiter.test.ts",
+    "tests/config.test.ts",
+    "docs/research/phase-05/openrouter-jev-decisions.md"
+  ],
+  "integration_target": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\github-runtime-bootstrap",
+  "assignment_id": "fec9e82d965150b8ff046e5edd98aff4b8ed5d26b244f86d543b5ddadb98140e",
+  "active": true,
+  "created_at": "2026-10-04T22:04:01.336Z"
+}

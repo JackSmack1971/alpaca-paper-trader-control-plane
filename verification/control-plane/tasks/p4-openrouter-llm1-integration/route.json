@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "task_id": "p4-openrouter-llm1-integration",
+  "route": "planner-builder-independent-evaluator",
+  "signals": {
+    "task_kind": "feature",
+    "uncertainty": "high",
+    "file_count": 9,
+    "architectural_file_count": 7,
+    "expected_code_lines": 350,
+    "high_radius": true,
+    "high_complexity": true,
+    "independent_review_triggered": true,
+    "post_diff_risk": {
+      "schema_version": 1,
+      "level": "high",
+      "paths": [
+        "config/default.json",
+        "docs/research/phase-04/openrouter-llm1-chat-completions.md",
+        "migrations/0006_llm1_stage_provenance.sql",
+        "package.json",
+        "scripts/verify-llm1-stage.ts",
+        "src/domain/config.ts",
+        "src/domain/llm1-analysis.ts",
+        "src/infra/config.ts",
+        "src/infra/db/schema.ts",
+        "src/infra/openrouter-llm1.ts",
+        "src/infra/stage-run-store.ts",
+        "src/services/llm1-stage.ts",
+        "tests/config.test.ts",
+        "tests/llm1-analysis.test.ts",
+        "tests/llm1-stage.test.ts",
+        "tests/openrouter-llm1.test.ts",
+        "tests/stage-run-store.test.ts"
+      ],
+      "changed_file_count": 17,
+      "added_lines": 1214,
+      "deleted_lines": 6,
+      "categories": [
+        "change-magnitude",
+        "dependency",
+        "high-impact-surface",
+        "migration",
+        "permission-or-configuration",
+        "security-sensitive",
+        "test"
+      ],
+      "removed_safeguards": [],
+      "deleted_guard_line_count": 0,
+      "required_roles": [
+        "reviewer",
+        "security_auditor",
+        "verifier",
+        "evaluator"
+      ],
+      "required_lanes": [
+        "evaluation",
+        "review",
+        "security-review",
+        "verifier"
+      ],
+      "patch_sha256": "bcc5f4e1c92f9aa875ccfbb9880babeb30784ec9518c82c7253aabfe0c53a371",
+      "classification_id": "c2b4358815910edbe1f2771974b597478f5f28a78118da0541d79690ce5beea7",
+      "initial_level": "high",
+      "effective_level": "high",
+      "escalated": false
+    }
+  },
+  "roles": [
+    "phase_mapper",
+    "implementer",
+    "reviewer",
+    "security_auditor",
+    "verifier",
+    "evaluator"
+  ],
+  "worktree_required": true,
+  "assignment_owner": "implementer",
+  "acceptance_contract_required": true,
+  "default_fail_contract": "undefined/test-results.json",
+  "bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+  "evidence_bundle": "verification/control-plane/tasks/p4-openrouter-llm1-integration",
+  "intake_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/intake.json",
+  "execution_root": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\github-runtime-bootstrap\\.codex\\worktrees\\p4-openrouter-llm1-integration",
+  "initial_route": "planner-builder-independent-evaluator",
+  "initial_risk_level": "high"
+}

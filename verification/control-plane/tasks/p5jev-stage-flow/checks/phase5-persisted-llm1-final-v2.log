@@ -1,0 +1,5 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 verify:llm1-stage C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\github-runtime-bootstrap\.codex\worktrees\p5jev-stage-flow
+> tsx scripts/verify-llm1-stage.ts
+
+{"status":"PASS","simulated":true,"mode":"paper","persistedAttempts":2,"statuses":["succeeded","failed"],"terminalFailure":"no_action","providerCalls":2,"liveProviderUsed":false}

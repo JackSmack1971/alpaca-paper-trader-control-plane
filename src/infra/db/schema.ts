@@ -16,9 +16,17 @@ export const stageRuns = pgTable('stage_runs', {
   stageRunId: uuid('stage_run_id').primaryKey(), cycleId: uuid('cycle_id').notNull().references(() => decisionCycles.cycleId), mode: mode(),
   decisionContextId: uuid('decision_context_id').notNull().references(() => decisionContexts.decisionContextId), stage: varchar('stage', { length: 32 }).notNull(),
   status: varchar('status', { length: 24 }).notNull(), provider: varchar('provider', { length: 32 }), providerRequestId: text('provider_request_id'), model: text('model'),
+  stageVersion: varchar('stage_version', { length: 64 }).notNull(), invocationId: uuid('invocation_id').notNull(), attemptNumber: integer('attempt_number').notNull(),
+  requestedModel: text('requested_model').notNull(), resolvedModel: text('resolved_model'), resolvedProvider: text('resolved_provider'),
+  providerSystemFingerprint: text('provider_system_fingerprint'), normalizedInputRef: varchar('normalized_input_ref', { length: 80 }),
+  latencyMs: integer('latency_ms'), promptTokens: integer('prompt_tokens'), completionTokens: integer('completion_tokens'),
+  reportedCost: numeric('reported_cost', { precision: 30, scale: 12 }), responseEvidence: jsonb('response_evidence').notNull().default({}),
   input: jsonb('input'), output: jsonb('output'), failureCode: text('failure_code'), startedAt: timestamp('started_at', { withTimezone: true, mode: 'date' }).notNull(),
   completedAt: timestamp('completed_at', { withTimezone: true, mode: 'date' }), createdAt: createdAt()
-}, (t) => [index('stage_runs_cycle_idx').on(t.cycleId)]);
+}, (t) => [index('stage_runs_cycle_idx').on(t.cycleId), uniqueIndex('stage_runs_invocation_attempt_uq').on(t.invocationId, t.attemptNumber),
+  check('stage_runs_attempt_number_check', sql`${t.attemptNumber} > 0`), check('stage_runs_latency_check', sql`${t.latencyMs} IS NULL OR ${t.latencyMs} >= 0`),
+  check('stage_runs_prompt_tokens_check', sql`${t.promptTokens} IS NULL OR ${t.promptTokens} >= 0`), check('stage_runs_completion_tokens_check', sql`${t.completionTokens} IS NULL OR ${t.completionTokens} >= 0`),
+  check('stage_runs_reported_cost_check', sql`${t.reportedCost} IS NULL OR ${t.reportedCost} >= 0`)]);
 export const paperOrders = pgTable('paper_orders', {
   orderId: uuid('order_id').primaryKey(), cycleId: uuid('cycle_id').notNull().references(() => decisionCycles.cycleId), decisionContextId: uuid('decision_context_id').notNull().references(() => decisionContexts.decisionContextId),
   stageRunId: uuid('stage_run_id').references(() => stageRuns.stageRunId), mode: mode(), clientOrderId: varchar('client_order_id', { length: 128 }).notNull(), brokerOrderId: text('broker_order_id'),

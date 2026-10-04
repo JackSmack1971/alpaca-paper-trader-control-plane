@@ -1,0 +1,1 @@
+{"status":"PASS","candidate_id":"a190765ca515ae8d5cf9ecf3a06b4afb4bc895a4506182f8df25fcfaa4331d9b","classification_id":"32bc174b772073eb89e54dff6ab5e270fb50c3ab534e5270aaf7d98d6b10c7b5","level":"critical","required_lanes":["evaluation","review","security-review","verifier"]}

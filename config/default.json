@@ -12,6 +12,19 @@
     "accountRetryBaseSeconds": 5,
     "accountRetryMaxSeconds": 60,
     "alpacaStreamRetry": { "maxReconnects": 3, "baseDelayMs": 250, "maxDelayMs": 2000 },
-    "openrouterBaseUrl": "https://openrouter.ai/api/v1"
+    "openrouterBaseUrl": "https://openrouter.ai/api/v1",
+    "llm1RequestTimeoutMs": 15000,
+    "llm1MinimumIntervalMs": 30000,
+    "llm1MaxCompletionTokens": 1200,
+    "jevRequestTimeoutMs": 12000,
+    "jevMinimumIntervalMs": 30000,
+    "jevPolicy": {
+      "version": "paper-jev-abstention-v1",
+      "calibrated": false,
+      "minChoiceConfidence": 0.3,
+      "minChoiceTopProbability": 0.55,
+      "minChoiceMargin": 0.15,
+      "minNecessaryPreconditionsProbability": 0.7
+    }
   }
 }
