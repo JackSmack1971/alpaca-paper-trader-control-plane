@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "baseline_commit": "7229a9f804d980c4c7585a673359d8194a28f0f3",
+  "current_head": "7229a9f804d980c4c7585a673359d8194a28f0f3",
+  "goal_digest": "6994c477d06bb54944d4079803cb59b335e68da698fc164cd864609f6424ccbb",
+  "snapshot_id": "a6c722a762ca035a5d08112d0875490f5f19e36dcd11302dbb53c0717175f91b",
+  "task_id": "phase3-decision-context",
+  "task_bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+  "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "untracked": [],
+  "post_diff_risk": {
+    "schema_version": 1,
+    "level": "low",
+    "paths": [],
+    "changed_file_count": 0,
+    "added_lines": 0,
+    "deleted_lines": 0,
+    "categories": [],
+    "removed_safeguards": [],
+    "deleted_guard_line_count": 0,
+    "required_roles": [],
+    "required_lanes": [
+      "evaluation",
+      "review",
+      "security-review",
+      "verifier"
+    ],
+    "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification_id": "009fbb94bc7f7579f4b8ed5ccfde00b926164381b09488c0ea9a28dfaa2259be",
+    "initial_level": "high",
+    "effective_level": "critical",
+    "escalated": true
+  },
+  "candidate_id": "49251f68e8f0fd8ec4d6d6e2a27ef78c61bdd546f9e3da1b8c739e4da08c6018"
+}

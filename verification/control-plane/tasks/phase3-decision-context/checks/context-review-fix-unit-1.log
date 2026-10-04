@@ -1,0 +1,29 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 test C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\github-runtime-bootstrap
+> vitest run "--" "tests/decision-context.test.ts"
+
+ ELIFECYCLE  Test failed. See above for more details.
+
+ WARN  Issue while reading "C:\Users\click\AppData\Local\pnpm\config\rc". EPERM: operation not permitted, open 'C:\Users\click\AppData\Local\pnpm\config\rc'
+node:fs:561
+  return binding.open(
+                 ^
+
+Error: EPERM: operation not permitted, open 'C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\node_modules\.pnpm\vitest@3.2.7_@types+node@22.20.5_tsx@4.23.15\node_modules\vitest\vitest.mjs'
+    at Object.openSync (node:fs:561:18)
+    at readFileSync (node:fs:445:35)
+    at getSourceSync (node:internal/modules/esm/load:41:14)
+    at defaultLoad (node:internal/modules/esm/load:92:34)
+    at ModuleLoader.load (node:internal/modules/esm/loader:815:12)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:594:31)
+    at #createModuleJob (node:internal/modules/esm/loader:624:36)
+    at #getJobFromResolveResult (node:internal/modules/esm/loader:343:34)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:311:41)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:664:25) {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\node_modules\\.pnpm\\vitest@3.2.7_@types+node@22.20.5_tsx@4.23.15\\node_modules\\vitest\\vitest.mjs'
+}
+
+Node.js v22.20.0

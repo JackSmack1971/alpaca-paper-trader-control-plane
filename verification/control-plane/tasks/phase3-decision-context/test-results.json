@@ -2,15 +2,15 @@
   "schema_version": 2,
   "task_id": "phase3-decision-context",
   "bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
-  "status": "FAIL",
+  "status": "PASS",
   "criteria": [
     {
       "criterion_id": "CONTEXT-DETERMINISTIC",
       "status": "PASS",
       "disposition": "PASS",
       "evidence": {
-        "check_id": "context-final-suite-1",
-        "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/context-final-suite-1.json",
+        "check_id": "final-offline-d46",
+        "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/final-offline-d46.json",
         "exit_code": 0
       }
     },
@@ -19,8 +19,8 @@
       "status": "PASS",
       "disposition": "PASS",
       "evidence": {
-        "check_id": "context-final-suite-1",
-        "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/context-final-suite-1.json",
+        "check_id": "final-offline-d46",
+        "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/final-offline-d46.json",
         "exit_code": 0
       }
     },
@@ -29,8 +29,8 @@
       "status": "PASS",
       "disposition": "PASS",
       "evidence": {
-        "check_id": "context-final-suite-1",
-        "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/context-final-suite-1.json",
+        "check_id": "final-offline-d46",
+        "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/final-offline-d46.json",
         "exit_code": 0
       }
     },
@@ -39,8 +39,8 @@
       "status": "PASS",
       "disposition": "PASS",
       "evidence": {
-        "check_id": "context-hardening-pg-replay-2",
-        "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/context-hardening-pg-replay-2.json",
+        "check_id": "verifier-fea16-persisted-replay",
+        "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-persisted-replay.json",
         "exit_code": 0
       }
     },
@@ -49,22 +49,30 @@
       "status": "PASS",
       "disposition": "PASS",
       "evidence": {
-        "check_id": "context-final-suite-1",
-        "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/context-final-suite-1.json",
+        "check_id": "final-offline-d46",
+        "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/final-offline-d46.json",
         "exit_code": 0
       }
     },
     {
       "criterion_id": "POST-DIFF-CLASSIFICATION",
-      "status": "FAIL",
-      "disposition": "PENDING",
-      "evidence": null
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "candidate-freeze-fea16",
+        "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/candidate-freeze-fea16.json",
+        "exit_code": 0
+      }
     },
     {
       "criterion_id": "POST-DIFF-REQUIRED-LANES",
-      "status": "FAIL",
-      "disposition": "PENDING",
-      "evidence": null
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "required-lanes-fea16",
+        "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/required-lanes-fea16.json",
+        "exit_code": 0
+      }
     }
   ],
   "generated_at": "2026-10-04T17:21:42.690Z"

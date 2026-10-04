@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "final-offline-d46",
+  "task_id": "phase3-decision-context",
+  "bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "corepack.cmd",
+  "args": [
+    "pnpm",
+    "verify:offline"
+  ],
+  "log_path": "verification/control-plane/tasks/phase3-decision-context/checks/final-offline-d46.log",
+  "started_at": "2026-10-04T19:02:32.901Z",
+  "completed_at": "2026-10-04T19:02:43.459Z",
+  "signal": null,
+  "error": null
+}

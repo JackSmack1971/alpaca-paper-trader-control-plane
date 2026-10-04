@@ -1,0 +1,14 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 test C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\github-runtime-bootstrap
+> vitest run "tests/decision-context.test.ts"
+
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0/.codex/worktrees/github-runtime-bootstrap
+
+ ✓ tests/decision-context.test.ts (13 tests) 104ms
+
+ Test Files  1 passed (1)
+      Tests  13 passed (13)
+   Start at  14:49:17
+   Duration  805ms (transform 133ms, setup 0ms, collect 268ms, tests 104ms, environment 0ms, prepare 120ms)
+

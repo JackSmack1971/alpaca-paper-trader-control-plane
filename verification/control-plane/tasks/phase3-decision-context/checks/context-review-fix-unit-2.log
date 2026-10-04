@@ -1,0 +1,192 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 test C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\github-runtime-bootstrap
+> vitest run "tests/decision-context.test.ts"
+
+
+ RUN  v3.2.7 C:/TEST repos/update-env/alpaca-paper-trader-control-plane-v1.1.0/.codex/worktrees/github-runtime-bootstrap
+
+ ❯ tests/decision-context.test.ts (13 tests | 11 failed) 95ms
+   × deterministic decision context > produces byte-identical canonical payload, context ID, and digest for identical recorded inputs 46ms
+     → invalid normalized account input
+   × deterministic decision context > uses exact decimal arithmetic for return, spread, exposure, and unrealized P&L 3ms
+     → invalid normalized account input
+   × deterministic decision context > rounds exact half-way returns to even at the documented eight decimal places 4ms
+     → invalid normalized account input
+   ✓ deterministic decision context > keeps missing account and market facts null and blocks inference instead of manufacturing zeroes 4ms
+   × deterministic decision context > marks stale market and account inputs unusable and rejects future source observations 3ms
+     → invalid normalized account input
+   × deterministic decision context > preserves an explicit stale marker even when the market receive timestamp is recent 5ms
+     → invalid normalized account input
+   × deterministic decision context > marks recently received market data stale when its source event is too old 2ms
+     → invalid normalized account input
+   ✓ deterministic decision context > rejects malformed normalized market and account snapshots before deriving context 5ms
+   × deterministic decision context > blocks inference when required market, account, session, or capability facts are incomplete 3ms
+     → invalid normalized account input
+   × deterministic decision context > applies trade corrections and cancellations and leaves unknown receive provenance null 3ms
+     → invalid normalized account input
+   × deterministic decision context > sums individually safe trade sizes without overflowing JavaScript number arithmetic 2ms
+     → invalid normalized account input
+   × deterministic decision context > marks a fully populated recent market/account context as inference-ready 2ms
+     → invalid normalized account input
+   × deterministic decision context > rejects invalid symbols, crossed quotes, and serialized contexts above the conservative byte budget 11ms
+     → expected [Function] to throw error matching /ask is below bid/ but got 'invalid normalized account input'
+
+ Test Files  1 failed (1)
+      Tests  11 failed | 2 passed (13)
+   Start at  14:47:16
+   Duration  989ms (transform 164ms, setup 0ms, collect 402ms, tests 95ms, environment 0ms, prepare 162ms)
+
+ ELIFECYCLE  Test failed. See above for more details.
+
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/decision-context.test.ts > deterministic decision context > produces byte-identical canonical payload, context ID, and digest for identical recorded inputs
+Error: invalid normalized account input
+ ❯ buildDecisionContext src/domain/decision-context.ts:285:54
+    283|   if (marketResult && !marketResult.success) throw new Error('invalid …
+    284|   const accountResult = parsed.account === null ? null : normalizedAcc…
+    285|   if (accountResult && !accountResult.success) throw new Error('invali…
+       |                                                      ^
+    286|   const market = marketResult?.data as MarketState | undefined ?? null;
+    287|   const account = accountResult?.data as AccountState | undefined ?? n…
+ ❯ tests/decision-context.test.ts:33:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/11]⎯
+
+ FAIL  tests/decision-context.test.ts > deterministic decision context > uses exact decimal arithmetic for return, spread, exposure, and unrealized P&L
+Error: invalid normalized account input
+ ❯ buildDecisionContext src/domain/decision-context.ts:285:54
+    283|   if (marketResult && !marketResult.success) throw new Error('invalid …
+    284|   const accountResult = parsed.account === null ? null : normalizedAcc…
+    285|   if (accountResult && !accountResult.success) throw new Error('invali…
+       |                                                      ^
+    286|   const market = marketResult?.data as MarketState | undefined ?? null;
+    287|   const account = accountResult?.data as AccountState | undefined ?? n…
+ ❯ tests/decision-context.test.ts:44:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/11]⎯
+
+ FAIL  tests/decision-context.test.ts > deterministic decision context > rounds exact half-way returns to even at the documented eight decimal places
+Error: invalid normalized account input
+ ❯ buildDecisionContext src/domain/decision-context.ts:285:54
+    283|   if (marketResult && !marketResult.success) throw new Error('invalid …
+    284|   const accountResult = parsed.account === null ? null : normalizedAcc…
+    285|   if (accountResult && !accountResult.success) throw new Error('invali…
+       |                                                      ^
+    286|   const market = marketResult?.data as MarketState | undefined ?? null;
+    287|   const account = accountResult?.data as AccountState | undefined ?? n…
+ ❯ tests/decision-context.test.ts:82:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/11]⎯
+
+ FAIL  tests/decision-context.test.ts > deterministic decision context > marks stale market and account inputs unusable and rejects future source observations
+Error: invalid normalized account input
+ ❯ buildDecisionContext src/domain/decision-context.ts:285:54
+    283|   if (marketResult && !marketResult.success) throw new Error('invalid …
+    284|   const accountResult = parsed.account === null ? null : normalizedAcc…
+    285|   if (accountResult && !accountResult.success) throw new Error('invali…
+       |                                                      ^
+    286|   const market = marketResult?.data as MarketState | undefined ?? null;
+    287|   const account = accountResult?.data as AccountState | undefined ?? n…
+ ❯ tests/decision-context.test.ts:107:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/11]⎯
+
+ FAIL  tests/decision-context.test.ts > deterministic decision context > preserves an explicit stale marker even when the market receive timestamp is recent
+Error: invalid normalized account input
+ ❯ buildDecisionContext src/domain/decision-context.ts:285:54
+    283|   if (marketResult && !marketResult.success) throw new Error('invalid …
+    284|   const accountResult = parsed.account === null ? null : normalizedAcc…
+    285|   if (accountResult && !accountResult.success) throw new Error('invali…
+       |                                                      ^
+    286|   const market = marketResult?.data as MarketState | undefined ?? null;
+    287|   const account = accountResult?.data as AccountState | undefined ?? n…
+ ❯ tests/decision-context.test.ts:122:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/11]⎯
+
+ FAIL  tests/decision-context.test.ts > deterministic decision context > marks recently received market data stale when its source event is too old
+Error: invalid normalized account input
+ ❯ buildDecisionContext src/domain/decision-context.ts:285:54
+    283|   if (marketResult && !marketResult.success) throw new Error('invalid …
+    284|   const accountResult = parsed.account === null ? null : normalizedAcc…
+    285|   if (accountResult && !accountResult.success) throw new Error('invali…
+       |                                                      ^
+    286|   const market = marketResult?.data as MarketState | undefined ?? null;
+    287|   const account = accountResult?.data as AccountState | undefined ?? n…
+ ❯ tests/decision-context.test.ts:133:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/11]⎯
+
+ FAIL  tests/decision-context.test.ts > deterministic decision context > blocks inference when required market, account, session, or capability facts are incomplete
+Error: invalid normalized account input
+ ❯ buildDecisionContext src/domain/decision-context.ts:285:54
+    283|   if (marketResult && !marketResult.success) throw new Error('invalid …
+    284|   const accountResult = parsed.account === null ? null : normalizedAcc…
+    285|   if (accountResult && !accountResult.success) throw new Error('invali…
+       |                                                      ^
+    286|   const market = marketResult?.data as MarketState | undefined ?? null;
+    287|   const account = accountResult?.data as AccountState | undefined ?? n…
+ ❯ tests/decision-context.test.ts:158:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/11]⎯
+
+ FAIL  tests/decision-context.test.ts > deterministic decision context > applies trade corrections and cancellations and leaves unknown receive provenance null
+Error: invalid normalized account input
+ ❯ buildDecisionContext src/domain/decision-context.ts:285:54
+    283|   if (marketResult && !marketResult.success) throw new Error('invalid …
+    284|   const accountResult = parsed.account === null ? null : normalizedAcc…
+    285|   if (accountResult && !accountResult.success) throw new Error('invali…
+       |                                                      ^
+    286|   const market = marketResult?.data as MarketState | undefined ?? null;
+    287|   const account = accountResult?.data as AccountState | undefined ?? n…
+ ❯ tests/decision-context.test.ts:181:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/11]⎯
+
+ FAIL  tests/decision-context.test.ts > deterministic decision context > sums individually safe trade sizes without overflowing JavaScript number arithmetic
+Error: invalid normalized account input
+ ❯ buildDecisionContext src/domain/decision-context.ts:285:54
+    283|   if (marketResult && !marketResult.success) throw new Error('invalid …
+    284|   const accountResult = parsed.account === null ? null : normalizedAcc…
+    285|   if (accountResult && !accountResult.success) throw new Error('invali…
+       |                                                      ^
+    286|   const market = marketResult?.data as MarketState | undefined ?? null;
+    287|   const account = accountResult?.data as AccountState | undefined ?? n…
+ ❯ tests/decision-context.test.ts:213:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/11]⎯
+
+ FAIL  tests/decision-context.test.ts > deterministic decision context > marks a fully populated recent market/account context as inference-ready
+Error: invalid normalized account input
+ ❯ buildDecisionContext src/domain/decision-context.ts:285:54
+    283|   if (marketResult && !marketResult.success) throw new Error('invalid …
+    284|   const accountResult = parsed.account === null ? null : normalizedAcc…
+    285|   if (accountResult && !accountResult.success) throw new Error('invali…
+       |                                                      ^
+    286|   const market = marketResult?.data as MarketState | undefined ?? null;
+    287|   const account = accountResult?.data as AccountState | undefined ?? n…
+ ❯ tests/decision-context.test.ts:226:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/11]⎯
+
+ FAIL  tests/decision-context.test.ts > deterministic decision context > rejects invalid symbols, crossed quotes, and serialized contexts above the conservative byte budget
+AssertionError: expected [Function] to throw error matching /ask is below bid/ but got 'invalid normalized account input'
+
+- Expected: 
+/ask is below bid/
+
++ Received: 
+"invalid normalized account input"
+
+ ❯ tests/decision-context.test.ts:238:49
+    236|     const crossed = await readyInput();
+    237|     crossed.market = { ...crossed.market!, quote: { bid: 191, bidSize:…
+    238|     expect(() => buildDecisionContext(crossed)).toThrow(/ask is below …
+       |                                                 ^
+    239|     const large = await readyInput();
+    240|     large.account = structuredClone(large.account!);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/11]⎯
+

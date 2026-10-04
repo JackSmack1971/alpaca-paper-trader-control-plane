@@ -1,0 +1,58 @@
+{
+  "schema_version": 2,
+  "baseline_commit": "d46ebbaa4a50e757354b5e568401f2fea906db87",
+  "current_head": "d46ebbaa4a50e757354b5e568401f2fea906db87",
+  "goal_digest": "6994c477d06bb54944d4079803cb59b335e68da698fc164cd864609f6424ccbb",
+  "snapshot_id": "2adc274e8e44b88c588480d92a8efbb234633151f7fe729c207a37393ac08b7b",
+  "task_id": "phase3-decision-context",
+  "task_bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+  "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "untracked": [],
+  "post_diff_risk": {
+    "schema_version": 1,
+    "level": "low",
+    "paths": [],
+    "changed_file_count": 0,
+    "added_lines": 0,
+    "deleted_lines": 0,
+    "categories": [],
+    "removed_safeguards": [],
+    "deleted_guard_line_count": 0,
+    "required_roles": [],
+    "required_lanes": [
+      "evaluation",
+      "review",
+      "security-review",
+      "verifier"
+    ],
+    "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification_id": "009fbb94bc7f7579f4b8ed5ccfde00b926164381b09488c0ea9a28dfaa2259be",
+    "initial_level": "high",
+    "effective_level": "critical",
+    "escalated": true
+  },
+  "candidate_id": "fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9",
+  "reconciled_post_diff_risk": {
+    "schema_version": 1,
+    "level": "low",
+    "paths": [],
+    "changed_file_count": 0,
+    "added_lines": 0,
+    "deleted_lines": 0,
+    "categories": [],
+    "removed_safeguards": [],
+    "deleted_guard_line_count": 0,
+    "required_roles": [],
+    "required_lanes": [
+      "evaluation",
+      "review",
+      "security-review",
+      "verifier"
+    ],
+    "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification_id": "009fbb94bc7f7579f4b8ed5ccfde00b926164381b09488c0ea9a28dfaa2259be",
+    "initial_level": "high",
+    "effective_level": "critical",
+    "escalated": true
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "task_id": "phase3-decision-context",
+  "task_bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+  "candidate_id": "fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9",
+  "snapshot_id": "2adc274e8e44b88c588480d92a8efbb234633151f7fe729c207a37393ac08b7b",
+  "commands": [
+    {
+      "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-offline-junction.json",
+      "command": "corepack.cmd pnpm verify:offline",
+      "check_id": "verifier-fea16-offline-junction",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-offline-junction.json"
+    },
+    {
+      "check_path": "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-persisted-replay.json",
+      "command": "corepack.cmd pnpm verify:decision-context",
+      "check_id": "verifier-fea16-persisted-replay",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-persisted-replay.json"
+    }
+  ],
+  "highest_verification_rung": "loopback PostgreSQL-backed persisted replay",
+  "limitations": "No credential-backed Alpaca or OpenRouter qualification was performed; Phase 3 does not require it."
+}

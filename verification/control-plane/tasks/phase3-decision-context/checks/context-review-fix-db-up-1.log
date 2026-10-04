@@ -1,0 +1,14 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 dev:db:up C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\github-runtime-bootstrap
+> docker compose up -d db
+
+ ELIFECYCLE  Command failed with exit code 1.
+
+ Network github-runtime-bootstrap_default Creating 
+ Network github-runtime-bootstrap_default Creating 
+ Network github-runtime-bootstrap_default Created 
+ Network github-runtime-bootstrap_default Created 
+ Container github-runtime-bootstrap-db-1 Creating 
+ Container github-runtime-bootstrap-db-1 Created 
+ Container github-runtime-bootstrap-db-1 Starting 
+Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint github-runtime-bootstrap-db-1 (4609a42ea7aa784a214c0352640e88434e185732a3379b5a0dba15c34604cc1c): Bind for 127.0.0.1:55432 failed: port is already allocated

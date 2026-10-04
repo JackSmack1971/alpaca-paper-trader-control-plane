@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "kind": "security-review",
+  "verdict": "PASS",
+  "task_id": "phase3-decision-context",
+  "task_bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+  "candidate_id": "fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9",
+  "snapshot_id": "2adc274e8e44b88c588480d92a8efbb234633151f7fe729c207a37393ac08b7b",
+  "baseline_commit": "d46ebbaa4a50e757354b5e568401f2fea906db87",
+  "reviewed_head": "d46ebbaa4a50e757354b5e568401f2fea906db87",
+  "findings": [],
+  "scope": "Reviewed the Phase 3 security boundaries, local-mode Host/Origin checks, loopback and provider-credential restrictions, persisted normalized snapshot validation, immutable decision-context persistence/replay checks, PAPER-only enforcement, and source paths to AI/order authority.",
+  "limitations": "The assignment scope file was absent from the specified worktree, so scope followed the task instructions. No source edits or tests were performed. Local-mode mutation endpoints remain callable by local processes and originless non-browser loopback clients; local mode requires loopback application/database hosts and no Alpaca or OpenRouter credentials, so this is treated as an intended local-process trust assumption.",
+  "evidence": "verification/control-plane/tasks/phase3-decision-context/security-review.fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9.json"
+}

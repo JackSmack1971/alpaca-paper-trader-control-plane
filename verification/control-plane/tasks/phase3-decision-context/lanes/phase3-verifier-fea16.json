@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "lane_id": "phase3-verifier-fea16",
+  "role": "verifier",
+  "status": "PASS",
+  "candidate_id": "fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9",
+  "head": "d46ebbaa4a50e757354b5e568401f2fea906db87",
+  "snapshot_id": "2adc274e8e44b88c588480d92a8efbb234633151f7fe729c207a37393ac08b7b",
+  "task_id": "phase3-decision-context",
+  "bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+  "checks": [
+    {
+      "id": "verifier-fea16-offline-junction",
+      "command": "node scripts/control-plane/verify-command.mjs --id verifier-fea16-offline-junction --task-id phase3-decision-context -- corepack.cmd pnpm verify:offline",
+      "exit_code": 0,
+      "result": "PASS",
+      "result_path": "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-offline-junction.json",
+      "log_path": "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-offline-junction.log",
+      "summary": "Typecheck passed; all 8 test files and 89 tests passed; config:check passed; PAPER-only guard passed; no-live-route checks passed."
+    },
+    {
+      "id": "verifier-fea16-persisted-replay",
+      "command": "node scripts/control-plane/verify-command.mjs --id verifier-fea16-persisted-replay --task-id phase3-decision-context -- corepack.cmd pnpm verify:decision-context",
+      "exit_code": 0,
+      "result": "PASS",
+      "result_path": "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-persisted-replay.json",
+      "log_path": "verification/control-plane/tasks/phase3-decision-context/checks/verifier-fea16-persisted-replay.log",
+      "summary": {
+        "simulated": true,
+        "mode": "paper",
+        "replayed_events": 3,
+        "persisted_hash": "7bca1a556195f5c1a1fe5f7757f9b70bd6b60184dc330735edc4eefe589f1158",
+        "deterministic_idempotence": true,
+        "replay_hash_matched": true,
+        "unavailable_data_explicit": true,
+        "changed_input_conflict_status": 409
+      }
+    }
+  ],
+  "runtime": {
+    "host": "127.0.0.1",
+    "port": 3000,
+    "local_test_mode": true,
+    "provider_credential_variables": "removed from app process environment; none were present",
+    "startup_health": "database connected; Alpaca and OpenRouter not configured",
+    "app_process_root_pid": 22876,
+    "app_listener_child_pid": 24348,
+    "stop_result": "app process tree stopped; verified port 3000 listener closed",
+    "database_service": "existing healthy loopback PostgreSQL container left running; not restarted or stopped"
+  },
+  "synthetic_reset": "The verifier's documented POST /__local/reset was used only for its bounded synthetic fixture scenario, as authorized. It replayed three checked-in fixture events and persisted/replayed the test context.",
+  "dependency_setup": {
+    "junction": "worktree-root node_modules -> C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\node_modules",
+    "setup": "PASS",
+    "source_edits": false
+  },
+  "preserved_initial_failures": [
+    "verifier-fea16-focused",
+    "verifier-fea16-focused-with-parent-deps",
+    "verifier-fea16-offline"
+  ],
+  "highest_verification_rung": "offline automated verification plus loopback PostgreSQL-backed persisted context replay",
+  "notes": "Final focused persisted replay and full offline verification both pass for this candidate.",
+  "task_bundle_id": "ad722e27ada32971c9975559255cece89977393c9300e1e080f02aec9d9db123",
+  "verdict": "PASS",
+  "evidence": "verification/control-plane/tasks/phase3-decision-context/verifier.fea16c92c49b389d4e2f9b3e269b52b49f8ad887ca9843dce227f8f2cfcdf2d9.json"
+}

@@ -1,0 +1,5 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 verify:decision-context C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\github-runtime-bootstrap\.codex\worktrees\p3-verifier-final2
+> tsx scripts/verify-decision-context.ts
+
+{"status":"PASS","simulated":true,"mode":"paper","replayedEvents":3,"persistedHash":"7bca1a556195f5c1a1fe5f7757f9b70bd6b60184dc330735edc4eefe589f1158","deterministicIdempotence":true,"replayHashMatched":true,"unavailableDataExplicit":true,"changedInputConflict":409}
