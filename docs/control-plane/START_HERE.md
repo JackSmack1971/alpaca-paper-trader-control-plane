@@ -15,9 +15,7 @@ Delegated and background tasks use isolated Git worktrees beneath `.codex/worktr
 
 ## 2. Record runtime observations (optional)
 
-Review/trust the project hooks with `/hooks`. SessionStart records a sanitized runtime observation in `verification/control-plane/runtime/current.json`. Then run:
-
-SessionStart records a sanitized runtime observation when Codex runs. `qualify-control-plane.mjs` remains available for optional diagnostics, but neither Codex availability nor a `QUALIFIED` result gates implementation or closeout. Static source validation and the clean-baseline preflight remain required.
+Review and trust the project hooks with `/hooks`. SessionStart records a sanitized runtime observation in `verification/control-plane/runtime/current.json`. `node scripts/control-plane/qualify-control-plane.mjs` remains available for optional diagnostics; neither Codex availability nor a `QUALIFIED` result gates implementation or closeout. Static source validation and clean-baseline preflight remain required.
 
 ## 3. Compile the execution snapshot
 
