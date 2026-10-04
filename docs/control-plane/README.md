@@ -1,6 +1,6 @@
 # Codex Project Control Plane
 
-Version: **1.2.0**
+Version: defined by [`policy.json`](policy.json).
 Charter SHA-256: `8fff9dfd9423c22da6db234e5f7d45f0f6f4414e15c131ba865f3ef7ccc6de5f`
 
 This repository-local control plane governs the ten-phase Alpaca/OpenRouter/Jev PAPER-trading charter. It does not implement the trading application.
@@ -8,13 +8,13 @@ This repository-local control plane governs the ten-phase Alpaca/OpenRouter/Jev 
 ## Mechanical guarantees
 
 - one canonical Node 22 utility layer for identity, JSON, Git and line-ending normalization;
-- static source validation and clean preflight gate implementation; live Codex qualification is optional diagnostics;
+- static source validation and current-main worktree preflight gate implementation; live Codex qualification is optional diagnostics;
 - SessionStart runtime observation without a live-runtime implementation gate;
 - immutable execution snapshot before implementation;
 - one writer by default, explicit worktree assignments for concurrent writers;
 - deterministic candidate identity over Git delta and untracked engineering files;
 - independent reviewer, verifier and fresh evaluator bound to the same candidate;
-- schema-v3 closeout with exact machine acceptance criteria and stale-evidence rejection;
+- policy-versioned closeout with exact machine acceptance criteria and stale-evidence rejection;
 - project permission profiles plus `.rules` and synchronous PreToolUse repository guardrails;
 - risk-scaled single-agent/delegation routing, worktree-local background tasks, and bounded MCP results;
 - deterministic command-result records and PostToolUse status reporting;

@@ -7,11 +7,25 @@ const failures = [];
 const warnings = [];
 const exists = rel => fs.existsSync(path.join(root, rel));
 const componentsPath = 'docs/control-plane/components.json';
-const must = ['AGENTS.md','.codex/config.toml','.codex/hooks.json','.codex/rules/default.rules','docs/PROJECT_CHARTER.md','docs/control-plane/phase-state.json',componentsPath,'docs/control-plane/phase-contracts.json','docs/control-plane/capabilities.json'];
+const must = ['AGENTS.md','.codex/config.toml','.codex/hooks.json','.codex/rules/default.rules','docs/PROJECT_CHARTER.md','docs/control-plane/phase-state.json',componentsPath,'docs/control-plane/phase-contracts.json','docs/control-plane/capabilities.json','docs/control-plane/policy.json','.github/workflows/control-plane.yml'];
 for (const rel of must) if (!exists(rel)) failures.push(`missing ${rel}`);
 if (failures.length === 0) {
   const components = loadJson(componentsPath);
-  if (components.schema_version !== 2) failures.push('components.json schema_version must be 2');
+  const policy = loadJson('docs/control-plane/policy.json');
+  const ciWorkflow = canonicalText(fs.readFileSync('.github/workflows/control-plane.yml'));
+  for (const check of [
+    'ubuntu-latest',
+    'windows-latest',
+    'node-version: 22',
+    'node scripts/control-plane/validate.mjs',
+    'node scripts/control-plane/test-control-plane.mjs',
+    'node scripts/control-plane/test-runtime-observation.mjs',
+    'node scripts/control-plane/test-hooks-windows.mjs',
+    'git diff --check'
+  ]) if (!ciWorkflow.includes(check)) failures.push(`CI workflow missing required trust check: ${check}`);
+  if (!/if:\s*runner\.os\s*==\s*'Windows'/.test(ciWorkflow)) failures.push('CI workflow must run Windows PowerShell hook integration only on Windows');
+  if (components.schema_version !== policy.evidence_schema_versions.components) failures.push('components.json schema_version differs from canonical policy');
+  if (components.policy_file !== 'docs/control-plane/policy.json') failures.push('components.json must link the canonical policy file');
   const nodeMajor = Number(process.versions.node.split('.')[0]);
   if (nodeMajor !== components.runtime.node_major) failures.push(`Node ${components.runtime.node_major} required; found ${process.versions.node}`);
   for (const name of components.agents) if (!exists(`.codex/agents/${name}.toml`)) failures.push(`missing agent ${name}`);
@@ -22,7 +36,12 @@ if (failures.length === 0) {
   if (/\bsandbox_mode\s*=/.test(config)) failures.push('legacy sandbox_mode is forbidden when permission profiles are used');
   if (!/default_permissions\s*=\s*"project-implement"/.test(config)) failures.push('root default_permissions must be project-implement');
   for (const profile of ['project-implement','project-verify']) if (!new RegExp(`\\[permissions\\.${profile.replace('-','\\-')}\\]`).test(config)) failures.push(`missing permission profile ${profile}`);
-  if (!Array.isArray(components.agent_roles) || components.agent_roles.length !== components.agents.length) failures.push('components.json agent_roles must map every agent file');
+  if (!Array.isArray(components.agent_roles) || components.agent_roles.length !== policy.routing.roles.length || components.agent_roles.length !== components.agents.length) failures.push('components.json agent_roles must map every canonical agent role');
+  for (const role of policy.routing.roles) {
+    const componentRole = components.agent_roles?.find(item => item.id === role.id);
+    if (!componentRole || componentRole.file !== role.file || componentRole.config_file !== role.config_file || componentRole.default_permissions !== role.default_permissions) failures.push(`agent role ${role.id} differs from canonical policy`);
+    if (!components.agents.includes(path.basename(role.file, '.toml').replaceAll('_','-'))) failures.push(`agent role ${role.id} file is absent from components registry`);
+  }
   for (const role of components.agent_roles ?? []) {
     if (!role?.id || !role?.file || !role?.config_file || !role?.default_permissions) { failures.push('malformed agent role identity'); continue; }
     if (!exists(role.file)) { failures.push(`missing agent role file ${role.file}`); continue; }
@@ -48,7 +67,7 @@ if (failures.length === 0) {
   }
 
   const state = loadJson('docs/control-plane/phase-state.json');
-  if (state.control_plane_version !== components.control_plane_version) failures.push('phase-state control_plane_version differs from components manifest');
+  if (state.control_plane_version !== policy.control_plane_version || components.control_plane_version !== policy.control_plane_version) failures.push('control-plane version differs from canonical policy');
   if (!Array.isArray(state.phases) || state.phases.length !== 10) failures.push('phase-state must contain 10 phases');
   const ids = state.phases?.map(p=>p.id) ?? [];
   if (JSON.stringify(ids) !== JSON.stringify([1,2,3,4,5,6,7,8,9,10])) failures.push('phase ids are not 1..10');
@@ -62,7 +81,8 @@ if (failures.length === 0) {
   }
 
   const contracts = loadJson('docs/control-plane/phase-contracts.json');
-  if (contracts.schema_version !== 1 || contracts.phases?.length !== 10) failures.push('phase-contracts must be schema 1 with 10 phases');
+  if (contracts.schema_version !== policy.evidence_schema_versions.phase_contracts || contracts.phases?.length !== 10) failures.push('phase-contracts schema/phase count differs from canonical policy');
+  if (state.schema_version !== policy.evidence_schema_versions.phase_state) failures.push('phase-state schema_version differs from canonical policy');
   for (const phase of state.phases ?? []) {
     const contract = contracts.phases?.find(x => x.phase === phase.id);
     if (!contract) { failures.push(`missing phase contract ${phase.id}`); continue; }
@@ -80,7 +100,7 @@ if (failures.length === 0) {
   if (!hooks.hooks?.PostToolUse?.length) failures.push('PostToolUse hook missing');
   for (const event of ['SessionStart','PreToolUse','PostToolUse']) for (const group of hooks.hooks?.[event] ?? []) for (const handler of group.hooks ?? []) {
     if (handler.type === 'command' && (!handler.command || !handler.commandWindows)) failures.push(`${event} command hook must define command and commandWindows`);
-    if (handler.type === 'command' && handler.commandWindows && !/^powershell(?:\.exe)?\s+-NoProfile\s+-Command\s+/i.test(handler.commandWindows)) failures.push(`${event} Windows command hook must use a PowerShell -NoProfile -Command wrapper`);
+    if (handler.type === 'command' && handler.commandWindows && !/^cmd\.exe \/d \/c \.codex\\hooks\\run-hook\.cmd (?:session-start|pre-tool-use|post-tool-use)$/i.test(handler.commandWindows)) failures.push(`${event} Windows command hook must use the registered cmd.exe hook launcher`);
   }
   if (/\bdefaultShell\s*=/.test(config)) failures.push('unsupported defaultShell key must not be added to Codex config.toml');
   if (!(hooks.hooks?.PreToolUse ?? []).some(group => group.matcher === '.*')) failures.push('generic PreToolUse matcher required for mutation-gate tool-name coverage');
@@ -89,8 +109,28 @@ if (failures.length === 0) {
   if (!(hooks.hooks?.PostToolUse ?? []).some(group => /^\^mcp__/.test(group.matcher ?? ''))) failures.push('MCP PostToolUse size-limit hook missing');
   if (!(hooks.hooks?.PostToolUse ?? []).some(group => /^\^Bash\$/.test(group.matcher ?? ''))) failures.push('Bash PostToolUse exit-status hook missing');
   const capability = loadJson('docs/control-plane/capabilities.json');
-  if (capability.schema_version !== 1 || !Array.isArray(capability.mcp_servers)) failures.push('capability registry is malformed');
-  if (capability.mcp_policy?.collection_calls?.require_filter !== true || capability.mcp_policy?.collection_calls?.require_page_size !== true || capability.mcp_policy?.collection_calls?.maximum_page_size !== 100 || capability.mcp_policy?.response_budget?.maximum_utf8_bytes !== 24000 || capability.mcp_policy?.response_budget?.maximum_tokens !== 25000) failures.push('MCP pagination/filter or output budget policy is missing or exceeds the enforced limits');
+  if (capability.schema_version !== policy.evidence_schema_versions.capabilities || !Array.isArray(capability.mcp_servers)) failures.push('capability registry is malformed or has a schema version that differs from canonical policy');
+  if (capability.mcp_policy?.collection_calls?.require_filter !== policy.mcp.require_filter || capability.mcp_policy?.collection_calls?.require_page_size !== policy.mcp.require_page_size || capability.mcp_policy?.collection_calls?.maximum_page_size !== policy.mcp.maximum_page_size || capability.mcp_policy?.response_budget?.maximum_utf8_bytes !== policy.mcp.maximum_result_utf8_bytes || capability.mcp_policy?.response_budget?.oversize_behavior !== policy.mcp.oversize_behavior || 'maximum_tokens' in (capability.mcp_policy?.response_budget ?? {})) failures.push('MCP policy in capabilities.json differs from canonical policy');
+  const workflow = canonicalText(fs.readFileSync('docs/control-plane/WORKFLOW.md'));
+  const traceability = canonicalText(fs.readFileSync('docs/control-plane/TRACEABILITY.md'));
+  const mcpSkill = canonicalText(fs.readFileSync('.agents/skills/mcp-bounds/SKILL.md'));
+  const reportTemplate = canonicalText(fs.readFileSync('verification/phase-reports/TEMPLATE.md'));
+  const projectReadme = canonicalText(fs.readFileSync('docs/control-plane/README.md'));
+  const routingSkill = canonicalText(fs.readFileSync('.agents/skills/task-routing/SKILL.md'));
+  const agentsGuide = canonicalText(fs.readFileSync('AGENTS.md'));
+  const expectedBytes = policy.mcp.maximum_result_utf8_bytes.toLocaleString('en-US');
+  for (const [name,text] of [['WORKFLOW.md',workflow],['TRACEABILITY.md',traceability],['mcp-bounds skill',mcpSkill]]) {
+  if (!new RegExp(`(?<!\\d)${expectedBytes.replace(',', '[,_]?')}(?!\\d)[^\\n]*(?:UTF-8 )?bytes?`, 'i').test(text)) failures.push(`${name} must describe the canonical ${expectedBytes}-byte MCP result limit`);
+    if (/25[,._]?000\s*(?:utf-8\s*)?bytes/i.test(text)) failures.push(`${name} contradicts the canonical MCP result limit`);
+  }
+  if (policy.routing.roles.length !== components.agents.length || policy.routing.roles.some(role => !components.agents.includes(path.basename(role.file, '.toml')))) failures.push('agent role inventory differs from canonical policy');
+  if (!routingSkill.includes('docs/control-plane/policy.json') || /more than 50 lines|more than three architectural/i.test(routingSkill)) failures.push('task-routing skill must defer role/threshold policy to canonical policy');
+  if (!projectReadme.includes('Version: defined by [`policy.json`](policy.json).')) failures.push('control-plane README must defer the version to canonical policy');
+  if (!agentsGuide.includes(`${expectedBytes} UTF-8 bytes`) || !agentsGuide.includes('policy-defined `maximum_page_size`')) failures.push('AGENTS.md MCP bounds must match/reference canonical policy');
+  if (!policy.verification_statuses?.check?.includes('PASS') || !policy.verification_statuses?.check?.includes('FAIL') || !policy.verification_statuses?.check?.includes('UNKNOWN')) failures.push('canonical verification status policy is incomplete');
+  if (!new RegExp(`"schema_version":\\s*${policy.evidence_schema_versions.closeout_manifest}\\b`).test(reportTemplate)) failures.push('phase report template schema differs from canonical policy');
+  if (!workflow.includes('machine manifest at the version in `policy.json`')) failures.push('WORKFLOW.md must defer manifest version to canonical policy');
+  if (!traceability.includes('policy-versioned manifest')) failures.push('TRACEABILITY.md must defer manifest version to canonical policy');
 
   if (fs.statSync('AGENTS.md').size > 32768) failures.push('AGENTS.md exceeds project_doc_max_bytes');
   const nestedArchives = [];

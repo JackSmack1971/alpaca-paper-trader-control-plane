@@ -31,7 +31,6 @@
     },
     "response_budget": {
       "maximum_utf8_bytes": 24000,
-      "maximum_tokens": 25000,
       "oversize_behavior": "drop_result_and_request_narrower_query"
     },
     "requirements": [

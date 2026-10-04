@@ -3,7 +3,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
-import { findRepoRoot, git, isEvidencePath, parseArg, repoPath, sha256, writeJsonAtomic } from './lib.mjs';
+import { findRepoRoot, git, isEvidencePath, loadJson, parseArg, repoPath, sha256, writeJsonAtomic } from './lib.mjs';
 
 const args = process.argv.slice(2);
 const root = findRepoRoot(parseArg(args, '--repo-root') ?? process.cwd());
@@ -98,7 +98,8 @@ try {
     }))];
     const casePath = repoPath(root, caseFile);
     const caseSha256 = fs.existsSync(casePath) ? sha256(fs.readFileSync(casePath)) : null;
-    const task = { schema_version: 1, id, status: 'AWAITING_REPRODUCTION', case_file: caseFile, case_sha256: caseSha256, scopes: normalizedScopes, signature_sha256: sha256(signature), reproduction: null, registered_at: new Date().toISOString() };
+    const policy = loadJson(path.join(root, 'docs/control-plane/policy.json'));
+    const task = { schema_version: policy.evidence_schema_versions.causal_debug_task, id, status: 'AWAITING_REPRODUCTION', case_file: caseFile, case_sha256: caseSha256, scopes: normalizedScopes, signature_sha256: sha256(signature), reproduction: null, registered_at: new Date().toISOString() };
     task.registered_scope_sha256 = scopeDigest(normalizedScopes);
     save(task);
     writeJsonAtomic(activePath, { task_id: id });

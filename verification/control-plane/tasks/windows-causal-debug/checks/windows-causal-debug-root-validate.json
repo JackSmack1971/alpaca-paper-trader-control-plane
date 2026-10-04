@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "windows-causal-debug-root-validate",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "scripts/control-plane/validate.mjs"
+  ],
+  "log_path": "verification/control-plane/tasks/windows-causal-debug/checks/windows-causal-debug-root-validate.log",
+  "started_at": "2026-10-03T22:05:47.280Z",
+  "completed_at": "2026-10-03T22:05:47.389Z",
+  "signal": null,
+  "error": null,
+  "task_id": "windows-causal-debug",
+  "bundle_id": "424eab8751d025de51971904ec6ff3475418043a56d2e355a161d2737de4b4a2",
+  "legacy_source_path": "verification/control-plane/check-results/windows-causal-debug-root-validate.json"
+}

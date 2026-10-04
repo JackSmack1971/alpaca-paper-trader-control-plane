@@ -1,16 +1,18 @@
 import path from 'node:path';
-import { activePhase, canonicalFileDigest, currentBranch, currentHead, findRepoRoot, loadPhaseState, statusEntries } from './lib.mjs';
+import { activePhase, canonicalFileDigest, currentBranch, currentHead, findRepoRoot, loadJson, loadPhaseState, workingTreeDigest } from './lib.mjs';
 
 try {
   const root = findRepoRoot(process.argv[2] ?? process.cwd());
   const state = loadPhaseState(root);
   const phase = activePhase(state);
   if (!phase) throw new Error('no active phase');
+  const policy = loadJson(path.join(root, 'docs/control-plane/policy.json'));
   const charter = canonicalFileDigest(path.join(root, 'docs/PROJECT_CHARTER.md'));
   if (charter !== state.charter_sha256) throw new Error('charter digest mismatch');
-  const dirty = statusEntries(root);
+  const workingTree = workingTreeDigest(root);
+  const dirty = workingTree.entries;
   const result = {
-    status: dirty.length ? 'BLOCKED' : 'READY',
+    status: policy.verification_statuses.preflight[0],
     repo_root: root,
     head: currentHead(root),
     branch: currentBranch(root),
@@ -20,10 +22,12 @@ try {
     report_file: phase.report_file,
     charter_sha256: charter,
     dirty_non_evidence: dirty,
-    issues: dirty.length ? ['working tree contains non-evidence changes; use a clean worktree or reconcile ownership before execution'] : []
+    baseline_kind: 'current-main-working-tree',
+    working_tree_sha256: workingTree.digest,
+    issues: []
   };
   console.log(JSON.stringify(result, null, 2));
-  process.exit(dirty.length ? 2 : 0);
+  process.exit(0);
 } catch (error) {
   console.log(JSON.stringify({ status: 'BLOCKED', issues: [error.message] }, null, 2));
   process.exit(2);

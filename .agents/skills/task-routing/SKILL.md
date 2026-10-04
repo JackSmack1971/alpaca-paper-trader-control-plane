@@ -18,7 +18,9 @@ At task intake, classify the requested work before editing. Routine syntax corre
 |---|---|
 | Low uncertainty, low complexity, low radius | One strong primary builder; no subagent. Use a focused diff. |
 | High uncertainty, low radius | Fresh read-only `phase_mapper` or `provider_researcher` in an isolated worktree; return concise `RESEARCH.md` content for the primary to persist; synthesize before one builder starts. |
-| High complexity and high radius, or an explicit critical-path trigger | Planner (`phase_mapper`) → one `implementer` → read-only reviewer/security auditor/verifier → fresh read-only evaluator. Create `verification/test-results.json` in default `FAIL` state with acceptance criteria before code generation. |
+| High complexity and high radius, or an explicit critical-path trigger | Planner (`phase_mapper`) → one `implementer` → read-only reviewer/security auditor/verifier → fresh read-only evaluator. Create the task-scoped `verification/control-plane/tasks/<task-id>/test-results.json` in default `FAIL` state with acceptance criteria before code generation. |
+
+Any high-radius intake or route that selects an independent reviewer, security auditor, verifier, or evaluator must provide task-scoped acceptance criteria before implementation starts, including low-complexity work. Routine routes without those review/adjudication roles keep the lightweight path and do not receive a task acceptance contract.
 
 ### Phase-closeout evidence route
 
@@ -31,11 +33,11 @@ Do not delegate routine syntax corrections, documentation additions, dependency 
 Request isolated independent review when any applies:
 
 - authentication, authorization, secrets, security boundaries, database schemas/migrations, or cloud infrastructure changes;
-- more than 50 lines of code change is expected;
-- more than three architectural files/modules are involved;
+- expected code lines exceed the canonical threshold;
+- architectural file count exceeds the canonical threshold;
 - correctness is difficult to verify deterministically, such as visual behavior or race conditions.
 
-These are routing signals, not proof that the work is high risk. State the evidence behind the classification and use the smallest sufficient number of roles.
+Use `docs/control-plane/policy.json` as the source for routine task kinds, critical areas, complexity thresholds, and routing roles. These are routing signals, not proof that the work is high risk. State the evidence behind the classification and use the smallest sufficient number of roles.
 
 ## Isolation and handoffs
 
@@ -51,10 +53,10 @@ Use the lowest-cost currently configured model that can perform the selected rol
 
 ## Verification contract
 
-For complex/high-radius work, `route-task.mjs` creates `verification/test-results.json` in default `FAIL` state before implementation. It requires acceptance criteria in the intake and refuses to continue if a prior task contract would be overwritten. Update criteria only from executed deterministic evidence:
+For high-radius or independently reviewed/adjudicated work, `route-task.mjs` requires criteria and creates a task-scoped evidence bundle and default-fail acceptance results before implementation. Routine routes without those roles remain lightweight. A stable task ID may only be reused for the same intake; a completed historical bundle never blocks a different task:
 
 ```text
-node scripts/control-plane/init-test-results.mjs --criteria <criteria.json> --out verification/test-results.json
+node scripts/control-plane/init-test-results.mjs --task-id <task-id> --criteria <criteria.json>
 ```
 
-Update each criterion only from executed deterministic evidence using `set-test-result.mjs --criterion <id> --check-id <unique-id>`. Run builds and checks using `node scripts/control-plane/verify-command.mjs --id <unique-id> -- <executable> <args...>`, then run `validate-test-results.mjs` before evaluation. A missing numeric exit status remains `UNKNOWN`; prose or logs cannot turn it into PASS.
+Update each criterion only from executed deterministic evidence using `set-test-result.mjs --task-id <task-id> --criterion <id> --check-id <unique-id>`. Run builds and checks using `node scripts/control-plane/verify-command.mjs --task-id <task-id> --id <unique-id> -- <executable> <args...>`, then run `validate-test-results.mjs --task-id <task-id>` before evaluation. A missing numeric exit status remains `UNKNOWN`; prose or logs cannot turn it into PASS.

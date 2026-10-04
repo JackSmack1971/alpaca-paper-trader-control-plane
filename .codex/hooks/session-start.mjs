@@ -1,17 +1,18 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { canonicalFileDigest, findRepoRoot, loadPhaseState, activePhase, objectDigest, readStdinJson, writeJsonAtomic } from '../../scripts/control-plane/lib.mjs';
+import { canonicalFileDigest, findRepoRoot, loadJson, loadPhaseState, activePhase, objectDigest, readStdinJson, writeJsonAtomic } from '../../scripts/control-plane/lib.mjs';
 
 try {
   const input = readStdinJson();
   const root = findRepoRoot(input.cwd ?? process.cwd());
+  const policy = loadJson(path.join(root, 'docs/control-plane/policy.json'));
   const state = loadPhaseState(root);
   const phase = activePhase(state);
   const charterPath = path.join(root, 'docs/PROJECT_CHARTER.md');
   const digest = canonicalFileDigest(charterPath);
   const mismatch = digest !== state.charter_sha256;
   const observation = {
-    schema_version: 1,
+    schema_version: policy.evidence_schema_versions.runtime_observation,
     source: 'codex-session-start-hook',
     captured_at: new Date().toISOString(),
     project_layer_loaded: true,
@@ -30,7 +31,7 @@ try {
     `CONTROL PLANE: active phase = ${phase?.id ?? 'unknown'} ${phase?.title ?? ''}`,
     phase ? `Active goal file: ${phase.goal_file}` : '',
     'Runtime observation recorded at verification/control-plane/runtime/current.json.',
-    'Live Codex qualification is optional; static validation, clean preflight, and a source execution snapshot are the start gates.',
+    'Live Codex qualification is optional; static validation, current-main worktree preflight, and a source execution snapshot are the start gates.',
     mismatch ? 'BLOCKER: charter digest differs from phase-state.json. Do not implement until provenance is reconciled.' : '',
     'Never claim a verification rung or test passed unless it actually ran successfully.'
   ].filter(Boolean).join('\n');

@@ -1,4 +1,4 @@
-import { readStdinJson } from '../../scripts/control-plane/lib.mjs';
+import { loadJson, readStdinJson } from '../../scripts/control-plane/lib.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -79,6 +79,7 @@ try {
   const input = readStdinJson();
   if (input.hook_event_name !== 'PreToolUse') process.exit(0);
   const repo = findRepoRoot(input.cwd ?? process.cwd());
+  const policy = loadJson(path.join(repo, 'docs/control-plane/policy.json'));
   const activeTaskPath = path.join(repo, 'verification/control-plane/debug-tasks/active.json');
   const tasksDir = path.dirname(activeTaskPath);
   let active = fs.existsSync(activeTaskPath) ? JSON.parse(fs.readFileSync(activeTaskPath, 'utf8')) : null;
@@ -130,15 +131,16 @@ try {
       } else if (typeof value === 'string') strings.push(value);
     };
     walk(input.tool_input);
-    const bounded = keys.some(([key, value]) => ['limit','pagesize','perpage','first','take','maxresults'].includes(key) && Number.isInteger(Number(value)) && Number(value) > 0 && Number(value) <= 100)
-      || strings.some(value => /\bLIMIT\s+(?:[1-9]\d?|100)\b/i.test(value));
+    const maxPageSize = policy.mcp.maximum_page_size;
+    const bounded = keys.some(([key, value]) => ['limit','pagesize','perpage','first','take','maxresults'].includes(key) && Number.isInteger(Number(value)) && Number(value) > 0 && Number(value) <= maxPageSize)
+      || strings.some(value => new RegExp(`\\bLIMIT\\s+(?:[1-9]\\d?|${maxPageSize})\\b`, 'i').test(value));
     const scoped = keys.some(([key, value]) => ['filter','filters','where','search','keyword','path','id','ids','recordid','symbol','project','since','until','from','to','start','end'].includes(key) && hasValue(value))
       || strings.some(value => /\bWHERE\s+\S/i.test(value));
     const toolParts = String(input.tool_name ?? '').split('__');
     const operation = toolParts.length >= 3 ? toolParts.slice(2).join('__').replace(/([a-z0-9])([A-Z])/g, '$1_$2') : '';
     const collectionTool = /(?:^|_)(?:list|search|query|select|logs?|history|events?|rows?|records?|database|export|fetch(?:_all)?|get_all|read_(?:all|many|list|rows|records)|scan)(?:_|$)/i.test(operation);
-    if (collectionTool && (!bounded || !scoped)) {
-      const missing = [!scoped && 'a narrow filter', !bounded && 'a page size from 1 to 100'].filter(Boolean).join(' and ');
+    if (collectionTool && ((policy.mcp.require_page_size && !bounded) || (policy.mcp.require_filter && !scoped))) {
+      const missing = [(policy.mcp.require_filter && !scoped) && 'a narrow filter', (policy.mcp.require_page_size && !bounded) && `a page size from 1 to ${maxPageSize}`].filter(Boolean).join(' and ');
       process.stdout.write(JSON.stringify({ hookSpecificOutput: { hookEventName: 'PreToolUse', permissionDecision: 'deny', permissionDecisionReason: `MCP collection calls require ${missing}.` } }));
       process.exit(0);
     }
