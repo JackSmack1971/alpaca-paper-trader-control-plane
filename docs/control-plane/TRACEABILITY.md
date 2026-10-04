@@ -11,10 +11,10 @@
 | Runtime observation | SessionStart observation + optional `qualify-control-plane.mjs` | diagnostic only; never an implementation/closeout gate |
 | Execution provenance | `snapshot-control-plane.mjs` | immutable snapshot of checked-in project authority; no live runtime dependency |
 | Work routing/isolation | `task-routing`, `route-task.mjs`, `create-worktree.mjs`, shared assignment registry | deterministic route record; delegated/background task runs under `.codex/worktrees/` |
-| Tool-result bounds | MCP PreToolUse/PostToolUse hooks | bounded list/search inputs and 25,000-byte result ceiling |
+| Tool-result bounds | `policy.json`, MCP PreToolUse/PostToolUse hooks | bounded list/search inputs and policy-defined 24,000-byte result ceiling |
 | Verification status | `verify-command.mjs` + Bash PostToolUse hook | structured numeric exit status; missing status remains UNKNOWN |
-| Candidate/evidence freshness | `candidate-id.mjs`, reviewer/verifier/evaluator IDs | Git delta + exact evidence binding |
-| Phase reporting | `phase-closeout`, schema-v3 manifest, report template | repository evidence record + machine reconciliation |
+| Candidate/evidence freshness and post-diff risk | `post-diff-risk.mjs`, `candidate-id.mjs`, reviewer/security-review/verifier/evaluator IDs | Actual Git delta is reclassified before candidate write; monotonic route escalation + exact candidate/evidence binding |
+| Phase reporting | `phase-closeout`, policy-versioned manifest, report template | repository evidence record + machine reconciliation |
 | Charter conflicts | `adr-escalation`, ADR template | operator decision |
 | Sequential phases | `phase-state.json`, exact goal files | phase-closeout + operator steering |
 | Change scope | one-writer workflow, Git rules/policy | Git diff + runtime permissions |

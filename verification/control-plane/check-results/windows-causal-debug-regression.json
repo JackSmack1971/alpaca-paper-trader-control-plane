@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "windows-causal-debug-regression",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "scripts/control-plane/test-control-plane.mjs"
+  ],
+  "log_path": "verification/control-plane/check-results/windows-causal-debug-regression.log",
+  "started_at": "2026-10-03T21:15:20.673Z",
+  "completed_at": "2026-10-03T21:15:25.931Z",
+  "signal": null,
+  "error": null
+}

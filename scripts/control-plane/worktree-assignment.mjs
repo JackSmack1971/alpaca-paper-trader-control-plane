@@ -19,6 +19,7 @@ function mirror(root, record) {
 try {
   const args = process.argv.slice(2);
   const root = findRepoRoot(parseArg(args, '--repo-root') ?? process.cwd());
+  const policy = loadJson(path.join(root, 'docs/control-plane/policy.json'));
   const shared = registryDir(root);
   fs.mkdirSync(shared, { recursive: true });
 
@@ -51,12 +52,13 @@ try {
   for (const name of fs.readdirSync(shared).filter(x => x.endsWith('.json'))) {
     const prior = loadJson(path.join(shared, name));
     if (prior.active !== true) continue;
+    if (typeof prior.worktree === 'string' && !fs.existsSync(path.resolve(prior.worktree))) continue;
     const sameWorktree = path.resolve(prior.worktree) === worktree;
     if (sameWorktree && prior.owner !== owner) throw new Error(`worktree already has active owner ${prior.owner} via assignment ${prior.assignment_id}`);
     if (!sameWorktree && prior.scope.some(a => scope.some(b => scopesOverlap(a,b)))) throw new Error(`write scope overlaps active assignment ${prior.assignment_id} owned by ${prior.owner}`);
   }
 
-  const identity = { schema_version: 1, unit_of_work: unit, base_sha: currentHead(root), worktree, branch, owner, scope, integration_target: parseArg(args, '--integration-target') ?? null };
+  const identity = { schema_version: policy.evidence_schema_versions.worktree_assignment, unit_of_work: unit, base_sha: currentHead(root), worktree, branch, owner, scope, integration_target: parseArg(args, '--integration-target') ?? null };
   const record = { ...identity, assignment_id: objectDigest(identity), active: true, created_at: new Date().toISOString() };
   writeJsonAtomic(path.join(shared, `${record.assignment_id}.json`), record);
   mirror(root, record);

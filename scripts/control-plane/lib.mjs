@@ -177,3 +177,17 @@ export function fileDigestMap(root, relatives) {
   }
   return result;
 }
+
+export function workingTreeDigest(root) {
+  const entries = statusEntries(root);
+  const state = entries.map(entry => {
+    const file = repoPath(root, entry.path);
+    let digest = null;
+    try {
+      const stat = fs.lstatSync(file);
+      digest = stat.isFile() ? sha256(fs.readFileSync(file)) : `mode:${stat.mode}`;
+    } catch { digest = 'deleted'; }
+    return { code: entry.code, path: entry.path, content_sha256: digest };
+  });
+  return { entries: state, digest: objectDigest(state) };
+}

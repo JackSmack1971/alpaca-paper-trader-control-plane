@@ -1,11 +1,10 @@
 import path from 'node:path';
-import { activePhase, canonicalFileDigest, currentBranch, currentHead, fileDigestMap, findRepoRoot, loadJson, loadPhaseState, objectDigest, parseArg, platformKind, statusEntries, writeJsonAtomic } from './lib.mjs';
+import { activePhase, canonicalFileDigest, currentBranch, currentHead, fileDigestMap, findRepoRoot, loadJson, loadPhaseState, objectDigest, parseArg, platformKind, workingTreeDigest, writeJsonAtomic } from './lib.mjs';
 
 try {
   const args = process.argv.slice(2);
   const root = findRepoRoot(parseArg(args, '--repo-root') ?? process.cwd());
-  const dirty = statusEntries(root);
-  if (dirty.length) throw new Error('non-evidence working-tree changes exist; establish a clean worktree before compiling a snapshot');
+  const workingTree = workingTreeDigest(root);
 
   const state = loadPhaseState(root);
   const phase = activePhase(state);
@@ -13,7 +12,7 @@ try {
   const components = loadJson(path.join(root, 'docs/control-plane/components.json'));
   const files = [
     'AGENTS.md', 'docs/PROJECT_CHARTER.md', 'docs/control-plane/phase-state.json',
-    'docs/control-plane/phase-contracts.json', 'docs/control-plane/components.json', 'docs/control-plane/capabilities.json',
+    'docs/control-plane/phase-contracts.json', 'docs/control-plane/components.json', 'docs/control-plane/capabilities.json', 'docs/control-plane/policy.json',
     '.codex/config.toml', '.codex/hooks.json', '.codex/rules/default.rules',
     phase.goal_file,
     ...components.agents.map(x => `.codex/agents/${x}.toml`),
@@ -23,12 +22,14 @@ try {
   for (const script of components.lifecycle_scripts) files.push(script);
 
   const snapshot = {
-    schema_version: 2,
+    schema_version: loadJson(path.join(root, 'docs/control-plane/policy.json')).evidence_schema_versions.snapshot,
     control_plane_schema: components.schema_version,
     created_at: new Date().toISOString(),
     platform: platformKind(),
     git_baseline: currentHead(root),
     git_branch: currentBranch(root),
+    baseline_kind: 'current-main-working-tree',
+    working_tree_sha256: workingTree.digest,
     active_phase: phase.id,
     charter_digest: canonicalFileDigest(path.join(root, 'docs/PROJECT_CHARTER.md')),
     goal_digest: canonicalFileDigest(path.join(root, phase.goal_file)),

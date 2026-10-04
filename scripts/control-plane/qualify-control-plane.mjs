@@ -9,6 +9,7 @@ function normalizedVersion(output) {
 try {
   const args = process.argv.slice(2);
   const root = findRepoRoot(parseArg(args, '--repo-root') ?? process.cwd());
+  const policy = loadJson(path.join(root, 'docs/control-plane/policy.json'));
   const observationPath = parseArg(args, '--runtime-observation') ?? path.join(root, 'verification/control-plane/runtime/current.json');
   const outPath = parseArg(args, '--out') ?? path.join(root, 'verification/control-plane/qualification.json');
   const issues = [];
@@ -58,7 +59,7 @@ try {
   const componentsDigest = canonicalFileDigest(path.join(root, 'docs/control-plane/components.json'));
 
   if (observation) {
-    if (observation.schema_version !== 1 || observation.source !== 'codex-session-start-hook') issues.push('runtime observation has unsupported schema/source');
+    if (observation.schema_version !== policy.evidence_schema_versions.runtime_observation || observation.source !== 'codex-session-start-hook') issues.push('runtime observation has unsupported schema/source');
     if (observation.project_layer_loaded !== true) issues.push('runtime observation does not prove the trusted project layer loaded');
     if (observation.hook_digest !== hookDigest) issues.push('runtime observation is stale for current hook configuration');
     if (observation.config_digest !== configDigest) issues.push('runtime observation is stale for current project config');
@@ -84,8 +85,8 @@ try {
   if (dirty.length) issues.push('working tree has non-evidence changes; qualification must bind a clean engineering baseline');
 
   const record = {
-    schema_version: 1,
-    status: issues.length ? 'UNVERIFIED' : 'QUALIFIED',
+    schema_version: policy.evidence_schema_versions.qualification,
+    status: issues.length ? policy.verification_statuses.qualification[1] : policy.verification_statuses.qualification[0],
     captured_at: new Date().toISOString(),
     platform: platformKind(),
     codex_version: codexVersion,
@@ -108,7 +109,7 @@ try {
   record.qualification_id = objectDigest(record);
   writeJsonAtomic(outPath, record);
   console.log(JSON.stringify(record, null, 2));
-  process.exit(record.status === 'QUALIFIED' ? 0 : 2);
+  process.exit(record.status === policy.verification_statuses.qualification[0] ? 0 : 2);
 } catch (error) {
   console.error(`qualification failed: ${error.message}`);
   process.exit(2);
