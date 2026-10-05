@@ -1,0 +1,109 @@
+{
+  "schema_version": 2,
+  "task_id": "p5jev-stage-flow",
+  "bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+  "status": "PASS",
+  "criteria": [
+    {
+      "criterion_id": "jev-fixed-questions",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "phase5-offline-final-v2",
+        "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-offline-final-v2.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "jev-response-validation",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "phase5-offline-final-v2",
+        "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-offline-final-v2.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "jev-no-action",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "phase5-persisted-jev-final-v2",
+        "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-jev-final-v2.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "jev-provider-adapter",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "phase5-offline-final-v2",
+        "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-offline-final-v2.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "jev-persisted-stage",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "phase5-persisted-jev-final-v2",
+        "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-jev-final-v2.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "jev-abstention-policy",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "phase5-persisted-jev-final-v2",
+        "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-jev-final-v2.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "jev-preflight-limits",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "phase5-offline-final-v2",
+        "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-offline-final-v2.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "jev-endpoint-evidence",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "phase5-research-jev-v2",
+        "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-research-jev-v2.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-CLASSIFICATION",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "post-diff-classification-5f64-v2",
+        "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-classification-5f64-v2.json",
+        "exit_code": 0
+      }
+    },
+    {
+      "criterion_id": "POST-DIFF-REQUIRED-LANES",
+      "status": "PASS",
+      "disposition": "PASS",
+      "evidence": {
+        "check_id": "post-diff-required-lanes-5f64-v3",
+        "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-required-lanes-5f64-v3.json",
+        "exit_code": 0
+      }
+    }
+  ],
+  "generated_at": "2026-10-04T23:01:54.810Z"
+}

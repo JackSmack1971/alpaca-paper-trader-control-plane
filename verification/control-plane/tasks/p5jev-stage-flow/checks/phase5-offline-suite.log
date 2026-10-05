@@ -1,0 +1,17 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 verify:offline C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\github-runtime-bootstrap\.codex\worktrees\p5jev-stage-flow
+> corepack pnpm typecheck && corepack pnpm test && corepack pnpm config:check && node scripts/control-plane/check-paper-only.mjs && node scripts/verify-no-live-routes.mjs
+
+
+> alpaca-paper-trader-control-plane@1.1.0 typecheck C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\github-runtime-bootstrap\.codex\worktrees\p5jev-stage-flow
+> tsc --noEmit
+
+ ELIFECYCLE  Command failed with exit code 1.
+ WARN   Local package.json exists, but node_modules missing, did you mean to install?
+ ELIFECYCLE  Command failed with exit code 1.
+ WARN   Local package.json exists, but node_modules missing, did you mean to install?
+
+ WARN  Issue while reading "C:\Users\click\AppData\Local\pnpm\config\rc". EPERM: operation not permitted, open 'C:\Users\click\AppData\Local\pnpm\config\rc'
+ WARN  Issue while reading "C:\Users\click\AppData\Local\pnpm\config\rc". EPERM: operation not permitted, open 'C:\Users\click\AppData\Local\pnpm\config\rc'
+'tsc' is not recognized as an internal or external command,
+operable program or batch file.

@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "id": "required-lanes-verified",
+  "task_id": "p4-openrouter-llm1-integration",
+  "bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "--input-type=module",
+    "-e",
+    "import fs from 'node:fs'; const base='verification/control-plane/tasks/p4-openrouter-llm1-integration/'; const id='650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97'; const bundle='7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b'; const task='p4-openrouter-llm1-integration'; for(const kind of ['review','security-review','verifier','evaluation']){const r=JSON.parse(fs.readFileSync(base+kind+'.'+id+'.json','utf8')); if(r.verdict!=='PASS'||r.candidate_id!==id||r.task_id!==task||(r.task_bundle_id??r.bundle_id)!==bundle||r.snapshot_id!=='4434967eefd29ceb268e253cf196293fb33591b22322378b99f93d333fb8c16f'||typeof r.evidence!=='string') process.exit(1)} console.log(JSON.stringify({status:'PASS',candidate_id:id,lanes:['review','security-review','verifier','evaluation']}));"
+  ],
+  "log_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/required-lanes-verified.log",
+  "started_at": "2026-10-04T20:33:00.689Z",
+  "completed_at": "2026-10-04T20:33:00.768Z",
+  "signal": null,
+  "error": null
+}

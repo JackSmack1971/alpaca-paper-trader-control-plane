@@ -1,0 +1,5 @@
+
+> alpaca-paper-trader-control-plane@1.1.0 verify:jev-stage C:\TEST repos\update-env\alpaca-paper-trader-control-plane-v1.1.0\.codex\worktrees\github-runtime-bootstrap\.codex\worktrees\p5jev-stage-flow
+> tsx scripts/verify-jev-stage.ts
+
+{"status":"PASS","simulated":true,"mode":"paper","persistedLlm1Attempts":2,"persistedJevAttempts":3,"jevStatuses":["shadow_pending","selected_candidate","failed"],"terminalFailure":"no_action","providerCalls":5,"liveProviderUsed":false}

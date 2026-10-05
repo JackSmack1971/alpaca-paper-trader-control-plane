@@ -19,7 +19,20 @@ const defaultsSchema = z.object({
     accountRetryBaseSeconds: z.number().int().min(1).max(300).default(5),
     accountRetryMaxSeconds: z.number().int().min(1).max(3600).default(60),
     alpacaStreamRetry: z.object({ maxReconnects: z.number(), baseDelayMs: z.number(), maxDelayMs: z.number() }).default({ maxReconnects: 3, baseDelayMs: 250, maxDelayMs: 2000 }),
-    openrouterBaseUrl: z.string()
+    openrouterBaseUrl: z.string(),
+    llm1RequestTimeoutMs: z.number().int().min(1_000).max(30_000).default(15_000),
+    llm1MinimumIntervalMs: z.number().int().min(30_000).max(120_000).default(30_000),
+    llm1MaxCompletionTokens: z.number().int().min(64).max(4_096).default(1_200),
+    jevRequestTimeoutMs: z.number().int().min(1_000).max(30_000),
+    jevMinimumIntervalMs: z.number().int().min(30_000).max(120_000),
+    jevPolicy: z.object({
+      version: z.string().min(1).max(64),
+      calibrated: z.literal(false),
+      minChoiceConfidence: z.number().finite().min(0).max(1),
+      minChoiceTopProbability: z.number().finite().min(0).max(1),
+      minChoiceMargin: z.number().finite().min(0).max(1),
+      minNecessaryPreconditionsProbability: z.number().finite().min(0).max(1),
+    }).strict(),
   })
 });
 
@@ -38,6 +51,12 @@ export async function loadConfig(env: NodeJS.ProcessEnv = process.env): Promise<
     universe: env.ASSET_UNIVERSE?.split(',').map((symbol) => symbol.trim().toUpperCase()) ?? defaults.universe,
     analysisModel: env.ANALYSIS_MODEL ?? defaults.models.analysis,
     reviewModel: env.REVIEW_MODEL ?? defaults.models.review,
+    llm1RequestTimeoutMs: Number(env.LLM1_REQUEST_TIMEOUT_MS ?? defaults.providers.llm1RequestTimeoutMs),
+    llm1MinimumIntervalMs: Number(env.LLM1_MINIMUM_INTERVAL_MS ?? defaults.providers.llm1MinimumIntervalMs),
+    llm1MaxCompletionTokens: Number(env.LLM1_MAX_COMPLETION_TOKENS ?? defaults.providers.llm1MaxCompletionTokens),
+    jevRequestTimeoutMs: Number(env.JEV_REQUEST_TIMEOUT_MS ?? defaults.providers.jevRequestTimeoutMs),
+    jevMinimumIntervalMs: Number(env.JEV_MINIMUM_INTERVAL_MS ?? defaults.providers.jevMinimumIntervalMs),
+    jevPolicy: defaults.providers.jevPolicy,
     decisionCadenceSeconds: Number(env.DECISION_CADENCE_SECONDS ?? defaults.decision.cadenceSeconds),
     accountStateStaleAfterSeconds: Number(env.ACCOUNT_STATE_STALE_AFTER_SECONDS ?? defaults.providers.accountStateStaleAfterSeconds),
     accountReconciliationSeconds: Number(env.ACCOUNT_RECONCILIATION_SECONDS ?? defaults.providers.accountReconciliationSeconds),

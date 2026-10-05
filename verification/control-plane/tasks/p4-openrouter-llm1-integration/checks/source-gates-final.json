@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "id": "source-gates-final",
+  "task_id": "p4-openrouter-llm1-integration",
+  "bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "--input-type=module",
+    "-e",
+    "import {spawnSync} from 'node:child_process'; const cmds=[['scripts/control-plane/validate.mjs'],['scripts/control-plane/preflight.mjs'],['.agents/skills/research-external-contract/scripts/validate-research-artifact.mjs','docs/research/phase-04/openrouter-llm1-chat-completions.md']]; for(const args of cmds){const r=spawnSync(process.execPath,args,{encoding:'utf8'}); if(r.status!==0){process.stderr.write(r.stdout+r.stderr); process.exit(r.status??1)}}"
+  ],
+  "log_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/source-gates-final.log",
+  "started_at": "2026-10-04T20:27:09.927Z",
+  "completed_at": "2026-10-04T20:27:10.651Z",
+  "signal": null,
+  "error": null
+}

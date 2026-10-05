@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "phase5-persisted-jev-final-v2",
+  "task_id": "p5jev-stage-flow",
+  "bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "corepack.cmd",
+  "args": [
+    "pnpm",
+    "verify:jev-stage"
+  ],
+  "log_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-jev-final-v2.log",
+  "started_at": "2026-10-04T22:49:06.369Z",
+  "completed_at": "2026-10-04T22:49:07.836Z",
+  "signal": null,
+  "error": null
+}

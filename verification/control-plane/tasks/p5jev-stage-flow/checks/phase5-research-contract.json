@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "phase5-research-contract",
+  "task_id": "p5jev-stage-flow",
+  "bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    ".agents/skills/research-external-contract/scripts/validate-research-artifact.mjs",
+    "docs/research/phase-05/openrouter-jev-decisions.md"
+  ],
+  "log_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-research-contract.log",
+  "started_at": "2026-10-04T22:34:17.969Z",
+  "completed_at": "2026-10-04T22:34:18.044Z",
+  "signal": null,
+  "error": null
+}

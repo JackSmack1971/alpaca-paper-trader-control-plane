@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "kind": "verification",
+  "status": "PASS",
+  "task_id": "p5jev-stage-flow",
+  "task_bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+  "candidate_id": "5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd",
+  "commands": [
+    {
+      "check_id": "phase5-offline-final-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-offline-final-v2.json",
+      "command": "corepack.cmd pnpm verify:offline",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-offline-final-v2.json"
+    },
+    {
+      "check_id": "phase5-persisted-jev-final-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-jev-final-v2.json",
+      "command": "corepack.cmd pnpm verify:jev-stage",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-jev-final-v2.json"
+    },
+    {
+      "check_id": "phase5-persisted-llm1-final-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-llm1-final-v2.json",
+      "command": "corepack.cmd pnpm verify:llm1-stage",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-llm1-final-v2.json"
+    },
+    {
+      "check_id": "phase5-source-validate-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-source-validate-v2.json",
+      "command": "node scripts/control-plane/validate.mjs",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-source-validate-v2.json"
+    },
+    {
+      "check_id": "phase5-preflight-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-preflight-v2.json",
+      "command": "node scripts/control-plane/preflight.mjs",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-preflight-v2.json"
+    },
+    {
+      "check_id": "phase5-research-jev-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-research-jev-v2.json",
+      "command": "node .agents/skills/research-external-contract/scripts/validate-research-artifact.mjs docs/research/phase-05/openrouter-jev-decisions.md",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-research-jev-v2.json"
+    },
+    {
+      "check_id": "phase4-research-llm1-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase4-research-llm1-v2.json",
+      "command": "node .agents/skills/research-external-contract/scripts/validate-research-artifact.mjs docs/research/phase-04/openrouter-llm1-chat-completions.md",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase4-research-llm1-v2.json"
+    },
+    {
+      "check_id": "post-diff-classification-5f64-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-classification-5f64-v2.json",
+      "command": "node verification/control-plane/tasks/p5jev-stage-flow/checks/classify-candidate-5f64.mjs",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-classification-5f64-v2.json"
+    },
+    {
+      "check_id": "post-diff-required-lanes-5f64-v3",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-required-lanes-5f64-v3.json",
+      "command": "node verification/control-plane/tasks/p5jev-stage-flow/checks/assert-required-lanes-5f64.mjs",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-required-lanes-5f64-v3.json"
+    }
+  ]
+}

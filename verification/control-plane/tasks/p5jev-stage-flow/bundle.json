@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "task_id": "p5jev-stage-flow",
+  "bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+  "intake_digest": "e07120365b12ab00cea35a69b8df197209fa942f29a4695d3ab7e8a022b7dcdb",
+  "artifacts": {
+    "intake": "intake.json",
+    "route": "route.json",
+    "candidates": "candidates/",
+    "acceptance": "test-results.json",
+    "checks": "checks/",
+    "review": "review.<candidate_id>.json",
+    "security_review": "security-review.<candidate_id>.json",
+    "verifier": "verifier.<candidate_id>.json",
+    "verification": "verification.<candidate_id>.json",
+    "evaluation": "evaluation.<candidate_id>.json"
+  }
+}

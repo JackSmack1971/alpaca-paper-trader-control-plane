@@ -1,0 +1,111 @@
+{
+  "schema_version": 2,
+  "baseline_commit": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "current_head": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "goal_digest": "77fd04ca7707e324502dc955fce0cfc0fab9a3abdd0c21f735d3961cc171b6e9",
+  "snapshot_id": "4434967eefd29ceb268e253cf196293fb33591b22322378b99f93d333fb8c16f",
+  "task_id": "p4-openrouter-llm1-integration",
+  "task_bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+  "tracked_diff_sha256": "1b6e7e29f056a5d9808c7df0bdd0bec45717466545088f003d71dcc4f0403293",
+  "untracked": [
+    {
+      "path": "docs/research/phase-04/openrouter-llm1-chat-completions.md",
+      "sha256": "204a4f4c0a53cce72abdb12807656b9348c560a8edb2daf939315b242a847bb7"
+    },
+    {
+      "path": "migrations/0006_llm1_stage_provenance.sql",
+      "sha256": "5099990ec05233d61d0bf4beb36c6f061dd09af90df1b246cce2ea596570cdbf"
+    },
+    {
+      "path": "scripts/verify-llm1-stage.ts",
+      "sha256": "9052f4dfa1ac65a7f44a2791a6bcdac1ef5faaf4d347cd202dbb04f42a54fccb"
+    },
+    {
+      "path": "src/domain/llm1-analysis.ts",
+      "sha256": "2fe872c2e44a1841efc39098eb9fe83f1c1d1538e62c8ca38e018ddd0cd660ca"
+    },
+    {
+      "path": "src/infra/openrouter-llm1.ts",
+      "sha256": "43a9a024b5cb510d7ce633e6dc0dc03780a1693cfd667da649d2fe23bb4008f9"
+    },
+    {
+      "path": "src/infra/stage-run-store.ts",
+      "sha256": "5dbb19ec02fa4a3f556a28e0fadee2a0bb896649149ef0df2d7735754055d2d6"
+    },
+    {
+      "path": "src/services/llm1-stage.ts",
+      "sha256": "9ce414a861e347d01249033e1d9342d02cfd6ae02886fc94d6f59aaea3c1905f"
+    },
+    {
+      "path": "tests/llm1-analysis.test.ts",
+      "sha256": "24d906934bb5ea768be8649057ec4ca8d33831b9c157ce83cb6d4af6de128b08"
+    },
+    {
+      "path": "tests/llm1-stage.test.ts",
+      "sha256": "598550a7ee1f4be0a17fcd6c59747a58963300e9f8ee52d69cd7f5baea6991e4"
+    },
+    {
+      "path": "tests/openrouter-llm1.test.ts",
+      "sha256": "d0f8ad21ca8217bb7a8cf9d9940f625209cc6cc7f7d1f2bec8643ef23a1b98fa"
+    },
+    {
+      "path": "tests/stage-run-store.test.ts",
+      "sha256": "d62532e53fc3eef3bbc1fe6627732fb1f328c465b3aa5df46a941ae99c506013"
+    }
+  ],
+  "post_diff_risk": {
+    "schema_version": 1,
+    "level": "high",
+    "paths": [
+      "config/default.json",
+      "docs/research/phase-04/openrouter-llm1-chat-completions.md",
+      "migrations/0006_llm1_stage_provenance.sql",
+      "package.json",
+      "scripts/verify-llm1-stage.ts",
+      "src/domain/config.ts",
+      "src/domain/llm1-analysis.ts",
+      "src/infra/config.ts",
+      "src/infra/db/schema.ts",
+      "src/infra/openrouter-llm1.ts",
+      "src/infra/stage-run-store.ts",
+      "src/services/llm1-stage.ts",
+      "tests/config.test.ts",
+      "tests/llm1-analysis.test.ts",
+      "tests/llm1-stage.test.ts",
+      "tests/openrouter-llm1.test.ts",
+      "tests/stage-run-store.test.ts"
+    ],
+    "changed_file_count": 17,
+    "added_lines": 1214,
+    "deleted_lines": 6,
+    "categories": [
+      "change-magnitude",
+      "dependency",
+      "high-impact-surface",
+      "migration",
+      "permission-or-configuration",
+      "security-sensitive",
+      "test"
+    ],
+    "removed_safeguards": [],
+    "deleted_guard_line_count": 0,
+    "required_roles": [
+      "reviewer",
+      "security_auditor",
+      "verifier",
+      "evaluator"
+    ],
+    "required_lanes": [
+      "evaluation",
+      "review",
+      "security-review",
+      "verifier"
+    ],
+    "patch_sha256": "bcc5f4e1c92f9aa875ccfbb9880babeb30784ec9518c82c7253aabfe0c53a371",
+    "classification_id": "c2b4358815910edbe1f2771974b597478f5f28a78118da0541d79690ce5beea7",
+    "initial_level": "high",
+    "effective_level": "high",
+    "escalated": false
+  },
+  "candidate_id": "650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97"
+}

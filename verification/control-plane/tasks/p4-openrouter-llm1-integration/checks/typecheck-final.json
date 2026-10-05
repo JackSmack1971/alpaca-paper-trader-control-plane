@@ -1,0 +1,17 @@
+{
+  "schema_version": 2,
+  "id": "typecheck-final",
+  "task_id": "p4-openrouter-llm1-integration",
+  "bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "..\\..\\..\\node_modules\\.bin\\tsc.cmd",
+  "args": [
+    "--noEmit"
+  ],
+  "log_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/typecheck-final.log",
+  "started_at": "2026-10-04T20:11:20.682Z",
+  "completed_at": "2026-10-04T20:11:25.044Z",
+  "signal": null,
+  "error": null
+}

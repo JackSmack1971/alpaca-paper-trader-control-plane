@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "kind": "review",
+  "verdict": "PASS",
+  "task_id": "p5jev-stage-flow",
+  "task_bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+  "candidate_id": "a190765ca515ae8d5cf9ecf3a06b4afb4bc895a4506182f8df25fcfaa4331d9b",
+  "snapshot_id": "fe5052707853fb621a13b8e341f3d4f1b56e6a482bb650682eba4c958800db0c",
+  "baseline_commit": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "reviewed_head": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "findings": [],
+  "scope": "Read-only review of active Phase 5 goal and contract, charter, candidate metadata and snapshot, Jev stage/store/rate-limiter implementation, relevant tests, research notes, and structured check records. Focused on shadow-failure policy persistence and request spacing.",
+  "limitations": [
+    "The reviewer lane source tree does not contain the frozen uncommitted candidate delta; candidate source was inspected read-only from the candidate source worktree. No tests were run.",
+    "No live OpenRouter qualification was performed. The Decisions-specific account rate ceiling and numeric request limits are undocumented; configured spacing is application policy, not evidence it is below a provider quota."
+  ],
+  "evidence": "Candidate-bound review record at verification/control-plane/tasks/p5jev-stage-flow/review.a190765ca515ae8d5cf9ecf3a06b4afb4bc895a4506182f8df25fcfaa4331d9b.json; findings/dispositions are recorded in this artifact."
+}

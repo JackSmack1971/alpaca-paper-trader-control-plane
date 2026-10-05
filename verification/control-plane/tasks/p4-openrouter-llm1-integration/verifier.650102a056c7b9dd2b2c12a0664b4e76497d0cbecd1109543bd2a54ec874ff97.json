@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "lane_id": "p4-verifier-650102a0",
+  "role": "verifier",
+  "status": "PASS",
+  "candidate_id": "650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97",
+  "head": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "snapshot_id": "4434967eefd29ceb268e253cf196293fb33591b22322378b99f93d333fb8c16f",
+  "task_id": "p4-openrouter-llm1-integration",
+  "bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+  "task_bundle_id": "7003611e9801ac65fa9896baae8cd49c25a9b38eb4731bd523e50fa4a54e419b",
+  "checks": [
+    {
+      "id": "P04-C01",
+      "exit_code": 0,
+      "result": "PASS",
+      "result_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/persisted-runtime-release.json",
+      "summary": "Persisted eligible PAPER contexts feed bounded prompts; versioned output is locally validated; stage provenance and typed outcomes are persisted. Review, security review, and evaluation pass for this candidate."
+    },
+    {
+      "id": "P04-C02",
+      "exit_code": 0,
+      "result": "PASS",
+      "result_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/full-tests-release.json",
+      "summary": "Tests cover malformed output, unsupported structured output, timeout, retry bounds, non-retryable errors, exhausted credits, and terminal no-action."
+    },
+    {
+      "id": "P4-LLM1-REQ",
+      "exit_code": 0,
+      "result": "PASS",
+      "result_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/full-tests-release.json",
+      "summary": "Acceptance evidence passes for eligible PAPER context, strict structured output, bounded completion and timeout, and required provider parameters."
+    },
+    {
+      "id": "P4-LLM1-FAIL",
+      "exit_code": 0,
+      "result": "PASS",
+      "result_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/full-tests-release.json",
+      "summary": "Injected transport tests cover retry and typed terminal failure behavior."
+    },
+    {
+      "id": "P4-LLM1-PERSIST",
+      "exit_code": 0,
+      "result": "PASS",
+      "result_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/persisted-runtime-release.json",
+      "summary": "Structured runtime evidence supports correlated attempt persistence, provider provenance, parsed output or typed failure, usage, cost, latency, and sanitized evidence."
+    },
+    {
+      "id": "P4-LLM1-SECRET",
+      "exit_code": 0,
+      "result": "PASS",
+      "result_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/safety-guards-final.json",
+      "summary": "Endpoint constraints, secret handling, PAPER-only guards, and absence of tools or order authority are supported by source review and passing checks."
+    },
+    {
+      "id": "P4-LLM1-MIGRATION",
+      "exit_code": 0,
+      "result": "PASS",
+      "result_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/additive-migration-rerun.json",
+      "summary": "Additive migration rerun passes and schema changes match."
+    },
+    {
+      "id": "POST-DIFF-CLASSIFICATION",
+      "exit_code": 0,
+      "result": "PASS",
+      "result_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/checks/post-diff-classification.json",
+      "summary": "Frozen candidate classification matches the route: high risk with evaluation, review, security-review, and verifier lanes required."
+    },
+    {
+      "id": "POST-DIFF-REQUIRED-LANES",
+      "exit_code": 0,
+      "result": "PASS",
+      "result_path": "verification/control-plane/tasks/p4-openrouter-llm1-integration/evaluation.650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json",
+      "summary": "Review, security-review, and evaluation records pass and bind the exact task, bundle, candidate, snapshot, and head. This verifier record supplies the fourth candidate-bound lane."
+    }
+  ],
+  "verdict": "PASS",
+  "evidence": "verification/control-plane/tasks/p4-openrouter-llm1-integration/verifier.650102a056c7b9dd2b2c12a0664b4e76497d0cbecd1109543bd2a54ec874ff97.json"
+}

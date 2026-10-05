@@ -1,0 +1,17 @@
+{
+  "schema_version": 2,
+  "id": "phase5-control-validate",
+  "task_id": "p5jev-stage-flow",
+  "bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "scripts/control-plane/validate.mjs"
+  ],
+  "log_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-control-validate.log",
+  "started_at": "2026-10-04T22:34:17.271Z",
+  "completed_at": "2026-10-04T22:34:17.468Z",
+  "signal": null,
+  "error": null
+}

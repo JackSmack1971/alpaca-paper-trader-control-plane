@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "id": "post-diff-classification-a190",
+  "task_id": "p5jev-stage-flow",
+  "bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+  "status": "PASS",
+  "exit_code": 0,
+  "executable": "node",
+  "args": [
+    "--input-type=module",
+    "-e",
+    "import fs from \"node:fs\";\nimport { classifyPostDiff } from \"./scripts/control-plane/post-diff-risk.mjs\";\nconst root = process.cwd();\nconst snapshot = JSON.parse(fs.readFileSync(\"verification/control-plane/snapshots/fe5052707853fb621a13b8e341f3d4f1b56e6a482bb650682eba4c958800db0c.json\", \"utf8\"));\nconst route = JSON.parse(fs.readFileSync(\"verification/control-plane/tasks/p5jev-stage-flow/route.json\", \"utf8\"));\nconst candidate = JSON.parse(fs.readFileSync(\"verification/control-plane/tasks/p5jev-stage-flow/candidates/a190765ca515ae8d5cf9ecf3a06b4afb4bc895a4506182f8df25fcfaa4331d9b.json\", \"utf8\"));\nconst observed = classifyPostDiff(root, snapshot);\nif (observed.classification_id !== candidate.post_diff_risk.classification_id || observed.classification_id !== route.signals.post_diff_risk.classification_id) process.exit(1);\nconsole.log(JSON.stringify({status:\"PASS\", candidate_id:candidate.candidate_id, classification_id:observed.classification_id, level:candidate.post_diff_risk.level, required_lanes:candidate.post_diff_risk.required_lanes}));"
+  ],
+  "log_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-classification-a190.log",
+  "started_at": "2026-10-04T22:51:14.699Z",
+  "completed_at": "2026-10-04T22:51:14.981Z",
+  "signal": null,
+  "error": null
+}

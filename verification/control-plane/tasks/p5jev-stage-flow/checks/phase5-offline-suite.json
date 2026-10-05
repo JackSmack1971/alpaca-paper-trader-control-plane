@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "phase5-offline-suite",
+  "task_id": "p5jev-stage-flow",
+  "bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+  "status": "FAIL",
+  "exit_code": 1,
+  "executable": "corepack.cmd",
+  "args": [
+    "pnpm",
+    "verify:offline"
+  ],
+  "log_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-offline-suite.log",
+  "started_at": "2026-10-04T22:09:10.685Z",
+  "completed_at": "2026-10-04T22:09:11.901Z",
+  "signal": null,
+  "error": null
+}

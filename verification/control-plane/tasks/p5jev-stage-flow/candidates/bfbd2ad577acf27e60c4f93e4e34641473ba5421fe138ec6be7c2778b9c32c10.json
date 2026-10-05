@@ -1,0 +1,174 @@
+{
+  "schema_version": 2,
+  "baseline_commit": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "current_head": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "goal_digest": "3a6f3a436ef4e2e7f85600d22de5ce7f581202810f601ad16ab53bae639f3c34",
+  "snapshot_id": "fe5052707853fb621a13b8e341f3d4f1b56e6a482bb650682eba4c958800db0c",
+  "task_id": "p5jev-stage-flow",
+  "task_bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+  "tracked_diff_sha256": "f8953bf7563773fa3f68a3a5254ebc036930cbd34e7894e2bfd76c0f476558ff",
+  "untracked": [
+    {
+      "path": "docs/research/phase-04/openrouter-llm1-chat-completions.md",
+      "sha256": "204a4f4c0a53cce72abdb12807656b9348c560a8edb2daf939315b242a847bb7"
+    },
+    {
+      "path": "docs/research/phase-05/openrouter-jev-decisions.md",
+      "sha256": "a77ad83d5d17da987be030e72ec4fc709b4c75d098d51ca071448fe31e5a24ac"
+    },
+    {
+      "path": "migrations/0006_llm1_stage_provenance.sql",
+      "sha256": "5099990ec05233d61d0bf4beb36c6f061dd09af90df1b246cce2ea596570cdbf"
+    },
+    {
+      "path": "scripts/verify-jev-stage.ts",
+      "sha256": "81c3d41e909e9627d437f805f2dec32b7f6d0f78a43b79507354865d0803461f"
+    },
+    {
+      "path": "scripts/verify-llm1-stage.ts",
+      "sha256": "9052f4dfa1ac65a7f44a2791a6bcdac1ef5faaf4d347cd202dbb04f42a54fccb"
+    },
+    {
+      "path": "src/domain/jev-decision.ts",
+      "sha256": "0e13fe72d4ac425145c4c64dc7371160d4c57656318c701253511822f62170d4"
+    },
+    {
+      "path": "src/domain/llm1-analysis.ts",
+      "sha256": "2fe872c2e44a1841efc39098eb9fe83f1c1d1538e62c8ca38e018ddd0cd660ca"
+    },
+    {
+      "path": "src/infra/jev-stage-store.ts",
+      "sha256": "bb7cf7d65d8b00c4e5be4a6eeaabcaff4d9827cba81968b9a457f219227d07da"
+    },
+    {
+      "path": "src/infra/openrouter-jev.ts",
+      "sha256": "7ad15df6c83224eff403bcc01efea074e755d90e0656fd0982278cd0553d652e"
+    },
+    {
+      "path": "src/infra/openrouter-llm1.ts",
+      "sha256": "43a9a024b5cb510d7ce633e6dc0dc03780a1693cfd667da649d2fe23bb4008f9"
+    },
+    {
+      "path": "src/infra/stage-run-store.ts",
+      "sha256": "5dbb19ec02fa4a3f556a28e0fadee2a0bb896649149ef0df2d7735754055d2d6"
+    },
+    {
+      "path": "src/services/jev-rate-limiter.ts",
+      "sha256": "ba93364b8a8f86f262f10edab341ff0c1260c4d62ba7eb721d96305381ff618b"
+    },
+    {
+      "path": "src/services/jev-stage.ts",
+      "sha256": "c55b51a6abb9e049bce1cd6a0084b5f0a0650ba48896922cb97b529725f9a383"
+    },
+    {
+      "path": "src/services/llm1-stage.ts",
+      "sha256": "9ce414a861e347d01249033e1d9342d02cfd6ae02886fc94d6f59aaea3c1905f"
+    },
+    {
+      "path": "tests/jev-decision.test.ts",
+      "sha256": "d5d098b6044741a7b3aff591b3735b144873d5b39ab404a2e19f995b3348a286"
+    },
+    {
+      "path": "tests/jev-rate-limiter.test.ts",
+      "sha256": "479384ddf3a8a4324ccffb48b5aff777381042c93ad95a270539538e8a686fde"
+    },
+    {
+      "path": "tests/jev-stage-store.test.ts",
+      "sha256": "bd402e817174ea79c81a45326489b0faed94674a3b510f6dbaa3b995dd22991f"
+    },
+    {
+      "path": "tests/jev-stage.test.ts",
+      "sha256": "24e1d801709c0d8b78480910fe3192f0e6820ba8805e1f0f34212e7054bae256"
+    },
+    {
+      "path": "tests/llm1-analysis.test.ts",
+      "sha256": "24d906934bb5ea768be8649057ec4ca8d33831b9c157ce83cb6d4af6de128b08"
+    },
+    {
+      "path": "tests/llm1-stage.test.ts",
+      "sha256": "598550a7ee1f4be0a17fcd6c59747a58963300e9f8ee52d69cd7f5baea6991e4"
+    },
+    {
+      "path": "tests/openrouter-jev.test.ts",
+      "sha256": "3184dd1f1e908b4ce6d7d89915e58ad86b57b3151fa1bbf7444b5a13f34f43ff"
+    },
+    {
+      "path": "tests/openrouter-llm1.test.ts",
+      "sha256": "d0f8ad21ca8217bb7a8cf9d9940f625209cc6cc7f7d1f2bec8643ef23a1b98fa"
+    },
+    {
+      "path": "tests/stage-run-store.test.ts",
+      "sha256": "d62532e53fc3eef3bbc1fe6627732fb1f328c465b3aa5df46a941ae99c506013"
+    }
+  ],
+  "post_diff_risk": {
+    "schema_version": 1,
+    "level": "critical",
+    "paths": [
+      "config/default.json",
+      "docs/control-plane/phase-state.json",
+      "docs/research/phase-04/openrouter-llm1-chat-completions.md",
+      "docs/research/phase-05/openrouter-jev-decisions.md",
+      "docs/runbook.md",
+      "migrations/0006_llm1_stage_provenance.sql",
+      "package.json",
+      "scripts/verify-jev-stage.ts",
+      "scripts/verify-llm1-stage.ts",
+      "src/domain/config.ts",
+      "src/domain/jev-decision.ts",
+      "src/domain/llm1-analysis.ts",
+      "src/infra/config.ts",
+      "src/infra/db/schema.ts",
+      "src/infra/jev-stage-store.ts",
+      "src/infra/openrouter-jev.ts",
+      "src/infra/openrouter-llm1.ts",
+      "src/infra/stage-run-store.ts",
+      "src/services/jev-rate-limiter.ts",
+      "src/services/jev-stage.ts",
+      "src/services/llm1-stage.ts",
+      "tests/config.test.ts",
+      "tests/jev-decision.test.ts",
+      "tests/jev-rate-limiter.test.ts",
+      "tests/jev-stage-store.test.ts",
+      "tests/jev-stage.test.ts",
+      "tests/llm1-analysis.test.ts",
+      "tests/llm1-stage.test.ts",
+      "tests/openrouter-jev.test.ts",
+      "tests/openrouter-llm1.test.ts",
+      "tests/stage-run-store.test.ts"
+    ],
+    "changed_file_count": 31,
+    "added_lines": 2886,
+    "deleted_lines": 9,
+    "categories": [
+      "change-magnitude",
+      "control-plane-or-charter",
+      "dependency",
+      "high-impact-surface",
+      "migration",
+      "permission-or-configuration",
+      "security-sensitive",
+      "test"
+    ],
+    "removed_safeguards": [],
+    "deleted_guard_line_count": 0,
+    "required_roles": [
+      "reviewer",
+      "security_auditor",
+      "verifier",
+      "evaluator"
+    ],
+    "required_lanes": [
+      "evaluation",
+      "review",
+      "security-review",
+      "verifier"
+    ],
+    "patch_sha256": "a667ce5ffd8275b0292d8f4dfb9b0d57eef91b67ccb782852ca31a93bbc8a313",
+    "classification_id": "a9e4569cbda5533f410f79533b8859a923b845549693814de04c72a867c11e6d",
+    "initial_level": "high",
+    "effective_level": "critical",
+    "escalated": true
+  },
+  "candidate_id": "bfbd2ad577acf27e60c4f93e4e34641473ba5421fe138ec6be7c2778b9c32c10"
+}

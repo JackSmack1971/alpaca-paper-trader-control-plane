@@ -1,0 +1,17 @@
+{
+  "schema_version": 2,
+  "id": "post-diff-required-lanes-5f64-v2",
+  "task_id": "p5jev-stage-flow",
+  "bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+  "status": "FAIL",
+  "exit_code": 1,
+  "executable": "node",
+  "args": [
+    "verification/control-plane/tasks/p5jev-stage-flow/checks/assert-required-lanes-5f64.mjs"
+  ],
+  "log_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-required-lanes-5f64-v2.log",
+  "started_at": "2026-10-04T23:24:29.896Z",
+  "completed_at": "2026-10-04T23:24:30.001Z",
+  "signal": null,
+  "error": null
+}

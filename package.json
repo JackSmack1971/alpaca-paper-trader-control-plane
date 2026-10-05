@@ -16,6 +16,8 @@
     "verify:runtime": "tsx scripts/verify-runtime.ts",
     "verify:local-controls": "tsx scripts/verify-local-controls.ts",
     "verify:decision-context": "tsx scripts/verify-decision-context.ts",
+    "verify:llm1-stage": "tsx scripts/verify-llm1-stage.ts",
+    "verify:jev-stage": "tsx scripts/verify-jev-stage.ts",
     "verify:local-restart": "tsx scripts/verify-local-restart.ts",
     "dev:db:up": "docker compose up -d db",
     "dev:db:reset": "docker compose down --remove-orphans && docker compose up -d db",

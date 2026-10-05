@@ -1,0 +1,310 @@
+{
+  "schema_version": 3,
+  "phase": 5,
+  "phase_status": "COMPLETE",
+  "charter_digest": "8fff9dfd9423c22da6db234e5f7d45f0f6f4414e15c131ba865f3ef7ccc6de5f",
+  "goal_digest": "3a6f3a436ef4e2e7f85600d22de5ce7f581202810f601ad16ab53bae639f3c34",
+  "snapshot_id": "fe5052707853fb621a13b8e341f3d4f1b56e6a482bb650682eba4c958800db0c",
+  "snapshot_artifact": "verification/control-plane/snapshots/fe5052707853fb621a13b8e341f3d4f1b56e6a482bb650682eba4c958800db0c.json",
+  "candidate_id": "5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd",
+  "task_id": "p5jev-stage-flow",
+  "task_bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+  "acceptance": [
+    {
+      "criterion_id": "P05-C01",
+      "disposition": "PASS",
+      "evidence": "Candidate-bound independent evaluator and verifier, offline validation, and persisted Jev verification support fixed bounded questions, local output validation, abstention, provenance, fail-closed behavior, and advisory-only authority."
+    },
+    {
+      "criterion_id": "P05-C02",
+      "disposition": "PASS",
+      "evidence": "Candidate-bound research validator and evaluator confirm endpoint ambiguity reconciled against operation-specific authoritative documentation; no live qualification is claimed."
+    }
+  ],
+  "verification": [
+    {
+      "check_id": "phase5-offline-final-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-offline-final-v2.json",
+      "command": "corepack.cmd pnpm verify:offline",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-offline-final-v2.json"
+    },
+    {
+      "check_id": "phase5-persisted-jev-final-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-jev-final-v2.json",
+      "command": "corepack.cmd pnpm verify:jev-stage",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-jev-final-v2.json"
+    },
+    {
+      "check_id": "phase5-persisted-llm1-final-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-llm1-final-v2.json",
+      "command": "corepack.cmd pnpm verify:llm1-stage",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-llm1-final-v2.json"
+    },
+    {
+      "check_id": "phase5-source-validate-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-source-validate-v2.json",
+      "command": "node scripts/control-plane/validate.mjs",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-source-validate-v2.json"
+    },
+    {
+      "check_id": "phase5-preflight-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-preflight-v2.json",
+      "command": "node scripts/control-plane/preflight.mjs",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-preflight-v2.json"
+    },
+    {
+      "check_id": "phase5-research-jev-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-research-jev-v2.json",
+      "command": "node .agents/skills/research-external-contract/scripts/validate-research-artifact.mjs docs/research/phase-05/openrouter-jev-decisions.md",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-research-jev-v2.json"
+    },
+    {
+      "check_id": "phase4-research-llm1-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase4-research-llm1-v2.json",
+      "command": "node .agents/skills/research-external-contract/scripts/validate-research-artifact.mjs docs/research/phase-04/openrouter-llm1-chat-completions.md",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/phase4-research-llm1-v2.json"
+    },
+    {
+      "check_id": "post-diff-classification-5f64-v2",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-classification-5f64-v2.json",
+      "command": "node verification/control-plane/tasks/p5jev-stage-flow/checks/classify-candidate-5f64.mjs",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-classification-5f64-v2.json"
+    },
+    {
+      "check_id": "post-diff-required-lanes-5f64-v3",
+      "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-required-lanes-5f64-v3.json",
+      "command": "node verification/control-plane/tasks/p5jev-stage-flow/checks/assert-required-lanes-5f64.mjs",
+      "exit_code": 0,
+      "evidence": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-required-lanes-5f64-v3.json"
+    }
+  ],
+  "review": {
+    "schema_version": 1,
+    "kind": "review",
+    "verdict": "PASS",
+    "task_id": "p5jev-stage-flow",
+    "task_bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+    "candidate_id": "5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd",
+    "snapshot_id": "fe5052707853fb621a13b8e341f3d4f1b56e6a482bb650682eba4c958800db0c",
+    "baseline_commit": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+    "reviewed_head": "291eb80dcf9499eee45a8f88dd5a4d656a3867b4",
+    "findings": [],
+    "limitations": [
+      "Read-only; no tests or external calls were run.",
+      "No live OpenRouter qualification was performed; numeric provider limits and account-specific behavior remain unverified."
+    ],
+    "scope": "Read-only independent inspection of Phase 5 goal/contract, charter, candidate and classification, Jev validation, abstention, orchestration, provider adapter, persistence, research, and structured check records at reviewed HEAD.",
+    "evidence_path": "verification/control-plane/tasks/p5jev-stage-flow/review.5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json",
+    "evidence_items": [
+      "Candidate manifest and classification matched baseline and reviewed HEAD.",
+      "Jev output remains advisory and locally validates primitive-specific answers and named distributions.",
+      "Reversed option ordering supports stability checking; failed shadow requests persist abstention evidence.",
+      "Provider endpoint is fixed and failure handling remains fail-closed."
+    ],
+    "evidence": "Candidate-bound review PASS record; details and limitations are included in this artifact."
+  },
+  "security_review": {
+    "schema_version": 1,
+    "kind": "security_review",
+    "verdict": "PASS",
+    "task_id": "p5jev-stage-flow",
+    "task_bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+    "candidate_id": "5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd",
+    "snapshot_id": "fe5052707853fb621a13b8e341f3d4f1b56e6a482bb650682eba4c958800db0c",
+    "baseline_commit": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+    "reviewed_head": "291eb80dcf9499eee45a8f88dd5a4d656a3867b4",
+    "findings": [],
+    "limitations": [
+      "No tests or live provider calls were run.",
+      "Provider behavior, quota, and model availability were not live-qualified; numeric limits remain undocumented and configured bounds are application policy."
+    ],
+    "scope": "Read-only security review of advisory authority, PAPER-only constraints, credentials, provider boundary, bounded input/output, persistence, error handling, and retry spacing.",
+    "evidence_path": "verification/control-plane/tasks/p5jev-stage-flow/security-review.5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json",
+    "evidence_items": [
+      {
+        "area": "PAPER-only and order authority",
+        "result": "Jev yields advisory structured outcomes without broker order parameters or submission calls."
+      },
+      {
+        "area": "Provider boundary and credentials",
+        "result": "Requests use a fixed HTTPS OpenRouter Decisions endpoint, reject redirects, send API key only in Authorization, and avoid raw response/error persistence."
+      },
+      {
+        "area": "Bounded input/output",
+        "result": "Question/vocabulary counts, serialized request bytes, JSON depth, session ID, and response body are bounded; responses are locally validated."
+      },
+      {
+        "area": "Persistence and secrets",
+        "result": "Persistence uses typed/sanitized evidence and does not store raw provider bodies."
+      },
+      {
+        "area": "Failure handling",
+        "result": "Provider/schema/timeout/persistence/instability failures fail closed to no_action or abstention; retries are capped and process-local spacing applies."
+      }
+    ],
+    "evidence": "Candidate-bound security-review PASS record; details and limitations are included in this artifact."
+  },
+  "verifier": {
+    "schema_version": 1,
+    "kind": "verifier",
+    "verdict": "PASS",
+    "status": "PASS",
+    "task_id": "p5jev-stage-flow",
+    "task_bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+    "candidate_id": "5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd",
+    "snapshot_id": "fe5052707853fb621a13b8e341f3d4f1b56e6a482bb650682eba4c958800db0c",
+    "baseline_commit": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+    "reviewed_head": "291eb80dcf9499eee45a8f88dd5a4d656a3867b4",
+    "candidate_commit": "291eb80dcf9499eee45a8f88dd5a4d656a3867b4",
+    "findings": [],
+    "criteria": [
+      {
+        "criterion_id": "jev-fixed-questions",
+        "verdict": "PASS",
+        "evidence": "Exactly one fixed Choice and one Noul over shared bounded LLM1 state; phase5-offline-final-v2 PASS."
+      },
+      {
+        "criterion_id": "jev-response-validation",
+        "verdict": "PASS",
+        "evidence": "Exact IDs/types, complete named Choice map, finite ranges, sum tolerance and Noul without confidence; offline check PASS."
+      },
+      {
+        "criterion_id": "jev-no-action",
+        "verdict": "PASS",
+        "evidence": "LLM1 no_action skips inference and provider failure persists terminal no_action; persisted Jev check PASS."
+      },
+      {
+        "criterion_id": "jev-provider-adapter",
+        "verdict": "PASS",
+        "evidence": "Fixed HTTPS host/path, bounds, redirect rejection, local parsing and sanitized failures; offline check PASS."
+      },
+      {
+        "criterion_id": "jev-persisted-stage",
+        "verdict": "PASS",
+        "evidence": "Sanitized provider/stage/correlation evidence persisted; Jev and LLM1 persisted checks PASS."
+      },
+      {
+        "criterion_id": "jev-abstention-policy",
+        "verdict": "PASS",
+        "evidence": "Ambiguity, disagreement and option instability abstain; advisory_only; persisted check PASS."
+      },
+      {
+        "criterion_id": "jev-preflight-limits",
+        "verdict": "PASS",
+        "evidence": "Fixed vocabulary/question count, session/body/depth/time/rate limits; offline check PASS."
+      },
+      {
+        "criterion_id": "jev-endpoint-evidence",
+        "verdict": "PASS",
+        "evidence": "Official operation-specific sources reconcile the endpoint/model and distinguish documentation from live qualification; research check PASS."
+      }
+    ],
+    "limitations": [
+      "Read-only source and structured-check verification; no tests or live provider calls were run.",
+      "Numeric provider limits, account quota, resolved model behavior, and response behavior remain unqualified.",
+      "POST-DIFF-REQUIRED-LANES still awaited evaluation aggregation when this verification was performed."
+    ],
+    "evidence_path": "verification/control-plane/tasks/p5jev-stage-flow/verifier.5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json",
+    "evidence_items": [
+      "verification/control-plane/tasks/p5jev-stage-flow/candidates/5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json",
+      "verification/control-plane/tasks/p5jev-stage-flow/test-results.json",
+      "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-offline-final-v2.json",
+      "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-jev-final-v2.json",
+      "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-research-jev-v2.json"
+    ],
+    "evidence": "Candidate-bound verifier PASS record; criteria evidence and limitations are included in this artifact."
+  },
+  "evaluation": {
+    "schema_version": 1,
+    "kind": "evaluation",
+    "verdict": "PASS",
+    "task_id": "p5jev-stage-flow",
+    "task_bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+    "candidate_id": "5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd",
+    "snapshot_id": "fe5052707853fb621a13b8e341f3d4f1b56e6a482bb650682eba4c958800db0c",
+    "baseline_commit": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+    "evaluated_head": "291eb80dcf9499eee45a8f88dd5a4d656a3867b4",
+    "criteria": [
+      {
+        "criterion_id": "P05-C01",
+        "disposition": "PASS",
+        "evidence": "Fresh evaluator confirms fixed bounded questions/context, primitive-correct local validation, abstention, provenance persistence, fail-closed behavior, and no risk/order authority."
+      },
+      {
+        "criterion_id": "P05-C02",
+        "disposition": "PASS",
+        "evidence": "Fresh evaluator confirms endpoint ambiguity reconciled with operation-specific evidence; provider live qualification is explicitly unclaimed."
+      },
+      {
+        "criterion_id": "jev-fixed-questions",
+        "disposition": "PASS"
+      },
+      {
+        "criterion_id": "jev-response-validation",
+        "disposition": "PASS"
+      },
+      {
+        "criterion_id": "jev-no-action",
+        "disposition": "PASS"
+      },
+      {
+        "criterion_id": "jev-provider-adapter",
+        "disposition": "PASS"
+      },
+      {
+        "criterion_id": "jev-persisted-stage",
+        "disposition": "PASS"
+      },
+      {
+        "criterion_id": "jev-abstention-policy",
+        "disposition": "PASS"
+      },
+      {
+        "criterion_id": "jev-preflight-limits",
+        "disposition": "PASS"
+      },
+      {
+        "criterion_id": "jev-endpoint-evidence",
+        "disposition": "PASS"
+      }
+    ],
+    "candidate_matching_lanes": {
+      "review": "PASS",
+      "security_review": "PASS",
+      "verifier": "PASS"
+    },
+    "sources_inspected": [
+      "goals/phase-05-jev-structured-decision-layer.md",
+      "docs/PROJECT_CHARTER.md",
+      "docs/control-plane/phase-contracts.json",
+      "verification/control-plane/tasks/p5jev-stage-flow/candidates/5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json",
+      "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-classification-5f64-v2.json",
+      "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-offline-final-v2.json",
+      "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-jev-final-v2.json",
+      "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-research-jev-v2.json",
+      "verification/control-plane/tasks/p5jev-stage-flow/review.5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json",
+      "verification/control-plane/tasks/p5jev-stage-flow/security-review.5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json",
+      "verification/control-plane/tasks/p5jev-stage-flow/verifier.5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json",
+      "docs/research/phase-05/openrouter-jev-decisions.md",
+      "src/domain/jev-decision.ts",
+      "src/services/jev-stage.ts",
+      "src/infra/openrouter-jev.ts",
+      "src/infra/jev-stage-store.ts"
+    ],
+    "limitations": [
+      "No tests or provider calls were run during evaluation.",
+      "Numeric provider limits, account quota, resolved model behavior, and account-specific response behavior remain unqualified.",
+      "The old bundle required-lanes result pointed to a different candidate and was excluded; this evaluation completes the matching lane set for 5f64ed4d…"
+    ],
+    "evidence": "Fresh read-only evaluation artifact verification/control-plane/tasks/p5jev-stage-flow/evaluation.5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json"
+  },
+  "unresolved_blockers": []
+}

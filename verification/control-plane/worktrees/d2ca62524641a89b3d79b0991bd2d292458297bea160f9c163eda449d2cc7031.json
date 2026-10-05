@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "unit_of_work": "p5jev-stage-flow-security",
+  "base_sha": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "worktree": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\github-runtime-bootstrap\\.codex\\worktrees\\p5jev-stage-flow\\.codex\\worktrees\\p5-security-lane",
+  "branch": "codex/p5-security-lane",
+  "owner": "codex-security-auditor",
+  "scope": [
+    "verification/control-plane/tasks/p5jev-stage-flow/security-bfbd2ad5.json"
+  ],
+  "integration_target": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\github-runtime-bootstrap\\.codex\\worktrees\\p5jev-stage-flow",
+  "assignment_id": "d2ca62524641a89b3d79b0991bd2d292458297bea160f9c163eda449d2cc7031",
+  "active": false,
+  "created_at": "2026-10-04T22:36:55.806Z",
+  "released_at": "2026-10-04T23:12:56.692Z"
+}
