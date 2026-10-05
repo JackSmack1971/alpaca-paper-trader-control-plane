@@ -4,10 +4,10 @@
 - Charter SHA-256: 8fff9dfd9423c22da6db234e5f7d45f0f6f4414e15c131ba865f3ef7ccc6de5f
 - Goal SHA-256: 3a6f3a436ef4e2e7f85600d22de5ce7f581202810f601ad16ab53bae639f3c34
 - Snapshot ID: fe5052707853fb621a13b8e341f3d4f1b56e6a482bb650682eba4c958800db0c
-- Candidate ID: a190765ca515ae8d5cf9ecf3a06b4afb4bc895a4506182f8df25fcfaa4331d9b
+- Candidate ID: 5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd
 - Task / bundle: `p5jev-stage-flow` / `8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da`
 - Baseline ref/SHA: `6eb3a74b966d79c77ed64b1e5d16197f5f6c05be`
-- Highest verification rung actually reached: 2
+- Highest verification rung actually reached: 1
 
 ## Functionality implemented
 
@@ -36,7 +36,7 @@ The provider adapter uses a fixed OpenRouter Decisions endpoint, bounded request
 | Command / procedure | Outcome / exit | Rung | Evidence / notes |
 |---|---:|---:|---|
 | `corepack.cmd pnpm verify:offline` | PASS / 0 | 1 | TypeScript, 18 test files / 133 tests, config, PAPER-only and no-live-route checks; `phase5-offline-final-v2.json`. |
-| `corepack.cmd pnpm verify:jev-stage` | PASS / 0 | 2 | Loopback persistence with fake provider transport; successful baseline/shadow and terminal shadow failure persisted as `no_action`; `phase5-persisted-jev-final-v2.json`. |
+| `corepack.cmd pnpm verify:jev-stage` | PASS / 0 | 1 | Loopback persistence with fake provider transport; successful baseline/shadow and terminal shadow failure persisted as `no_action`; `phase5-persisted-jev-final-v2.json`. |
 | `corepack.cmd pnpm verify:llm1-stage` | PASS / 0 | 2 | Loopback persistence with fake provider transport; success and terminal failure persisted; no live provider used; `phase5-persisted-llm1-final-v2.json`. |
 | `node scripts/control-plane/validate.mjs` and `preflight.mjs` | PASS / 0 | 1 | Source validation passed and preflight reported READY; `phase5-source-validate-v2.json`, `phase5-preflight-v2.json`. |
 | Phase 5 research artifact validator | PASS / 0 | 1 | External contract research artifact validated; `phase5-research-jev-v2.json`. |
@@ -48,10 +48,10 @@ No credential-backed OpenRouter or Alpaca verification was run. No live orders w
 
 ## Review, verifier and evaluator evidence
 
-- Review: PASS — `verification/control-plane/tasks/p5jev-stage-flow/review.a190765ca515ae8d5cf9ecf3a06b4afb4bc895a4506182f8df25fcfaa4331d9b.json`.
-- Security review: PASS — `verification/control-plane/tasks/p5jev-stage-flow/security-review.a190765ca515ae8d5cf9ecf3a06b4afb4bc895a4506182f8df25fcfaa4331d9b.json`.
-- Verifier: PASS — `verification/control-plane/tasks/p5jev-stage-flow/verifier.a190765ca515ae8d5cf9ecf3a06b4afb4bc895a4506182f8df25fcfaa4331d9b.json`.
-- Evaluation: PASS — `verification/control-plane/tasks/p5jev-stage-flow/evaluation.a190765ca515ae8d5cf9ecf3a06b4afb4bc895a4506182f8df25fcfaa4331d9b.json`.
+- Review: PASS — `verification/control-plane/tasks/p5jev-stage-flow/review.5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json`.
+- Security review: PASS — `verification/control-plane/tasks/p5jev-stage-flow/security-review.5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json`.
+- Verifier: PASS — `verification/control-plane/tasks/p5jev-stage-flow/verifier.5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json`.
+- Evaluation: PASS — `verification/control-plane/tasks/p5jev-stage-flow/evaluation.5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json`.
 
 ## Acceptance criteria
 
@@ -66,7 +66,7 @@ No ADRs. The configured request-spacing values are local safeguards only; provid
 
 ## Known limitations and blockers
 
-No Phase 5 completion blockers remain. Live provider behavior, account-specific Decisions quotas, and credential-backed compatibility remain unqualified. Independent reviewers inspected the frozen source from the candidate worktree because the isolated lane worktrees were based on the candidate baseline and did not contain uncommitted candidate files; this is recorded in the lane evidence.
+No Phase 5 completion blockers remain. Live provider behavior, account-specific Decisions quotas, and credential-backed compatibility remain unqualified. After the initial pre-commit closeout became stale when the requested commit moved HEAD, a refreshed candidate bound the same implementation diff to the committed HEAD. Independent lanes inspected source in isolated worktrees at that exact HEAD.
 
 ## Deferred work
 

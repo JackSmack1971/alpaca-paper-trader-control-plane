@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "kind": "security_review",
+  "verdict": "PASS",
+  "task_id": "p5jev-stage-flow",
+  "task_bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+  "candidate_id": "5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd",
+  "snapshot_id": "fe5052707853fb621a13b8e341f3d4f1b56e6a482bb650682eba4c958800db0c",
+  "baseline_commit": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "reviewed_head": "291eb80dcf9499eee45a8f88dd5a4d656a3867b4",
+  "findings": [],
+  "limitations": [
+    "No tests or live provider calls were run.",
+    "Provider behavior, quota, and model availability were not live-qualified; numeric limits remain undocumented and configured bounds are application policy."
+  ],
+  "scope": "Read-only security review of advisory authority, PAPER-only constraints, credentials, provider boundary, bounded input/output, persistence, error handling, and retry spacing.",
+  "evidence_path": "verification/control-plane/tasks/p5jev-stage-flow/security-review.5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json",
+  "evidence_items": [
+    {
+      "area": "PAPER-only and order authority",
+      "result": "Jev yields advisory structured outcomes without broker order parameters or submission calls."
+    },
+    {
+      "area": "Provider boundary and credentials",
+      "result": "Requests use a fixed HTTPS OpenRouter Decisions endpoint, reject redirects, send API key only in Authorization, and avoid raw response/error persistence."
+    },
+    {
+      "area": "Bounded input/output",
+      "result": "Question/vocabulary counts, serialized request bytes, JSON depth, session ID, and response body are bounded; responses are locally validated."
+    },
+    {
+      "area": "Persistence and secrets",
+      "result": "Persistence uses typed/sanitized evidence and does not store raw provider bodies."
+    },
+    {
+      "area": "Failure handling",
+      "result": "Provider/schema/timeout/persistence/instability failures fail closed to no_action or abstention; retries are capped and process-local spacing applies."
+    }
+  ],
+  "evidence": "Candidate-bound security-review PASS record; details and limitations are included in this artifact."
+}

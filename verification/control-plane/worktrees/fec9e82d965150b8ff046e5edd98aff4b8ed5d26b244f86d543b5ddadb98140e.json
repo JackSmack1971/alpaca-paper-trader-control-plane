@@ -24,6 +24,7 @@
   ],
   "integration_target": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\github-runtime-bootstrap",
   "assignment_id": "fec9e82d965150b8ff046e5edd98aff4b8ed5d26b244f86d543b5ddadb98140e",
-  "active": true,
-  "created_at": "2026-10-04T22:04:01.336Z"
+  "active": false,
+  "created_at": "2026-10-04T22:04:01.336Z",
+  "released_at": "2026-10-04T23:12:56.818Z"
 }

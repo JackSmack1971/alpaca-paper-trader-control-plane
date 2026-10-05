@@ -89,8 +89,8 @@
       "status": "PASS",
       "disposition": "PASS",
       "evidence": {
-        "check_id": "post-diff-classification-a190",
-        "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-classification-a190.json",
+        "check_id": "post-diff-classification-5f64-v2",
+        "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-classification-5f64-v2.json",
         "exit_code": 0
       }
     },
@@ -99,8 +99,8 @@
       "status": "PASS",
       "disposition": "PASS",
       "evidence": {
-        "check_id": "post-diff-required-lanes-a190",
-        "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-required-lanes-a190.json",
+        "check_id": "post-diff-required-lanes-5f64-v3",
+        "check_path": "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-required-lanes-5f64-v3.json",
         "exit_code": 0
       }
     }

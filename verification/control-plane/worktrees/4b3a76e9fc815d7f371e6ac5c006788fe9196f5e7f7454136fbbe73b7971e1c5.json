@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "unit_of_work": "p5jev-stage-flow-evaluation",
+  "base_sha": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "worktree": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\github-runtime-bootstrap\\.codex\\worktrees\\p5jev-stage-flow\\.codex\\worktrees\\p5-evaluator-lane",
+  "branch": "codex/p5-evaluator-lane",
+  "owner": "codex-evaluator",
+  "scope": [
+    "verification/control-plane/tasks/p5jev-stage-flow/evaluation-bfbd2ad5.json"
+  ],
+  "integration_target": "C:\\TEST repos\\update-env\\alpaca-paper-trader-control-plane-v1.1.0\\.codex\\worktrees\\github-runtime-bootstrap\\.codex\\worktrees\\p5jev-stage-flow",
+  "assignment_id": "4b3a76e9fc815d7f371e6ac5c006788fe9196f5e7f7454136fbbe73b7971e1c5",
+  "active": false,
+  "created_at": "2026-10-04T22:36:57.200Z",
+  "released_at": "2026-10-04T23:12:56.297Z"
+}

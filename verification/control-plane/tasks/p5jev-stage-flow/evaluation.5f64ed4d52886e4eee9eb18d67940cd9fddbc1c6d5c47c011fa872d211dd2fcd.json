@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "kind": "evaluation",
+  "verdict": "PASS",
+  "task_id": "p5jev-stage-flow",
+  "task_bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+  "candidate_id": "5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd",
+  "snapshot_id": "fe5052707853fb621a13b8e341f3d4f1b56e6a482bb650682eba4c958800db0c",
+  "baseline_commit": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "evaluated_head": "291eb80dcf9499eee45a8f88dd5a4d656a3867b4",
+  "criteria": [
+    {
+      "criterion_id": "P05-C01",
+      "disposition": "PASS",
+      "evidence": "Fresh evaluator confirms fixed bounded questions/context, primitive-correct local validation, abstention, provenance persistence, fail-closed behavior, and no risk/order authority."
+    },
+    {
+      "criterion_id": "P05-C02",
+      "disposition": "PASS",
+      "evidence": "Fresh evaluator confirms endpoint ambiguity reconciled with operation-specific evidence; provider live qualification is explicitly unclaimed."
+    },
+    {
+      "criterion_id": "jev-fixed-questions",
+      "disposition": "PASS"
+    },
+    {
+      "criterion_id": "jev-response-validation",
+      "disposition": "PASS"
+    },
+    {
+      "criterion_id": "jev-no-action",
+      "disposition": "PASS"
+    },
+    {
+      "criterion_id": "jev-provider-adapter",
+      "disposition": "PASS"
+    },
+    {
+      "criterion_id": "jev-persisted-stage",
+      "disposition": "PASS"
+    },
+    {
+      "criterion_id": "jev-abstention-policy",
+      "disposition": "PASS"
+    },
+    {
+      "criterion_id": "jev-preflight-limits",
+      "disposition": "PASS"
+    },
+    {
+      "criterion_id": "jev-endpoint-evidence",
+      "disposition": "PASS"
+    }
+  ],
+  "candidate_matching_lanes": {
+    "review": "PASS",
+    "security_review": "PASS",
+    "verifier": "PASS"
+  },
+  "sources_inspected": [
+    "goals/phase-05-jev-structured-decision-layer.md",
+    "docs/PROJECT_CHARTER.md",
+    "docs/control-plane/phase-contracts.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/candidates/5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/checks/post-diff-classification-5f64-v2.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-offline-final-v2.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-jev-final-v2.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-research-jev-v2.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/review.5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/security-review.5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/verifier.5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json",
+    "docs/research/phase-05/openrouter-jev-decisions.md",
+    "src/domain/jev-decision.ts",
+    "src/services/jev-stage.ts",
+    "src/infra/openrouter-jev.ts",
+    "src/infra/jev-stage-store.ts"
+  ],
+  "limitations": [
+    "No tests or provider calls were run during evaluation.",
+    "Numeric provider limits, account quota, resolved model behavior, and account-specific response behavior remain unqualified.",
+    "The old bundle required-lanes result pointed to a different candidate and was excluded; this evaluation completes the matching lane set for 5f64ed4d…"
+  ],
+  "evidence": "Fresh read-only evaluation artifact verification/control-plane/tasks/p5jev-stage-flow/evaluation.5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json"
+}

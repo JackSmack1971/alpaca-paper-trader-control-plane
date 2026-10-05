@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import { classifyPostDiff } from '../../../../../scripts/control-plane/post-diff-risk.mjs';
+const snapshotId='fe5052707853fb621a13b8e341f3d4f1b56e6a482bb650682eba4c958800db0c';
+const candidateId='5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd';
+const snapshot=JSON.parse(fs.readFileSync(`verification/control-plane/snapshots/${snapshotId}.json`,'utf8'));
+const candidate=JSON.parse(fs.readFileSync(`verification/control-plane/tasks/p5jev-stage-flow/candidates/${candidateId}.json`,'utf8'));
+const route=JSON.parse(fs.readFileSync('verification/control-plane/tasks/p5jev-stage-flow/route.json','utf8'));
+const observed=classifyPostDiff(process.cwd(),snapshot);
+if(observed.classification_id!==candidate.post_diff_risk.classification_id||observed.classification_id!==route.signals.post_diff_risk.classification_id) throw new Error('classification mismatch');
+console.log(JSON.stringify({status:'PASS',candidate_id:candidateId,classification_id:observed.classification_id,level:candidate.post_diff_risk.level,required_lanes:candidate.post_diff_risk.required_lanes}));

@@ -50,7 +50,7 @@
         "tests/stage-run-store.test.ts"
       ],
       "changed_file_count": 33,
-      "added_lines": 3024,
+      "added_lines": 2999,
       "deleted_lines": 9,
       "categories": [
         "change-magnitude",
@@ -76,8 +76,8 @@
         "security-review",
         "verifier"
       ],
-      "patch_sha256": "21342193f7dc400d125a7cc736f85e98f1259a56dc48745158ecf5db8c2d84d6",
-      "classification_id": "32bc174b772073eb89e54dff6ab5e270fb50c3ab534e5270aaf7d98d6b10c7b5",
+      "patch_sha256": "7a5760f0a8edd19d95956eafd7fa53ab63ac4018670f26151ff9db879a3455d8",
+      "classification_id": "96a12bcabfe9b82f8ad0f420bc969549a65a14077155f1d4dce2d39ab985e4d5",
       "initial_level": "high",
       "effective_level": "critical",
       "escalated": true

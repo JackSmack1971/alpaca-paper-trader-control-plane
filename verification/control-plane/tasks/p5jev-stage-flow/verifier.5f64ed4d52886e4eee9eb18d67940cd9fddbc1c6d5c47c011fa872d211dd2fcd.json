@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "kind": "verifier",
+  "verdict": "PASS",
+  "status": "PASS",
+  "task_id": "p5jev-stage-flow",
+  "task_bundle_id": "8c81cfc89cd6d50b4cc5823ae11e8ef45f23225b3a46b187479ed418a5db91da",
+  "candidate_id": "5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd",
+  "snapshot_id": "fe5052707853fb621a13b8e341f3d4f1b56e6a482bb650682eba4c958800db0c",
+  "baseline_commit": "6eb3a74b966d79c77ed64b1e5d16197f5f6c05be",
+  "reviewed_head": "291eb80dcf9499eee45a8f88dd5a4d656a3867b4",
+  "candidate_commit": "291eb80dcf9499eee45a8f88dd5a4d656a3867b4",
+  "findings": [],
+  "criteria": [
+    {
+      "criterion_id": "jev-fixed-questions",
+      "verdict": "PASS",
+      "evidence": "Exactly one fixed Choice and one Noul over shared bounded LLM1 state; phase5-offline-final-v2 PASS."
+    },
+    {
+      "criterion_id": "jev-response-validation",
+      "verdict": "PASS",
+      "evidence": "Exact IDs/types, complete named Choice map, finite ranges, sum tolerance and Noul without confidence; offline check PASS."
+    },
+    {
+      "criterion_id": "jev-no-action",
+      "verdict": "PASS",
+      "evidence": "LLM1 no_action skips inference and provider failure persists terminal no_action; persisted Jev check PASS."
+    },
+    {
+      "criterion_id": "jev-provider-adapter",
+      "verdict": "PASS",
+      "evidence": "Fixed HTTPS host/path, bounds, redirect rejection, local parsing and sanitized failures; offline check PASS."
+    },
+    {
+      "criterion_id": "jev-persisted-stage",
+      "verdict": "PASS",
+      "evidence": "Sanitized provider/stage/correlation evidence persisted; Jev and LLM1 persisted checks PASS."
+    },
+    {
+      "criterion_id": "jev-abstention-policy",
+      "verdict": "PASS",
+      "evidence": "Ambiguity, disagreement and option instability abstain; advisory_only; persisted check PASS."
+    },
+    {
+      "criterion_id": "jev-preflight-limits",
+      "verdict": "PASS",
+      "evidence": "Fixed vocabulary/question count, session/body/depth/time/rate limits; offline check PASS."
+    },
+    {
+      "criterion_id": "jev-endpoint-evidence",
+      "verdict": "PASS",
+      "evidence": "Official operation-specific sources reconcile the endpoint/model and distinguish documentation from live qualification; research check PASS."
+    }
+  ],
+  "limitations": [
+    "Read-only source and structured-check verification; no tests or live provider calls were run.",
+    "Numeric provider limits, account quota, resolved model behavior, and response behavior remain unqualified.",
+    "POST-DIFF-REQUIRED-LANES still awaited evaluation aggregation when this verification was performed."
+  ],
+  "evidence_path": "verification/control-plane/tasks/p5jev-stage-flow/verifier.5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json",
+  "evidence_items": [
+    "verification/control-plane/tasks/p5jev-stage-flow/candidates/5f64ed4d52886e4eee9eb18d67940cd9fddbc1c6d5c47c011fa872d211dd2fcd.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/test-results.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-offline-final-v2.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-persisted-jev-final-v2.json",
+    "verification/control-plane/tasks/p5jev-stage-flow/checks/phase5-research-jev-v2.json"
+  ],
+  "evidence": "Candidate-bound verifier PASS record; criteria evidence and limitations are included in this artifact."
+}
